@@ -11,7 +11,7 @@ class PenggunaController extends Controller
      */
     public function index()
     {
-      
+
         return view('pengguna.index');
     }
 
@@ -32,12 +32,12 @@ class PenggunaController extends Controller
             'title' => 'required',
             'content' => 'required',
         ]);
-    
+
         Post::create($request->all());
-    
+
         return redirect()->route('penggunas.index')
                          ->with('success', 'Post created successfully.');
-                        
+
     }
 
     /**
