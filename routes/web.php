@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\KontraktorController;
 use App\Http\Controllers\PitClearingController;
@@ -23,7 +24,7 @@ Route::get('dokumen/asteng/top-soil', [TopSoilController::class, 'index']);
 Route::get('dokumen/asteng/top-soil/detail/{num}', [TopSoilController::class, 'detail']);
 
 
-Route::get('akun', [datacontroller::class, 'tampil'])->name('akun.tampil');
+// Route::get('akun', [datacontroller::class, 'tampil'])->name('akun.tampil');
 
 
 Route::get('/beranda', function () {
