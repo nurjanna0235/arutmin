@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\KontraktorController;
 use App\Http\Controllers\PitClearingController;
