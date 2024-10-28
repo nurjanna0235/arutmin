@@ -320,33 +320,34 @@
                     <tr>
                         <th scope="row">1</th>
                         <td>Base Rate (Rp/Ha)</td>
-                        <td>Rp 20.250.000 / Ha</td>
+                        <td>Rp {{$dokumenpit_clearing->base_rate}} / Ha</td>
+
                     </tr>
                     <tr>
                         <th scope="row">2</th>
                         <td>Currency Adjusment
                         </td>
-                        <td>1,20</td>
+                        <td>{{$dokumenpit_clearing->currency_adjustment}}</td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
                         <td>Premium Rate</td>
-                        <td>21%</td>
+                        <td>{{$dokumenpit_clearing->premium_rate}}</td>
                     </tr>
                     <tr>
                         <th scope="row">4</th>
                         <td>General Escalation</td>
-                        <td>0%</td>
+                        <td>{{$dokumenpit_clearing->general_escalation}}</td>
                     </tr>
                     <tr>
                         <th scope="row">5</th>
                         <td>Rate Actual (Rp/Ha)</td>
-                        <td>Rp 29.514.900 /Ha</td>
+                        <td>Rp{{$dokumenpit_clearing->rate_actual}} /Ha</td>
                     </tr>
                     <tr>
                         <th scope="row">6</th>
                         <td>Contract Reference</td>
-                        <td>JAK/20/C05</td>
+                        <td>{{$dokumenpit_clearing->contract_reference}}</td>
                     </tr>
 
                 </tbody>

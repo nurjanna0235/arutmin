@@ -6,13 +6,22 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\KontraktorController;
 use App\Http\Controllers\PitClearingController;
+use App\Http\Controllers\TopSoilController;
+use App\Http\Controllers\admin\PenggunaController;
 
-Route::get('pengguna', [PenggunaController::class, 'index']);
+//Halaman pengguna
+Route::get('admin/pengguna', [PenggunaController::class, 'index']);
 //Route::get('kontraktor', [KontraktorController::class, 'index']);
 
+//Dokumen controller
 Route::get('dokumen', [DokumenController::class, 'index']);
+//Dokumen Darma Henwa Asteng/pit-clearing
 Route::get('dokumen/asteng/pit-clearing', [PitClearingController::class, 'index']);
 Route::get('dokumen/asteng/pit-clearing/detail/{num}', [PitClearingController::class, 'detail']);
+
+//Dokumen Darma Henwa Asteng/top-soil
+Route::get('dokumen/asteng/top-soil', [TopSoilController::class, 'index']);
+Route::get('dokumen/asteng/top-soil/detail/{num}', [TopSoilController::class, 'detail']);
 
 
 Route::get('akun', [datacontroller::class, 'tampil'])->name('akun.tampil');

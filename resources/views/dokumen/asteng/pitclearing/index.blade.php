@@ -282,8 +282,9 @@
 
             <li class="nav-item">
                 <a class="nav-link " href="index.html">
-                    <i class="bi bi-grid"></i>
+                <i class="ri-article-fill"></i>
                     <span>Dokumen</span>
+                    
                 </a>
             </li><!-- End Dashboard Nav -->
 
@@ -307,6 +308,7 @@
 
                 </ol>
             </nav>
+            
             <button type="button" class="btn btn-success">Tambah</button>
             <!-- Table with stripped rows -->
             <table class="table datatable">
@@ -321,13 +323,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                        $No = 1;
+                    ?>
+                    @foreach($dokumenpit_clearing as $item)
                     <tr>
-                        <td>1</td>
-                        <td>2005/02/11</td>
-                        <td> <a href="{{url('dokumen/asteng/pit-clearing/detail/1')}} " type="button" class="btn btn-primary">Detail</a>
+
+                        <td>{{$No++}}</td>
+                        <td>{{$item->created_at}}</td>
+                        <td> <a href="{{url('dokumen/asteng/pit-clearing/detail/'.$item->id)}} " type="button" class="btn btn-primary">Detail</a>
                             <button type="button" class="btn btn-danger">Hapus</button>
 
                     </tr>
+                    @endforeach
                     <!-- End Table with stripped rows -->
 
         </div><!-- End Page Title -->

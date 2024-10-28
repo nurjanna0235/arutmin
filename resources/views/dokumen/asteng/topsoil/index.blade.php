@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dokumen-ARUTMIN ASAM-ASAM</title>
+    <title>Dokumen - ARUTMIN ASAM-ASAM</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -20,18 +20,18 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="template-admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <lintemplate-admin href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-        <link href="template-admin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-        <link href="template-admin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
-        <link href="template-admin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-        <link href="template-admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-        <link href="template-admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href="/template-admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/template-admin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/template-admin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/template-admin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="/template-admin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="/template-admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/template-admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-        <!-- Template Main CSS File -->
-        <link href="template-admin/assets/css/style.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/template-admin/assets/css/style.css" rel="stylesheet">
 
-        <!-- =======================================================
+    <!-- =======================================================
   * Template Name: NiceAdmin
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Updated: Apr 20 2024 with Bootstrap v5.3.3
@@ -47,7 +47,7 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
-                <img src="template-admin/assets/img/logo.png" alt="">
+                <img src="/template-admin/assets/img/logo.png" alt="">
                 <span class="d-none d-lg-block">ARUTMIN</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -162,7 +162,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="template-admin/assets/img/messages-1.jpg" alt=""
+                                <img src="/template-admin/assets/img/messages-1.jpg" alt=""
                                     class="rounded-circle">
                                 <div>
                                     <h4>Maria Hudson</h4>
@@ -177,7 +177,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="template-admin/assets/img/messages-2.jpg" alt=""
+                                <img src="/template-admin/assets/img/messages-2.jpg" alt=""
                                     class="rounded-circle">
                                 <div>
                                     <h4>Anna Nelson</h4>
@@ -192,7 +192,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="template-admin/assets/img/messages-3.jpg" alt=""
+                                <img src="/template-admin/assets/img/messages-3.jpg" alt=""
                                     class="rounded-circle">
                                 <div>
                                     <h4>David Muldon</h4>
@@ -217,7 +217,7 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
-                        <img src="template-admin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        <img src="/template-admin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -275,30 +275,67 @@
 
     </header><!-- End Header -->
 
-     <!-- ======= Sidebar ======= -->
-     <aside id="sidebar" class="sidebar">
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
 
-<ul class="sidebar-nav" id="sidebar-nav">
+        <ul class="sidebar-nav" id="sidebar-nav">
 
-    <li class="nav-item">
-        <a class="nav-link " href="index.html">
-        <i class="ri-article-fill"></i>
-            <span>Dokumen</span>
-        </a>
-    </li><!-- End Dashboard Nav -->
-</ul>
+            <li class="nav-item">
+                <a class="nav-link " href="index.html">
+                    <i class="bi bi-grid"></i>
+                    <span>Dokumen</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+
+
+
+
+        </ul>
+
     </aside><!-- End Sidebar-->
 
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Dashboard</h1>
+            <h1>Dokumen</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                    <li class="breadcrumb-item active">Asteng</li>
+                    <li class="breadcrumb-item active">Top Soil</li>
+
                 </ol>
             </nav>
+            <button type="button" class="btn btn-success">Tambah</button>
+            <!-- Table with stripped rows -->
+            <table class="table datatable">
+                <thead>
+                    <tr>
+                        <th>
+                            <b>No</b>
+                        </th>
+                        <th data-type="date" data-format="YYYY/DD/MM">Tanggal</th>
+                        <th>Aksi</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $No = 1;
+                    ?>
+                    @foreach($dokumentop_soil as $item)
+                    <tr>
+
+                        <td>{{$No++}}</td>
+                        <td>{{$item->created_at}}</td>
+                        <td> <a href="{{url('dokumen/asteng/top-soil/detail/'.$item->id)}} " type="button" class="btn btn-primary">Detail</a>
+                            <button type="button" class="btn btn-danger">Hapus</button>
+
+                    </tr>
+                    @endforeach
+                    <!-- End Table with stripped rows -->
+
         </div><!-- End Page Title -->
 
         <section class="section dashboard">
@@ -307,57 +344,17 @@
                 <!-- Left side columns -->
                 <div class="col-lg-5">
                     <div class="row">
-                        <!-- Card with an image on left -->
-                        <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="col">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Darma Henwa (Asteng)</h5>
-                                        <div class="container text-center">
-                                            <!-- Default List group -->
-                                            <ul class="list-group">
-                                                <a href="dokumen/asteng/pit-clearing">
-                                                    <li class="list-group-item active">Pit Clearing</li>
-                                                </a>
-                                                <a href="dokumen/asteng/top-soil">
-                                                <li class="list-group-item ">Top Soil</li>
-                                            </a>
-                                            <a href="dokumen/asteng/OB">
-                                                <li class="list-group-item active">OB</li>
-                                            </a>
-                                                <a href="dokumen/asteng/Coal">
-                                                <li class="list-group-item ">Coal</li>
-                                            </a>
-                                            <a href="dokumen/asteng/Other">
-                                                <li class="list-group-item active">Other</li>
-                                            </a>
-                                                <a href="dokumen/asteng/Single-Rate">
-                                                <li class="list-group-item ">Single Rate</li>
-                                            </a>
-                                            <a href="dokumen/asteng/Mud">
-                                                <li class="list-group-item active">Mud</li>
-                                            </a>
-                                                <a href="dokumen/asteng/Daywork">
-                                                <li class="list-group-item ">Daywork</li>
-                                            </a>
-                                            <a href="dokumen/asteng/O/U-Distance">
-                                                <li class="list-group-item active">O/U Distance</li>
-                                            </a>
-                                            <a href="dokumen/asteng/Fuel">
-                                                <li class="list-group-item ">Fuel</li>
-                                            </a>
-                                            </ul><!-- End Default List group -->
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End Card with an image on left -->
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            </div><!-- End Card with an image on left -->
 
 
 
-                </div><!-- End sidebar recent posts-->
+            </div><!-- End sidebar recent posts-->
 
             </div>
             </div><!-- End News & Updates -->
@@ -375,17 +372,17 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="template-admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="template-admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="template-admin/assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="template-admin/assets/vendor/echarts/echarts.min.js"></script>
-    <script src="template-admin/assets/vendor/quill/quill.js"></script>
-    <script src="template-admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="template-admin/assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="template-admin/assets/vendor/php-email-form/validate.js"></script>
+    <script src="/template-admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="/template-admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/template-admin/assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="/template-admin/assets/vendor/echarts/echarts.min.js"></script>
+    <script src="/template-admin/assets/vendor/quill/quill.js"></script>
+    <script src="/template-admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="/template-admin/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="/template-admin/assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="template-admin/assets/js/main.js"></script>
+    <script src="/template-admin/assets/js/main.js"></script>
 
 </body>
 
