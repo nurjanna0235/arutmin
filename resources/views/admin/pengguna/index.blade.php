@@ -299,6 +299,7 @@
                     <li class="breadcrumb-item active">Pengguna</li>
                 </ol>
             </nav>
+            <a href='/admin/pengguna/tambah' type="button" class="btn btn-success">Tambah</a> 
         </div><!-- End Page Title -->
 
         <section class="section dashboard">
@@ -312,7 +313,7 @@
                 <thead>
                   <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Nama</th>
+                    <th scope="col">Username</th>
                     <th scope="col">NIK</th>
                     <th scope="col">Email</th>
                     <th scope="col">Alamat</th>
@@ -322,48 +323,22 @@
                   </tr>
                 </thead>
                 <tbody>
-              
+                @foreach($pengguna as $item)
+                
                   <tr>
                     <th scope="row">1</th>
-                    <td>Findo</td>
-                    <td>1111</td>
-                    <td>findo@gmail.com</td>
-                    <td>Banjarmasin</td>
-                    <td>0811111111</td>
-                    <td>admin</td>
+                    <td>{{$item->username}}</td>
+                    <td>{{$item->nik}}</td>
+                    <td>{{$item->email}}</td>
+                    <td>{{$item->alamat}}</td>
+                    <td>{{$item->no_hp}}</td>
+                    <td>{{$item->level}}</td>
                    <td> <button type="button" class="btn btn-primary">Edit</button>
                     <button type="button" class="btn btn-danger">Hapus</button>
                     </td>
                   </tr>
-                  
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Janna</td>
-                    <td>2222</td>
-                    <td>janna@gmail.com</td>
-                    <td>Asam-Asam</td>
-                    <td>082222222222</td>
-                    <td>operator</td>
-                    <td> <button type="button" class="btn btn-primary">Edit</button>
-                    <button type="button" class="btn btn-danger">Hapus</button>
-                    </td>
-
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Dian</td>
-                    <td>3333</td>
-                    <td>dian@gmail.com</td>
-                    <td>Banjarbaru</td>
-                    <td>083333333333</td>
-                    <td>operator</td>
-                    
-                    
-                    
-                   <td> <button type="button" class="btn btn-primary">Edit</button>
-                    <button type="button" class="btn btn-danger">Hapus</button>
-                    </td>
-                  </tr>
-                 
+                         
+                  @endforeach
                 </tbody>
               </table>
               <!-- End Default Table Example -->

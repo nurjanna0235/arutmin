@@ -4,13 +4,21 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\pengguna;
 
 class PenggunaController extends Controller
 {
     public function index()
     {
-       // $dokumenpit_clearing = pit_clearing::all();
+        $pengguna = pengguna::all();
        
-        return view('admin/pengguna/index');
+        return view('admin/pengguna/index',compact('pengguna'));
+    }
+    public function tambah()
+    {
+       // $pengguna = pengguna::all();
+       
+        return view('admin/pengguna/tambah');
     }
 }
+

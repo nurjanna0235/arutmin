@@ -20,20 +20,20 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="template-admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/template-admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <lintemplate-admin href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-        <link href="template-admin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-        <link href="template-admin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
-        <link href="template-admin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-        <link href="template-admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-        <link href="template-admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+        <link href="/template-admin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="/template-admin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+        <link href="/template-admin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+        <link href="/template-admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+        <link href="/template-admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
         <!-- Template Main CSS File -->
-        <link href="template-admin/assets/css/style.css" rel="stylesheet">
+        <link href="/template-admin/assets/css/style.css" rel="stylesheet">
 
         <!-- =======================================================
   * Template Name: NiceAdmin
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-/template/
   * Updated: Apr 20 2024 with Bootstrap v5.3.3
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
@@ -162,8 +162,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="template-admin/assets/img/messages-1.jpg" alt=""
-                                    class="rounded-circle">
+                                <img src="template-admin/assets/img/messages-1.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Maria Hudson</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -177,8 +176,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="template-admin/assets/img/messages-2.jpg" alt=""
-                                    class="rounded-circle">
+                                <img src="template-admin/assets/img/messages-2.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Anna Nelson</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -192,8 +190,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="template-admin/assets/img/messages-3.jpg" alt=""
-                                    class="rounded-circle">
+                                <img src="template-admin/assets/img/messages-3.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>David Muldon</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -215,8 +212,7 @@
 
                 <li class="nav-item dropdown pe-3">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
-                        data-bs-toggle="dropdown">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="template-admin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                     </a><!-- End Profile Iamge Icon -->
@@ -275,89 +271,93 @@
 
     </header><!-- End Header -->
 
-     <!-- ======= Sidebar ======= -->
-     <aside id="sidebar" class="sidebar">
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
 
-<ul class="sidebar-nav" id="sidebar-nav">
+        <ul class="sidebar-nav" id="sidebar-nav">
 
-    <li class="nav-item">
-        <a class="nav-link " href="index.html">
-        <i class="ri-article-fill"></i>
-            <span>Dokumen</span>
-        </a>
-    </li><!-- End Dashboard Nav -->
-</ul>
+            <li class="nav-item">
+                <a class="nav-link " href="index.html">
+                    <i class="ri-article-fill"></i>
+                    <span>Pengguna</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+        </ul>
     </aside><!-- End Sidebar-->
 
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Dashboard</h1>
+            <h1>Admin</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
+                    <li class="breadcrumb-item active">Pengguna</li>
                 </ol>
             </nav>
+
         </div><!-- End Page Title -->
 
         <section class="section dashboard">
             <div class="row">
 
                 <!-- Left side columns -->
-                <div class="col-lg-5">
+                <div class="col-lg-12">
                     <div class="row">
-                        <!-- Card with an image on left -->
-                        <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="col">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Darma Henwa (Asteng)</h5>
-                                        <div class="container text-center">
-                                            <!-- Default List group -->
-                                            <ul class="list-group">
-                                                <a href="dokumen/asteng/pit-clearing">
-                                                    <li class="list-group-item active">Pit Clearing</li>
-                                                </a>
-                                                <a href="dokumen/asteng/top-soil">
-                                                <li class="list-group-item ">Top Soil</li>
-                                            </a>
-                                            <a href="dokumen/asteng/ob">
-                                                <li class="list-group-item active">OB</li>
-                                            </a>
-                                                <a href="dokumen/asteng/coal">
-                                                <li class="list-group-item ">Coal</li>
-                                            </a>
-                                            <a href="dokumen/asteng/other">
-                                                <li class="list-group-item active">Other</li>
-                                            </a>
-                                                <a href="dokumen/asteng/single-rate">
-                                                <li class="list-group-item ">Single Rate</li>
-                                            </a>
-                                            <a href="dokumen/asteng/mud">
-                                                <li class="list-group-item active">Mud</li>
-                                            </a>
-                                                <a href="dokumen/asteng/daywork">
-                                                <li class="list-group-item ">Daywork</li>
-                                            </a>
-                                            <a href="dokumen/asteng/o/u-distance">
-                                                <li class="list-group-item active">O/U Distance</li>
-                                            </a>
-                                            <a href="dokumen/asteng/fuel">
-                                                <li class="list-group-item ">Fuel</li>
-                                            </a>
-                                            </ul><!-- End Default List group -->
-
-                                        </div>
-                                    </div>
-                                </div>
+                        <!-- Vertical Form -->
+                        <form class="row g-3">
+                            <div class="col-12">
+                                <label for="nama" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="nama">
                             </div>
-                        </div>
-                    </div><!-- End Card with an image on left -->
+                            <div class="col-12">
+                                <label for="nik" class="form-label">NIK</label>
+                                <input type="text" class="form-control" id="nik">
+                            </div>
+                            <div class="col-12">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="col-12">
+                                <label for="alamat" class="form-label">Alamat</label>
+                                <input type="text" class="form-control" id="text">
+                            </div>
+                            <div class="col-12">
+                                <label for="no_handphone" class="form-label">No Handphone</label>
+                                <input type="text" class="form-control" id="no_handphone">
+                            </div>
+
+
+                            <div class="col-12">
+                                <label for="no_handphone" class="form-label">Level</label>
+                                <select class="form-select" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    <option value="1">Admin</option>
+                                    <option value="2">Operator</option>
+
+                                </select>
+
+                            </div>
+
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="button" class="btn btn-primary">Simpan</button>
+                    </div>
+                    </form><!-- Vertical Form -->
 
 
 
-                </div><!-- End sidebar recent posts-->
+
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div><!-- End Card with an image on left -->
+
+
+
+            </div><!-- End sidebar recent posts-->
 
             </div>
             </div><!-- End News & Updates -->
