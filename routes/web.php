@@ -17,8 +17,10 @@ use App\Http\Controllers\admin\MudController;
 //Halaman pengguna
 Route::get('admin/pengguna', [PenggunaController::class, 'index']);
 Route::get('admin/pengguna/edit/{num}', [PenggunaController::class, 'edit']);
+Route::post('admin/pengguna/update/{num}', [PenggunaController::class, 'update']);
 Route::get('admin/pengguna/tambah', [PenggunaController::class, 'tambah']);
 Route::post('admin/pengguna/simpan', [PenggunaController::class, 'simpan']);
+Route::delete('admin/pengguna/delete/{num}', [PenggunaController::class, 'delete']);
 
 //Route::get('kontraktor', [KontraktorController::class, 'index']);
 
