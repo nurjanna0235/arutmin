@@ -18,7 +18,7 @@ use App\Http\Controllers\admin\MudController;
 Route::get('admin/pengguna', [PenggunaController::class, 'index']);
 Route::get('admin/pengguna/edit/{num}', [PenggunaController::class, 'edit']);
 Route::get('admin/pengguna/tambah', [PenggunaController::class, 'tambah']);
-
+Route::post('admin/pengguna/simpan', [PenggunaController::class, 'simpan']);
 
 //Route::get('kontraktor', [KontraktorController::class, 'index']);
 

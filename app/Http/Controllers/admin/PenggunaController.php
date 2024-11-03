@@ -20,5 +20,22 @@ class PenggunaController extends Controller
        
         return view('admin/pengguna/tambah');
     }
-}
 
+    public function simpan(Request $request)
+    {
+    pengguna::create([
+'username'=> $request->username,
+'nik'=> $request->nik,
+'email'=> $request->email,
+'alamat'=> $request->alamat,
+'no_hp'=> $request->no_hp,
+'level'=> $request->level,
+'password'=> $request->password,
+    ]);
+    return redirect()->to('admin/pengguna');
+        // $pengguna = pengguna::all();
+        
+       //  return view('admin/pengguna/simpan');
+     
+    }
+};
