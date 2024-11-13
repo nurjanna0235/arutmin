@@ -303,7 +303,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
                     <li class="breadcrumb-item active">Asteng</li>
-                    <li class="breadcrumb-item active">Pit Clearing</li>
+                    <li class="breadcrumb-item active">Coal</li>
                 </ol>
             </nav>
             <!-- Bordered Table -->
@@ -319,37 +319,61 @@
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Base Rate (Rp/Ha)</td>
-                        <td>Rp {{$dokumencoal->base_rate}} / Ha</td>
+                        <td>Clean Coal (Rp/ton)</td>
+                        <td>Rp {{$dokumencoal->clean_coal}} ton</td>
 
                     </tr>
                     <tr>
                         <th scope="row">2</th>
-                        <td>Currency Adjusment
+                        <td>Loading and Ripping (Rp/ton)
                         </td>
-                        <td>{{$dokumencoal->currency_adjustment}}</td>
+                        <td>Rp {{$dokumencoal->loading_and_ripping}} ton</td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
+                        <td>Coal Hauling @8,463 Km (Rp/ton)</td>
+                        <td>Rp {{$dokumencoal->coal_hauling}} ton</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>HRM @8,463 Km (Rp/ton)</td>
+                        <td>Rp {{$dokumencoal->hrm}} ton</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Pit Support (Rp/ton)</td>
+                        <td>Rp{{$dokumencoal->pit_support}} ton</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>Sub Total Base Rate Coal (Rp/ton)</td>
+                        <td>Rp{{$dokumencoal->sub_total_base_rate_coal}} ton</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>Currency Adjustment</td>
+                        <td>{{$dokumencoal->currency_adjustment}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
                         <td>Premium Rate</td>
                         <td>{{$dokumencoal->premium_rate}}</td>
                     </tr>
                     <tr>
-                        <th scope="row">4</th>
+                        <th scope="row">9</th>
                         <td>General Escalation</td>
                         <td>{{$dokumencoal->general_escalation}}</td>
                     </tr>
                     <tr>
-                        <th scope="row">5</th>
-                        <td>Rate Actual (Rp/Ha)</td>
-                        <td>Rp{{$dokumencoal->rate_actual}} /Ha</td>
+                        <th scope="row">10</th>
+                        <td>Total Rate Coal Actual (Rp/ton)</td>
+                        <td>Rp {{$dokumencoal->total_rate_coal_actual}} ton</td>
                     </tr>
                     <tr>
-                        <th scope="row">6</th>
+                        <th scope="row">11</th>
                         <td>Contract Reference</td>
                         <td>{{$dokumencoal->contract_reference}}</td>
                     </tr>
-
                 </tbody>
             </table>
             <!-- End Bordered Table -->

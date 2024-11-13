@@ -9,13 +9,17 @@ class MudController extends Controller
 {
     public function index()
     {
-        $dokumentop_soil = mud::all();
+        $dokumenmud = mud::all();
        
         return view('dokumen/asteng/mud/index',compact('dokumenmud'));
     }
     public function detail($id)
     {
-            $dokumenpit_clearing = top_soil::where('id',$id)->get()->first();
+            $dokumenmud = mud::where('id',$id)->get()->first();
         return view('dokumen/asteng/mud/detail',compact('dokumenmud'));
+    }
+    public function tambah()
+    {
+        return view('dokumen/asteng/mud/tambah');
     }
 }

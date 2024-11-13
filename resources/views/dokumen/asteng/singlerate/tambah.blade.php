@@ -9,7 +9,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
-                    <li class="breadcrumb-item active">Pit Clearing</li>
+                    <li class="breadcrumb-item active">Single Rate</li>
                 </ol>
             </nav>
 
@@ -22,16 +22,25 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Vertical Form -->
-                        <form action= "/dokumen/asteng/pit-clearing/simpan" method="POST" class= "row g-3">
+                        <form action= "/admin/tambah/simpan" method="POST" class= "row g-3">
                            @csrf
                         <div class="col-12">
-                                <label for="base_rate" class="form-label">Base Rate (Rp/Ha)</label>
-                                <input name= "base_rate" type="text" class="form-control" id="base_rate">
+                                <label for="total_base_rate_ob" class="form-label">Total Base Rate OB (Rp/BCM)</label>
+                                <input name= "total_base_rate_ob" type="text" class="form-control" id="total_base_rate_ob">
+                            </div>
+                            <div class="col-12">
+                                <label for="total_base_rate_coal" class="form-label">Total Base Rate Coal (Rp/ton)</label>
+                                <input name= "total_base_rate_coal" type="text" class="form-control" id="total_base_rate_coal">
+                            </div>
+                            <div class="col-12">
+                                <label for="sr" class="form-label">SR</label>
+                                <input name= "sr" type="text" class="form-control" id="sr">
                             </div>
                             <div class="col-12">
                                 <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
                                 <input name= "currency_adjustment" type="text" class="form-control" id="currency_adjustment">
                             </div>
+
                             <div class="col-12">
                                 <label for="premium_rate" class="form-label">Premium Rate</label>
                                 <input name= "premium_rate" type="text" class="form-control" id="premium_rate">
@@ -40,10 +49,9 @@
                                 <label for="general_escalation" class="form-label">General Escalation</label>
                                 <input name= "general_escalation" type="text" class="form-control" id="general_escalation">
                             </div>
-
                             <div class="col-12">
-                                <label for="rate_actual" class="form-label">Rate Actual (Rp/Ha)</label>
-                                <input name= "rate_actual" type="text" class="form-control" id="rate_actual">
+                                <label for="total_single_rate_actual" class="form-label">Total Single Rate Actual (Rp/ton)</label>
+                                <input name= "total_single_rate_actual" type="text" class="form-control" id="total_single_rate_actual">
                             </div>
                             <div class="col-12">
                                 <label for="contract_reference" class="form-label">Contract Reference</label>

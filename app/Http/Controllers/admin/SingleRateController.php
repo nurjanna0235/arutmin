@@ -11,11 +11,15 @@ class SingleRateController extends Controller
     {
         $dokumensingle_rate = single_rate::all();
        
-        return view('dokumen/asteng/singlerate/index',compact('dokumensinglerate'));
+        return view('dokumen/asteng/singlerate/index',compact('dokumensingle_rate'));
     }
     public function detail($id)
-    {
-            $dokumensingle_rate = single_rate::where('id',$id)->get()->first();
-        return view('dokumen/asteng/singlerate/detail',compact('dokumensinglerate'));
-    }
+{
+        $dokumensingle_rate = single_rate::where('id',$id)->get()->first();
+    return view('dokumen/asteng/singlerate/detail',compact('dokumensingle_rate'));
+}
+public function tambah()
+{
+    return view('dokumen/asteng/singlerate/tambah');
+}
 }

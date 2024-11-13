@@ -1,4 +1,5 @@
 @extends('componen.template-admin')
+
 @section('conten')
 
     <main id="main" class="main">
@@ -14,7 +15,7 @@
                 </ol>
             </nav>
             
-            <button type="button" class="btn btn-success">Tambah</button>
+            <a href="/dokumen/asteng/ob/tambah" type="button" class="btn btn-success">Tambah</a>
             <!-- Table with stripped rows -->
             <table class="table datatable">
                 <thead>
@@ -33,14 +34,20 @@
                     ?>
                     @foreach($dokumenob as $item)
                     <tr>
-                    <th scope="row">1</th>
-                    <td>{{$item->tanggal}}</td>
-                   
-                        <td>{{$No++}}</td>
-                        <td>{{$item->created_at}}</td>
-                        <td> <a href="{{url('dokumen/asteng/ob/detail/'.$item->id)}} " type="button" class="btn btn-primary">Detail</a>
-                            <button type="button" class="btn btn-danger">Hapus</button>
 
+                        <td>{{$No++}}</td>
+                        <td>{{$item->created_at}}
+                        <td> <a href="{{url('dokumen/asteng/ob/detail/'.$item->id)}} " type="button" class="btn btn-primary">Detail</a>
+                        <button class="btn btn-danger" type="submit">Hapus</button>
+                        <form
+                        action="{{ url('dokumen/asteng/ob/delete/'.$item->id) }}"
+                        method="DELETE"
+                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                        @csrf
+                        @method('DELETE')
+                       
+                        </form>
+                        </td>
                     </tr>
                     @endforeach
                     <!-- End Table with stripped rows -->
@@ -73,11 +80,6 @@
             </div>
         </section>
 
-    </main><!-- End #main -->
-
-
-    @endsection
-
-</body>
-
-</html>
+    </main>
+    <!-- End #main -->
+@endsection

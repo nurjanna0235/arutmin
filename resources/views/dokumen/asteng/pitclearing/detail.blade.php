@@ -342,7 +342,7 @@
                     <tr>
                         <th scope="row">5</th>
                         <td>Rate Actual (Rp/Ha)</td>
-                        <td>Rp{{$dokumenpit_clearing->rate_actual}} /Ha</td>
+                        <td>Rp{{$dokumenpit_clearing->rate_actual}} / Ha</td>
                     </tr>
                     <tr>
                         <th scope="row">6</th>

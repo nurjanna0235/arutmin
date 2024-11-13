@@ -18,4 +18,26 @@ class OBController extends Controller
             $dokumenob = ob::where('id',$id)->get()->first();
         return view('dokumen/asteng/ob/detail',compact('dokumenob'));
     }
-}
+    public function tambah()
+    {
+        return view('dokumen/asteng/ob/tambah');
+    }
+
+    public function simpan(Request $request)
+    {
+        // Upload file
+ 
+    
+        pit_clearing::create([
+            'nama_dokumen' => $request->nama_dokumen,
+      
+        ]);
+        return redirect()->route('dokumen/asteng/ob/simpan')->with('success', 'Dokumen berhasil ditambahkan');
+    }
+    public function delete($id){
+        $dokumenpit_clearing = pit_clearing::findOrFail($id);
+        $dokumenpit_clearing->delete();
+
+        return redirect()->to('dokumen/asteng/ob/hapus/');
+    }
+    }

@@ -4,16 +4,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class mud extends Model
+class daywork extends Model
 {
-     use HasFactory;
+    use HasFactory;
 
     // Tentukan nama tabel jika berbeda dari asumsi Laravel
-    protected $table = 'mud';
+    protected $table = 'daywork';
 
     // Tentukan kolom kunci utama jika tidak menggunakan 'id'
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable =['Mud Removal - Load and Haul (Rp/BCM)','Currency Adjustment','Premium Rate','General Escalation','Rate Actual (Rp/Ha)','Contract Reference'];
+    protected $fillable =['Item','Base Rate Exc. Fuel (Rp/hrs)','Actual Rate Exc. Fuel (Rp/Hrs)','FBR (liter/hrs)'];
 }

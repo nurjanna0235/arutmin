@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengguna', function (Blueprint $table) {
+        Schema::create('fuel', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('password');
-            $table->string('email');
-            $table->string('nik');
-            $table->string('no_hp');
-            $table->string('level');
-
-
+            $table->string('activity');
+            $table->string('item');
+            $table->decimal('fuel_index', 8, 2); // nilai decimal untuk indeks bahan bakar
+            $table->integer('contractual_distance_km'); // jarak kontrak dalam KM
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengguna');
+        Schema::dropIfExists('fuel');
     }
 };

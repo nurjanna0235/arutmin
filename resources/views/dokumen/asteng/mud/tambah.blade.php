@@ -9,7 +9,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
-                    <li class="breadcrumb-item active">Pit Clearing</li>
+                    <li class="breadcrumb-item active">Mud</li>
                 </ol>
             </nav>
 
@@ -22,11 +22,11 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Vertical Form -->
-                        <form action= "/dokumen/asteng/pit-clearing/simpan" method="POST" class= "row g-3">
+                        <form action= "/admin/tambah/simpan" method="POST" class= "row g-3">
                            @csrf
                         <div class="col-12">
-                                <label for="base_rate" class="form-label">Base Rate (Rp/Ha)</label>
-                                <input name= "base_rate" type="text" class="form-control" id="base_rate">
+                                <label for="mud_removal_load_and_haul" class="form-label">Mud Removal - Load and Haul (Rp/BCM)</label>
+                                <input name= "mud_removal_load_and_haul" type="text" class="form-control" id="mud_removal_load_and_haul">
                             </div>
                             <div class="col-12">
                                 <label for="currency_adjustment" class="form-label">Currency Adjustment</label>

@@ -37,26 +37,21 @@
                                 <input value="{{old('email',$dataPengguna->email)}}" name= "email" type="email" class="form-control" id="email">
                             </div>
                             <div class="col-12">
-                                <label for="password" class="form-label">pasword</label>
+                                <label for="password" class="form-label">Password</label>
                                 <input value="{{old('password',$dataPengguna->password)}}" name= "password" type="text" class="form-control" id="password">
                             </div>
 
                             <div class="col-12">
-                                <label for="alamat" class="form-label">Alamat</label>
-                                <input value="{{old('alamat',$dataPengguna->alamat)}}" name= "alamat" type="text" class="form-control" id="text">
-                            </div>
-                            <div class="col-12">
                                 <label for="no_hp" class="form-label">No Handphone</label>
                                 <input value="{{old('no_hp',$dataPengguna->no_hp)}}" name= "no_hp" type="text" class="form-control" id="no_hp">
                             </div>
-
 
                             <div class="col-12">
                                 <label for="level" class="form-label">Level</label>
                                 <select name = "level"class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     <option value="admin">Admin</option>
-                                    <option value="operator">Operator</option>
+                                    <option value="user">User</option>
 
                                 </select>
 
@@ -64,7 +59,7 @@
 
                     </div>
                     <div class="col-12 mt-3">
-                        <button type="sumbit" class="btn btn-primary">Simpan</button>
+                        <button type="sumbit" class="btn btn-primary">Upload</button>
                     </div>
                     </form><!-- Vertical Form -->
 

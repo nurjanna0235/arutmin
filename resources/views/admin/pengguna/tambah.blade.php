@@ -37,26 +37,21 @@
                                 <input name= "email" type="email" class="form-control" id="email">
                             </div>
                             <div class="col-12">
-                                <label for="password" class="form-label">pasword</label>
+                                <label for="password" class="form-label">password</label>
                                 <input name= "password" type="text" class="form-control" id="password">
                             </div>
 
                             <div class="col-12">
-                                <label for="alamat" class="form-label">Alamat</label>
-                                <input name= "alamat" type="text" class="form-control" id="text">
-                            </div>
-                            <div class="col-12">
                                 <label for="no_hp" class="form-label">No Handphone</label>
                                 <input name= "no_hp" type="text" class="form-control" id="no_hp">
                             </div>
-
 
                             <div class="col-12">
                                 <label for="level" class="form-label">Level</label>
                                 <select name = "level"class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">
                                     <option value="admin">Admin</option>
-                                    <option value="operator">Operator</option>
+                                    <option value="user">User</option>
 
                                 </select>
 

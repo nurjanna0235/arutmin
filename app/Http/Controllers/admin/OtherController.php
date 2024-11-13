@@ -15,7 +15,11 @@ class OtherController extends Controller
     }
     public function detail($id)
     {
-            $dokumenpit_clearing = other::where('id',$id)->get()->first();
+            $dokumenother = other::where('id',$id)->get()->first();
         return view('dokumen/asteng/other/detail',compact('dokumenother'));
+    }
+    public function tambah()
+    {
+        return view('dokumen/asteng/other/tambah');
     }
 }

@@ -18,4 +18,8 @@ class CoalController extends Controller
             $dokumencoal = coal::where('id',$id)->get()->first();
         return view('dokumen/asteng/coal/detail',compact('dokumencoal'));
     }
+    public function tambah()
+    {
+        return view('dokumen/asteng/coal/tambah');
+    }
 }

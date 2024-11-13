@@ -1,7 +1,6 @@
 @extends('componen.template-admin')
 
 @section('conten')
-
     <main id="main" class="main">
 
         <div class="pagetitle">
@@ -10,11 +9,12 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
                     <li class="breadcrumb-item active">Asteng</li>
-                    <li class="breadcrumb-item active">Top Soil</li>
+                    <li class="breadcrumb-item active">Daywork</li>
 
                 </ol>
             </nav>
-            <a href="/dokumen/asteng/top-soil/tambah" type="button" class="btn btn-success">Tambah</a>
+
+            <a href="/dokumen/asteng/daywork/tambah" type="button" class="btn btn-success">Tambah</a>
             <!-- Table with stripped rows -->
             <table class="table datatable">
                 <thead>
@@ -31,21 +31,13 @@
                     <?php
                         $No = 1;
                     ?>
-                    @foreach($dokumentop_soil as $item)
+                    @foreach($dokumendaywork as $item)
                     <tr>
 
                         <td>{{$No++}}</td>
                         <td>{{$item->created_at}}</td>
-                        <td> <a href="{{url('dokumen/asteng/top-soil/detail/'.$item->id)}} " type="button" class="btn btn-primary">Detail</a>
-                        <button type="button" class="btn btn-danger">Hapus</button>
-                        <form
-                                            action="{{ url('/dokumen/asteng/top-soil/delete/'.$item->id) }}"
-                                            method="POST"
-                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
-                                            @csrf
-                                            @method('DELETE')
-                             
-                   
+                        <td> <a href="{{url('dokumen/asteng/daywork/detail/'.$item->id)}} " type="button" class="btn btn-primary">Detail</a>
+                            <button type="button" class="btn btn-danger">Hapus</button>
 
                     </tr>
                     @endforeach

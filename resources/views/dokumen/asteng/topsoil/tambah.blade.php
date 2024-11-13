@@ -9,7 +9,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
-                    <li class="breadcrumb-item active">Pit Clearing</li>
+                    <li class="breadcrumb-item active">Top Soil</li>
                 </ol>
             </nav>
 
@@ -22,7 +22,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Vertical Form -->
-                        <form action= "/dokumen/asteng/pit-clearing/simpan" method="POST" class= "row g-3">
+                        <form action= "/dokumen/asteng/top-soil/simpan" method="POST" class= "row g-3">
                            @csrf
                         <div class="col-12">
                                 <label for="base_rate" class="form-label">Base Rate (Rp/Ha)</label>

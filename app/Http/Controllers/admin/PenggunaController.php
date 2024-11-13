@@ -27,7 +27,6 @@ class PenggunaController extends Controller
             'username' => $request->username,
             'nik' => $request->nik,
             'email' => $request->email,
-            'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,
             'level' => $request->level,
             'password' => $request->password,
@@ -50,7 +49,6 @@ class PenggunaController extends Controller
         //     'nik' => 'required|string|max:20',
         //     'email' => 'required|email|max:255',
         //     'password' => 'nullable|string|min:8', // null berarti password tidak perlu diubah jika kosong
-        //     'alamat' => 'required|string',
         //     'no_hp' => 'required|string',
         //     'level' => 'required|integer',
         // ]);
@@ -62,7 +60,6 @@ class PenggunaController extends Controller
             'nik' => $request->nik,
             'email' => $request->email,
             'password' => $request->password ? bcrypt($request->password) : $dataPengguna->password,
-            'alamat' => $request->alamat,
             'no_hp' => $request->no_hp,
             'level' => $request->level,
         ]);

@@ -16,7 +16,4 @@ class pit_clearing extends Model
 
     // Daftar kolom yang dapat diisi secara massal
     protected $fillable = ['base_rate','currency_adjustment','premium_rate','general_escalation','rate_actual','contract_reference','created_at','updated_at'];
-
-
- 
-}
+};

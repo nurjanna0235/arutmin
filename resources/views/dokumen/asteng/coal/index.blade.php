@@ -13,7 +13,7 @@
                 </ol>
             </nav>
             
-            <button type="button" class="btn btn-success">Tambah</button>
+            <a href="/dokumen/asteng/coal/tambah" type="button" class="btn btn-success">Tambah</a>
             <!-- Table with stripped rows -->
             <table class="table datatable">
                 <thead>

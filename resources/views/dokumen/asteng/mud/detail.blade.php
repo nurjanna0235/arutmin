@@ -303,7 +303,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
                     <li class="breadcrumb-item active">Asteng</li>
-                    <li class="breadcrumb-item active">ob</li>
+                    <li class="breadcrumb-item active">Mud</li>
                 </ol>
             </nav>
             <!-- Bordered Table -->
@@ -319,72 +319,35 @@
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Load and Haul (Rp/BCM)</td>
-                        <td>Rp {{$dokumenob->load_and_haul}} BCM</td>
+                        <td>Mud Removal - Load and Haul (Rp/BCM)</td>
+                        <td>Rp {{$dokumenmud->mud_removal_load_and_haul}} BCM</td>
 
                     </tr>
                     <tr>
                         <th scope="row">2</th>
-                        <td>Drill and Blast (if required) (Rp/BCM)
-                        </td>
-                        <td>Rp {{$dokumenob->drill_and_blast}} BCM</td>
+                        <td>Currency Adjustment </td>
+                        <td>{{$dokumenmud->currency_adjustment}}</td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td>Pit Support (Rp/BCM)</td>
-                        <td>Rp {{$dokumenob->pit_support}} BCM</td>
+                        <td>Premium Rate</td>
+                        <td>{{$dokumenmud->premium_rate}}</td>
                     </tr>
                     <tr>
                         <th scope="row">4</th>
-                        <td>Pit Lighting (Rp/BCM)</td>
-                        <td>Rp {{$dokumenob->pit_lighting}} BCM</td>
+                        <td>General Escalation</td>
+                        <td>{{$dokumenmud->general_escalation}}</td>
                     </tr>
                     <tr>
                         <th scope="row">5</th>
-                        <td>HRM (Rp/BCM)</td>
-                        <td>Rp{{$dokumenob->hrm}} BCM</td>
+                        <td>Rate Actual (Rp/Ha)</td>
+                        <td>Rp{{$dokumenmud->rate_actual}} / Ha</td>
                     </tr>
                     <tr>
                         <th scope="row">6</th>
-                        <td>Dump Maintenance (Rp/BCM)</td>
-                        <td>Rp {{$dokumenob->dump_maintenance}} BCM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Dewatering/Sediment (Rp/BCM)</td>
-                        <td>Rp {{$dokumenob->dewatering_sediment}} BCM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">8</th>
-                        <td>SR</td>
-                        <td>{{$dokumenob->sr}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">9</th>
-                        <td>Currency Adjustment</td>
-                        <td>{{$dokumenob->currency_adjustment}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">10</th>
-                        <td>Premium Rate</td>
-                        <td>{{$dokumenob->premium_rate}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">11</th>
-                        <td>General Escalation</td>
-                        <td>{{$dokumenob->general_escalation}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">12</th>
-                        <td>Total Rate OB Actual (Rp/BCM)</td>
-                        <td>Rp {{$dokumenob->total_rate_ob_actual}} BCM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">13</th>
                         <td>Contract Reference</td>
-                        <td>{{$dokumenob->contract_reference}}</td>
+                        <td>{{$dokumenmud->contract_reference}}</td>
                     </tr>
-
 
                 </tbody>
             </table>
