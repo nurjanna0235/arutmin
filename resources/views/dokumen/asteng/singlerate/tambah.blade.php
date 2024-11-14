@@ -22,7 +22,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Vertical Form -->
-                        <form action= "/admin/tambah/simpan" method="POST" class= "row g-3">
+                        <form action= "/dokumen/asteng/single-rate/simpan" method="POST" class= "row g-3">
                            @csrf
                         <div class="col-12">
                                 <label for="total_base_rate_ob" class="form-label">Total Base Rate OB (Rp/BCM)</label>

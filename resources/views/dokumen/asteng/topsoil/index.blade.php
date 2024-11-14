@@ -34,18 +34,21 @@
                     @foreach($dokumentop_soil as $item)
                     <tr>
 
-                        <td>{{$No++}}</td>
-                        <td>{{$item->created_at}}</td>
-                        <td> <a href="{{url('dokumen/asteng/top-soil/detail/'.$item->id)}} " type="button" class="btn btn-primary">Detail</a>
-                        <button type="button" class="btn btn-danger">Hapus</button>
-                        <form
-                                            action="{{ url('/dokumen/asteng/top-soil/delete/'.$item->id) }}"
-                                            method="POST"
-                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
-                                            @csrf
-                                            @method('DELETE')
-                             
-                   
+                       
+                    <td>{{ $No++ }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>
+                            <a href="{{ url('dokumen/asteng/top-soil/detail/'.$item->id) }}"
+                                type="button" class="btn btn-primary">Detail</a>
+
+                            <form
+                                action="{{ url('/dokumen/asteng/top-soil/delete/'.$item->id) }}"
+                                method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
+                                class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Hapus</button>
+                            </form>
 
                     </tr>
                     @endforeach

@@ -22,7 +22,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Vertical Form -->
-                        <form action= "/admin/tambah/simpan" method="POST" class= "row g-3">
+                        <form action= "/dokumen/asteng/daywork/simpan" method="POST" class= "row g-3">
                            @csrf
                         <div class="col-12">
                                 <label for="item" class="form-label">Item</label>
@@ -39,7 +39,7 @@
                             <div class="col-12">
                                 <label for="fbr" class="form-label">FBR (liter/hrs)</label>
                                 <label for="fbr" class="form-label">FBR (liter/hrs)</label>
-                                <input name= "pit_lighting" type="text" class="form-control" id="fbr">
+                                <input name= "fbr" type="text" class="form-control" id="fbr">
                             </div>
                             <div class="col-12">
                                 <label for="currency_adjustment" class="form-label">Currency Adjustment</label>

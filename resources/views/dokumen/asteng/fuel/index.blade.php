@@ -2,76 +2,87 @@
 
 @section('conten')
 
-    <main id="main" class="main">
+<main id="main" class="main">
 
-        <div class="pagetitle">
-            <h1>Dokumen</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
-                    <li class="breadcrumb-item active">Asteng</li>
-                    <li class="breadcrumb-item active">Fuel Allowance</li>
+    <div class="pagetitle">
+        <h1>Dokumen</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Asteng</li>
+                <li class="breadcrumb-item active">Fuel</li>
 
-                </ol>
-            </nav>
-            
-            <a href="/dokumen/asteng/fuel/tambah" type="button" class="btn btn-success">Tambah</a>
-            <!-- Table with stripped rows -->
-            <table class="table datatable">
-                <thead>
-                    <tr>
-                        <th>
-                            <b>No</b>
-                        </th>
-                        <th data-type="date" data-format="YYYY/DD/MM">Tanggal</th>
-                        <th>Aksi</th>
+            </ol>
+        </nav>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
+        <a href="/dokumen/asteng/fuel/tambah" type="button" class="btn btn-success">Tambah</a>
+        <!-- Table with stripped rows -->
+        <table class="table datatable">
+            <thead>
+                <tr>
+                    <th>
+                        <b>No</b>
+                    </th>
+                    <th data-type="date" data-format="YYYY/DD/MM">Tanggal</th>
+                    <th>Aksi</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <?php
                         $No = 1;
                     ?>
-                    @foreach($dokumenfuel as $item)
+                @foreach($dokumenfuel as $item)
                     <tr>
 
-                        <td>{{$No++}}</td>
-                        <td>{{$item->created_at}}</td>
-                        <td> <a href="{{url('dokumen/asteng/fuel/detail/'.$item->id)}} " type="button" class="btn btn-primary">Detail</a>
-                            <button type="button" class="btn btn-danger">Hapus</button>
+                        <td>{{ $No++ }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>
+                            <a href="{{ url('dokumen/asteng/fuel/detail/'.$item->id) }}"
+                                type="button" class="btn btn-primary">Detail</a>
 
+                            <form
+                                action="{{ url('/dokumen/asteng/fuel/delete/'.$item->id) }}"
+                                method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
+                                class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Hapus</button>
+                            </form>
+                        </td>
                     </tr>
-                    @endforeach
-                    <!-- End Table with stripped rows -->
 
-        </div><!-- End Page Title -->
+                @endforeach
+                <!-- End Table with stripped rows -->
 
-        <section class="section dashboard">
-            <div class="row">
+    </div><!-- End Page Title -->
 
-                <!-- Left side columns -->
-                <div class="col-lg-5">
-                    <div class="row">
+    <section class="section dashboard">
+        <div class="row">
 
-                    </div>
+            <!-- Left side columns -->
+            <div class="col-lg-5">
+                <div class="row">
+
                 </div>
             </div>
-            </div>
-            </div>
-            </div><!-- End Card with an image on left -->
+        </div>
+        </div>
+        </div>
+        </div><!-- End Card with an image on left -->
 
 
 
-            </div><!-- End sidebar recent posts-->
+        </div><!-- End sidebar recent posts-->
 
-            </div>
-            </div><!-- End News & Updates -->
+        </div>
+        </div><!-- End News & Updates -->
 
-            </div><!-- End Right side columns -->
+        </div><!-- End Right side columns -->
 
-            </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
-    <!-- End #main -->
-    @endsection
+</main>
+<!-- End #main -->
+@endsection

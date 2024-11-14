@@ -22,7 +22,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Vertical Form -->
-                        <form action= "/admin/tambah/simpan" method="POST" class= "row g-3">
+                        <form action= "/dokumen/asteng/coal/simpan" method="POST" class= "row g-3">
                             
                            @csrf
                         <div class="col-12">
@@ -34,33 +34,25 @@
                                 <input name= "loading_and_ripping" type="text" class="form-control" id="loading_and_ripping">
                             </div>
                             <div class="col-12">
-                                <label for="pit_support" class="form-label">Pit Support (Rp/BCM)</label>
-                                <input name= "pit_support" type="text" class="form-control" id="pit_support">
+                                <label for="coal_hauling" class="form-label">Coal Hauling @8,463 Km (Rp/ton)</label>
+                                <input name= "coal_hauling" type="text" class="form-control" id="coal_hauling">
                             </div>
                             <div class="col-12">
-                                <label for="pit_lighting" class="form-label">Pit Lighting (Rp/BCM)</label>
-                                <input name= "pit_lighting" type="text" class="form-control" id="pit_lighting">
+                                <label for="hrm" class="form-label">HRM</label>
+                                <input name= "hrm" type="text" class="form-control" id="hrm">
                             </div>
 
                             <div class="col-12">
-                                <label for="hrm" class="form-label">HRM (Rp/BCM)</label>
-                                <input name= "hrm" type="text" class="form-control" id="hrm">
+                                <label for="pit_support" class="form-label">Pit Support (Rp/ton)</label>
+                                <input name= "pit_support" type="text" class="form-control" id="pit_support">
                             </div>
                             <div class="col-12">
-                                <label for="dump_maintenance" class="form-label">Dump Maintenance (Rp/BCM)</label>
-                                <input name= "dump_maintenance" type="text" class="form-control" id="dump_maintenance">
+                                <label for="sub_total_base_rate_coal" class="form-label">Sub Total Base Rate Coal (Rp/ton)</label>
+                                <input name= "sub_total_base_rate_coal" type="text" class="form-control" id="sub_total_base_rate_coal">
                             </div>
                             <div class="col-12">
                                 <label for="dewatering_sediment" class="form-label">Dewatering/Sediment (Rp/BCM)</label>
                                 <input name= "dewatering_sediment" type="text" class="form-control" id="dewatering_sediment">
-                            </div>
-                            <div class="col-12">
-                                <label for="sub_total_base_rate_ob" class="form-label">Sub Total Base Rate OB (Rp/BCM)</label>
-                                <input name= "sub_total_base_rate_ob" type="text" class="form-control" id="sub_total_base_rate_ob">
-                            </div>
-                            <div class="col-12">
-                                <label for="sr" class="form-label">SR</label>
-                                <input name= "sr" type="text" class="form-control" id="sr">
                             </div>
                             <div class="col-12">
                                 <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
@@ -71,12 +63,20 @@
                                 <input name= "premium_rate" type="text" class="form-control" id="premium_rate">
                             </div>
                             <div class="col-12">
-                                <label for="total_rate_ob_actual" class="form-label">Total Rate OB Actual (Rp/BCM)</label>
+                                <label for="general_escalation" class="form-label">General Escalation</label>
                                 <input name= "general_escalation" type="text" class="form-control" id="general_escalation">
                             </div>
                             <div class="col-12">
-                                <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
-                                <input name= "currency_adjustment" type="text" class="form-control" id="currency_adjustment">
+                                <label for="total_rate_coal_actual" class="form-label"> Total Rate Coal Actual (Rp/ton)</label>
+                                <input name= "total_rate_coal_actual" type="text" class="form-control" id="total_rate_coal_actual">
+                            </div>
+                            <div class="col-12">
+                                <label for="total_rate_ob_actual" class="form-label">Contract Reference</label>
+                                <input name= "general_escalation" type="text" class="form-control" id="general_escalation">
+                            </div>
+                            <div class="col-12">
+                                <label for="contract_reference" class="form-label">Currency Adjustment</label>
+                                <input name= "contract_reference" type="text" class="form-control" id="contract_reference">
                             </div>
                                 </select>
 

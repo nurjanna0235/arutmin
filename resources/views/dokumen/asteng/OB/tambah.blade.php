@@ -22,14 +22,14 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Vertical Form -->
-                        <form action= "/admin/tambah/simpan" method="POST" class= "row g-3">
+                        <form action= "/dokumen/asteng/ob/simpan" method="POST" class= "row g-3">
                            @csrf
                         <div class="col-12">
                                 <label for="load_and_haul" class="form-label">Load and Haul (Rp/BCM)</label>
                                 <input name= "load_and_haul" type="text" class="form-control" id="load_and_haul">
                             </div>
                             <div class="col-12">
-                                <label for="drill_and_blast" class="form-label">Drill and Blast (if required) (Rp/BCM)</label>
+                                <label for="drill_and_blast" class="form-label">Drill and Blast (if required) (Rp/BCM)t</label>
                                 <input name= "drill_and_blast" type="text" class="form-control" id="drill_and_blast">
                             </div>
                             <div class="col-12">
@@ -40,9 +40,8 @@
                                 <label for="pit_lighting" class="form-label">Pit Lighting (Rp/BCM)</label>
                                 <input name= "pit_lighting" type="text" class="form-control" id="pit_lighting">
                             </div>
-
                             <div class="col-12">
-                                <label for="hrm" class="form-label">HRM (Rp/BCM)</label>
+                                <label for="hrm" class="form-label">HRM</label>
                                 <input name= "hrm" type="text" class="form-control" id="hrm">
                             </div>
                             <div class="col-12">
@@ -54,14 +53,14 @@
                                 <input name= "dewatering_sediment" type="text" class="form-control" id="dewatering_sediment">
                             </div>
                             <div class="col-12">
-                                <label for="sub_total_base_rate_ob" class="form-label">Sub Total Base Rate OB (Rp/BCM)</label>
+                                <label for="sr" class="form-label">Sub Total Base Rate OB (Rp/BCM)</label>
                                 <input name= "sub_total_base_rate_ob" type="text" class="form-control" id="sub_total_base_rate_ob">
                             </div>
                             <div class="col-12">
                                 <label for="sr" class="form-label">SR</label>
                                 <input name= "sr" type="text" class="form-control" id="sr">
                             </div>
-                            <div class="col-12">
+                                <div class="col-12">
                                 <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
                                 <input name= "currency_adjustment" type="text" class="form-control" id="currency_adjustment">
                             </div>
@@ -70,12 +69,16 @@
                                 <input name= "premium_rate" type="text" class="form-control" id="premium_rate">
                             </div>
                             <div class="col-12">
-                                <label for="total_rate_ob_actual" class="form-label">Total Rate OB Actual (Rp/BCM)</label>
+                                <label for="general_escalation" class="form-label">General Escalation</label>
                                 <input name= "general_escalation" type="text" class="form-control" id="general_escalation">
                             </div>
                             <div class="col-12">
-                                <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
-                                <input name= "currency_adjustment" type="text" class="form-control" id="currency_adjustment">
+                                <label for="total_rate_ob_actual" class="form-label">Total Rate OB Actual (Rp/BCM)</label>
+                                <input name= "total_rate_ob_actual" type="text" class="form-control" id="total_rate_ob_actual">
+                            </div>
+                            <div class="col-12">
+                                <label for="contract_reference" class="form-label">Contract Reference</label>
+                                <input name= "contract_reference" type="text" class="form-control" id="contract_reference">
                             </div>
                                 </select>
 

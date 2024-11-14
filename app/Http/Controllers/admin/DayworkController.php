@@ -22,4 +22,26 @@ public function detail($id)
     {
         return view('dokumen/asteng/daywork/tambah');
     }
+    public function simpan(Request $request)
+    {
+       
+
+
+   // $rate_actual= $request->base_rate * $request->currency_adjustment *  $request->premium_rate * $request->general_escalation;
+  
+    
+       daywork::create([
+            'item' => $request->item,
+            'base_rate_exc_fuel' => $request->base_rate_exc_fuel,
+            'actual_rate_exc_fuel' => $request->actual_rate_exc_fuel,
+            'fbr' => $request->fbr,
+        ]);
+        return redirect()->to('dokumen/asteng/daywork')->with('success', 'Dokumen berhasil ditambahkan');
+}
+public function hapus($id){
+    $dokumensdaywork =daywork::findOrFail($id);
+    $dokumensdaywork->delete();
+
+    return redirect()->to('dokumen/asteng/daywork');
+}
 }

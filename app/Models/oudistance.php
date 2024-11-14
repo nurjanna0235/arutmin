@@ -15,5 +15,5 @@ class oudistance extends Model
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable = ['Activity','Item','Base Rate','Actual Rate','Contractual Distance (KM)','Currency Adjustment','Premium Rate','General Escalation','Contract Reference'];
+    protected $fillable = ['activity','item','base_rate','actual_rate','contractual_distance_km','currency_adjustment','premium_rate','general_escalation','contract_reference'];
 };

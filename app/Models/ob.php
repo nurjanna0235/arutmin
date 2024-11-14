@@ -15,5 +15,5 @@ class ob extends Model
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable = ['Load and Haul (Rp/BCM)','Drill and Blast (if required) (Rp/BCM)','Pit Support (Rp/BCM)','Pit Lighting (Rp/BCM)','HRM (Rp/BCM)','Dump Maintenance (Rp/BCM)','Dewatering/Sediment (Rp/BCM)','Sub Total Base Rate OB (Rp/BCM)','SR','Currency Adjustment','Premium Rate','General Escalation','Total Rate OB Actual (Rp/BCM)','Contract Reference'];
+    protected $fillable = ['load_and_haul','drill_and_blast','pit_support','pit_lighting','hrm','dump_maintenance','dewatering_sediment','sub_total_base_rate_ob','sr','currency_adjustment','premium_rate','general_escalation','total_rate_ob_actual','contract_reference'];
 }

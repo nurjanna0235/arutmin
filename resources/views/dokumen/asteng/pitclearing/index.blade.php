@@ -38,7 +38,7 @@
                         <td>{{ $No++ }}</td>
                         <td>{{ $item->created_at }}</td>
                         <td>
-                            <a href="{{ url('dokumen/asteng/pit-clearing/detail/'.$item->id) }}"
+                            <a href="{{ url('dokumen/asteng/pi-clearing/detail/'.$item->id) }}"
                                 type="button" class="btn btn-primary">Detail</a>
 
                             <form

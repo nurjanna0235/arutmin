@@ -22,7 +22,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Vertical Form -->
-                        <form action= "/admin/tambah/simpan" method="POST" class= "row g-3">
+                        <form action= "/dokumen/asteng/oudistance/simpan" method="POST" class= "row g-3">
                            @csrf
                         <div class="col-12">
                                 <label for="activity" class="form-label">Activity</label>
@@ -45,8 +45,8 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="contractual_distance" class="form-label">Contractual Distance (KM)</label>
-                                <input name= "contractual_distance" type="text" class="form-control" id="contractual_distance">
+                                <label for="contractual_distance_km" class="form-label">Contractual Distance (KM)</label>
+                                <input name= "contractual_distance_km" type="text" class="form-control" id="contractual_distance_km">
                             </div>
 
                             <div class="col-12">

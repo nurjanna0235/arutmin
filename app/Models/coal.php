@@ -15,5 +15,5 @@ class coal extends Model
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable = ['Clean Coal (Rp/ton)','Loading and Ripping (Rp/ton)','Coal Hauling @8,463 Km (Rp/ton)','HRM @8,463 Km (Rp/ton)','Pit Support (Rp/ton)','Sub Total Base Rate Coal (Rp/ton)','Currency Adjustment','Premium Rate','General Escalation','Total Rate Coal Actual (Rp/ton)','Contract Reference'];
-}
+    protected $fillable = ['clean_coal','loading_and_ripping','coal_hauling','coal_hauling','hrm','pit_support','sub_total_base_rate_coal','currency_adjustment','premium_rate','general_escalation','total_rate_coal_actual','contract_reference'];
+};

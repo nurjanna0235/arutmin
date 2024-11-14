@@ -22,7 +22,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Vertical Form -->
-                        <form action= "/admin/tambah/simpan" method="POST" class= "row g-3">
+                        <form action= "/dokumen/asteng/mud/simpan" method="POST" class= "row g-3">
                            @csrf
                         <div class="col-12">
                                 <label for="mud_removal_load_and_haul" class="form-label">Mud Removal - Load and Haul (Rp/BCM)</label>

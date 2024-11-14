@@ -28,7 +28,10 @@ return new class extends Migration
         });
     }
 
-    public function down()
+      /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('ob');
     }

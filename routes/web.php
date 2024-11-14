@@ -57,37 +57,50 @@ Route::delete('dokumen/asteng/ob/delete/{num}', [OBController::class, 'hapus']);
 Route::get('dokumen/asteng/coal', [CoalController::class, 'index']);
 Route::get('dokumen/asteng/coal/detail/{num}', [CoalController::class, 'detail']);
 Route::get('dokumen/asteng/coal/tambah', [CoalController::class, 'tambah']);
+Route::post('dokumen/asteng/coal/simpan', [CoalController::class, 'simpan']);
+Route::delete('dokumen/asteng/coal/delete/{num}', [CoalController::class, 'hapus']);
 
 //Dokumen Darma Henwa Asteng/other
 Route::get('dokumen/asteng/other', [OtherController::class, 'index']);
 Route::get('dokumen/asteng/other/detail/{num}', [OtherController::class, 'detail']);
 Route::get('dokumen/asteng/other/tambah', [OtherController::class, 'tambah']);
+Route::post('dokumen/asteng/other/simpan', [OtherController::class, 'simpan']);
+Route::delete('dokumen/asteng/other/delete/{num}', [OtherController::class, 'hapus']);
 
 //Dokumen Darma Henwa Asteng/single-rate
 Route::get('dokumen/asteng/single-rate', [SingleRateController::class, 'index']);
 Route::get('dokumen/asteng/single-rate/detail/{num}', [SingleRateController::class, 'detail']);
 Route::get('dokumen/asteng/single-rate/tambah', [SingleRateController::class, 'tambah']);
+Route::post('dokumen/asteng/single-rate/simpan', [SingleRateController::class, 'simpan']);
+Route::delete('dokumen/asteng/single-rate/delete/{num}', [SingleRateController::class, 'hapus']);
 
 //Dokumen Darma Henwa Asteng/mud
 Route::get('dokumen/asteng/mud', [MudController::class, 'index']);
 Route::get('dokumen/asteng/mud/detail/{num}', [MudController::class, 'detail']);
 Route::get('dokumen/asteng/mud/tambah', [MudController::class, 'tambah']);
+Route::post('dokumen/asteng/mud/simpan', [MudController::class, 'simpan']);
+Route::delete('dokumen/asteng/mud/delete/{num}', [MudController::class, 'hapus']);
 
 //Dokumen Darma Henwa Asteng/daywork
 Route::get('dokumen/asteng/daywork', [DayworkController::class, 'index']);
 Route::get('dokumen/asteng/daywork/detail/{num}', [DayworkController::class, 'detail']);
 Route::get('dokumen/asteng/daywork/tambah', [DayworkController::class, 'tambah']);
-
+Route::post('dokumen/asteng/daywork/simpan', [dayworkController::class, 'simpan']);
+Route::delete('dokumen/asteng/daywork/delete/{num}', [dayworkController::class, 'hapus']);
 
 //Dokumen Darma Henwa Asteng/oudistance
 Route::get('dokumen/asteng/oudistance', [oudistanceController::class, 'index']);
 Route::get('dokumen/asteng/oudistance/detail/{num}', [oudistanceController::class, 'detail']);
 Route::get('dokumen/asteng/oudistance/tambah', [oudistanceController::class, 'tambah']);
+Route::post('dokumen/asteng/oudistance/simpan', [oudistanceController::class, 'simpan']);
+Route::delete('dokumen/asteng/oudistance/delete/{num}', [oudistanceController::class, 'hapus']);
 
 //Dokumen Darma Henwa Asteng/Fuel
 Route::get('dokumen/asteng/fuel', [FuelController::class, 'index']);
 Route::get('dokumen/asteng/fuel/detail/{num}', [FuelController::class, 'detail']);
 Route::get('dokumen/asteng/fuel/tambah', [FuelController::class, 'tambah']);
+Route::post('dokumen/asteng/fuel/simpan', [fuelController::class, 'simpan']);
+Route::delete('dokumen/asteng/fuel/delete/{num}', [fuelController::class, 'hapus']);
 
 
 // Route::get('akun', [datacontroller::class, 'tampil'])->name('akun.tampil');

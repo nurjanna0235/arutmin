@@ -15,5 +15,5 @@ class daywork extends Model
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable =['Item','Base Rate Exc. Fuel (Rp/hrs)','Actual Rate Exc. Fuel (Rp/Hrs)','FBR (liter/hrs)'];
+    protected $fillable =['item','base_rate_exc_fuel','actual_rate_exc_fuel','fbr'];
 }

@@ -28,7 +28,7 @@ class PitClearingController extends Controller
 
 
     $rate_actual= $request->base_rate * $request->currency_adjustment *  $request->premium_rate * $request->general_escalation;
-    dd($rate_actual);
+  
     
         pit_clearing::create([
             'base_rate' => $request->base_rate,
@@ -41,11 +41,11 @@ class PitClearingController extends Controller
       
         ]);
         return redirect()->to('dokumen/asteng/pit-clearing')->with('success', 'Dokumen berhasil ditambahkan');
-    }
-    public function hapus($id){
-        $dokumenpit_clearing = pit_clearing::findOrFail($id);
-        $dokumenpit_clearing->delete();
+}
+public function hapus($id){
+    $dokumenpit_clearing = pit_clearing::findOrFail($id);
+    $dokumenpit_clearing->delete();
 
-        return redirect()->to('dokumen/asteng/pit-clearing');
-    }
-    }
+    return redirect()->to('dokumen/asteng/pit-clearing');
+}
+}

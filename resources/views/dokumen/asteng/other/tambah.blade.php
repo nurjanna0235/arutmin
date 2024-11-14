@@ -22,31 +22,11 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Vertical Form -->
-                        <form action= "/admin/tambah/simpan" method="POST" class= "row g-3">
+                        <form action= "/dokumen/asteng/other/simpan" method="POST" class= "row g-3">
                            @csrf
                         <div class="col-12">
-                                <label for="activity" class="form-label">Activity</label>
-                                <input name= "activity" type="text" class="form-control" id="activity">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="item" class="form-label">Item</label>
-                                <input name= "item" type="text" class="form-control" id="item">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="base_rate" class="form-label">Base Rate</label>
-                                <input name= "base_rate" type="text" class="form-control" id="base_rate">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="actual_rate" class="form-label">Actual Rate</label>
-                                <input name= "actual_rate" type="text" class="form-control" id="actual_rate">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="contractual_distance" class="form-label">Contractual Distance (KM)</label>
-                                <input name= "contractual_distance" type="text" class="form-control" id="contractual_distance">
+                                <label for="base_rate_hrm_lcm" class="form-label">Base Rate HRM LCM (Rp/ton/KM)</label>
+                                <input name= "base_rate_hrm_lcm" type="text" class="form-control" id="base_rate_hrm_lcm">
                             </div>
 
                             <div class="col-12">
@@ -62,6 +42,11 @@
                             <div class="col-12">
                                 <label for="general_escalation" class="form-label">General Escalation</label>
                                 <input name= "general_escalation" type="text" class="form-control" id="general_escalation">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="rate_actual_hrm_lcm" class="form-label">Rate Actual HRM LCM (Rp/ton/KM)</label>
+                                <input name= "rate_actual_hrm_lcm" type="text" class="form-control" id="rate_actual_hrm_lcm">
                             </div>
 
                             <div class="col-12">

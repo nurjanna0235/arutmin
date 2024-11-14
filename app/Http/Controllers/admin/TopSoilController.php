@@ -25,20 +25,25 @@ class TopSoilController extends Controller
     }
     public function simpan(Request $request)
     {
+        $rate_actual= $request->base_rate * $request->currency_adjustment *  $request->premium_rate * $request->general_escalation;
+  
+    
         top_soil::create([
             'base_rate' => $request->base_rate,
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
-            'contract_reference' => $request->contract_reference,
-            
+            'rate_actual' => $request->rate_actual,
+            'contract_reference' => $request-> contract_reference,
+           
       
         ]);
-    }
-    public function hapus($id){
-        $dokumentop_soil = top_soil::findOrFail($id);
-        $dokumentop_soil->delete();
+        return redirect()->to('dokumen/asteng/top-soil')->with('success', 'Dokumen berhasil ditambahkan');
+}
+public function hapus($id){
+    $dokumentop_soil = top_soil::findOrFail($id);
+    $dokumentop_soil->delete();
 
-        return redirect()->to('dokumen/asteng/top-soil');
-    }
-    };
+    return redirect()->to('dokumen/asteng/top-soil');
+}
+}

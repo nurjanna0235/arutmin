@@ -25,19 +25,30 @@ class OBController extends Controller
 
     public function simpan(Request $request)
     {
-        // Upload file
- 
-    
-        pit_clearing::create([
-            'nama_dokumen' => $request->nama_dokumen,
-      
+        
+        ob::create([
+            'load_and_haul' => $request->load_and_haul,
+            'drill_and_blast' => $request->drill_and_blast,
+            'pit_support' => $request->pit_support,
+            'pit_lighting' => $request->pit_lighting,
+            'hrm' => $request->hrm,
+            'dump_maintenance' => $request->dump_maintenance,
+            'dewatering_sediment' => $request->dewatering_sediment,
+            'sub_total_base_rate_ob' => $request->sub_total_base_rate_ob,
+            'sr' => $request->sr,
+            'currency_adjustment' => $request->currency_adjustment,
+            'premium_rate' => $request->premium_rate,
+            'general_escalation' => $request->general_escalation,
+            'total_rate_ob_actual' => $request->total_rate_ob_actual,
+            'contract_reference' => $request->contract_reference,
         ]);
-        return redirect()->route('dokumen/asteng/ob/simpan')->with('success', 'Dokumen berhasil ditambahkan');
-    }
-    public function delete($id){
-        $dokumenpit_clearing = pit_clearing::findOrFail($id);
-        $dokumenpit_clearing->delete();
 
-        return redirect()->to('dokumen/asteng/ob/hapus/');
-    }
-    }
+    return redirect()->to('dokumen/asteng/ob')->with('success', 'Dokumen berhasil ditambahkan');
+}
+public function hapus($id){
+    $dokumenob = ob::findOrFail($id);
+    $dokumenob->delete();
+
+    return redirect()->to('dokumen/asteng/ob');
+}
+}
