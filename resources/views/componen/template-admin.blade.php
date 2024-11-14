@@ -281,33 +281,33 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-        <a class="nav-link " href="admin/beranda">
+        <a class="nav-link " href="/beranda">
         <i class="ri-article-fill"></i>
             <span>Beranda</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link " href="admin/pengguna">
+        <a class="nav-link " href="/pengguna">
         <i class="ri-article-fill"></i>
             <span>Pengguna</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link " href="admin/kontrak">
+        <a class="nav-link " href="/kontrak">
         <i class="ri-article-fill"></i>
             <span>Kontrak</span>
         </a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link " href="admin/kontraktor">
+        <a class="nav-link " href="/dokumen">
         <i class="ri-article-fill"></i>
             <span>Kontraktor</span>
         </a>
     </li>
-    
+
 </ul>
     </aside><!-- End Sidebar-->
     <!-- Content -->

@@ -38,12 +38,14 @@ class PenggunaController extends Controller
 
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $dataPengguna = pengguna::findOrFail($id);
-        return view('admin/pengguna/edit',compact('dataPengguna'));
+        return view('admin/pengguna/edit', compact('dataPengguna'));
     }
 
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+    {
         // $request->validate([
         //     'username' => 'required|string|max:255',
         //     'nik' => 'required|string|max:20',
@@ -67,7 +69,8 @@ class PenggunaController extends Controller
         return redirect()->to('admin/pengguna');
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $dataPengguna = pengguna::findOrFail($id);
         $dataPengguna->delete();
 

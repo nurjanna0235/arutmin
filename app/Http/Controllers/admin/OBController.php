@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+
 use App\Models\ob;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,13 +11,13 @@ class OBController extends Controller
     public function index()
     {
         $dokumenob = ob::all();
-       
-        return view('dokumen/asteng/ob/index',compact('dokumenob'));
+
+        return view('dokumen/asteng/ob/index', compact('dokumenob'));
     }
     public function detail($id)
     {
-            $dokumenob = ob::where('id',$id)->get()->first();
-        return view('dokumen/asteng/ob/detail',compact('dokumenob'));
+        $dokumenob = ob::where('id', $id)->get()->first();
+        return view('dokumen/asteng/ob/detail', compact('dokumenob'));
     }
     public function tambah()
     {
@@ -25,7 +26,7 @@ class OBController extends Controller
 
     public function simpan(Request $request)
     {
-        
+
         ob::create([
             'load_and_haul' => $request->load_and_haul,
             'drill_and_blast' => $request->drill_and_blast,
@@ -43,12 +44,13 @@ class OBController extends Controller
             'contract_reference' => $request->contract_reference,
         ]);
 
-    return redirect()->to('dokumen/asteng/ob')->with('success', 'Dokumen berhasil ditambahkan');
-}
-public function hapus($id){
-    $dokumenob = ob::findOrFail($id);
-    $dokumenob->delete();
+        return redirect()->to('dokumen/asteng/ob')->with('success', 'Dokumen berhasil ditambahkan');
+    }
+    public function hapus($id)
+    {
+        $dokumenob = ob::findOrFail($id);
+        $dokumenob->delete();
 
-    return redirect()->to('dokumen/asteng/ob');
-}
+        return redirect()->to('dokumen/asteng/ob');
+    }
 }

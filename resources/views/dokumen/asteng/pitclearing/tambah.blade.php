@@ -41,10 +41,10 @@
                                 <input name= "general_escalation" type="text" class="form-control" id="general_escalation">
                             </div>
 
-                            <div class="col-12">
+                            {{-- <div class="col-12">
                                 <label for="rate_actual" class="form-label">Rate Actual (Rp/Ha)</label>
                                 <input name= "rate_actual" type="text" class="form-control" id="rate_actual">
-                            </div>
+                            </div> --}}
                             <div class="col-12">
                                 <label for="contract_reference" class="form-label">Contract Reference</label>
                                 <input name= "contract_reference" type="text" class="form-control" id="contract_reference">
