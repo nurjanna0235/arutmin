@@ -7,7 +7,7 @@ use App\Models\pit_clearing;
 
 class PitClearingController extends Controller
 {
-    
+
     public function index()
     {
         $dokumenpit_clearing = pit_clearing::all();
@@ -27,21 +27,33 @@ class PitClearingController extends Controller
 
     public function simpan(Request $request)
     {
-        $rate_actual = $request->base_rate * $request->currency_adjustment *  $request->premium_rate * $request->general_escalation;
 
+        // Konversi input ke tipe data numerik
+        $base_rate = (float) $request->base_rate;
+        $currency_adjustment = (float) $request->currency_adjustment;
+        $premium_rate = (float) $request->premium_rate / 100; // Konversi persen ke desimal
+        $general_escalation = (float) $request->general_escalation;
 
+        // Perhitungan rate_actual
+        $rate_actual = $base_rate
+            * $currency_adjustment
+            * (1 + $premium_rate)
+            * (1 + $general_escalation);
+
+        // Simpan data ke tabel pit_clearing
         pit_clearing::create([
-            'base_rate' => $request->base_rate,
-            'currency_adjustment' => $request->currency_adjustment,
-            'premium_rate' => $request->premium_rate,
-            'general_escalation' => $request->general_escalation,
+            'base_rate' => $base_rate,
+            'currency_adjustment' => $currency_adjustment,
+            'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
+            'general_escalation' => $general_escalation,
             'rate_actual' => $rate_actual,
             'contract_reference' => $request->contract_reference,
-
-
         ]);
+
+        // Redirect dengan pesan sukses
         return redirect()->to('dokumen/asteng/pit-clearing')->with('success', 'Dokumen berhasil ditambahkan');
     }
+
     public function hapus($id)
     {
         $dokumenpit_clearing = pit_clearing::findOrFail($id);

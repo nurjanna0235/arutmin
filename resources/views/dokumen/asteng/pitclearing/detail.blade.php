@@ -46,6 +46,10 @@
                                 <label for="general_escalation" class="form-label">General Escalation</label>
                                 <input readonly value="{{ $dokumenpit_clearing->general_escalation }}" name="general_escalation" type="text" class="form-control" id="general_escalation">
                             </div>
+                            <div class="col-12">
+                                <label for="general_escalation" class="form-label">Rate Actual</label>
+                                <input readonly value="{{ $dokumenpit_clearing->rate_actual }}" name="general_escalation" type="text" class="form-control" id="general_escalation">
+                            </div>
 
                             {{-- <div class="col-12">
                                 <label for="rate_actual" class="form-label">Rate Actual (Rp/Ha)</label>

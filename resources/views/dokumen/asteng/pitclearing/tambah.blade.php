@@ -34,7 +34,10 @@
                             </div>
                             <div class="col-12">
                                 <label for="premium_rate" class="form-label">Premium Rate</label>
-                                <input name= "premium_rate" type="text" class="form-control" id="premium_rate">
+                                <div class="input-group mb-3">
+                                 <input type="text" class="form-control" name="premium_rate">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                                </div>
                             </div>
                             <div class="col-12">
                                 <label for="general_escalation" class="form-label">General Escalation</label>
