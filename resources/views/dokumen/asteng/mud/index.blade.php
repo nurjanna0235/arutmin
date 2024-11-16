@@ -15,7 +15,10 @@
             </ol>
         </nav>
 
-        <a href="/dokumen/asteng/mud/tambah" type="button" class="btn btn-success">Tambah</a>
+        <div class="icon">
+            <a href="/dokumen/asteng/mud/tambah" type="button" class="btn btn-success"><i
+                    class="ri-add-fill"></i>Tambah</a>
+        </div>
         <!-- Table with stripped rows -->
         <table class="table datatable">
             <thead>
@@ -39,15 +42,15 @@
                         <td>{{ $item->created_at }}</td>
                         <td>
                             <a href="{{ url('dokumen/asteng/mud/detail/'.$item->id) }}"
-                                type="button" class="btn btn-primary">Detail</a>
-
+                                type="button" class="btn btn-primary"><i class="bx bx-info-circle"></i>Detail</a>
                             <form
-                                action="{{ url('/dokumen/asteng/mud/delete/'.$item->id) }}"
+                                action="{{ url('dokumen/asteng/mud/delete/'.$item->id) }}"
                                 method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
                                 class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Hapus</button>
+                                <button class="btn btn-danger" type="submit"><i
+                                        class="bx bx-x-circle"></i>Hapus</button>
                             </form>
                         </td>
                     </tr>

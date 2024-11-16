@@ -26,6 +26,7 @@ class OBController extends Controller
 
     public function simpan(Request $request)
     {
+        $rate_actual = $request->base_rate * $request->currency_adjustment *  $request->premium_rate * $request->general_escalation;
 
         ob::create([
             'load_and_haul' => $request->load_and_haul,

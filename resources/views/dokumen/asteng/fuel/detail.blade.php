@@ -1,3 +1,6 @@
+@extends('componen.template-admin')
+
+@section('conten')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -306,41 +309,62 @@
                     <li class="breadcrumb-item active">Fuel Allowance</li>
                 </ol>
             </nav>
-            <!-- Bordered Table -->
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Rate</th>
+            <section class="section dashboard">
+            <div class="row">
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Activity</td>
-                        <td>{{$dokumenfuel->activity}}</td>
+                <!-- Left side columns -->
+                <div class="col-lg-12">
+                    <div class="row">
+                        <!-- Vertical Form -->
+                        <form action= "/dokumen/asteng/fuel/simpan" method="POST" class= "row g-3">
+                           @csrf
+                        <div class="col-12">
+                                <label for="activity" class="form-label">Activity</label>
+                                <input readonly value="{{ $dokumenfuel->activity }}" name= "activity" type="text" class="form-control" id="activity">
+                            </div>
+                            <div class="col-12">
+                                <label for="item" class="form-label">Item</label>
+                                <input readonly value="{{ $dokumenfuel->item }}" name= "item" type="text" class="form-control" id="item">
+                            </div>
+                            <div class="col-12">
+                                <label for="fuel_index" class="form-label">Fuel Index</label>
+                                <input readonly value="{{ $dokumenfuel->fuel_index }}" name= "fuel_index" type="text" class="form-control" id="fuel_index">
+                            </div>
+                            <div class="col-12">
+                                <label for="contractual_distance_km" class="form-label">Contractual Distance (KM)</label>
+                                <input readonly value="{{ $dokumenfuel->contractual_distance_km }}" name= "contractual_distance_km" type="text" class="form-control" id="contractual_distance_km">
+                            </div>
+                                </select>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Item</td>
-                        <td>{{$dokumenfuel->item}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Fuel Index</td>
-                        <td>{{$dokumenfuel->fuel_index}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Contractual Distance (KM)</td>
-                        <td>{{$dokumenfuel->contractual_distance}} KM</td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- End Bordered Table -->
+                            </div>
+
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="sumbit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    </form><!-- Vertical Form -->
+
+
+
+
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div><!-- End Card with an image on left -->
+
+
+
+            </div><!-- End sidebar recent posts-->
+
+            </div>
+            </div><!-- End News & Updates -->
+
+            </div><!-- End Right side columns -->
+
+            </div>
+        </section>
 
         </div><!-- End Page Title -->
 

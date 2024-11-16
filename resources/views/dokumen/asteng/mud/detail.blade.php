@@ -1,3 +1,6 @@
+@extends('componen.template-admin')
+
+@section('conten')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -162,8 +165,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="/template-admin/assets/img/messages-1.jpg" alt=""
-                                    class="rounded-circle">
+                                <img src="/template-admin/assets/img/messages-1.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Maria Hudson</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -177,8 +179,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="/template-admin/assets/img/messages-2.jpg" alt=""
-                                    class="rounded-circle">
+                                <img src="/template-admin/assets/img/messages-2.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Anna Nelson</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -192,8 +193,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="/template-admin/assets/img/messages-3.jpg" alt=""
-                                    class="rounded-circle">
+                                <img src="/template-admin/assets/img/messages-3.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>David Muldon</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -215,8 +215,7 @@
 
                 <li class="nav-item dropdown pe-3">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
-                        data-bs-toggle="dropdown">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="/template-admin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                     </a><!-- End Profile Iamge Icon -->
@@ -306,52 +305,72 @@
                     <li class="breadcrumb-item active">Mud</li>
                 </ol>
             </nav>
-            <!-- Bordered Table -->
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Rate</th>
+            <form action="/dokumen/asteng/mud/simpan" method="POST" class="row g-3">
+                @csrf
+                <div class="col-12">
+                    <label for="mud_removal_load_and_haul" class="form-label">Mud Removal - Load and Haul
+                        (Rp/BCM)</label>
+                    <input readonly value="{{ $dokumenmud->mud_removal_load_and_haul }}"
+                        name="mud_removal_load_and_haul" type="text" class="form-control"
+                        id="mud_removal_load_and_haul">
+                </div>
+                <div class="col-12">
+                    <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
+                    <input readonly value="{{ $dokumenmud->currency_adjustment }}" name="currency_adjustment"
+                        type="text" class="form-control" id="currency_adjustment">
+                </div>
+                <div class="col-12">
+                    <label for="premium_rate" class="form-label">Premium Rate</label>
+                    <input readonly value="{{ $dokumenmud->premium_rate }}" name="premium_rate" type="text"
+                        class="form-control" id="premium_rate">
+                </div>
+                <div class="col-12">
+                    <label for="general_escalation" class="form-label">General Escalation</label>
+                    <input readonly value="{{ $dokumenmud->general_escalation }}" name="general_escalation"
+                        type="text" class="form-control" id="general_escalation">
+                </div>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mud Removal - Load and Haul (Rp/BCM)</td>
-                        <td>Rp {{$dokumenmud->mud_removal_load_and_haul}} BCM</td>
+                <div class="col-12">
+                    <label for="rate_actual" class="form-label">Rate Actual (Rp/Ha)</label>
+                    <input readonly value="{{ $dokumenmud->rate_actual }}" name="rate_actual" type="text"
+                        class="form-control" id="rate_actual">
+                </div>
+                <div class="col-12">
+                    <label for="contract_reference" class="form-label">Contract Reference</label>
+                    <input readonly value="{{ $dokumenmud->contract_reference }}" name="contract_reference"
+                        type="text" class="form-control" id="contract_reference">
+                </div>
+                </select>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Currency Adjustment </td>
-                        <td>{{$dokumenmud->currency_adjustment}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Premium Rate</td>
-                        <td>{{$dokumenmud->premium_rate}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>General Escalation</td>
-                        <td>{{$dokumenmud->general_escalation}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Rate Actual (Rp/Ha)</td>
-                        <td>Rp{{$dokumenmud->rate_actual}} / Ha</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Contract Reference</td>
-                        <td>{{$dokumenmud->contract_reference}}</td>
-                    </tr>
+        </div>
 
-                </tbody>
-            </table>
-            <!-- End Bordered Table -->
+        </div>
+        <div class="col-12 mt-3">
+            <button type="sumbit" class="btn btn-primary">Simpan</button>
+        </div>
+        </form><!-- Vertical Form -->
+
+
+
+
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div><!-- End Card with an image on left -->
+
+
+
+        </div><!-- End sidebar recent posts-->
+
+        </div>
+        </div><!-- End News & Updates -->
+
+        </div><!-- End Right side columns -->
+
+        </div>
+        </section>
 
         </div><!-- End Page Title -->
 

@@ -1,3 +1,6 @@
+@extends('componen.template-admin')
+
+@section('conten')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -306,43 +309,81 @@
                     <li class="breadcrumb-item active">Daywork</li>
                 </ol>
             </nav>
-            <!-- Bordered Table -->
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Rate</th>
+            <section class="section dashboard">
+            <div class="row">
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Item</td>
-                        <td>{{$dokumendaywork->item}}</td>
+                <!-- Left side columns -->
+                <div class="col-lg-12">
+                    <div class="row">
+                        <!-- Vertical Form -->
+                        <form action= "/dokumen/asteng/daywork/simpan" method="POST" class= "row g-3">
+                           @csrf
+                        <div class="col-12">
+                                <label for="item" class="form-label">Item</label>
+                                <input readonly value="{{ $dokumendaywork->item }}" name= "item" type="text" class="form-control" id="item">
+                            </div>
+                            <div class="col-12">
+                                <label for="base_rate_exc_fuel" class="form-label">Base Rate Exc. Fuel (Rp/hrs)</label>
+                                <input  readonly value="{{ $dokumendaywork->base_rate_exc_fuel }}"name= "base_rate_exc_fuel" type="text" class="form-control" id="base_rate_exc_fuel">
+                            </div>
+                            <div class="col-12">
+                                <label for="actual_rate_exc_fuel" class="form-label">Actual Rate Exc. Fuel (Rp/Hrs)</label>
+                                <input readonly value="{{ $dokumendaywork->actual_rate_exc_fuel }}" name= "actual_rate_exc_fuel" type="text" class="form-control" id="actual_rate_exc_fuel">
+                            </div>
+                            <div class="col-12">
+                                <label for="fbr" class="form-label">FBR (liter/hrs)</label>
+                                <input readonly value="{{ $dokumendaywork->fbr }}" name= "fbr" type="text" class="form-control" id="fbr">
+                            </div>
+                            <div class="col-12">
+                                <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
+                                <input readonly value="{{ $dokumendaywork->currency_adjustment }}" name= "currency_adjustment" type="text" class="form-control" id="currency_adjustment">
+                            </div>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Base Rate Exc. Fuel (Rp/hrs)</td>
-                        <td>Rp {{$dokumendaywork->base_rate_exc_fuel}} hrs</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Actual Rate Exc. Fuel (Rp/Hrs)</td>
-                        <td>Rp {{$dokumendaywork->actual_rate_exc_fuel}} hrs</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>FBR (liter/hrs)</td>
-                        <td>{{$dokumendaywork->fbr}} liter/hrs</td>
-                    </tr>
-                   
+                            <div class="col-12">
+                                <label for="premium_rate" class="form-label">Premium Rate</label>
+                                <input readonly value="{{ $dokumendaywork->premium_rate }}"name= "premium_rate" type="text" class="form-control" id="premium_rate">
+                            </div>
 
-                </tbody>
-            </table>
-            <!-- End Bordered Table -->
+                            <div class="col-12">
+                                <label for="general_escalation" class="form-label">General Escalation</label>
+                                <input readonly value="{{ $dokumendaywork->general_escalation }}" name= "general_escalation" type="text" class="form-control" id="general_escalation">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="contract_reference" class="form-label">Contract Reference</label>
+                                <input readonly value="{{ $dokumendaywork->contract_reference }}" name= "contract_reference" type="text" class="form-control" id="contract_reference">
+                            </div>
+                                </select>
+
+                            </div>
+
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="sumbit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    </form><!-- Vertical Form -->
+
+
+
+
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div><!-- End Card with an image on left -->
+
+
+
+            </div><!-- End sidebar recent posts-->
+
+            </div>
+            </div><!-- End News & Updates -->
+
+            </div><!-- End Right side columns -->
+
+            </div>
+        </section>
 
         </div><!-- End Page Title -->
 

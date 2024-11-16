@@ -1,3 +1,6 @@
+@extends('componen.template-admin')
+
+@section('conten')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -306,68 +309,83 @@
                     <li class="breadcrumb-item active">Over/Under Distance</li>
                 </ol>
             </nav>
-            <!-- Bordered Table -->
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Rate</th>
+            <form action= "/dokumen/asteng/oudistance/simpan" method="POST" class= "row g-3">
+                           @csrf
+                        <div class="col-12">
+                                <label for="activity" class="form-label">Activity</label>
+                                <input  readonly value="{{ $dokumenoudistance->activity }}" name= "activity" type="text" class="form-control" id="activity">
+                            </div>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Activity</td>
-                        <td>{{$dokumenoudistance->activity}}</td>
+                            <div class="col-12">
+                                <label for="item" class="form-label">Item</label>
+                                <input  readonly value="{{ $dokumenoudistance->item }}" name= "item" type="text" class="form-control" id="item">
+                            </div>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Item
-                        </td>
-                        <td>{{$dokumenoudistance->item}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Base Rate</td>
-                        <td>{{$dokumenoudistance->base_rate}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Actual Rate</td>
-                        <td>{{$dokumenoudistance->actual_rate}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Contractual Distance</td>
-                        <td>{{$dokumenoudistance->contractual_distance}} KM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Currency Adjustment</td>
-                        <td>{{$dokumenoudistance->currency_adjustment}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Premium Rate</td>
-                        <td>{{$dokumenoudistance->premium_rate}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">8</th>
-                        <td>General Escalation</td>
-                        <td>{{$dokumenoudistance->general_escalation}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">9</th>
-                        <td>Contract Reference</td>
-                        <td>{{$dokumenoudistance->contract_reference}}</td>
-                    </tr>
+                            <div class="col-12">
+                                <label for="base_rate" class="form-label">Base Rate</label>
+                                <input  readonly value="{{ $dokumenoudistance->base_rate }}" name= "base_rate" type="text" class="form-control" id="base_rate">
+                            </div>
 
-                </tbody>
-            </table>
-            <!-- End Bordered Table -->
+                            <div class="col-12">
+                                <label for="actual_rate" class="form-label">Actual Rate</label>
+                                <input  readonly value="{{ $dokumenoudistance->actual_rate }}" name= "actual_rate" type="text" class="form-control" id="actual_rate">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="contractual_distance_km" class="form-label">Contractual Distance (KM)</label>
+                                <input  readonly value="{{ $dokumenoudistance->contractual_distance_km }}" name= "contractual_distance_km" type="text" class="form-control" id="contractual_distance_km">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
+                                <input  readonly value="{{ $dokumenoudistance->currency_adjustment }}" name= "currency_adjustment" type="text" class="form-control" id="currency_adjustment">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="premium_rate" class="form-label">Premium Rate</label>
+                                <input  readonly value="{{ $dokumenoudistance->premium_rate }}" name= "premium_rate" type="text" class="form-control" id="premium_rate">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="general_escalation" class="form-label">General Escalation</label>
+                                <input  readonly value="{{ $dokumenoudistance->general_escalation }}" name= "general_escalation" type="text" class="form-control" id="general_escalation">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="contract_reference" class="form-label">Contract Reference</label>
+                                <input  readonly value="{{ $dokumenoudistance->contract_reference }}" name= "contract_reference" type="text" class="form-control" id="contract_reference">
+                            </div>
+                                </select>
+
+                            </div>
+
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="sumbit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    </form><!-- Vertical Form -->
+
+
+
+
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div><!-- End Card with an image on left -->
+
+
+
+            </div><!-- End sidebar recent posts-->
+
+            </div>
+            </div><!-- End News & Updates -->
+
+            </div><!-- End Right side columns -->
+
+            </div>
+        </section>
 
         </div><!-- End Page Title -->
 

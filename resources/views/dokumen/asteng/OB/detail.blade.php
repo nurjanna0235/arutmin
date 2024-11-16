@@ -1,3 +1,6 @@
+@extends('componen.template-admin')
+
+@section('conten')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -162,8 +165,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="/template-admin/assets/img/messages-1.jpg" alt=""
-                                    class="rounded-circle">
+                                <img src="/template-admin/assets/img/messages-1.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Maria Hudson</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -177,8 +179,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="/template-admin/assets/img/messages-2.jpg" alt=""
-                                    class="rounded-circle">
+                                <img src="/template-admin/assets/img/messages-2.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Anna Nelson</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -192,8 +193,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="/template-admin/assets/img/messages-3.jpg" alt=""
-                                    class="rounded-circle">
+                                <img src="/template-admin/assets/img/messages-3.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>David Muldon</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -215,8 +215,7 @@
 
                 <li class="nav-item dropdown pe-3">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
-                        data-bs-toggle="dropdown">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="/template-admin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                     </a><!-- End Profile Iamge Icon -->
@@ -306,116 +305,122 @@
                     <li class="breadcrumb-item active">ob</li>
                 </ol>
             </nav>
-            <!-- Bordered Table -->
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Rate</th>
+            <section class="section dashboard">
+                <div class="row">
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Load and Haul (Rp/BCM)</td>
-                        <td>Rp {{$dokumenob->load_and_haul}} BCM</td>
+                    <!-- Left side columns -->
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <!-- Vertical Form -->
+                            <form action="/dokumen/asteng/ob/simpan" method="POST" class="row g-3">
+                                @csrf
+                                <div class="col-12">
+                                    <label for="load_and_haul" class="form-label">Load and Haul (Rp/BCM)</label>
+                                    <input readonly value="{{ $dokumenob->load_and_haul }}" name="load_and_haul"
+                                        type="text" class="form-control" id="load_and_haul">
+                                </div>
+                                <div class="col-12">
+                                    <label for="drill_and_blast" class="form-label">Drill and Blast (if required)
+                                        (Rp/BCM)</label>
+                                    <input readonly value="{{ $dokumenob->drill_and_blast }}" name="drill_and_blast"
+                                        type="text" class="form-control" id="drill_and_blast">
+                                </div>
+                                <div class="col-12">
+                                    <label for="pit_support" class="form-label">Pit Support (Rp/BCM)</label>
+                                    <input readonly value="{{ $dokumenob->pit_support }}" name="pit_support"
+                                        type="text" class="form-control" id="pit_support">
+                                </div>
+                                <div class="col-12">
+                                    <label for="pit_lighting" class="form-label">Pit Lighting (Rp/BCM)</label>
+                                    <input readonly value="{{ $dokumenob->pit_lighting }}" name="pit_lighting"
+                                        type="text" class="form-control" id="pit_lighting">
+                                </div>
+                                <div class="col-12">
+                                    <label for="hrm" class="form-label">HRM</label>
+                                    <input readonly value="{{ $dokumenob->hrm }}" name="hrm" type="text"
+                                        class="form-control" id="hrm">
+                                </div>
+                                <div class="col-12">
+                                    <label for="dump_maintenance" class="form-label">Dump Maintenance (Rp/BCM)</label>
+                                    <input readonly value="{{ $dokumenob->dump_maintenance }}" name="dump_maintenance"
+                                        type="text" class="form-control" id="dump_maintenance">
+                                </div>
+                                <div class="col-12">
+                                    <label for="dewatering_sediment" class="form-label">Dewatering/Sediment
+                                        (Rp/BCM)</label>
+                                    <input readonly value="{{ $dokumenob->dewatering_sediment }}"
+                                        name="dewatering_sediment" type="text" class="form-control"
+                                        id="dewatering_sediment">
+                                </div>
+                                <div class="col-12">
+                                    <label for="sr" class="form-label">Sub Total Base Rate OB (Rp/BCM)</label>
+                                    <input readonly value="{{ $dokumenob->sub_total_base_rate_ob }}"
+                                        name="sub_total_base_rate_ob" type="text" class="form-control"
+                                        id="sub_total_base_rate_ob">
+                                </div>
+                                <div class="col-12">
+                                    <label for="sr" class="form-label">SR</label>
+                                    <input readonly value="{{ $dokumenob->sr }}" name="sr" type="text"
+                                        class="form-control" id="sr">
+                                </div>
+                                <div class="col-12">
+                                    <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
+                                    <input readonly value="{{ $dokumenob->currency_adjustment }}"
+                                        name="currency_adjustment" type="text" class="form-control"
+                                        id="currency_adjustment">
+                                </div>
+                                <div class="col-12">
+                                    <label for="premium_rate" class="form-label">Premium Rate</label>
+                                    <input readonly value="{{ $dokumenob->premium_rate }}" name="premium_rate"
+                                        type="text" class="form-control" id="premium_rate">
+                                </div>
+                                <div class="col-12">
+                                    <label for="general_escalation" class="form-label">General Escalation</label>
+                                    <input readonly value="{{ $dokumenob->general_escalation }}"
+                                        name="general_escalation" type="text" class="form-control"
+                                        id="general_escalation">
+                                </div>
+                                <div class="col-12">
+                                    <label for="total_rate_ob_actual" class="form-label">Total Rate OB Actual
+                                        (Rp/BCM)</label>
+                                    <input readonly value="{{ $dokumenob->total_rate_ob_actual }}"
+                                        name="total_rate_ob_actual" type="text" class="form-control"
+                                        id="total_rate_ob_actual">
+                                </div>
+                                <div class="col-12">
+                                    <label for="contract_reference" class="form-label">Contract Reference</label>
+                                    <input readonly value="{{ $dokumenob->contract_reference }}"
+                                        name="contract_reference" type="text" class="form-control"
+                                        id="contract_reference">
+                                </div>
+                                </select>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Drill and Blast (if required) (Rp/BCM)
-                        </td>
-                        <td>Rp {{$dokumenob->drill_and_blast}} BCM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Pit Support (Rp/BCM)</td>
-                        <td>Rp {{$dokumenob->pit_support}} BCM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Pit Lighting (Rp/BCM)</td>
-                        <td>Rp {{$dokumenob->pit_lighting}} BCM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>HRM (Rp/BCM)</td>
-                        <td>Rp{{$dokumenob->hrm}} BCM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Dump Maintenance (Rp/BCM)</td>
-                        <td>Rp {{$dokumenob->dump_maintenance}} BCM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Dewatering/Sediment (Rp/BCM)</td>
-                        <td>Rp {{$dokumenob->dewatering_sediment}} BCM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">8</th>
-                        <td>SR</td>
-                        <td>{{$dokumenob->sr}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">9</th>
-                        <td>Currency Adjustment</td>
-                        <td>{{$dokumenob->currency_adjustment}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">10</th>
-                        <td>Premium Rate</td>
-                        <td>{{$dokumenob->premium_rate}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">11</th>
-                        <td>General Escalation</td>
-                        <td>{{$dokumenob->general_escalation}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">12</th>
-                        <td>Total Rate OB Actual (Rp/BCM)</td>
-                        <td>Rp {{$dokumenob->total_rate_ob_actual}} BCM</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">13</th>
-                        <td>Contract Reference</td>
-                        <td>{{$dokumenob->contract_reference}}</td>
-                    </tr>
+                        </div><!-- End Page Title -->
 
+                        <section class="section dashboard">
+                            <div class="row">
 
-                </tbody>
-            </table>
-            <!-- End Bordered Table -->
+                                <!-- Left side columns -->
+                                <div class="col-lg-5">
+                                    <div class="row">
 
-        </div><!-- End Page Title -->
-
-        <section class="section dashboard">
-            <div class="row">
-
-                <!-- Left side columns -->
-                <div class="col-lg-5">
-                    <div class="row">
-
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
-            </div>
-            </div>
-            </div>
-            </div><!-- End Card with an image on left -->
+        </div><!-- End Card with an image on left -->
 
 
 
-            </div><!-- End sidebar recent posts-->
+        </div><!-- End sidebar recent posts-->
 
-            </div>
-            </div><!-- End News & Updates -->
+        </div>
+        </div><!-- End News & Updates -->
 
-            </div><!-- End Right side columns -->
+        </div><!-- End Right side columns -->
 
-            </div>
+        </div>
         </section>
 
     </main><!-- End #main -->

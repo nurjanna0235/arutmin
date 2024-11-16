@@ -1,3 +1,6 @@
+@extends('componen.template-admin')
+
+@section('conten')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -306,77 +309,64 @@
                     <li class="breadcrumb-item active">Coal</li>
                 </ol>
             </nav>
-            <!-- Bordered Table -->
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Rate</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Clean Coal (Rp/ton)</td>
-                        <td>Rp {{$dokumencoal->clean_coal}} ton</td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Loading and Ripping (Rp/ton)
-                        </td>
-                        <td>Rp {{$dokumencoal->loading_and_ripping}} ton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Coal Hauling @8,463 Km (Rp/ton)</td>
-                        <td>Rp {{$dokumencoal->coal_hauling}} ton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>HRM @8,463 Km (Rp/ton)</td>
-                        <td>Rp {{$dokumencoal->hrm}} ton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Pit Support (Rp/ton)</td>
-                        <td>Rp{{$dokumencoal->pit_support}} ton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Sub Total Base Rate Coal (Rp/ton)</td>
-                        <td>Rp{{$dokumencoal->sub_total_base_rate_coal}} ton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Currency Adjustment</td>
-                        <td>{{$dokumencoal->currency_adjustment}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">8</th>
-                        <td>Premium Rate</td>
-                        <td>{{$dokumencoal->premium_rate}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">9</th>
-                        <td>General Escalation</td>
-                        <td>{{$dokumencoal->general_escalation}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">10</th>
-                        <td>Total Rate Coal Actual (Rp/ton)</td>
-                        <td>Rp {{$dokumencoal->total_rate_coal_actual}} ton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">11</th>
-                        <td>Contract Reference</td>
-                        <td>{{$dokumencoal->contract_reference}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- End Bordered Table -->
+            <form action= "/dokumen/asteng/coal/simpan" method="POST" class= "row g-3">
+                            
+                            @csrf
+                         <div class="col-12">
+                                 <label for="clean_coal" class="form-label">Clean Coal (Rp/ton)</label>
+                                 <input readonly value="{{ $dokumencoal->clean_coal }}" name= "clean_coal" type="text" class="form-control" id="clean_coal">
+                             </div>
+                             <div class="col-12">
+                                 <label for="loading_and_ripping" class="form-label">Loading and Ripping (Rp/ton)</label>
+                                 <input readonly value="{{ $dokumencoal->loading_and_ripping }}" name= "loading_and_ripping" type="text" class="form-control" id="loading_and_ripping">
+                             </div>
+                             <div class="col-12">
+                                 <label for="coal_hauling" class="form-label">Coal Hauling @8,463 Km (Rp/ton)</label>
+                                 <input readonly value="{{ $dokumencoal->coal_hauling }}" name= "coal_hauling" type="text" class="form-control" id="coal_hauling">
+                             </div>
+                             <div class="col-12">
+                                 <label for="hrm" class="form-label">HRM</label>
+                                 <input readonly value="{{ $dokumencoal->hrm }}" name= "hrm" type="text" class="form-control" id="hrm">
+                             </div>
+ 
+                             <div class="col-12">
+                                 <label for="pit_support" class="form-label">Pit Support (Rp/ton)</label>
+                                 <input readonly value="{{ $dokumencoal->pit_support }}" name= "pit_support" type="text" class="form-control" id="pit_support">
+                             </div>
+                             <div class="col-12">
+                                 <label for="sub_total_base_rate_coal" class="form-label">Sub Total Base Rate Coal (Rp/ton)</label>
+                                 <input readonly value="{{ $dokumencoal->sub_total_base_rate_coal }}" name= "sub_total_base_rate_coal" type="text" class="form-control" id="sub_total_base_rate_coal">
+                             </div>
+                             <div class="col-12">
+                                 <label for="dewatering_sediment" class="form-label">Dewatering/Sediment (Rp/BCM)</label>
+                                 <input readonly value="{{ $dokumencoal->dewatering_sediment }}" name= "dewatering_sediment" type="text" class="form-control" id="dewatering_sediment">
+                             </div>
+                             <div class="col-12">
+                                 <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
+                                 <input readonly value="{{ $dokumencoal->currency_adjustment }}" name= "currency_adjustment" type="text" class="form-control" id="currency_adjustment">
+                             </div>
+                             <div class="col-12">
+                                 <label for="premium_rate" class="form-label">Premium Rate</label>
+                                 <input readonly value="{{ $dokumencoal->premium_rate }}" name= "premium_rate" type="text" class="form-control" id="premium_rate">
+                             </div>
+                             <div class="col-12">
+                                 <label for="general_escalation" class="form-label">General Escalation</label>
+                                 <input readonly value="{{ $dokumencoal->general_escalation }}" name= "general_escalation" type="text" class="form-control" id="general_escalation">
+                             </div>
+                             <div class="col-12">
+                                 <label for="total_rate_coal_actual" class="form-label"> Total Rate Coal Actual (Rp/ton)</label>
+                                 <input readonly value="{{ $dokumencoal->total_rate_coal_actual }}" name= "total_rate_coal_actual" type="text" class="form-control" id="total_rate_coal_actual">
+                             </div>
+                             <div class="col-12">
+                                 <label for="total_rate_ob_actual" class="form-label">Contract Reference</label>
+                                 <input readonly value="{{ $dokumencoal->total_rate_ob_actual }}" name= "general_escalation" type="text" class="form-control" id="general_escalation">
+                             </div>
+                             <div class="col-12">
+                                 <label for="contract_reference" class="form-label">Currency Adjustment</label>
+                                 <input readonly value="{{ $dokumencoal->contract_reference }}" name= "contract_reference" type="text" class="form-control" id="contract_reference">
+                             </div>
+                                 </select>
+ 
 
         </div><!-- End Page Title -->
 

@@ -29,34 +29,34 @@
                                         <div class="container text-center">
                                             <!-- Default List group -->
                                             <ul class="list-group">
-                                                <a href="dokumen/asteng/pit-clearing">
+                                                <a href="/dokumen/asteng/pit-clearing">
                                                     <li class="list-group-item active">Pit Clearing</li>
                                                 </a>
-                                                <a href="dokumen/asteng/top-soil">
+                                                <a href="/dokumen/asteng/top-soil">
                                                 <li class="list-group-item ">Top Soil</li>
                                             </a>
-                                            <a href="dokumen/asteng/ob">
+                                            <a href="/dokumen/asteng/ob">
                                                 <li class="list-group-item active">OB</li>
                                             </a>
-                                                <a href="dokumen/asteng/coal">
+                                                <a href="/dokumen/asteng/coal">
                                                 <li class="list-group-item ">Coal</li>
                                             </a>
-                                            <a href="dokumen/asteng/other">
+                                            <a href="/dokumen/asteng/other">
                                                 <li class="list-group-item active">Other</li>
                                             </a>
-                                                <a href="dokumen/asteng/single-rate">
+                                                <a href="/dokumen/asteng/single-rate">
                                                 <li class="list-group-item ">Single Rate</li>
                                             </a>
-                                            <a href="dokumen/asteng/mud">
+                                            <a href="/dokumen/asteng/mud">
                                                 <li class="list-group-item active">Mud</li>
                                             </a>
-                                                <a href="dokumen/asteng/daywork">
+                                                <a href="/dokumen/asteng/daywork">
                                                 <li class="list-group-item ">Daywork</li>
                                             </a>
-                                            <a href="dokumen/asteng/oudistance">
+                                            <a href="/dokumen/asteng/oudistance">
                                                 <li class="list-group-item active">Over/Under Distance</li>
                                             </a>
-                                            <a href="dokumen/asteng/fuel">
+                                            <a href="/dokumen/asteng/fuel">
                                                 <li class="list-group-item ">Fuel Allowance</li>
                                             </a>
                                             </ul><!-- End Default List group -->

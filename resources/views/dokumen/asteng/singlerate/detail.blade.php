@@ -1,3 +1,6 @@
+@extends('componen.template-admin')
+
+@section('conten')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -306,63 +309,79 @@
                     <li class="breadcrumb-item active">Single Rate</li>
                 </ol>
             </nav>
-            <!-- Bordered Table -->
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Rate</th>
+            <section class="section dashboard">
+            <div class="row">
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Total Base Rate OB (Rp/BCM) (Rp/Ha)</td>
-                        <td>Rp {{$dokumensingle_rate->total_base_rate_ob}} BCM/Ha</td>
+                <!-- Left side columns -->
+                <div class="col-lg-12">
+                    <div class="row">
+                        <!-- Vertical Form -->
+                        <form action= "/dokumen/asteng/single-rate/simpan" method="POST" class= "row g-3">
+                           @csrf
+                        <div class="col-12">
+                                <label for="total_base_rate_ob" class="form-label">Total Base Rate OB (Rp/BCM)</label>
+                                <input readonly value="{{ $dokumensingle_rate->total_base_rate_ob }}" name= "total_base_rate_ob" type="text" class="form-control" id="total_base_rate_ob">
+                            </div>
+                            <div class="col-12">
+                                <label for="total_base_rate_coal" class="form-label">Total Base Rate Coal (Rp/ton)</label>
+                                <input readonly value="{{ $dokumensingle_rate->total_base_rate_coal }}" name= "total_base_rate_coal" type="text" class="form-control" id="total_base_rate_coal">
+                            </div>
+                            <div class="col-12">
+                                <label for="sr" class="form-label">SR</label>
+                                <input readonly value="{{ $dokumensingle_rate->sr }}" name= "sr" type="text" class="form-control" id="sr">
+                            </div>
+                            <div class="col-12">
+                                <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
+                                <input readonly value="{{ $dokumensingle_rate->currency_adjustment }}" name= "currency_adjustment" type="text" class="form-control" id="currency_adjustment">
+                            </div>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Total Base Rate Coal (Rp/ton)
-                        </td>
-                        <td>Rp {{$dokumensingle_rate->total_base_rate_coal}} ton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>SR</td>
-                        <td>{{$dokumensingle_rate->sr}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Currency Adjustment</td>
-                        <td>{{$dokumensingle_rate->currency_adjustment}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Premium Rate</td>
-                        <td>Rp{{$dokumensingle_rate->premium_rate}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>General Escalation</td>
-                        <td>{{$dokumensingle_rate->general_escalation}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Total Single Rate Actual (Rp/ton)</td>
-                        <td>Rp {{$dokumensingle_rate->total_single_rate_actual}} ton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">8</th>
-                        <td>Contract Reference</td>
-                        <td>{{$dokumensingle_rate->contract_reference}}</td>
-                    </tr>
+                            <div class="col-12">
+                                <label for="premium_rate" class="form-label">Premium Rate</label>
+                                <input readonly value="{{ $dokumensingle_rate->premium_rate }}" name= "premium_rate" type="text" class="form-control" id="premium_rate">
+                            </div>
+                            <div class="col-12">
+                                <label for="general_escalation" class="form-label">General Escalation</label>
+                                <input readonly value="{{ $dokumensingle_rate->general_escalation }}" name= "general_escalation" type="text" class="form-control" id="general_escalation">
+                            </div>
+                            <div class="col-12">
+                                <label for="total_single_rate_actual" class="form-label">Total Single Rate Actual (Rp/ton)</label>
+                                <input readonly value="{{ $dokumensingle_rate->total_single_rate_actual }}" name= "total_single_rate_actual" type="text" class="form-control" id="total_single_rate_actual">
+                            </div>
+                            <div class="col-12">
+                                <label for="contract_reference" class="form-label">Contract Reference</label>
+                                <input readonly value="{{ $dokumensingle_rate->contract_reference }}" name= "contract_reference" type="text" class="form-control" id="contract_reference">
+                            </div>
+                                </select>
 
-                </tbody>
-            </table>
-            <!-- End Bordered Table -->
+                            </div>
+
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="sumbit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    </form><!-- Vertical Form -->
+
+
+
+
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div><!-- End Card with an image on left -->
+
+
+
+            </div><!-- End sidebar recent posts-->
+
+            </div>
+            </div><!-- End News & Updates -->
+
+            </div><!-- End Right side columns -->
+
+            </div>
+        </section>
 
         </div><!-- End Page Title -->
 

@@ -1,3 +1,6 @@
+@extends('componen.template-admin')
+
+@section('conten')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -306,53 +309,45 @@
                     <li class="breadcrumb-item active">Other</li>
                 </ol>
             </nav>
-            <!-- Bordered Table -->
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Rate</th>
+            <section class="section dashboard">
+            <div class="row">
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Base Rate HRM LCM (Rp/ton/KM)</td>
-                        <td>Rp {{$dokumenother->base_rate_hrm_lcm}} ton</td>
+                <!-- Left side columns -->
+                <div class="col-lg-12">
+                    <div class="row">
+                        <!-- Vertical Form -->
+                        <form action= "/dokumen/asteng/other/simpan" method="POST" class= "row g-3">
+                           @csrf
+                        <div class="col-12">
+                                <label for="base_rate_hrm_lcm" class="form-label">Base Rate HRM LCM (Rp/ton/KM)</label>
+                                <input readonly value="{{ $dokumenother->base_rate_hrm_lcm }}" name= "base_rate_hrm_lcm" type="text" class="form-control" id="base_rate_hrm_lcm">
+                            </div>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Currency Adjusment
-                        </td>
-                        <td>{{$dokumenother->currency_adjustment}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Premium Rate</td>
-                        <td>{{$dokumenother->premium_rate}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>General Escalation</td>
-                        <td>{{$dokumenother->general_escalation}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Rate Actual HRM LCM (Rp/ton/KM)</td>
-                        <td>Rp{{$dokumenother->rate_actual_hrm_lcm}} ton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Contract Reference</td>
-                        <td>{{$dokumenother->contract_reference}}</td>
-                    </tr>
+                            <div class="col-12">
+                                <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
+                                <input readonly value="{{ $dokumenother->currency_adjustment }}" name= "currency_adjustment" type="text" class="form-control" id="currency_adjustment">
+                            </div>
 
-                </tbody>
-            </table>
-            <!-- End Bordered Table -->
+                            <div class="col-12">
+                                <label for="premium_rate" class="form-label">Premium Rate</label>
+                                <input readonly value="{{ $dokumenother->premium_rate }}" name= "premium_rate" type="text" class="form-control" id="premium_rate">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="general_escalation" class="form-label">General Escalation</label>
+                                <input readonly value="{{ $dokumenother->general_escalation }}" name= "general_escalation" type="text" class="form-control" id="general_escalation">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="rate_actual_hrm_lcm" class="form-label">Rate Actual HRM LCM (Rp/ton/KM)</label>
+                                <input readonly value="{{ $dokumenother->rate_actual_hrm_lcm }}" name= "rate_actual_hrm_lcm" type="text" class="form-control" id="rate_actual_hrm_lcm">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="contract_reference" class="form-label">Contract Reference</label>
+                                <input readonly value="{{ $dokumenother->contract_reference }}" name= "contract_reference" type="text" class="form-control" id="contract_reference">
+                            </div>
+                                </select>
 
         </div><!-- End Page Title -->
 
