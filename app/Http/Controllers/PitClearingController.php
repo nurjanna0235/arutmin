@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\pit_clearing;
+use Generator;
+use PhpParser\Node\Expr\Cast\Double;
 
 class PitClearingController extends Controller
 {
@@ -27,18 +29,34 @@ class PitClearingController extends Controller
 
     public function simpan(Request $request)
     {
-
-        // Konversi input ke tipe data numerik
-        $base_rate = (float) $request->base_rate;
-        $currency_adjustment = (float) $request->currency_adjustment;
-        $premium_rate = 
-        $general_escalation = (float) $request->general_escalation;
+        $base_rate = (double) $request->base_rate;
+        $currency_adjustment = (double) $request->currency_adjustment;
+        $premium_rate = (double) $request->premium_rate;
+        $general_escalation = (Double) $request->general_escalation;
 
         // Perhitungan rate_actual
-        $rate_actual = $base_rate
+        if($general_escalation == 0.0){
+            $rate_actual = $base_rate
+            * $currency_adjustment
+            * $premium_rate;
+        }else if($premium_rate == 0.0){
+            $rate_actual = $base_rate
+            * $currency_adjustment
+            * $general_escalation;
+        }else if($currency_adjustment == 0.0){
+            $rate_actual = $base_rate
+            * $premium_rate
+            * $general_escalation;
+        }else if($base_rate == 0.0){
+            $rate_actual =  $currency_adjustment
+            * $premium_rate
+            * $general_escalation;
+        } else {
+            $rate_actual = $base_rate
             * $currency_adjustment
             * $premium_rate
             * $general_escalation;
+        }
 
         // Simpan data ke tabel pit_clearing
         pit_clearing::create([
