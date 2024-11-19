@@ -29,48 +29,30 @@ class PitClearingController extends Controller
 
     public function simpan(Request $request)
     {
-        $base_rate = (double) $request->base_rate;
-        $currency_adjustment = (double) $request->currency_adjustment;
-        $premium_rate = (double) $request->premium_rate;
-        $general_escalation = (Double) $request->general_escalation;
-
-        // Perhitungan rate_actual
-        if($general_escalation == 0.0){
-            $rate_actual = $base_rate
-            * $currency_adjustment
-            * $premium_rate;
-        }else if($premium_rate == 0.0){
-            $rate_actual = $base_rate
-            * $currency_adjustment
-            * $general_escalation;
-        }else if($currency_adjustment == 0.0){
-            $rate_actual = $base_rate
-            * $premium_rate
-            * $general_escalation;
-        }else if($base_rate == 0.0){
-            $rate_actual =  $currency_adjustment
-            * $premium_rate
-            * $general_escalation;
-        } else {
-            $rate_actual = $base_rate
-            * $currency_adjustment
-            * $premium_rate
-            * $general_escalation;
-        }
+        // Pastikan nilai yang diterima adalah float sebelum diformat
+        $base_rate = number_format((float)$request->base_rate, 2, '.', '');
+        $currency_adjustment = number_format((float)$request->currency_adjustment, 2, '.', '');
+        $premium_rate = number_format((float)$request->premium_rate, 2, '.', '');
+        $general_escalation = number_format((float)$request->general_escalation, 2, '.', '');
+        $rate_actual = number_format((float)$request->rate_actual, 2, '.', '');  // Pastikan format 2 angka desimal
 
         // Simpan data ke tabel pit_clearing
         pit_clearing::create([
             'base_rate' => $base_rate,
             'currency_adjustment' => $currency_adjustment,
-            'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
+            'premium_rate' => $premium_rate,
             'general_escalation' => $general_escalation,
-            'rate_actual' => $rate_actual,
+            'rate_actual' => $rate_actual,  // Simpan hasil yang sudah dihitung
             'contract_reference' => $request->contract_reference,
         ]);
 
         // Redirect dengan pesan sukses
         return redirect()->to('dokumen/asteng/pit-clearing')->with('success', 'Dokumen berhasil ditambahkan');
     }
+
+
+
+
 
     public function hapus($id)
     {

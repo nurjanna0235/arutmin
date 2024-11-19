@@ -45,7 +45,7 @@
                             <div class="icon">
                                 <a href="{{ url('dokumen/asteng/pit-clearing/detail/'.$item->id) }}"
                                     type="button" class="btn btn-primary"><i class="bx bx-info-circle"></i>Detail</a>
-                               
+
                                     <form
                                         action="{{ url('/dokumen/asteng/pit-clearing/delete/'.$item->id) }}"
                                         method="POST"
