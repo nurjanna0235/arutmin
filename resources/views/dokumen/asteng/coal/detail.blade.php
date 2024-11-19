@@ -338,10 +338,6 @@
                                  <input readonly value="{{ $dokumencoal->sub_total_base_rate_coal }}" name= "sub_total_base_rate_coal" type="text" class="form-control" id="sub_total_base_rate_coal">
                              </div>
                              <div class="col-12">
-                                 <label for="dewatering_sediment" class="form-label">Dewatering/Sediment (Rp/BCM)</label>
-                                 <input readonly value="{{ $dokumencoal->dewatering_sediment }}" name= "dewatering_sediment" type="text" class="form-control" id="dewatering_sediment">
-                             </div>
-                             <div class="col-12">
                                  <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
                                  <input readonly value="{{ $dokumencoal->currency_adjustment }}" name= "currency_adjustment" type="text" class="form-control" id="currency_adjustment">
                              </div>
@@ -358,14 +354,14 @@
                                  <input readonly value="{{ $dokumencoal->total_rate_coal_actual }}" name= "total_rate_coal_actual" type="text" class="form-control" id="total_rate_coal_actual">
                              </div>
                              <div class="col-12">
-                                 <label for="total_rate_ob_actual" class="form-label">Contract Reference</label>
-                                 <input readonly value="{{ $dokumencoal->total_rate_ob_actual }}" name= "general_escalation" type="text" class="form-control" id="general_escalation">
-                             </div>
-                             <div class="col-12">
-                                 <label for="contract_reference" class="form-label">Currency Adjustment</label>
-                                 <input readonly value="{{ $dokumencoal->contract_reference }}" name= "contract_reference" type="text" class="form-control" id="contract_reference">
-                             </div>
+                                <label for="contract_reference" class="form-label">Contract Reference</label>
+                                <input  readonly value="{{ $dokumencoal->contract_reference }}" name= "contract_reference" type="text" class="form-control" id="contract_reference">
+                            </div>
+                             
                                  </select>
+                                 <div class="col-12 mt-3">
+                <button type="sumbit" class="btn btn-primary">Kembali</button>
+            </div>
  
 
         </div><!-- End Page Title -->

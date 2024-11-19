@@ -25,24 +25,32 @@ class SingleRateController extends Controller
     }
     public function simpan(Request $request)
     {
+// Konversi input ke tipe data numerik
+$total_base_rate_ob = (float) $request->total_base_rate_ob;
+$total_base_rate_coal = (float) $request->total_base_rate_coal;
+$sr = (float) $request->sr;
+$currency_adjustment = (float) $request->currency_adjustment;
+$premium_rate = (float) $request->premium_rate / 100; // Konversi persen ke desimal
+$general_escalation = (float) $request->general_escalation / 100; // Konversi persen ke desimal
 
+// Perhitungan total_single_rate_actual
+$total_single_rate_actual = ($total_base_rate_ob + $total_base_rate_coal)
+    * $sr
+    * $currency_adjustment
+    * (1 + $premium_rate)
+    * (1 + $general_escalation);
 
-
-        // $rate_actual= $request->base_rate * $request->currency_adjustment *  $request->premium_rate * $request->general_escalation;
-
-
-        single_rate::create([
-            'total_base_rate_ob' => $request->total_base_rate_ob,
-            'total_base_rate_coal' => $request->total_base_rate_coal,
-            'sr' => $request->sr,
-            'currency_adjustment' => $request->currency_adjustment,
-            'premium_rate' => $request->premium_rate,
-            'general_escalation' => $request->general_escalation,
-            'total_single_rate_actual' => $request->total_single_rate_actual,
-            'contract_reference' => $request->contract_reference,
-
-
-        ]);
+// Simpan data ke tabel single_rate
+single_rate::create([
+    'total_base_rate_ob' => $total_base_rate_ob,
+    'total_base_rate_coal' => $total_base_rate_coal,
+    'sr' => $sr,
+    'currency_adjustment' => $currency_adjustment,
+    'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
+    'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
+    'total_single_rate_actual' => $total_single_rate_actual,
+    'contract_reference' => $request->contract_reference,
+]);
         return redirect()->to('dokumen/asteng/single-rate')->with('success', 'Dokumen berhasil ditambahkan');
     }
     public function hapus($id)

@@ -25,17 +25,27 @@ class OtherController extends Controller
     }
     public function simpan(Request $request)
     {
-        // $rate_actual= $request->base_rate * $request->currency_adjustment *  $request->premium_rate * $request->general_escalation;
+       // Konversi input ke tipe data numerik
+$base_rate_hrm_lcm = (float) $request->base_rate_hrm_lcm;
+$currency_adjustment = (float) $request->currency_adjustment;
+$premium_rate = (float) $request->premium_rate / 100; // Konversi persen ke desimal
+$general_escalation = (float) $request->general_escalation / 100; // Konversi persen ke desimal
 
+// Perhitungan rate_actual_hrm_lcm
+$rate_actual_hrm_lcm = $base_rate_hrm_lcm
+    * $currency_adjustment
+    * (1 + $premium_rate)
+    * (1 + $general_escalation);
 
-        other::create([
-            'base_rate_hrm_lcm' => $request->base_rate_hrm_lcm,
-            'currency_adjustment	' => $request->currency_adjustment,
-            'premium_rate' => $request->premium_rate,
-            'general_escalation' => $request->general_escalation,
-            'rate_actual_hrm_lcm' => $request->rate_actual_hrm_lcm,
-            'contract_reference' => $request->contract_reference,
-        ]);
+// Simpan ke database
+other::create([
+    'base_rate_hrm_lcm' => $base_rate_hrm_lcm,
+    'currency_adjustment' => $currency_adjustment,
+    'premium_rate' => $request->premium_rate, // Tetap simpan dalam persen
+    'general_escalation' => $request->general_escalation, // Tetap simpan dalam persen
+    'rate_actual_hrm_lcm' => $rate_actual_hrm_lcm,
+    'contract_reference' => $request->contract_reference,
+]);
         return redirect()->to('dokumen/asteng/other')->with('success', 'Dokumen berhasil ditambahkan');
     }
     public function hapus($id)

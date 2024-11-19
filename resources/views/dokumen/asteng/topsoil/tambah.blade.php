@@ -34,16 +34,15 @@
                             </div>
                             <div class="col-12">
                                 <label for="premium_rate" class="form-label">Premium Rate</label>
-                                <input name= "premium_rate" type="text" class="form-control" id="premium_rate">
-                            </div>
+                                <div class="input-group mb-3">
+                                 <input type="text" class="form-control" name="premium_rate">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                                </div>
                             <div class="col-12">
                                 <label for="general_escalation" class="form-label">General Escalation</label>
-                                <input name= "general_escalation" type="text" class="form-control" id="general_escalation">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="rate_actual" class="form-label">Rate Actual (Rp/Ha)</label>
-                                <input name= "rate_actual" type="text" class="form-control" id="rate_actual">
+                                <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="general_escalation">
+                                <span class="input-group-text" id="basic-addon2">%</span>
                             </div>
                             <div class="col-12">
                                 <label for="contract_reference" class="form-label">Contract Reference</label>

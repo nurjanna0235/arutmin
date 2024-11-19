@@ -347,10 +347,8 @@
 
         </div><!-- End Page Title -->
 
-        <section class="section dashboard">
-            <div class="row">
-            <div class="col-12 mt-3">
-                <button type="sumbit" class="btn btn-primary">Kembali</button>
+        <div class="col-12 mt-3">
+                <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
             </div>
                 <!-- Left side columns -->
                 <div class="col-lg-5">

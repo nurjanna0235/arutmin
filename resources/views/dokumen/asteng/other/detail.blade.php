@@ -350,6 +350,9 @@
                                 </select>
 
         </div><!-- End Page Title -->
+        <div class="col-12 mt-3">
+            <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
+        </div>
 
         <section class="section dashboard">
             <div class="row">

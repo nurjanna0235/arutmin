@@ -31,14 +31,14 @@ class PitClearingController extends Controller
         // Konversi input ke tipe data numerik
         $base_rate = (float) $request->base_rate;
         $currency_adjustment = (float) $request->currency_adjustment;
-        $premium_rate = (float) $request->premium_rate / 100; // Konversi persen ke desimal
+        $premium_rate = 
         $general_escalation = (float) $request->general_escalation;
 
         // Perhitungan rate_actual
         $rate_actual = $base_rate
             * $currency_adjustment
-            * (1 + $premium_rate)
-            * (1 + $general_escalation);
+            * $premium_rate
+            * $general_escalation;
 
         // Simpan data ke tabel pit_clearing
         pit_clearing::create([

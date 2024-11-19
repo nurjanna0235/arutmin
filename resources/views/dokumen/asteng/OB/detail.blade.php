@@ -411,7 +411,9 @@
                 </div>
         </div><!-- End Card with an image on left -->
 
-
+        <div class="col-12 mt-3">
+            <button type="sumbit" class="btn btn-primary">Kembali</button>
+        </div>
 
         </div><!-- End sidebar recent posts-->
 

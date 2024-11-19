@@ -40,19 +40,22 @@
                                 <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
                                 <input name= "currency_adjustment" type="text" class="form-control" id="currency_adjustment">
                             </div>
-
                             <div class="col-12">
                                 <label for="premium_rate" class="form-label">Premium Rate</label>
-                                <input name= "premium_rate" type="text" class="form-control" id="premium_rate">
-                            </div>
+                                <div class="input-group mb-3">
+                                 <input type="text" class="form-control" name="premium_rate">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                                </div>
                             <div class="col-12">
                                 <label for="general_escalation" class="form-label">General Escalation</label>
-                                <input name= "general_escalation" type="text" class="form-control" id="general_escalation">
+                                <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="general_escalation">
+                                <span class="input-group-text" id="basic-addon2">%</span>
                             </div>
-                            <div class="col-12">
+                           {{-- <div class="col-12">
                                 <label for="total_single_rate_actual" class="form-label">Total Single Rate Actual (Rp/ton)</label>
                                 <input name= "total_single_rate_actual" type="text" class="form-control" id="total_single_rate_actual">
-                            </div>
+                            </div> --}}
                             <div class="col-12">
                                 <label for="contract_reference" class="form-label">Contract Reference</label>
                                 <input name= "contract_reference" type="text" class="form-control" id="contract_reference">

@@ -32,32 +32,40 @@
                             @csrf
                             <div class="col-12">
                                 <label for="base_rate" class="form-label">Base Rate (Rp/Ha)</label>
-                                <input readonly value="{{ $dokumenpit_clearing->base_rate }}" name="base_rate" type="text" class="form-control" id="base_rate">
+                                <input readonly value="{{ $dokumenpit_clearing->base_rate }}" name="base_rate"
+                                    type="text" class="form-control" id="base_rate">
                             </div>
                             <div class="col-12">
                                 <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
-                                <input readonly value="{{ $dokumenpit_clearing->currency_adjustment }}" name="currency_adjustment" type="text" class="form-control" id="currency_adjustment">
+                                <input readonly value="{{ $dokumenpit_clearing->currency_adjustment }}"
+                                    name="currency_adjustment" type="text" class="form-control"
+                                    id="currency_adjustment">
                             </div>
                             <div class="col-12">
                                 <label for="premium_rate" class="form-label">Premium Rate</label>
-                                <input readonly value="{{ $dokumenpit_clearing->premium_rate }}" name="premium_rate" type="text" class="form-control" id="premium_rate">
+                                <input readonly value="{{ $dokumenpit_clearing->premium_rate }}" name="premium_rate"
+                                    type="text" class="form-control" id="premium_rate">
                             </div>
                             <div class="col-12">
                                 <label for="general_escalation" class="form-label">General Escalation</label>
-                                <input readonly value="{{ $dokumenpit_clearing->general_escalation }}" name="general_escalation" type="text" class="form-control" id="general_escalation">
+                                <input readonly value="{{ $dokumenpit_clearing->general_escalation }}"
+                                    name="general_escalation" type="text" class="form-control" id="general_escalation">
                             </div>
                             <div class="col-12">
                                 <label for="general_escalation" class="form-label">Rate Actual</label>
-                                <input readonly value="{{ $dokumenpit_clearing->rate_actual }}" name="general_escalation" type="text" class="form-control" id="general_escalation">
+                                <input readonly value="{{ $dokumenpit_clearing->rate_actual }}"
+                                    name="general_escalation" type="text" class="form-control" id="general_escalation">
                             </div>
 
                             {{-- <div class="col-12">
                                 <label for="rate_actual" class="form-label">Rate Actual (Rp/Ha)</label>
-                                <input  readonly value="{{ $dokumenpit_clearing->rate_actual }}"name= "rate_actual"type="text" class="form-control" id="rate_actual">
+                                <input  readonly value="{{ $dokumenpit_clearing->rate_actual }}"name=
+                            "rate_actual"type="text" class="form-control" id="rate_actual">
                     </div> --}}
                     <div class="col-12">
                         <label for="contract_reference" class="form-label">Contract Reference</label>
-                        <input readonly value="{{ $dokumenpit_clearing->contract_reference }}" name="contract_reference" type="text" class="form-control" id="contract_reference">
+                        <input readonly value="{{ $dokumenpit_clearing->contract_reference }}"
+                            name="contract_reference" type="text" class="form-control" id="contract_reference">
                     </div>
                     </select>
 
@@ -65,7 +73,7 @@
 
             </div>
             <div class="col-12 mt-3">
-                <button type="sumbit" class="btn btn-primary">Kembali</button>
+                <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
             </div>
             </form><!-- Vertical Form -->
 

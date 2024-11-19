@@ -41,10 +41,10 @@
                         <td>{{ $No++ }}</td>
                         <td>{{ $item->created_at }}</td>
                         <td>
-                            <a href="{{ url('dokumen/asteng/mud/detail/'.$item->id) }}"
+                            <a href="{{ url('dokumen/asteng/daywork/detail/'.$item->id) }}"
                                 type="button" class="btn btn-primary"><i class="bx bx-info-circle"></i>Detail</a>
                             <form
-                                action="{{ url('/dokumen/asteng/mud/delete/'.$item->id) }}"
+                                action="{{ url('/dokumen/asteng/daywork/delete/'.$item->id) }}"
                                 method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
                                 class="d-inline">
                                 @csrf

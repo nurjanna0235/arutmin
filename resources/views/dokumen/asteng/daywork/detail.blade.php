@@ -359,8 +359,8 @@
 
                     </div>
                     <div class="col-12 mt-3">
-                        <button type="sumbit" class="btn btn-primary">Simpan</button>
-                    </div>
+                <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
+            </div>
                     </form><!-- Vertical Form -->
 
 

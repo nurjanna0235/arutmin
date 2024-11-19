@@ -165,8 +165,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="/template-admin/assets/img/messages-1.jpg" alt=""
-                                    class="rounded-circle">
+                                <img src="/template-admin/assets/img/messages-1.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Maria Hudson</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -180,8 +179,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="/template-admin/assets/img/messages-2.jpg" alt=""
-                                    class="rounded-circle">
+                                <img src="/template-admin/assets/img/messages-2.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Anna Nelson</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -195,8 +193,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="/template-admin/assets/img/messages-3.jpg" alt=""
-                                    class="rounded-circle">
+                                <img src="/template-admin/assets/img/messages-3.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>David Muldon</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -218,8 +215,7 @@
 
                 <li class="nav-item dropdown pe-3">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
-                        data-bs-toggle="dropdown">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="/template-admin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                     </a><!-- End Profile Iamge Icon -->
@@ -309,82 +305,92 @@
                     <li class="breadcrumb-item active">Over/Under Distance</li>
                 </ol>
             </nav>
-            <form action= "/dokumen/asteng/oudistance/simpan" method="POST" class= "row g-3">
-                           @csrf
-                        <div class="col-12">
-                                <label for="activity" class="form-label">Activity</label>
-                                <input  readonly value="{{ $dokumenoudistance->activity }}" name= "activity" type="text" class="form-control" id="activity">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="item" class="form-label">Item</label>
-                                <input  readonly value="{{ $dokumenoudistance->item }}" name= "item" type="text" class="form-control" id="item">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="base_rate" class="form-label">Base Rate</label>
-                                <input  readonly value="{{ $dokumenoudistance->base_rate }}" name= "base_rate" type="text" class="form-control" id="base_rate">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="actual_rate" class="form-label">Actual Rate</label>
-                                <input  readonly value="{{ $dokumenoudistance->actual_rate }}" name= "actual_rate" type="text" class="form-control" id="actual_rate">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="contractual_distance_km" class="form-label">Contractual Distance (KM)</label>
-                                <input  readonly value="{{ $dokumenoudistance->contractual_distance_km }}" name= "contractual_distance_km" type="text" class="form-control" id="contractual_distance_km">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
-                                <input  readonly value="{{ $dokumenoudistance->currency_adjustment }}" name= "currency_adjustment" type="text" class="form-control" id="currency_adjustment">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="premium_rate" class="form-label">Premium Rate</label>
-                                <input  readonly value="{{ $dokumenoudistance->premium_rate }}" name= "premium_rate" type="text" class="form-control" id="premium_rate">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="general_escalation" class="form-label">General Escalation</label>
-                                <input  readonly value="{{ $dokumenoudistance->general_escalation }}" name= "general_escalation" type="text" class="form-control" id="general_escalation">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="contract_reference" class="form-label">Contract Reference</label>
-                                <input  readonly value="{{ $dokumenoudistance->contract_reference }}" name= "contract_reference" type="text" class="form-control" id="contract_reference">
-                            </div>
-                                </select>
-
-                            </div>
-
-                    </div>
-                    <div class="col-12 mt-3">
-                        <button type="sumbit" class="btn btn-primary">Simpan</button>
-                    </div>
-                    </form><!-- Vertical Form -->
-
-
-
-
+            <form action="/dokumen/asteng/oudistance/simpan" method="POST" class="row g-3">
+                @csrf
+                <div class="col-12">
+                    <label for="activity" class="form-label">Activity</label>
+                    <input readonly value="{{ $dokumenoudistance->activity }}" name="activity" type="text"
+                        class="form-control" id="activity">
                 </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div><!-- End Card with an image on left -->
+
+                <div class="col-12">
+                    <label for="item" class="form-label">Item</label>
+                    <input readonly value="{{ $dokumenoudistance->item }}" name="item" type="text"
+                        class="form-control" id="item">
+                </div>
+
+                <div class="col-12">
+                    <label for="base_rate" class="form-label">Base Rate</label>
+                    <input readonly value="{{ $dokumenoudistance->base_rate }}" name="base_rate" type="text"
+                        class="form-control" id="base_rate">
+                </div>
+
+                <div class="col-12">
+                    <label for="actual_rate" class="form-label">Actual Rate</label>
+                    <input readonly value="{{ $dokumenoudistance->actual_rate }}" name="actual_rate" type="text"
+                        class="form-control" id="actual_rate">
+                </div>
+
+                <div class="col-12">
+                    <label for="contractual_distance_km" class="form-label">Contractual Distance (KM)</label>
+                    <input readonly value="{{ $dokumenoudistance->contractual_distance_km }}"
+                        name="contractual_distance_km" type="text" class="form-control" id="contractual_distance_km">
+                </div>
+
+                <div class="col-12">
+                    <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
+                    <input readonly value="{{ $dokumenoudistance->currency_adjustment }}" name="currency_adjustment"
+                        type="text" class="form-control" id="currency_adjustment">
+                </div>
+
+                <div class="col-12">
+                    <label for="premium_rate" class="form-label">Premium Rate</label>
+                    <input readonly value="{{ $dokumenoudistance->premium_rate }}" name="premium_rate" type="text"
+                        class="form-control" id="premium_rate">
+                </div>
+
+                <div class="col-12">
+                    <label for="general_escalation" class="form-label">General Escalation</label>
+                    <input readonly value="{{ $dokumenoudistance->general_escalation }}" name="general_escalation"
+                        type="text" class="form-control" id="general_escalation">
+                </div>
+
+                <div class="col-12">
+                    <label for="contract_reference" class="form-label">Contract Reference</label>
+                    <input readonly value="{{ $dokumenoudistance->contract_reference }}" name="contract_reference"
+                        type="text" class="form-control" id="contract_reference">
+                </div>
+                </select>
+
+        </div>
+
+        </div>
+
+        <div class="col-12 mt-3">
+            <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
+        </div>
+        </form><!-- Vertical Form -->
 
 
 
-            </div><!-- End sidebar recent posts-->
 
-            </div>
-            </div><!-- End News & Updates -->
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div><!-- End Card with an image on left -->
 
-            </div><!-- End Right side columns -->
 
-            </div>
+
+        </div><!-- End sidebar recent posts-->
+
+        </div>
+        </div><!-- End News & Updates -->
+
+        </div><!-- End Right side columns -->
+
+        </div>
         </section>
 
         </div><!-- End Page Title -->
