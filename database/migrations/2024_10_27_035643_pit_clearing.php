@@ -10,11 +10,11 @@ return new class extends Migration
     {
         Schema::create('pit_clearing', function (Blueprint $table) {
             $table->id();
-            $table->float('base_rate')->nullable();
-            $table->float('currency_adjustment')->nullable();
-            $table->float('premium_rate')->nullable();
-            $table->float('general_escalation')->nullable();
-            $table->float('rate_actual')->nullable();
+            $table->string('base_rate')->nullable();
+            $table->string('currency_adjustment')->nullable();
+            $table->string('premium_rate')->nullable();
+            $table->string('general_escalation')->nullable();
+            $table->string('rate_actual')->nullable();
             $table->string('contract_reference');
             $table->timestamps();
         });
