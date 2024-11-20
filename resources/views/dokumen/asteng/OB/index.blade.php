@@ -42,7 +42,7 @@
                         <td>{{ $item->created_at }}</td>
                         <td>
                             <div class="icon">
-                                <a href="{{ url('dokumen/asteng/ob/detail/'.$item->id) }}"
+                                <a href="{{ url('/dokumen/asteng/ob/detail/'.$item->id) }}"
                                     type="button" class="btn btn-primary"><i class="bx bx-info-circle"></i>Detail</a>
 
                                 <form
