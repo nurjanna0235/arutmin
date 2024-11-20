@@ -68,7 +68,7 @@ class OBController extends Controller
         'hrm' => $request->hrm,
         'dump_maintenance' => $request->dump_maintenance,
         'dewatering_sediment' => $request->dewatering_sediment,
-        'sub_total_base_rate_ob' => $request->base_rate,
+        'sub_total_base_rate_ob' => $base_rate,
         'sr' => $request->sr,
         'currency_adjustment' => $request->currency_adjustment,
         'premium_rate' => $request->premium_rate,
