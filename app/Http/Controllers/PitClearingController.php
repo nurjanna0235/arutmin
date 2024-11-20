@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\pit_clearing;
 use Generator;
 use PhpParser\Node\Expr\Cast\Double;
+use Illuminate\Support\Facades\DB;
 
 class PitClearingController extends Controller
 {
@@ -29,28 +30,36 @@ class PitClearingController extends Controller
 
     public function simpan(Request $request)
     {
-        // Pastikan nilai yang diterima adalah float sebelum diformat
-        $base_rate = number_format((float)$request->base_rate, 2, '.', '');
-        $currency_adjustment = number_format((float)$request->currency_adjustment, 2, '.', '');
-        $premium_rate = number_format((float)$request->premium_rate, 2, '.', '');
-        $general_escalation = number_format((float)$request->general_escalation, 2, '.', '');
-        $rate_actual = number_format((float)$request->rate_actual, 2, '.', '');  // Pastikan format 2 angka desimal
+        // Mengganti koma dengan titik pada inputan untuk keperluan perhitungan
+        $base_rate = str_replace([','], ['.'], $request->base_rate);
+        $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
+        $premium_rate = str_replace(['%'], [''], $request->premium_rate) / 100;
+        $general_escalation = str_replace([','], ['.'], $request->general_escalation ?? 0);
 
-        // Simpan data ke tabel pit_clearing
-        pit_clearing::create([
-            'base_rate' => $base_rate,
-            'currency_adjustment' => $currency_adjustment,
-            'premium_rate' => $premium_rate,
-            'general_escalation' => $general_escalation,
-            'rate_actual' => $rate_actual,  // Simpan hasil yang sudah dihitung
+        // Konversi menjadi float untuk perhitungan
+        $base_rate = (float) $base_rate;
+        $currency_adjustment = (float) $currency_adjustment;
+        $premium_rate = (float) $premium_rate;
+        $general_escalation = (float) $general_escalation;
+
+        // Hitung Rate Actual sesuai rumus
+        $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
+        // Simpan ke database
+        DB::table('pit_clearing')->insert([
+            'base_rate' => $request->base_rate,
+            'currency_adjustment' => $request->currency_adjustment,
+            'premium_rate' => $request->premium_rate,
+            'general_escalation' => $request->general_escalation,
+            'rate_actual' => $rate_actual,
             'contract_reference' => $request->contract_reference,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
+
 
         // Redirect dengan pesan sukses
         return redirect()->to('dokumen/asteng/pit-clearing')->with('success', 'Dokumen berhasil ditambahkan');
     }
-
-
 
 
 
