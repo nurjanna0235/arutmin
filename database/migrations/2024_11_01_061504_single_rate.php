@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('single_rate', function (Blueprint $table) {
             $table->id();
-            $table->decimal('total_base_rate_ob', 15, 2)->comment('Total Base Rate OB (Rp/BCM)');
-            $table->decimal('total_base_rate_coal', 15, 2)->comment('Total Base Rate Coal (Rp/ton)');
-            $table->float('sr')->comment('SR');
-            $table->decimal('currency_adjustment', 15, 2)->comment('Currency Adjustment');
-            $table->decimal('premium_rate', 15, 2)->comment('Premium Rate');
-            $table->decimal('general_escalation', 15, 2)->comment('General Escalation');
-            $table->decimal('total_single_rate_actual', 15, 2)->comment('Total Single Rate Actual (Rp/ton)');
-            $table->string('contract_reference')->comment('Contract Reference');
-            $table->timestamps(); // created_at and updated_at
+            $table->singlerate('total_base_rate_ob')->nullable();
+            $table->singlerate('total_base_rate_coal')->nullable();
+            $table->singlerate('sr')->nullable();
+            $table->singlerate('currency_adjustment')->nullable();
+            $table->singlerate('premium_rate')->nullable();
+            $table->singlerate('general_escalation')->nullable();
+            $table->singlerate('total_single_rate_actual')->nullable();
+            $table->string('contract_reference');
+            $table->timestamps();
         });
     }
 

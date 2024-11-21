@@ -5,7 +5,10 @@ namespace App\Http\Controllers\admin;
 use App\Models\coal;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Generator;
+use PhpParser\Node\Expr\Cast\Double;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 class CoalController extends Controller
 {
     public function index()
@@ -25,48 +28,45 @@ class CoalController extends Controller
     }
     public function simpan(Request $request)
     {
-
-        // Konversi input ke tipe data numerik
-$clean_coal = (float) $request->clean_coal; // Data tambahan
-$loading_and_ripping = (float) $request->loading_and_ripping;
-$coal_hauling = (float) $request->coal_hauling;
-$hrm = (float) $request->hrm;
-$pit_support = (float) $request->pit_support;
-
-// Hitung Sub Total Base Rate Coal (menambahkan $clean_coal di perhitungan)
-$sub_total_base_rate_coal = $clean_coal // Ditambahkan ke Sub Total
-    + $loading_and_ripping 
-    + $coal_hauling 
-    + $hrm 
-    + $pit_support;
-
-// Variabel tambahan
-$currency_adjustment = (float) $request->currency_adjustment;
-$premium_rate = (float) $request->premium_rate / 100; // Konversi persen ke desimal
-$general_escalation = (float) $request->general_escalation / 100; // Konversi persen ke desimal;
-
-// Hitung Total Rate Coal Actual
-$total_rate_coal_actual = $sub_total_base_rate_coal 
-    * $currency_adjustment 
-    * (1 + $premium_rate) 
-    * (1 + $general_escalation);
-
-// Simpan hasil ke database
-coal::create([
-    'clean_coal' => $clean_coal, // Data tambahan disimpan
-    'loading_and_ripping' => $loading_and_ripping,
-    'coal_hauling' => $coal_hauling,
-    'hrm' => $hrm,
-    'pit_support' => $pit_support,
-    'sub_total_base_rate_coal' => $sub_total_base_rate_coal,
-    'currency_adjustment' => $currency_adjustment,
-    'premium_rate' => $request->premium_rate, // Tetap dalam persen untuk disimpan
-    'general_escalation' => $request->general_escalation, // Tetap dalam persen untuk disimpan
-    'total_rate_coal_actual' => $total_rate_coal_actual,
-    'contract_reference' => $request->contract_reference,
-]);
-        return redirect()->to('dokumen/asteng/coal')->with('success', 'Dokumen berhasil ditambahkan');
-    }
+       
+            // Input dari form
+            $clean_coal = str_replace(',', '.', $request->clean_coal);
+            $loading_and_ripping = str_replace(',', '.', $request->loading_and_ripping);
+            $coal_hauling = str_replace(',', '.', $request->coal_hauling);
+            $hrm = str_replace(',', '.', $request->hrm);
+            $pit_support = str_replace(',', '.', $request->pit_support);
+            $currency_adjustment = str_replace(',', '.', $request->currency_adjustment);
+            $premium_rate = str_replace('%', '', $request->premium_rate) / 100;
+            $general_escalation = str_replace('%', '', $request->general_escalation) / 100;
+        
+            // Hitung Sub Total Base Rate Coal
+            $sub_total_base_rate_coal = $clean_coal + $loading_and_ripping + $coal_hauling + $hrm + $pit_support;
+        
+            // Hitung Total Rate Coal Actual
+            $total_rate_coal_actual = $sub_total_base_rate_coal 
+                * $currency_adjustment 
+                * (1 + $premium_rate) 
+                * (1 + $general_escalation);
+        
+            // Simpan ke database
+            DB::table('coal_rates')->insert([
+                'clean_coal' => $clean_coal,
+                'loading_and_ripping' => $loading_and_ripping,
+                'coal_hauling' => $coal_hauling,
+                'hrm' => $hrm,
+                'pit_support' => $pit_support,
+                'sub_total_base_rate_coal' => $sub_total_base_rate_coal,
+                'currency_adjustment' => $currency_adjustment,
+                'premium_rate' => $request->premium_rate,
+                'general_escalation' => $request->general_escalation,
+                'total_rate_coal_actual' => $total_rate_coal_actual,
+                'contract_reference' => $request->contract_reference,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        
+            return redirect()->to('dokumen/asteng/coal')->with('success', 'Data berhasil ditambahkan');
+        }
     public function hapus($id)
     {
         $dokumencoal = coal::findOrFail($id);

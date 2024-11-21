@@ -334,7 +334,6 @@
                                 <label for="general_escalation" class="form-label">General Escalation</label>
                                 <input  readonly value="{{ $dokumentop_soil->general_escalation }}" name= "general_escalation" type="text" class="form-control" id="general_escalation">
                             </div>
-
                             <div class="col-12">
                                 <label for="rate_actual" class="form-label">Rate Actual (Rp/Ha)</label>
                                 <input  readonly value="{{ $dokumentop_soil->rate_actual }}" name= "rate_actual" type="text" class="form-control" id="rate_actual">

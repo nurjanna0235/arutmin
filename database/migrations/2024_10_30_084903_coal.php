@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('coal', function (Blueprint $table) {
             $table->id();
-            $table->decimal('clean_coal', 15, 2)->comment('Rp/ton');
-            $table->decimal('loading_and_ripping', 15, 2)->comment('Rp/ton');
-            $table->decimal('coal_hauling', 15, 2)->comment('Coal Hauling @8,463 Km (Rp/ton)');
-            $table->decimal('hrm', 15, 2)->comment('HRM @8,463 Km (Rp/ton)');
-            $table->decimal('pit_support', 15, 2)->comment('Rp/ton');
-            $table->decimal('sub_total_base_rate_coal', 15, 2)->comment('Rp/ton');
-            $table->decimal('currency_adjustment', 15, 2)->nullable();
-            $table->decimal('premium_rate', 15, 2)->nullable();
-            $table->decimal('general_escalation', 15, 2)->nullable();
-            $table->decimal('total_rate_coal_actual', 15, 2)->comment('Rp/ton');
-            $table->string('contract_reference')->nullable();
+            $table->string('clean_coal')->nullable();
+            $table->string('loading_and_ripping')->nullable();
+            $table->string('coal_hauling')->nullable();
+            $table->string('hrm')->nullable();
+            $table->string('pit_support')->nullable();
+            $table->string('sub_total_base_rate_coal')->nullable();
+            $table->string('currency_adjustment')->nullable();
+            $table->string('premium_rate')->nullable();
+            $table->string('general_escalation')->nullable();
+            $table->string('total_rate_coal_actual')->nullable();
+            $table->string('contract_reference');
             $table->timestamps();
         });
     }

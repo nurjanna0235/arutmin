@@ -3,6 +3,7 @@
 use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\admin\BerandaController;
 use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\KontraktorController;
 use App\Http\Controllers\PitClearingController;
@@ -16,6 +17,9 @@ use App\Http\Controllers\admin\MudController;
 use App\Http\Controllers\admin\DayworkController;
 use App\Http\Controllers\admin\oudistanceController;
 use App\Http\Controllers\admin\FuelController;
+
+//Halaman beranda
+Route::get('beranda', [BerandaController::class, 'index']);
 
 //Halaman pengguna
 Route::get('admin/pengguna', [PenggunaController::class, 'index']);
