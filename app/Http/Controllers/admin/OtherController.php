@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\admin;
 use App\Models\other;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Generator;
 use PhpParser\Node\Expr\Cast\Double;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Log;
 class OtherController extends Controller
 {
     public function index()
@@ -28,7 +28,7 @@ class OtherController extends Controller
     public function simpan(Request $request)
     {
             // Ganti koma dengan titik pada inputan untuk keperluan perhitungan
-            $base_rate = str_replace([','], ['.'], $request->base_rate);
+            $base_rate = str_replace([','], ['.'], $request->base_rate_hrm_lcm);
             $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
             $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
             $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
@@ -41,14 +41,14 @@ class OtherController extends Controller
         
             // Hitung Rate Actual sesuai rumus
             $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
-        
+    
             // Simpan data ke dalam database
             DB::table('other')->insert([
-                'base_rate' => $request->base_rate,
+                'base_rate_hrm_lcm' => $request->base_rate_hrm_lcm,
                 'currency_adjustment' => $request->currency_adjustment,
                 'premium_rate' => $request->premium_rate,
                 'general_escalation' => $request->general_escalation,
-                'rate_actual' => $rate_actual,
+                'rate_actual_hrm_lcm' => $rate_actual,
                 'contract_reference' => $request->contract_reference,
                 'created_at' => now(),
                 'updated_at' => now(),

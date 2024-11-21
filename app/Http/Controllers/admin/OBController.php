@@ -49,22 +49,22 @@ class OBController extends Controller
         $total_rate_ob_actual = $sub_total_base_rate_ob * $sr * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
 
         // Simpan data ke database
-        $pitClearing = new ob();
-        $pitClearing->load_and_haul = $load_and_haul;
-        $pitClearing->drill_and_blast = $drill_and_blast;
-        $pitClearing->pit_support = $pit_support;
-        $pitClearing->pit_lighting = $pit_lighting;
-        $pitClearing->hrm = $hrm;
-        $pitClearing->dump_maintenance = $dump_maintenance;
-        $pitClearing->dewatering_sediment = $dewatering_sediment;
-        $pitClearing->sub_total_base_rate_ob = $sub_total_base_rate_ob;
-        $pitClearing->sr = $sr;
-        $pitClearing->currency_adjustment = $currency_adjustment;
-        $pitClearing->premium_rate = $premium_rate;
-        $pitClearing->general_escalation = $general_escalation;
-        $pitClearing->total_rate_ob_actual = $total_rate_ob_actual;
-        $pitClearing->contract_reference = $request->contract_reference; // Data tambahan
-        $pitClearing->save();
+        $ob = new ob();
+        $ob->load_and_haul = $load_and_haul;
+        $ob->drill_and_blast = $drill_and_blast;
+        $ob->pit_support = $pit_support;
+        $ob->pit_lighting = $pit_lighting;
+        $ob->hrm = $hrm;
+        $ob->dump_maintenance = $dump_maintenance;
+        $ob->dewatering_sediment = $dewatering_sediment;
+        $ob->sub_total_base_rate_ob = $sub_total_base_rate_ob;
+        $ob->sr = $sr;
+        $ob->currency_adjustment = $currency_adjustment;
+        $ob->premium_rate = $premium_rate;
+        $ob->general_escalation = $general_escalation;
+        $ob->total_rate_ob_actual = $total_rate_ob_actual;
+        $ob->contract_reference = $request->contract_reference; // Data tambahan
+        $ob->save();
 
         // Redirect atau tampilkan view dengan pesan sukses
         return redirect()->to('dokumen/asteng/ob')->with('success', 'Dokumen berhasil ditambahkan');

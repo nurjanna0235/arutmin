@@ -25,7 +25,7 @@
                         @csrf
                         <div class="col-12">
                             <label for="base_rate" class="form-label">Base Rate (Rp/Ha)</label>
-                            <input name="base_rate" type="text" class="form-control" id="base_rate" placeholder="Masukkan nilai, contoh: 22.222.222" required>
+                            <input name="base_rate" type="text" class="form-control" id="base_rate">
                         </div>
                         <div class="col-12">
                             <label for="currency_adjustment" class="form-label">Currency Adjustment</label>

@@ -28,43 +28,40 @@ class CoalController extends Controller
     }
     public function simpan(Request $request)
     {
-       
-            // Input dari form
-            $clean_coal = str_replace(',', '.', $request->clean_coal);
-            $loading_and_ripping = str_replace(',', '.', $request->loading_and_ripping);
-            $coal_hauling = str_replace(',', '.', $request->coal_hauling);
-            $hrm = str_replace(',', '.', $request->hrm);
-            $pit_support = str_replace(',', '.', $request->pit_support);
-            $currency_adjustment = str_replace(',', '.', $request->currency_adjustment);
-            $premium_rate = str_replace('%', '', $request->premium_rate) / 100;
-            $general_escalation = str_replace('%', '', $request->general_escalation) / 100;
-        
-            // Hitung Sub Total Base Rate Coal
-            $sub_total_base_rate_coal = $clean_coal + $loading_and_ripping + $coal_hauling + $hrm + $pit_support;
-        
-            // Hitung Total Rate Coal Actual
-            $total_rate_coal_actual = $sub_total_base_rate_coal 
-                * $currency_adjustment 
-                * (1 + $premium_rate) 
-                * (1 + $general_escalation);
-        
-            // Simpan ke database
-            DB::table('coal_rates')->insert([
-                'clean_coal' => $clean_coal,
-                'loading_and_ripping' => $loading_and_ripping,
-                'coal_hauling' => $coal_hauling,
-                'hrm' => $hrm,
-                'pit_support' => $pit_support,
-                'sub_total_base_rate_coal' => $sub_total_base_rate_coal,
-                'currency_adjustment' => $currency_adjustment,
-                'premium_rate' => $request->premium_rate,
-                'general_escalation' => $request->general_escalation,
-                'total_rate_coal_actual' => $total_rate_coal_actual,
-                'contract_reference' => $request->contract_reference,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        
+       // Konversi input ke tipe numerik
+    $clean_coal = floatval(str_replace(',', '.', $request->clean_coal));
+    $loading_and_ripping = floatval(str_replace(',', '.', $request->loading_and_ripping));
+    $coal_hauling = floatval(str_replace(',', '.', $request->coal_hauling));
+    $hrm = floatval(str_replace(',', '.', $request->hrm));
+    $pit_support = floatval(str_replace(',', '.', $request->pit_support));
+    $currency_adjustment = floatval(str_replace(',', '.', $request->currency_adjustment));
+    $premium_rate = floatval(str_replace('%', '', $request->premium_rate)) / 100;
+    $general_escalation = floatval(str_replace('%', '', $request->general_escalation)) / 100;
+
+    // Hitung Sub Total Base Rate Coal
+    $sub_total_base_rate_coal = $clean_coal + $loading_and_ripping + $coal_hauling + $hrm + $pit_support;
+
+    // Hitung Total Rate Coal Actual
+    $total_rate_coal_actual = $sub_total_base_rate_coal 
+        * $currency_adjustment 
+        * (1 + $premium_rate) 
+        * (1 + $general_escalation);
+
+    // Simpan ke database
+    $coal = new coal();
+    $coal->clean_coal = $clean_coal;
+    $coal->loading_and_ripping = $loading_and_ripping;
+    $coal->coal_hauling = $coal_hauling;
+    $coal->pit_support = $pit_support;
+    $coal->sub_total_base_rate_coal = $sub_total_base_rate_coal;
+    $coal->currency_adjustment = $currency_adjustment;
+    $coal->premium_rate = $premium_rate;
+    $coal->general_escalation = $general_escalation;
+    $coal->total_rate_coal_actual = $total_rate_coal_actual;
+    $coal->contract_reference = $request->contract_reference; // Data tambahan
+    $coal->save();
+
+             // Redirect atau tampilkan view dengan pesan sukses
             return redirect()->to('dokumen/asteng/coal')->with('success', 'Data berhasil ditambahkan');
         }
     public function hapus($id)

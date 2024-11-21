@@ -29,8 +29,8 @@ class SingleRateController extends Controller
     public function simpan(Request $request)
     {
  // Mengganti koma dengan titik pada inputan untuk keperluan perhitungan
- $base_rate_ob = str_replace([','], ['.'], $request->base_rate_ob); // Total Base Rate OB (Rp/BCM)
- $base_rate_coal = str_replace([','], ['.'], $request->base_rate_coal); // Total Base Rate Coal (Rp/ton)
+ $base_rate_ob = str_replace([','], ['.'], $request->total_base_rate_ob); // Total Base Rate OB (Rp/BCM)
+ $base_rate_coal = str_replace([','], ['.'], $request->total_base_rate_coal); // Total Base Rate Coal (Rp/ton)
  $sr = str_replace([','], ['.'], $request->sr); // SR (Stripping Ratio)
  $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment); // Currency Adjustment
  $premium_rate = str_replace(['%'], [''], $request->premium_rate) / 100; // Premium Rate (%)
@@ -48,14 +48,14 @@ class SingleRateController extends Controller
  $rate_actual = ($base_rate_ob * $sr + $base_rate_coal) * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
 
  // Simpan ke database
- DB::table('singlerate')->insert([
-     'base_rate_ob' => $request->base_rate_ob,
-     'base_rate_coal' => $request->base_rate_coal,
+ DB::table('single_rate')->insert([
+     'total_base_rate_ob' => $request->total_base_rate_ob,
+     'total_base_rate_coal' => $request->total_base_rate_coal,
      'sr' => $request->sr,
      'currency_adjustment' => $request->currency_adjustment,
      'premium_rate' => $request->premium_rate,
      'general_escalation' => $request->general_escalation,
-     'rate_actual' => $rate_actual,
+     'total_single_rate_actual' => $rate_actual,
      'contract_reference' => $request->contract_reference,
      'created_at' => now(),
      'updated_at' => now(),

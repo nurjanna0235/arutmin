@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id(); // Kolom ID sebagai primary key
             $table->string('activity'); // Kolom Activity dengan tipe string
             $table->string('item'); // Kolom Item dengan tipe string
-            $table->decimal('base_rate', 15, 2); // Kolom Base Rate dengan tipe decimal
-            $table->decimal('actual_rate', 15, 2); // Kolom Actual Rate dengan tipe decimal
-            $table->decimal('contractual_distance_km', 8, 2); // Kolom Contractual Distance (KM) dengan tipe decimal
-            $table->decimal('currency_adjustment', 15, 2); // Kolom Currency Adjustment dengan tipe decimal
-            $table->decimal('premium_rate', 15, 2); // Kolom Premium Rate dengan tipe decimal
-            $table->decimal('general_escalation', 15, 2); // Kolom General Escalation dengan tipe decimal
+            $table->string('base_rate', 15, 2); // Kolom Base Rate dengan tipe decimal
+            $table->string('actual_rate', 15, 2); // Kolom Actual Rate dengan tipe decimal
+            $table->string('contractual_distance_km', 8, 2); // Kolom Contractual Distance (KM) dengan tipe decimal
+            $table->string('currency_adjustment', 15, 2); // Kolom Currency Adjustment dengan tipe decimal
+            $table->string('premium_rate', 15, 2); // Kolom Premium Rate dengan tipe decimal
+            $table->string('general_escalation', 15, 2); // Kolom General Escalation dengan tipe decimal
             $table->string('contract_reference'); // Kolom Contract Reference dengan tipe string
             $table->timestamps(); // Kolom created_at dan updated_at otomatis
         });

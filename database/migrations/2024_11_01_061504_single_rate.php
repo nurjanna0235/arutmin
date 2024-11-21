@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('single_rate', function (Blueprint $table) {
             $table->id();
-            $table->singlerate('total_base_rate_ob')->nullable();
-            $table->singlerate('total_base_rate_coal')->nullable();
-            $table->singlerate('sr')->nullable();
-            $table->singlerate('currency_adjustment')->nullable();
-            $table->singlerate('premium_rate')->nullable();
-            $table->singlerate('general_escalation')->nullable();
-            $table->singlerate('total_single_rate_actual')->nullable();
+            $table->string('total_base_rate_ob')->nullable();
+            $table->string('total_base_rate_coal')->nullable();
+            $table->string('sr')->nullable();
+            $table->string('currency_adjustment')->nullable();
+            $table->string('premium_rate')->nullable();
+            $table->string('general_escalation')->nullable();
+            $table->string('total_single_rate_actual')->nullable();
             $table->string('contract_reference');
             $table->timestamps();
         });
