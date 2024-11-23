@@ -23,11 +23,36 @@
         <table class="table datatable">
             <thead>
                 <tr>
-                    <th>
-                        <b>No</b>
+                <th>
+                        <small>No</small>
                     </th>
-                    <th data-type="date" data-format="YYYY/DD/MM">Tanggal</th>
-                    <th>Aksi</th>
+                    <th>
+                        <small>Item</small>
+                    </th>
+                    <th>
+                        <small>Base Rate Exc. Fuel (Rp/hrs)</small>
+                    </th>
+                    <th>
+                        <small>Actual Rate Exc. Fuel (Rp/Hrs)</small>
+                    </th>
+                    <th>
+                        <small>FBR (liter/hrs)</small>
+                    </th>
+                    <th>
+                        <small>Currency Adjustment</small>
+                    </th>
+                    <th>
+                        <small>Premium Rate</small>
+                    </th>
+                    <th>
+                        <small>General Escalation</small>
+                    </th>
+                    <th>
+                        <small>Contract Reference</small>
+                    </th>
+                    <th>
+                        <small>Aksi</small>
+                    </th>
 
                 </tr>
             </thead>
@@ -39,6 +64,13 @@
                     <tr>
 
                         <td>{{ $No++ }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>{{ $item->created_at }}</td>
                         <td>{{ $item->created_at }}</td>
                         <td>
                             <a href="{{ url('dokumen/asteng/daywork/detail/'.$item->id) }}"
@@ -54,6 +86,7 @@
                             </form>
                         </td>
                     </tr>
+
 
                 @endforeach
                 <!-- End Table with stripped rows -->

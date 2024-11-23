@@ -11,6 +11,7 @@ class DayworkController extends Controller
     public function index()
     {
         $dokumendaywork = daywork::all();
+        dd($dokumendaywork);
 
         return view('dokumen/asteng/daywork/index', compact('dokumendaywork'));
     }

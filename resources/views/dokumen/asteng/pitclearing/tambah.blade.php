@@ -29,20 +29,23 @@
                         </div>
                         <div class="col-12">
                             <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
-                            <input name="currency_adjustment" type="text" class="form-control" id="currency_adjustment" placeholder="Masukkan nilai desimal, contoh: 1.20" required>
+                            <input name="currency_adjustment" type="text" class="form-control" id="currency_adjustment">
                         </div>
                         <div class="col-12">
-                            <label for="premium_rate" class="form-label">Premium Rate</label>
-                            <input name="premium_rate" type="text" class="form-control" id="premium_rate" placeholder="Masukkan nilai desimal, contoh: 1.10" required>
-                        </div>
-                        <div class="col-12">
-                            <label for="general_escalation" class="form-label">General Escalation</label>
-                            <input name="general_escalation" type="text" class="form-control" id="general_escalation" placeholder="Masukkan nilai desimal, contoh: 1.05" required>
-                        </div>
+                                <label for="premium_rate" class="form-label">Premium Rate</label>
+                                <div class="input-group mb-3">
+                                 <input type="text" class="form-control" name="premium_rate">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                                </div>
+                            <div class="col-12">
+                                <label for="general_escalation" class="form-label">General Escalation</label>
+                                <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="general_escalation">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                            </div>
                         <div class="col-12">
                             <label for="contract_reference" class="form-label">Contract Reference</label>
-                            <input name="contract_reference" type="text" class="form-control" id="contract_reference" placeholder="Masukkan referensi kontrak" required>
-                        </div>
+                            <input name="contract_reference" type="text" class="form-control" id="contract_reference">
                         <div class="col-12 mt-3">
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
