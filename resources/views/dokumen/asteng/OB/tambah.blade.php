@@ -26,78 +26,67 @@
                         @csrf
                         <div class="col-12">
                             <label for="load_and_haul" class="form-label">Load and Haul (Rp/BCM)</label>
-                            <input name="load_and_haul" type="text" class="form-control" id="load_and_haul"
-                                placeholder="Masukkan nilai, contoh: 22.222.222" required>
+                            <input name="load_and_haul" type="text" class="form-control" id="load_and_haul">
                         </div>
 
                         <div class="col-12">
                             <label for="drill_and_blast" class="form-label">Drill and Blast (if
                                 required)(Rp/BCM)</label>
-                            <input name="drill_and_blast" type="text" class="form-control" id="drill_and_blast"
-                                placeholder="Masukkan nilai, contoh: 22.222.222" required>
+                            <input name="drill_and_blast" type="text" class="form-control" id="drill_and_blast">
                         </div>
 
                         <div class="col-12">
                             <label for="pit_support" class="form-label">Pit Support (Rp/BCM)</label>
-                            <input name="pit_support" type="text" class="form-control" id="pit_support"
-                                placeholder="Masukkan nilai, contoh: 22.222.222" required>
+                            <input name="pit_support" type="text" class="form-control" id="pit_support">
                         </div>
 
                         <div class="col-12">
                             <label for="pit_lighting" class="form-label">Pit Lighting (Rp/BCM)</label>
-                            <input name="pit_lighting" type="text" class="form-control" id="pit_lighting"
-                                placeholder="Masukkan nilai, contoh: 22.222.222" required>
+                            <input name="pit_lighting" type="text" class="form-control" id="pit_lighting">
                         </div>
 
                         <div class="col-12">
                             <label for="hrm" class="form-label">HRM</label>
-                            <input name="hrm" type="text" class="form-control" id="hrm"
-                                placeholder="Masukkan nilai, contoh: 22.222.222" required>
+                            <input name="hrm" type="text" class="form-control" id="hrm">
                         </div>
 
                         <div class="col-12">
                             <label for="dump_maintenance" class="form-label">Dump Maintenance (Rp/BCM)</label>
-                            <input name="dump_maintenance" type="text" class="form-control" id="dump_maintenance"
-                                placeholder="Masukkan nilai, contoh: 22.222.222" required>
+                            <input name="dump_maintenance" type="text" class="form-control" id="dump_maintenance">
                         </div>
 
                         <div class="col-12">
                             <label for="dewatering_sediment" class="form-label">Dewatering/Sediment (Rp/BCM)</label>
-                            <input name="dewatering_sediment" type="text" class="form-control" id="dewatering_sediment"
-                                placeholder="Masukkan nilai, contoh: 22.222.222" required>
+                            <input name="dewatering_sediment" type="text" class="form-control" id="dewatering_sediment">
                         </div>
 
                         <div class="col-12">
                             <label for="sr" class="form-label">SR</label>
-                            <input name="sr" type="text" class="form-control" id="sr"
-                                placeholder="Masukkan nilai, contoh: 22.222.222" required>
+                            <input name="sr" type="text" class="form-control" id="sr">
                         </div>
                        
                         <div class="col-12">
                             <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
-                            <input name="currency_adjustment" type="text" class="form-control" id="currency_adjustment"
-                                placeholder="Masukkan nilai, contoh: 22.222.222" required>
-                        </div>
-                     
-                        <div class="col-12">
-                            <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
-                            <input name="currency_adjustment" type="text" class="form-control" id="currency_adjustment"
-                                placeholder="Masukkan nilai, contoh: 22.222.222" required>
+                            <input name="currency_adjustment" type="text" class="form-control" id="currency_adjustment">
                         </div>
 
                         <div class="col-12">
-                            <label for="premium_rate" class="form-label">Premium Rate</label>
-                            <input name="premium_rate" type="text" class="form-control" id="premium_rate" placeholder="Masukkan nilai desimal, contoh: 1.10" required>
-                        </div>
-                        
-                        <div class="col-12">
-                            <label for="general_escalation" class="form-label">General Escalation</label>
-                            <input name="general_escalation" type="text" class="form-control" id="general_escalation" placeholder="Masukkan nilai desimal, contoh: 1.05" required>
-                        </div>
+                                <label for="premium_rate" class="form-label">Premium Rate</label>
+                                <div class="input-group mb-3">
+                                 <input type="text" class="form-control" name="premium_rate">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                                </div>
+
+                            <div class="col-12">
+                                <label for="general_escalation" class="form-label">General Escalation</label>
+                                <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="general_escalation">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                            </div>
 
                         <div class="col-12">
                             <label for="contract_reference" class="form-label">Contract Reference</label>
-                            <input name="contract_reference" type="text" class="form-control" id="contract_reference" placeholder="Masukkan referensi kontrak" required>
+                            <input name="contract_reference" type="text" class="form-control" id="contract_reference">
                         </div>
                                 </select>
 

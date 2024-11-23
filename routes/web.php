@@ -40,7 +40,8 @@ Route::get('dokumen/asteng/pit-clearing/detail/{num}', [PitClearingController::c
 Route::get('dokumen/asteng/pit-clearing/tambah', [PitClearingController::class, 'tambah']);
 Route::post('dokumen/asteng/pit-clearing/simpan', [PitClearingController::class, 'simpan']);
 Route::delete('dokumen/asteng/pit-clearing/delete/{num}', [PitClearingController::class, 'hapus']);
-
+Route::get('dokumen/asteng/pit-clearing/edit/{num}', [PitClearingController::class, 'edit']);
+Route::put('dokumen/asteng/pit-clearing/update/{num}', [PitClearingController::class, 'update']);
 
 //Dokumen Darma Henwa Asteng/top-soil
 Route::get('dokumen/asteng/top-soil', [TopSoilController::class, 'index']);
