@@ -63,10 +63,14 @@
                             "rate_actual"type="text" class="form-control" id="rate_actual">
                     </div> --}}
                     <div class="col-12">
+
                         <label for="contract_reference" class="form-label">Contract Reference</label>
-                        <input readonly value="{{ $dokumenpit_clearing->contract_reference }}"
-                            name="contract_reference" type="text" class="form-control" id="contract_reference">
+
                     </div>
+                    <div class="col-12">
+                        <a href="{{ asset('storage/' . $dokumenpit_clearing->contract_reference) }}" target="_blank">
+                        <img src="{{ asset('storage/' . $dokumenpit_clearing->contract_reference) }}" alt="Image" style="max-width: 200px;">
+                        </a>
                     </select>
 
                 </div>

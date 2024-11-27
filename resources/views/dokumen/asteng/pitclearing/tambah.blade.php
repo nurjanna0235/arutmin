@@ -21,7 +21,7 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Vertical Form -->
-                    <form action="/dokumen/asteng/pit-clearing/simpan" method="POST" class="row g-3">
+                    <form action="/dokumen/asteng/pit-clearing/simpan" method="POST" class="row g-3" enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
                             <label for="base_rate" class="form-label">Base Rate (Rp/Ha)</label>
@@ -45,7 +45,7 @@
                             </div>
                         <div class="col-12">
                             <label for="contract_reference" class="form-label">Contract Reference</label>
-                            <input name="contract_reference" type="text" class="form-control" id="contract_reference">
+                            <input name="contract_reference" type="file" class="form-control" id="contract_reference">
                         <div class="col-12 mt-3">
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
