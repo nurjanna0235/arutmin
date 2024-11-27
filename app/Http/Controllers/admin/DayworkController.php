@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\daywork;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DayworkController extends Controller
 {
