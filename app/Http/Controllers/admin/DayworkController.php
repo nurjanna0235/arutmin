@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\daywork;
-use App\Models\value;
+use App\Models\value_daywork;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -75,19 +75,18 @@ class DayworkController extends Controller
 
         // Simpan data ke tabel daywork
         daywork::create([
+            'id_item' => $request->item,
             'currency_adjustment' => $currency_adjustment,
             'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
             'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
             'contract_reference' => $path,
         ]);
-        value::create([
+
+        value_daywork::create([
+            'id_item' => $request->item,
             'base_rate_exc_fuel' => $base_rate_exc_fuel,
             'actual_rate_exc_fuel' => $actual_rate_exc_fuel,
             'fbr' => $actual_rate_exc_fuel,
-            'currency_adjustment' => $currency_adjustment,
-            'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
-            'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
-            'contract_reference' => $path,
         ]);
 
         return redirect()->to('rate-contract/asteng/daywork')->with('success', 'Data berhasil ditambahkan');

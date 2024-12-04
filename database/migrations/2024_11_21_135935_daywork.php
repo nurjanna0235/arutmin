@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('general_escalation')->nullable();
             $table->string('contract_reference')->nullable();
             $table->timestamps();
-            $table->foreign('id_item')->references('id_item')->on('item')->onDelete('cascade');
+            $table->foreign('id_item')->references('id_item')->on('item_daywork')->onDelete('cascade');
         });
     }
 

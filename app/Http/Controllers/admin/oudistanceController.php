@@ -28,21 +28,20 @@ class oudistanceController extends Controller
     {
         $path = $request->file('contract_reference')->store('img', 'public');
 
-
-        // $rate_actual= $request->base_rate * $request->currency_adjustment *  $request->premium_rate * $request->general_escalation;
-
-
+        // Simpan data ke tabel daywork
         oudistance::create([
-            'activity' => $request->activity,
-            'item' => $request->item,
-            'base_rate' => $request->base_rate,
-            'actual_rate' => $request->actual_rate,
-            'contractual_distance_km' => $request->contractual_distance_km,
-            'currency_adjustment' => $request->currency_adjustment,
-            'premium_rate' => $request->premium_rate,
-            'general_escalation' => $request->general_escalation,
-            'contract_reference' => $request->contract_reference,
+            'currency_adjustment' => $currency_adjustment,
+            'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
+            'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
+            'contract_reference' => $path,
+        ]);
 
+        value::create([
+            'item' => $item,
+            'base_rate' => $base_rate,
+            'actual_rate' => $actual_rate,
+            'currency_adjustment' => $currency_adjustment,
+            'contractual_distance_km' => $contractual_distance_km,
         ]);
         $dokumenoudistance = oudistance::findOrFail($id);
         return redirect()->to('rate-contract/asteng/oudistance')->with('success', 'Rate contract berhasil ditambahkan');
@@ -53,7 +52,6 @@ class oudistanceController extends Controller
         $dokumenoudistance = oudistance::where('id', $id)->get()->first();
         return view('rate-contract/asteng/oudistance/edit', compact('dokumenoudistance'));
     }
-    
 
     public function update(Request $request, $id)
     {
@@ -67,7 +65,7 @@ class oudistanceController extends Controller
             premium_rate => 'required',
             general_escalation => 'required', 
         ]);
-        $dokumenother = other::findOrFail($id);
+        $dokumenoudistance = oudistance::findOrFail($id);
 
         // Proses upload file jika ada file baru
         $path = $dokumenoudistance->contract_reference; // Gunakan file lama jika tidak ada file baru

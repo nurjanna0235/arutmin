@@ -27,7 +27,7 @@ class FuelController extends Controller
     {
         $path = $request->file('contract_reference')->store('img', 'public');
     
-        // Update data ke database
+        // simoan data ke database
         fuel::table('fuel')->insert([
             'activity' => $request->activity,
             'item' => $request->item,
@@ -37,6 +37,14 @@ class FuelController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        value::create([
+            'currency_adjustment' => $currency_adjustment,
+            'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
+            'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
+            'contract_reference' => $path,
+        ]);
+
 
         return redirect()->to('rate-contract/asteng/fuel')->with('success', 'Data berhasil ditambahkan');
     }

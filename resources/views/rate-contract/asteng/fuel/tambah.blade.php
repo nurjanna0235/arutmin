@@ -38,13 +38,10 @@
                             <label for="fuel_index" class="form-label">Fuel Index</label>
                             <input name="fuel_index" type="text" class="form-control" id="fuel_index">
                         </div>
-
                         <div class="col-12">
                             <label for="contractual_distance_km" class="form-label">Contractual Distance (KM)</label>
-                            <input name="contractual_distance_km" type="file" class="form-control"
-                                id="contractual_distance_km">
+                            <input name="contractual_distance_km" type="text" class="form-control" id="contractual_distance_km">
                         </div>
-
                         <div class="col-12">
                                 <label for="contract_reference" class="form-label">Contract Reference</label>
                                 <input name= "contract_reference" type="file" class="form-control" id="contract_reference">

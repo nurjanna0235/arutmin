@@ -1,19 +1,19 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class value extends Model
+class item_daywork extends Model
 {
     use HasFactory;
 
     // Tentukan nama tabel jika berbeda dari asumsi Laravel
-    protected $table = 'value';
+    protected $table = 'item_daywork';
 
     // Tentukan kolom kunci utama jika tidak menggunakan 'id'
-    protected $primaryKey = 'id_value';
+    protected $primaryKey = 'id_item';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable =['id_item','nama_item','base_rate_exc','actual_rate_exc','fbr'];
+    protected $fillable =['id_daywork','nama_item',];
 }

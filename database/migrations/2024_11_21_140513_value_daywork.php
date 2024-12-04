@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('value', function (Blueprint $table) {
+        Schema::create('value_daywork', function (Blueprint $table) {
             $table->id('id_value');
             $table->bigInteger('id_item')->unsigned();
             $table->string('base_rate_exc')->nullable();
@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('fbr')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_item')->references('id_item')->on('item')->onDelete('cascade');
+            $table->foreign('id_item')->references('id_item')->on('item_daywork')->onDelete('cascade');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('value');
+        Schema::dropIfExists('value_daywork');
     }
 };
