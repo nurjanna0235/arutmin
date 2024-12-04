@@ -10,6 +10,7 @@ use Generator;
 use PhpParser\Node\Expr\Cast\Double;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class OBController extends Controller
 {
@@ -17,20 +18,22 @@ class OBController extends Controller
     {
         $dokumenob = ob::all();
 
-        return view('dokumen/asteng/ob/index', compact('dokumenob'));
+        return view('rate-contract/asteng/ob/index', compact('dokumenob'));
     }
     public function detail($id)
     {
         $dokumenob = ob::where('id', $id)->get()->first();
-        return view('dokumen/asteng/ob/detail', compact('dokumenob'));
+        return view('rate-contract/asteng/ob/detail', compact('dokumenob'));
     }
     public function tambah()
     {
-        return view('dokumen/asteng/ob/tambah');
+        return view('rate-contract/asteng/ob/tambah');
     }
 
     public function simpan(Request $request)
     {
+        $path = $request->file('contract_reference')->store('img', 'public');
+
         // Pastikan inputan dikonversi ke float
         $load_and_haul = (float) str_replace(',', '.', $request->load_and_haul);
         $drill_and_blast = (float) str_replace(',', '.', $request->drill_and_blast);
@@ -63,18 +66,97 @@ class OBController extends Controller
         $ob->premium_rate = $premium_rate;
         $ob->general_escalation = $general_escalation;
         $ob->total_rate_ob_actual = $total_rate_ob_actual;
-        $ob->contract_reference = $request->contract_reference; // Data tambahan
+        $ob->contract_reference = $path; // Data tambahan
         $ob->save();
 
         // Redirect atau tampilkan view dengan pesan sukses
-        return redirect()->to('dokumen/asteng/ob')->with('success', 'Dokumen berhasil ditambahkan');
+        return redirect()->to('rate-contract/asteng/ob')->with('success', 'Data berhasil ditambahkan');
     }
 
-public function hapus($id)
+    public function edit($id)
+    {
+        $dokumenob = ob::where('id', $id)->get()->first();
+
+        return view('rate-contract/asteng/ob/edit', compact('dokumenob'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'load_and_haul' => 'nullable',
+            'drill_and_blast' => 'nullable',
+            'pit_support' => 'nullable',
+            'pit_lighting' => 'nullable',
+            'hrm' => 'nullable',
+            'dump_maintenance' => 'nullable',
+            'dewatering_sediment' => 'nullable',
+            'sub_total_base_rate_ob' => 'nullable',
+            'sr' => 'nullable',
+            'currency_adjustment' => 'nullable',
+            'premium_rate' => 'nullable',
+            'total_rate_ob_actual' => 'nullable',
+            'contract_reference' => 'nullable',
+            
+            // 'contract_reference' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048',
+        ]);
+
+        // Ambil data berdasarkan ID
+        $dokumen = DB::table('ob')->where('id', $id)->first();
+
+        // Perhitungan subtotal dan total
+        $load_and_haul = $request->load_and_haul ?? $dokumen->load_and_haul;
+        $drill_and_blast = $request->drill_and_blast ?? $dokumen->drill_and_blast;
+        $pit_support = $request->pit_support ?? $dokumen->pit_support;
+        $pit_lighting = $request->pit_lighting ?? $dokumen->pit_lighting;
+        $hrm = $request->hrm ?? $dokumen->hrm;
+        $dump_maintenance = $request->dump_maintenance ?? $dokumen->dump_maintenance;
+        $dewatering_sediment = $request->dewatering_sediment ?? $dokumen->dewatering_sediment;
+        $sub_total_base_rate_ob = $load_and_haul + $drill_and_blast + $pit_support + $pit_lighting + $hrm + $dump_maintenance + $dewatering_sediment;
+        $sr = $request->sr ?? $dokumen->sr;
+        $currency_adjustment = $request->currency_adjustment ?? $dokumen->currency_adjustment;
+ 
+        $premium_rate = $request->premium_rate ?? $dokumen->premium_rate;
+        $general_escalation = $request->general_escalation ?? $dokumen->general_escalation;
+        $total_rate_ob_actual = $sub_total_base_rate_ob * $sr * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
+
+        // Proses upload file jika ada file baru
+        $path = $dokumen->contract_reference; // Gunakan file lama jika tidak ada file baru
+        if ($request->hasFile('contract_reference')) {
+            // Hapus file lama jika ada
+            if ($path) {
+                Storage::disk('public')->delete($path);
+            }
+            // Simpan file baru
+            $path = $request->file('contract_reference')->store('img', 'public');
+        }
+
+        // Proses data input
+        $dokumenob = ob::findOrFail($id);
+        $dokumenob->load_and_haul = $load_and_haul;
+        $dokumenob->drill_and_blast = $drill_and_blast;
+        $dokumenob->pit_support = $pit_support;
+        $dokumenob->pit_lighting = $pit_lighting;
+        $dokumenob->hrm = $hrm;
+        $dokumenob->dump_maintenance = $dump_maintenance;
+        $dokumenob->dewatering_sediment = $dewatering_sediment;
+        $dokumenob->sub_total_base_rate_ob = $sub_total_base_rate_ob;
+        $dokumenob->sr = $sr;
+        $dokumenob->currency_adjustment = $currency_adjustment;
+        $dokumenob->premium_rate = $premium_rate;
+        $dokumenob->general_escalation = $general_escalation;
+        $dokumenob->total_rate_ob_actual = $total_rate_ob_actual;
+        $dokumenob->contract_reference = $path; // Data tambahan
+        $dokumenob->save();
+
+        // Redirect atau tampilkan view dengan pesan sukses
+        return redirect()->to('rate-contract/asteng/ob')->with('success', 'Data berhasil diupdate');
+    }
+    public function hapus($id)
     {
         $dokumenob = ob::findOrFail($id);
         $dokumenob->delete();
 
-        return redirect()->to('dokumen/asteng/ob');
+        return redirect()->to('rate-contract/asteng/ob');
     }
 }

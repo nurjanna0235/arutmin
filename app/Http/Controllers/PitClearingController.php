@@ -15,18 +15,18 @@ class PitClearingController extends Controller
     public function index()
     {
         $dokumenpit_clearing = pit_clearing::all();
-        return view('dokumen/asteng/pitclearing/index', compact('dokumenpit_clearing'));
+        return view('rate-contract/asteng/pitclearing/index', compact('dokumenpit_clearing'));
     }
 
     public function detail($id)
     {
         $dokumenpit_clearing = pit_clearing::where('id', $id)->get()->first();
 
-        return view('dokumen/asteng/pitclearing/detail', compact('dokumenpit_clearing'));
+        return view('rate-contract/asteng/pitclearing/detail', compact('dokumenpit_clearing'));
     }
     public function tambah()
     {
-        return view('dokumen/asteng/pitclearing/tambah');
+        return view('rate-contract/asteng/pitclearing/tambah');
     }
 
     public function simpan(Request $request)
@@ -34,7 +34,7 @@ class PitClearingController extends Controller
 
         $path = $request->file('contract_reference')->store('img', 'public');
 
-
+        // Mengganti koma dengan titik pada inputan untuk keperluan perhitungan
         $base_rate = str_replace([','], ['.'], $request->base_rate);
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
@@ -62,7 +62,7 @@ class PitClearingController extends Controller
 
 
         // Redirect dengan pesan sukses
-        return redirect()->to('dokumen/asteng/pit-clearing')->with('success', 'Dokumen berhasil ditambahkan');
+        return redirect()->to('rate-contract/asteng/pit-clearing')->with('success', 'Data berhasil ditambahkan');
     }
 
 
@@ -72,14 +72,14 @@ class PitClearingController extends Controller
         $dokumenpit_clearing = pit_clearing::findOrFail($id);
         $dokumenpit_clearing->delete();
 
-        return redirect()->to('dokumen/asteng/pit-clearing');
+        return redirect()->to('rate-contract/asteng/pit-clearing');
     }
 
     public function edit($id)
     {
         $dokumenpit_clearing = pit_clearing::where('id', $id)->get()->first();
 
-        return view('dokumen/asteng/pitclearing/edit', compact('dokumenpit_clearing'));
+        return view('rate-contract/asteng/pitclearing/edit', compact('dokumenpit_clearing'));
     }
 
     public function update(Request $request, $id)
@@ -134,6 +134,6 @@ class PitClearingController extends Controller
         ]);
 
         // Redirect dengan pesan sukses
-        return redirect()->to('dokumen/asteng/pit-clearing')->with('success', 'Dokumen berhasil diperbarui');
+        return redirect()->to('rate-contract/asteng/pit-clearing')->with('success', 'Data berhasil diperbarui');
     }
 }

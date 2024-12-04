@@ -8,25 +8,28 @@ use Generator;
 use PhpParser\Node\Expr\Cast\Double;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 class OtherController extends Controller
 {
     public function index()
     {
         $dokumenother = other::all();
 
-        return view('dokumen/asteng/other/index', compact('dokumenother'));
+        return view('rate-contract/asteng/other/index', compact('dokumenother'));
     }
     public function detail($id)
     {
         $dokumenother = other::where('id', $id)->get()->first();
-        return view('dokumen/asteng/other/detail', compact('dokumenother'));
+        return view('rate-contract/asteng/other/detail', compact('dokumenother'));
     }
     public function tambah()
     {
-        return view('dokumen/asteng/other/tambah');
+        return view('rate-contract/asteng/other/tambah');
     }
     public function simpan(Request $request)
     {
+        $path = $request->file('contract_reference')->store('img', 'public');
+
             // Ganti koma dengan titik pada inputan untuk keperluan perhitungan
             $base_rate = str_replace([','], ['.'], $request->base_rate_hrm_lcm);
             $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
@@ -49,19 +52,80 @@ class OtherController extends Controller
                 'premium_rate' => $request->premium_rate,
                 'general_escalation' => $request->general_escalation,
                 'rate_actual_hrm_lcm' => $rate_actual,
-                'contract_reference' => $request->contract_reference,
+                'contract_reference' => $path,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
         
             // Redirect dengan pesan sukses
-            return redirect()->to('dokumen/asteng/other')->with('success', 'Dokumen berhasil ditambahkan');
+            return redirect()->to('rate-contract/asteng/other')->with('success', 'Data berhasil ditambahkan');
         }
+        public function edit($id)
+        {
+            $dokumenother = other::findOrFail($id);
+            return view('rate-contract/asteng/other/edit', compact('dokumenother'));   
+        }
+        public function update(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'base_rate' => 'required',
+            'currency_adjustment' => 'required',
+            'premium_rate' => 'nullable',
+            'general_escalation' => 'nullable',
+            // 'contract_reference' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048',
+        ]);
+
+        $dokumenother = other::findOrFail($id);
+
+        // Proses upload file jika ada file baru
+        $path = $dokumenother->contract_reference; // Gunakan file lama jika tidak ada file baru
+        if ($request->hasFile('contract_reference')) {
+            // Hapus file lama jika ada
+            if ($path) {
+                Storage::disk('public')->delete($path);
+            }
+            // Simpan file baru
+            $path = $request->file('contract_reference')->store('img', 'public');
+        }
+
+        // Proses data input
+        $base_rate = str_replace([','], ['.'], $request->base_rate);
+        $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
+        $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
+        $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+
+        // Konversi menjadi float untuk perhitungan
+        $base_rate = (float) $base_rate;
+        $currency_adjustment = (float) $currency_adjustment;
+        $premium_rate = (float) $premium_rate;
+        $general_escalation = (float) $general_escalation;
+
+        // Hitung Rate Actual sesuai rumus
+        $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
+
+        // Simpan ke database
+        $dokumenother->update([
+            'base_rate' => $request->base_rate,
+            'currency_adjustment' => $request->currency_adjustment,
+            'premium_rate' => $request->premium_rate,
+            'general_escalation' => $request->general_escalation,
+            'rate_actual' => $rate_actual,
+            'contract_reference' => $path,
+            'updated_at' => now(),
+        ]); 
+
+        // Redirect dengan pesan sukses
+        return redirect()->to('rate-contract/asteng/other')->with('success', 'Data berhasil diperbarui');
+    }
+
+    
+
     public function hapus($id)
     {
         $dokumenother = other::findOrFail($id);
         $dokumenother->delete();
 
-        return redirect()->to('dokumen/asteng/other');
+        return redirect()->to('rate-contract/asteng/other');
     }
 }
