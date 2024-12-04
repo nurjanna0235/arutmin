@@ -13,8 +13,8 @@ class DayworkController extends Controller
     public function index()
     {
         $dokumendaywork = daywork::join('item','item.id_item','=','daywork.id_item')->join('value','value.id_item','=','item.id_item')->get();
-        
-       
+
+
 
 
         return view('rate-contract/asteng/daywork/index', compact('dokumendaywork'));
@@ -26,7 +26,8 @@ class DayworkController extends Controller
     }
     public function tambah()
     {
-        return view('rate-contract/asteng/daywork/tambah');
+        $item = DB::table('item')->get();
+        return view('rate-contract/asteng/daywork/tambah', compact('item'));
     }
 
     public function edit($id)
@@ -71,7 +72,7 @@ class DayworkController extends Controller
 
         // Perhitungan rate_actual
         $actual_rate_exc_fuel = $base_rate_exc_fuel * $fbr;
-          
+
         // Simpan data ke tabel daywork
         daywork::create([
             'currency_adjustment' => $currency_adjustment,
@@ -88,7 +89,7 @@ class DayworkController extends Controller
             'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
             'contract_reference' => $path,
         ]);
-        
+
         return redirect()->to('rate-contract/asteng/daywork')->with('success', 'Data berhasil ditambahkan');
     }
     public function hapus($id)
