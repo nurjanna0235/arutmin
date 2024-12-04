@@ -14,12 +14,16 @@ class DayworkController extends Controller
     {
         $dokumendaywork = daywork::join('item','item.id_item','=','daywork.id_item')->join('value','value.id_item','=','item.id_item')->get();
 
-
-
-
         return view('rate-contract/asteng/daywork/index', compact('dokumendaywork'));
     }
-    public function detail($id)
+/*************  ✨ Codeium Command ⭐  *************/
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+/******  c2050109-2648-44df-9e55-77319239632e  *******/    public function detail($id)
     {
         $dokumendaywork = daywork::where('id', $id)->get()->first();
         return view('rate-contract/asteng/daywork/detail', compact('dokumendaywork'));
@@ -75,11 +79,13 @@ class DayworkController extends Controller
 
         // Simpan data ke tabel daywork
         daywork::create([
+            'item' => $request->item,
             'currency_adjustment' => $currency_adjustment,
             'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
             'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
             'contract_reference' => $path,
         ]);
+
         value::create([
             'base_rate_exc_fuel' => $base_rate_exc_fuel,
             'actual_rate_exc_fuel' => $actual_rate_exc_fuel,
