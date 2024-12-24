@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('item');
             $table->decimal('fuel_index', 8, 2); // nilai decimal untuk indeks bahan bakar
             $table->integer('contractual_distance_km'); // jarak kontrak dalam KM
-            $table->timestamps();
+            $table->string('contract_reference');
+            $table->date('created_at')->nullable(); // Menggunakan tipe DATE
+            $table->date('updated_at')->nullable(); // Menggunakan tipe DATE
         });
     }
 

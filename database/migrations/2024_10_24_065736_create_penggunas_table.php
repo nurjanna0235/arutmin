@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('email');
             $table->string('nik');
-            $table->string('no_hp');
             $table->string('level');
 
 

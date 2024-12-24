@@ -5,92 +5,119 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Dokumen</h1>
+        <h1>Rate Contract</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">OB</li>
-
             </ol>
         </nav>
 
-        <div class="icon">
+        <div class="icon mb-3">
             <a href="/rate-contract/asteng/ob/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
         </div>
+
+         <!-- Form untuk pencarian -->
+         <div class="mb-4">
+            <form method="GET" action="{{ url('/rate-contract/asteng/ob') }}" class="d-flex align-items-center gap-3">
+                <!-- Input Pencarian Tahun -->
+                <div class="form-group">
+                    <input type="number" name="tahun" class="form-control" placeholder="Cari Tahun" value="{{ request('tahun') }}">
+                </div>
+                <!-- Tombol Submit untuk Search -->
+                <button type="submit" class="btn btn-primary">Cari</button>
+            </form>
+        </div>
+
         <!-- Table with stripped rows -->
-        <table class="table datatable">
-            <thead>
-                <tr>
-                    <th>
-                        <b>No</b>
-                    </th>
-                    <th data-type="date" data-format="YYYY/DD/MM">Tanggal</th>
-                    <th>Aksi</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                        $No = 1;
-                    ?>
-                @foreach($dokumenob as $item)
+        <div class="table-container" style="width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+            <table class="table table-bordered text-center align-middle">
+                <thead class="table-primary">
                     <tr>
-
-                        <td>{{ $No++ }}</td>
-                        <td>{{ $item->created_at }}</td>
-                        <td>
-
-                            <div class="icon">
-                                <a href="{{ url('rate-contract/asteng/ob/detail/' . $item->id) }}" type="button" class="btn btn-primary">Detail</a>
-
-                                <a href="{{ url('rate-contract/asteng/ob/edit/' . $item->id) }}"  type="button" class="btn btn-warning" style="color: white">Edit</a>
-
-                                <form
-                                    action="{{ url('/rate-contract/asteng/ob/delete/'.$item->id) }}" method="POST"
-                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"  class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit"><i>
-                                    </i>Hapus</button>
-                                </form>
-                            </div>
-
-
-                        </td>
+                        <th class="text-center"><small>No</small></th>
+                        <th class="text-center"><small>Bulan/Tahun</small></th>
+                        <th class="text-center"><small>Load and Haul (Rp/BCM)</small></th>
+                        <th class="text-center"><small>Drill and Blast (if required) (Rp/BCM)</small></th>
+                        <th class="text-center"><small>Pit Support (Rp/BCM)</small></th>
+                        <th class="text-center"><small>Pit Lighting (Rp/BCM)</small></th>
+                        <th class="text-center"><small>HRM (Rp/BCM)</small></th>
+                        <th class="text-center"><small>Dump Maintenance (Rp/BCM)</small></th>
+                        <th class="text-center"><small>Dewatering/Sediment (Rp/BCM)</small></th>
+                        <th class="text-center"><small>Sub Total Base Rate OB (Rp/BCM)</small></th>
+                        <th class="text-center"><small>SR</small></th>
+                        <th class="text-center"><small>Currency Adjustment</small></th>
+                        <th class="text-center"><small>Premium Rate</small></th>
+                        <th class="text-center"><small>General Escalation</small></th>
+                        <th class="text-center"><small>Total Rate OB Actual (Rp/BCM)</small></th>
+                        <th class="text-center"><small>Aksi</small></th>
                     </tr>
+                </thead>
+                <tbody>
+                    <?php $No = 1; ?>
+                    @foreach($dokumenob as $item)
+                        <tr>
+                            <td class="text-center">{{ $No++ }}</td>
+                            <td class="text-center"> {{ $item->bulan_tahun }}</td>
+                            <td class="text-center">{{ $item->load_and_haul }}</td>
+                            <td class="text-center">{{ $item->drill_and_blast }}</td>
+                            <td class="text-center">{{ $item->pit_support }}</td>
+                            <td class="text-center">{{ $item->pit_lighting }}</td>
+                            <td class="text-center">{{ $item->hrm }}</td>
+                            <td class="text-center">{{ $item->dump_maintenance }}</td>
+                            <td class="text-center">{{ $item->dewatering_sediment }}</td>
+                            <td class="text-danger fw-bold">{{ $item->sub_total_base_rate_ob }}</td>
+                            <td class="text-center">{{ $item->sr }}</td>
+                            <td class="text-center">{{ $item->currency_adjustment }}</td>
+                            <td class="text-center">{{ $item->premium_rate }}</td>
+                            <td class="text-center">{{ $item->general_escalation }}</td>
+                            <td class="text-danger fw-bold">{{ $item->total_rate_ob_actual }}</td>
+                            <td class="text-center">
+                                <div class="d-flex gap-2 justify-content-center">
+                                    <!-- Tombol Detail -->
+                                    <a
+                                        href="{{ url('rate-contract/asteng/ob/detail/' . $item->id) }}">
+                                        <i class="ri-information-line" title="Detail"></i>
+                                    </a>
 
-                @endforeach
-                <!-- End Table with stripped rows -->
+                                    <!-- Tombol Edit -->
+                                    <a
+                                        href="{{ url('rate-contract/asteng/ob/edit/' . $item->id) }}">
+                                        <i class="ri-edit-2-line text-warning" title="Edit"></i>
+                                    </a>
 
+                                    <!-- Tombol Hapus -->
+                                    <form
+                                        action="{{ url('/rate-contract/asteng/ob/delete/' . $item->id) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" style="border: none; background: none;">
+                                            <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
         <div class="row">
-
-            <!-- Left side columns -->
-            <div class="col-lg-5">
-                <div class="row">
-
-                </div>
-            </div>
+            <!-- Content here -->
         </div>
-        </div>
-        </div>
-        </div><!-- End Card with an image on left -->
-
-
-
-        </div><!-- End sidebar recent posts-->
-
-        </div>
-        </div><!-- End News & Updates -->
-
-        </div><!-- End Right side columns -->
-
-        </div>
+          <!-- Tombol Kembali -->
+ <div class="icon mb-5">
+ <a type="submit" href="/rate-contract/asteng" class="btn btn-secondary">Kembali</a>   
     </section>
 
 </main>
 <!-- End #main -->
+
 @endsection

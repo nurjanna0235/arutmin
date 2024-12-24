@@ -8,8 +8,9 @@
         <h1>Admin</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
+                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
                 <li class="breadcrumb-item active">Fuel Allowance</li>
+                <li class="breadcrumb-item active">Tambah</li>
             </ol>
         </nav>
 
@@ -25,27 +26,73 @@
                     <form action="/rate-contract/asteng/fuel/simpan" method="POST" class="row g-3"
                         enctype="multipart/form-data">
                         @csrf
+
                         <div class="col-12">
                             <label for="activity" class="form-label">Activity</label>
-                            <input name="activity" type="text" class="form-control" id="activity">
+                            <select name="activity" class="form-select" id="activity"
+                                aria-label="Floating label select example">
+                                <option selected value="">Pilih Activity</option>
+                                <option value="OB">OB</option>
+                                <option value="Coal">Coal</option>
+                                <option value="Top Soil">Top Soil</option>
+                                <option value="Mud Pre-mining">Mud Pre-mining</option>
+                                <option value="Land Clearing">Land Clearing</option>
+                            </select>
                         </div>
-                        
+
                         <div class="col-12">
                             <label for="item" class="form-label">Item</label>
-                            <input name="item" type="text" class="form-control" id="item">
+                            <select name="item" class="form-select" id="item"
+                                aria-label="Floating label select example">
+                                <option selected value="">Pilih Item</option>
+                                <option data-activity="OB" value="Overburden @1.2 KM (liter/BCM)">Overburden @1.2 KM
+                                    (liter/BCM)</option>
+                                <option data-activity="OB" value="Overhaul distance OB (liter/BCM/KM)">Overhaul distance
+                                    OB (liter/BCM/KM)</option>
+                                <option data-activity="OB" value="Underhaul distance OB (liter/BCM/KM)">Underhaul
+                                    distance OB (liter/BCM/KM)</option>
+
+                                <option data-activity="Coal" value="Coal Mine @1.234 KM (liter/ton)">Coal Mine @1.234 KM
+                                    (liter/ton)</option>
+                                <option data-activity="Coal" value="Overhaul distance Coal Mine (liter/ton/KM)">Overhaul
+                                    distance Coal Mine (liter/ton/KM)</option>
+                                <option data-activity="Coal" value="Underhaul distance Coal Mine (liter/ton/KM)">
+                                    Underhaul distance Coal Mine (liter/ton/KM)</option>
+
+                                <option data-activity="Top Soil" value="Top Soil @1.2 KM (liter/BCM)">Top Soil @1.2 KM
+                                    (liter/BCM)</option>
+                                <option data-activity="Top Soil" value="Overhaul distance Top Soil (liter/BCM/KM)">
+                                    Overhaul distance Top Soil (liter/BCM/KM)</option>
+                                <option data-activity="Top Soil" value="Underhaul distance Top Soil (liter/BCM/KM)">
+                                    Underhaul distance Top Soil (liter/BCM/KM)</option>
+
+                                <option data-activity="Mud Pre-mining" value="Mud Premining @1.2 KM (liter/BCM)">Mud
+                                    Premining @1.2 KM (liter/BCM)</option>
+                                <option data-activity="Mud Pre-mining"
+                                    value="Overhaul distance Mud Premining (liter/BCM/KM)">Overhaul distance Mud
+                                    Premining (liter/BCM/KM)</option>
+                                <option data-activity="Mud Pre-mining"
+                                    value="Underhaul distance Mud Premining (liter/BCM/KM)">Underhaul distance Mud
+                                    Premining (liter/BCM/KM)</option>
+
+                                <option data-activity="Land Clearing" value="Land Clearing (liter/Ha)">Land Clearing
+                                    (liter/Ha)</option>
+                            </select>
                         </div>
+
                         <div class="col-12">
                             <label for="fuel_index" class="form-label">Fuel Index</label>
                             <input name="fuel_index" type="text" class="form-control" id="fuel_index">
                         </div>
                         <div class="col-12">
                             <label for="contractual_distance_km" class="form-label">Contractual Distance (KM)</label>
-                            <input name="contractual_distance_km" type="text" class="form-control" id="contractual_distance_km">
+                            <input name="contractual_distance_km" type="text" class="form-control"
+                                id="contractual_distance_km">
                         </div>
                         <div class="col-12">
-                                <label for="contract_reference" class="form-label">Contract Reference</label>
-                                <input name= "contract_reference" type="file" class="form-control" id="contract_reference">
-                            </div>
+                            <label for="contract_reference" class="form-label">Contract Reference</label>
+                            <input name="contract_reference" type="file" class="form-control" id="contract_reference">
+                        </div>
                         </select>
 
                 </div>
@@ -74,4 +121,24 @@
     </section>
 
 </main><!-- End #main -->
+<script>
+    const activitySelect = document.getElementById('activity');
+    const itemSelect = document.getElementById('item');
+
+    activitySelect.addEventListener('change', function() {
+        const selectedActivity = this.value;
+
+        // Reset Item dropdown
+        Array.from(itemSelect.options).forEach(option => {
+            if (!option.getAttribute('data-activity') || option.getAttribute('data-activity') === selectedActivity) {
+                option.style.display = ''; // Show matching options
+            } else {
+                option.style.display = 'none'; // Hide non-matching options
+            }
+        });
+
+        // Reset the selected value of itemSelect
+        itemSelect.value = '';
+    });
+</script>
 @endsection

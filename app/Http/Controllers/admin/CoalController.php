@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
 use App\Models\coal;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,18 +10,48 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class CoalController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $dokumencoal = coal::all();
+        // Ambil input tahun dari request
+        $tahun = $request->input('tahun');
+        $filterTahun = $request->input('filter_tahun');
 
-        return view('rate-contract/asteng/coal/index', compact('dokumencoal'));
+        // Query dasar untuk mengambil data
+        $query = coal::query();
+
+        // Filter berdasarkan pencarian tahun
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+
+        // Filter berdasarkan dropdown filter_tahun
+        if ($filterTahun) {
+            $query->whereYear('created_at', $filterTahun);
+        }
+
+        // Ambil data hasil query dan format bulan/tahun
+        $dokumencoal = $query->get()->map(function ($item) {
+            $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
+            return $item;
+        });
+
+        // Ambil daftar tahun unik untuk dropdown filter
+        $tahunList = coal::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
+
+        // Kirim data ke view
+        return view('rate-contract/asteng/coal/index', compact('dokumencoal', 'tahunList'));
     }
+
     public function detail($id)
     {
+        // Ambil data berdasarkan ID
         $dokumencoal = coal::where('id', $id)->get()->first();
+
+        // Kirim data ke view
         return view('rate-contract/asteng/coal/detail', compact('dokumencoal'));
     }
     public function tambah()
@@ -79,7 +108,7 @@ class CoalController extends Controller
 
     public function update(Request $request, $id)
     {
-        $path = $request->file('contract_reference')->store('img', 'public');
+        
         $dokumen_coal = coal::where('id', $id)->get()->first(); // Ambil data sebelumnya
 
         // Konversi input ke tipe numerik
@@ -99,7 +128,17 @@ class CoalController extends Controller
         $total_rate_coal_actual = $sub_total_base_rate_coal
             * $currency_adjustment
             * (1 + $premium_rate)
-            * (1 + $general_escalation);    
+            * (1 + $general_escalation);   
+            
+            $path = $dokumen_coal->contract_reference;
+            if ($request->hasFile('contract_reference')) {
+                // Hapus file lama jika ada
+                if ($path) {
+                    Storage::disk('public')->delete($path);
+                }
+                // Simpan file baru
+                $path = $request->file('contract_reference')->store('img', 'public');
+            }
 
         // Simpan ke database
         $dokumen_coal->clean_coal = $clean_coal;

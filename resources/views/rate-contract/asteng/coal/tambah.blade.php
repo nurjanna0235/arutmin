@@ -4,15 +4,17 @@
 
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Admin</h1>
+    <h1>Rate Contract</h1>
         <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
+        <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Coal</li>
+                <li class="breadcrumb-item active">Tambah</li>
             </ol>
         </nav>
     </div>
-    
+
     <!-- End Page Title -->
     <section class="section dashboard">
         <div class="row">
@@ -22,7 +24,8 @@
                 <div class="row">
 
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/asteng/coal/simpan" method="POST" class="row g-3"enctype="multipart/form-data">
+                    <form action="/rate-contract/asteng/coal/simpan" method="POST" class="row g-3"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
                             <label for="clean_coal" class="form-label">Clean Coal (Rp/ton)</label>
@@ -79,9 +82,10 @@
                                 </div> --}}
 
                                 <div class="col-12">
-                                <label for="contract_reference" class="form-label">Contract Reference</label>
-                                <input name= "contract_reference" type="file" class="form-control" id="contract_reference">
-                            </div>
+                                    <label for="contract_reference" class="form-label">Contract Reference</label>
+                                    <input name="contract_reference" type="file" class="form-control"
+                                        id="contract_reference">
+                                </div>
                                 </select>
                             </div>
                         </div>
@@ -99,7 +103,7 @@
 
         </div><!-- End sidebar recent posts-->
         </div>
-        
+
         </div><!-- End News & Updates -->
 
         </div><!-- End Right side columns -->

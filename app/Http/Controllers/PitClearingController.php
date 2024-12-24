@@ -8,15 +8,45 @@ use Generator;
 use PhpParser\Node\Expr\Cast\Double;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+
 
 class PitClearingController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $dokumenpit_clearing = pit_clearing::all();
-        return view('rate-contract/asteng/pitclearing/index', compact('dokumenpit_clearing'));
+        // Ambil input tahun dari request
+        $tahun = $request->input('tahun');
+        $filterTahun = $request->input('filter_tahun');
+
+        // Query dasar untuk mengambil data
+        $query = pit_clearing::query();
+
+        // Filter berdasarkan pencarian tahun
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+
+        // Filter berdasarkan dropdown filter_tahun
+        if ($filterTahun) {
+            $query->whereYear('created_at', $filterTahun);
+        }
+
+        // Ambil data hasil query dan format bulan/tahun
+        $dokumenpit_clearing = $query->get()->map(function ($item) {
+            $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
+            return $item;
+        });
+
+        // Ambil daftar tahun unik untuk dropdown filter
+        $tahunList = pit_clearing::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
+
+        // Kirim data ke view
+        return view('rate-contract/asteng/pitclearing/index', compact('dokumenpit_clearing', 'tahunList'));
     }
+
+
 
     public function detail($id)
     {
@@ -130,7 +160,6 @@ class PitClearingController extends Controller
             'general_escalation' => $request->general_escalation,
             'rate_actual' => $rate_actual,
             'contract_reference' => $path,
-            'updated_at' => now(),
         ]);
 
         // Redirect dengan pesan sukses

@@ -15,5 +15,5 @@ class value_daywork extends Model
     protected $primaryKey = 'id_value';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable =['id_item','nama_item','base_rate_exc','actual_rate_exc','fbr'];
+    protected $fillable =['id_daywork','nama_item','base_rate_exc','actual_rate_exc','fbr'];
 }

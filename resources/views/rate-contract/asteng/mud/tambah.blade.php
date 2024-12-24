@@ -4,12 +4,14 @@
 
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Admin</h1>
+            <h1>Rate Contract</h1>
             <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
-                    <li class="breadcrumb-item active">Mud</li>
-                </ol>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Asteng</li>
+                <li class="breadcrumb-item active">Mud</li>
+                <li class="breadcrumb-item active">Tambah</li>
+            </ol>
             </nav>
 
         </div><!-- End Page Title -->

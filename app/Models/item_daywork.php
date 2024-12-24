@@ -15,5 +15,5 @@ class item_daywork extends Model
     protected $primaryKey = 'id_item';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable =['id_daywork','nama_item',];
+    protected $fillable =['nama_item',];
 }

@@ -11,7 +11,9 @@
                 <li class="breadcrumb-item active">Pengguna</li>
             </ol>
         </nav>
-        <a href='/admin/pengguna/tambah' type="button" class="btn btn-success">Tambah</a>
+        <a href='/admin/pengguna/tambah' type="button" class="btn btn-success mb-3">
+            <i class="bi bi-plus-circle"></i> Tambah
+        </a>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
@@ -21,69 +23,54 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Default Table -->
-                    <table class="table">
-                        <thead>
+                    <table class="table table-bordered text-center align-middle">
+                        <thead class="table-primary">
                             <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">NIK</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">No Handphone</th>
-                                <th scope="col">Level</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col" style="width: 5%;">No</th>
+                                <th scope="col" style="width: 20%;">Username</th>
+                                <th scope="col" style="width: 15%;">NIK</th>
+                                <th scope="col" style="width: 25%;">Email</th>
+                                <th scope="col" style="width: 10%;">Level</th>
+                                <th scope="col" style="width: 10%;">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                        $No = 1;
-                               ?>
-
+                            <?php $No = 1; ?>
                             @foreach($pengguna as $item)
                                 <tr>
-                                <td>{{$No++}}</td>
-                                
-                                   
+                                    <td>{{ $No++ }}</td>
                                     <td>{{ $item->username }}</td>
                                     <td>{{ $item->nik }}</td>
                                     <td>{{ $item->email }}</td>
-                                    <td>{{ $item->no_hp }}</td>
                                     <td>{{ $item->level }}</td>
                                     <td>
-                                        <a href="{{ url('admin/pengguna/edit/'.$item->id) }}"
-                                            type="button" class="btn btn-primary">Edit</a>
+
+                                   <!-- Tombol Edit -->
+                                        <a href="{{ url('admin/pengguna/edit/'.$item->id) }}">
+                                            <i class="ri-edit-2-line text-warning" title="Edit"></i>
+                                        </a>
+                                        @if( $item->level != 'admin' )
                                         <form
                                             action="{{ url('admin/pengguna/delete/'.$item->id) }}"
                                             method="POST"
+                                            style="display: inline-block;"
                                             onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger" type="submit">Hapus</button>
+                                            <button type="submit" style="border: none; background: none;" >
+                                            <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
+                                            </button>
                                         </form>
+                                        @endif
+                                        
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     <!-- End Default Table Example -->
-
-
-
                 </div>
             </div>
-        </div>
-        </div>
-        </div>
-        </div><!-- End Card with an image on left -->
-
-
-
-        </div><!-- End sidebar recent posts-->
-
-        </div>
-        </div><!-- End News & Updates -->
-
-        </div><!-- End Right side columns -->
-
         </div>
     </section>
 

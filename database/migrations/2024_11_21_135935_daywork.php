@@ -15,7 +15,8 @@ return new class extends Migration
             $table->string('premium_rate')->nullable();
             $table->string('general_escalation')->nullable();
             $table->string('contract_reference')->nullable();
-            $table->timestamps();
+            $table->date('created_at')->nullable(); // Menggunakan tipe DATE
+            $table->date('updated_at')->nullable(); // Menggunakan tipe DATE
             $table->foreign('id_item')->references('id_item')->on('item_daywork')->onDelete('cascade');
         });
     }

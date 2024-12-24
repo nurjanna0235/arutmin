@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('general_escalation')->nullable();
             $table->string('total_single_rate_actual')->nullable();
             $table->string('contract_reference');
-            $table->timestamps();
+            $table->date('created_at')->nullable(); // Menggunakan tipe DATE
+            $table->date('updated_at')->nullable(); // Menggunakan tipe DATE
         });
     }
 

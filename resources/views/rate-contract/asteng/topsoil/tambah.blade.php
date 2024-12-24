@@ -5,11 +5,13 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Admin</h1>
+    <h1>Rate Contract</h1>
         <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
+        <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Top Soil</li>
+                <li class="breadcrumb-item active">Tambah</li>
             </ol>
         </nav>
 
@@ -22,7 +24,8 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/asteng/top-soil/simpan" method="POST" class="row g-3" enctype="multipart/form-data">
+                    <form action="/rate-contract/asteng/top-soil/simpan" method="POST" class="row g-3"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
                             <label for="base_rate" class="form-label">Base Rate (Rp/Ha)</label>
@@ -50,7 +53,8 @@
 
                                 <div class="col-12">
                                     <label for="contract_reference" class="form-label">Contract Reference</label>
-                                    <input name="contract_reference" type="file" class="form-control" id="contract_reference">
+                                    <input name="contract_reference" type="file" class="form-control"
+                                        id="contract_reference">
                                 </div>
 
                                 <div class="col-12 mt-3">

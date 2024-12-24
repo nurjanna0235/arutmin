@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('email');
 
 
-            $table->timestamps();
+            $table->date('created_at')->nullable(); // Menggunakan tipe DATE
+            $table->date('updated_at')->nullable(); // Menggunakan tipe DATE
         });
     }
 
