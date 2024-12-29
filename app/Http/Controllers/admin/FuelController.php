@@ -23,10 +23,10 @@ class FuelController extends Controller
     {
         return view('rate-contract/asteng/fuel/tambah');
     }
-    public function simpan(Request $request)
+    public function simpan(Request $requet)
     {
         $path = $request->file('contract_reference')->store('img', 'public');
-    
+
         // Update data ke database
         fuel::table('fuel')->insert([
             'activity' => $request->activity,
