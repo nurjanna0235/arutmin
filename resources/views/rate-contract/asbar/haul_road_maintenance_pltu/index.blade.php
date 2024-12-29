@@ -10,17 +10,17 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
                 <li class="breadcrumb-item active">Asbar</li>
-                <li class="breadcrumb-item active">Coal Hauling to PLTU</li>
+                <li class="breadcrumb-item active">Haul Road Maintenance PLTU</li>
             </ol>
         </nav>
     </div>
         <div class="icon mb-3">
-            <a href="/rate-contract/asbar/coal-hauling/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
+            <a href="/rate-contract/asbar/haul-road-maintenance-pltu/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
         </div>
 
         <!-- Form untuk pencarian -->
         <div class="mb-4">
-            <form method="GET" action="{{ url('/rate-contract/asbar/coal-hauling') }}" class="d-flex align-items-center gap-3">
+            <form method="GET" action="{{ url('/rate-contract/asbar/haul-road-maintenance-pltu') }}" class="d-flex align-items-center gap-3">
                 <!-- Input Pencarian Tahun -->
                 <div class="form-group">
                     <input type="number" name="tahun" class="form-control" placeholder="Cari Tahun" value="{{ request('tahun') }}">
@@ -57,13 +57,13 @@
                             <td class="text-danger fw-bold"></td>
                             <td>
                                 <div class="d-flex gap-2 justify-content-center">
-                                    <a href="{{ url('rate-contract/asbar/coal-hauling/detail/') }}">
+                                    <a href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/detail/') }}">
                                         <i class="ri-information-line" title="Detail"></i>
                                     </a>
-                                    <a href="{{ url('rate-contract/asbar/coal-hauling/edit/') }}">
+                                    <a href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/edit/') }}">
                                         <i class="ri-edit-2-line text-warning" title="Edit"></i>
                                     </a>
-                                    <form action="{{ url('/rate-contract/asbar/coal-hauling/delete/') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
+                                    <form action="{{ url('/rate-contract/asbar/haul-road-maintenance-pltu/delete/') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" style="border: none; background: none;">

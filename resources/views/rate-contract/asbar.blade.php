@@ -33,14 +33,14 @@
                                                 <a href="/rate-contract/asbar/coal-hauling">
                                                     <li class="list-group-item active">Coal Hauling to PLTU</li>
                                                 </a>
-                                                <a href="/rate-contract/asbar/top-soil">
-                                                <li class="list-group-item ">Top Soil</li>
+                                                <a href="/rate-contract/asbar/haul-road-maintenance-pltu">
+                                                <li class="list-group-item ">Haul Road Maintenance PLTU</li>
                                             </a>
-                                            <a href="/rate-contract/asbar/ob">
-                                                <li class="list-group-item active">OB</li>
+                                            <a href="/rate-contract/asbar/daywork-asbar">
+                                                <li class="list-group-item active">Daywork</li>
                                             </a>
-                                                <a href="/rate-contract/asbar/coal">
-                                                <li class="list-group-item ">Coal</li>
+                                                <a href="/rate-contract/asbar/fuel-asbar">
+                                                <li class="list-group-item ">Fuel Allowance</li>
                                             </a>
                                             </ul><!-- End Default List group -->
 
