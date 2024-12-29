@@ -50,6 +50,10 @@ class DayworkController extends Controller
         $itemList = item_daywork::select('id_item', 'nama_item')->distinct()->get();
     
         return view('rate-contract/asteng/daywork/index', compact('dokumendaywork', 'tahunList', 'itemList'));
+    }    public function detail($id)
+    {
+        $dokumendaywork = daywork::where('id', $id)->get()->first();
+        return view('rate-contract/asteng/daywork/detail', compact('dokumendaywork'));
     }
     
     public function tambah()
@@ -129,22 +133,15 @@ class DayworkController extends Controller
         $actual_rate_exc_fuel = $base_rate_exc_fuel * $currency_adjustment;
 
         // Simpan data ke tabel daywork
-        $id_daywork = daywork::insertGetId([
-            'id_item' => $request->item,
+        daywork::create([
             'currency_adjustment' => $currency_adjustment,
             'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
             'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
             'contract_reference' => $path,
-            'created_at' => now(),
-            'updated_at' => now(),
         ]);
-
-
-
         value_daywork::create([
-            'id_daywork' => $id_daywork,
-            'base_rate_exc' => $base_rate_exc_fuel,
-            'actual_rate_exc' => $actual_rate_exc_fuel,
+            'base_rate_exc_fuel' => $base_rate_exc_fuel,
+            'actual_rate_exc_fuel' => $actual_rate_exc_fuel,
             'fbr' => $actual_rate_exc_fuel,
             'created_at' => now(),
             'updated_at' => now(),
