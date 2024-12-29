@@ -42,7 +42,7 @@ class item_daywork extends Seeder
         ];
 
         foreach ($items as $index => $name) {
-            DB::table('item')->insert([
+            DB::table('item_daywork')->insert([
                 'id_item' => $index + 1,
                 'nama_item' => $name,
             ]);

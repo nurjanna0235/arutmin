@@ -15,6 +15,6 @@ class pengguna extends Model
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable = ['username','password','email','nik','no_hp','level'];
+    protected $fillable = ['username','password','email','nik','level'];
 };
 

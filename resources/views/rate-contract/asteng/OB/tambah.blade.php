@@ -5,11 +5,13 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Admin</h1>
+    <h1>Rate Contract</h1>
         <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
+        <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">OB</li>
+                <li class="breadcrumb-item active">Tambah</li>
             </ol>
         </nav>
 
@@ -22,7 +24,8 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/asteng/ob/simpan" method="POST" class="row g-3" enctype="multipart/form-data">
+                    <form action="/rate-contract/asteng/ob/simpan" method="POST" class="row g-3"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
                             <label for="load_and_haul" class="form-label">Load and Haul (Rp/BCM)</label>
@@ -63,32 +66,32 @@
                             <label for="sr" class="form-label">SR</label>
                             <input name="sr" type="text" class="form-control" id="sr">
                         </div>
-                       
+
                         <div class="col-12">
                             <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
                             <input name="currency_adjustment" type="text" class="form-control" id="currency_adjustment">
                         </div>
 
                         <div class="col-12">
-                                <label for="premium_rate" class="form-label">Premium Rate</label>
-                                <div class="input-group mb-3">
-                                 <input type="text" class="form-control" name="premium_rate">
+                            <label for="premium_rate" class="form-label">Premium Rate</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" name="premium_rate">
                                 <span class="input-group-text" id="basic-addon2">%</span>
-                                </div>
+                            </div>
 
                             <div class="col-12">
                                 <label for="general_escalation" class="form-label">General Escalation</label>
                                 <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="general_escalation">
-                                <span class="input-group-text" id="basic-addon2">%</span>
-                            </div>
+                                    <input type="text" class="form-control" name="general_escalation">
+                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                </div>
 
-                        <div class="col-12">
-                            <label for="contract_reference" class="form-label">Contract Reference</label>
-                            <input name="contract_reference" type="file" class="form-control" id="contract_reference">
-                        </div>
+                                <div class="col-12">
+                                    <label for="contract_reference" class="form-label">Contract Reference</label>
+                                    <input name="contract_reference" type="file" class="form-control"
+                                        id="contract_reference">
+                                </div>
                                 </select>
-
                             </div>
 
                         </div>
@@ -97,17 +100,12 @@
                         </div>
                     </form><!-- Vertical Form -->
 
-
-
-
                 </div>
             </div>
         </div>
         </div>
         </div>
         </div><!-- End Card with an image on left -->
-
-
 
         </div><!-- End sidebar recent posts-->
 

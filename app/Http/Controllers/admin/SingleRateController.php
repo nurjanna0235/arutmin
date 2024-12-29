@@ -8,19 +8,50 @@ use Illuminate\Http\Request;
 use Generator;
 use PhpParser\Node\Expr\Cast\Double;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class SingleRateController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $dokumensingle_rate = single_rate::all();
+        // Ambil input tahun dari request
+        $tahun = $request->input('tahun');
+        $filterTahun = $request->input('filter_tahun');
 
-        return view('rate-contract/asteng/singlerate/index', compact('dokumensingle_rate'));
+        // Query dasar untuk mengambil data
+        $query = single_rate::query();
+
+        // Filter berdasarkan pencarian tahun
+        if ($tahun) {
+            $query->whereYear('created_at', $tahun);
+        }
+
+        // Filter berdasarkan dropdown filter_tahun
+        if ($filterTahun) {
+            $query->whereYear('created_at', $filterTahun);
+        }
+
+        // Ambil data hasil query dan format bulan/tahun
+        $dokumensingle_rate = $query->get()->map(function ($item) {
+            $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
+            return $item;
+        });
+
+        // Ambil daftar tahun unik untuk dropdown filter
+        $tahunList = single_rate::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
+
+        
+
+        // Kirim data ke view
+        return view('rate-contract/asteng/singlerate/index', compact('dokumensingle_rate', 'tahunList'));
     }
+
     public function detail($id)
     {
         $dokumensingle_rate = single_rate::where('id', $id)->get()->first();
-        
+
         return view('rate-contract/asteng/singlerate/detail', compact('dokumensingle_rate'));
     }
     public function tambah()
@@ -76,7 +107,16 @@ class SingleRateController extends Controller
     public function update(Request $request, $id)
     {
         $dokumensingle_rate = single_rate::findOrFail($id);
-        $path = $request->file('contract_reference')->store('img', 'public');
+
+        $path = $dokumensingle_rate->contract_reference;
+        if ($request->hasFile('contract_reference')) {
+            // Hapus file lama jika ada
+            if ($path) {
+                Storage::disk('public')->delete($path);
+            }
+            // Simpan file baru
+            $path = $request->file('contract_reference')->store('img', 'public');
+        }
 
 
         // Mengganti koma dengan titik pada inputan untuk keperluan perhitungan

@@ -42,11 +42,6 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="no_hp" class="form-label">No Handphone</label>
-                                <input value="{{old('no_hp',$dataPengguna->no_hp)}}" name= "no_hp" type="text" class="form-control" id="no_hp">
-                            </div>
-
-                            <div class="col-12">
                                 <label for="level" class="form-label">Level</label>
                                 <select name = "level"class="form-select" id="floatingSelect"
                                     aria-label="Floating label select example">

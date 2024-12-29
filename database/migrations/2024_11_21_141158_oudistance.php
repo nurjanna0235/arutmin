@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('premium_rate', 15, 2); // Kolom Premium Rate dengan tipe decimal
             $table->string('general_escalation', 15, 2); // Kolom General Escalation dengan tipe decimal
             $table->string('contract_reference'); // Kolom Contract Reference dengan tipe string
-            $table->timestamps(); // Kolom created_at dan updated_at otomatis
+            $table->date('created_at')->nullable(); // Menggunakan tipe DATE
+            $table->date('updated_at')->nullable(); // Menggunakan tipe DATE
         });
     }
 

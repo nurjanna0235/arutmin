@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('nama_dokumen');
             $table->string('tanggal');
             $table->string('path');
-            $table->timestamps();
+            $table->date('created_at')->nullable(); // Menggunakan tipe DATE
+            $table->date('updated_at')->nullable(); // Menggunakan tipe DATE
         });
     }
 

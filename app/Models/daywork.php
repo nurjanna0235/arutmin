@@ -12,8 +12,8 @@ class daywork extends Model
     protected $table = 'daywork';
 
     // Tentukan kolom kunci utama jika tidak menggunakan 'id'
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_daywork';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable =['item','base_rate_exc_fuel','actual_rate_exc_fuel','fbr'];
+    protected $fillable =['id_item','currency_adjustment','premium_rate','general_escalation','contract_reference'];
 }

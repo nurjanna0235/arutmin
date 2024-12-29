@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('item', function (Blueprint $table) {
+        Schema::create('item_daywork', function (Blueprint $table) {
             $table->id('id_item');
             $table->string('nama_item')->nullable();
-            $table->timestamps();
+            $table->date('created_at')->nullable(); // Menggunakan tipe DATE
+            $table->date('updated_at')->nullable(); // Menggunakan tipe DATE
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('item');
+        Schema::dropIfExists('item_daywork');
     }
 };
