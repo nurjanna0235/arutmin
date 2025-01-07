@@ -8,7 +8,7 @@
         <h1>Rate Contract</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Fuel Allowance</li>
                 <li class="breadcrumb-item active">Edit</li>
@@ -22,8 +22,8 @@
             <!-- Left side columns -->
             <div class="col-lg-12">
                 <div class="row">
-                   <!-- Vertical Form -->
-                   <form action="/rate-contract/asteng/fuel/update/{{ $dokumenfuel->id }}" method="POST"
+                    <!-- Vertical Form -->
+                    <form action="/rate-contract/asteng/fuel/update/{{ $dokumenfuel->id }}" method="POST"
                         class="row g-3" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

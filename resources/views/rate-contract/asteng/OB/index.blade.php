@@ -8,7 +8,7 @@
         <h1>Rate Contract</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">OB</li>
             </ol>

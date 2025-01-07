@@ -4,17 +4,17 @@
 
 <main id="main" class="main">
 
-    <div class="pagetitle">
-    <h1>Rate Contract</h1>
+<div class="pagetitle">
+        <h1>Rate Contract</h1>
         <nav>
-        <ol class="breadcrumb">
+            <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
                 <li class="breadcrumb-item active">Asbar</li>
-                <li class="breadcrumb-item active">Coal Hauling to PLTU </li>
+                <li class="breadcrumb-item active">Fuel Allowance</li>
                 <li class="breadcrumb-item active">Edit</li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
+    </div>
 
     <section class="section dashboard">
         <div class="row">
@@ -22,33 +22,39 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/asteng/coal-hauling/update/" method="POST"
+                    <form action="/rate-contract/asbar/fuel-asbar/update/" method="POST"
                         class="row g-3" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="col-12">
-                            <label for="base_rate" class="form-label">Base Rate Hauling PLTU @12 KM (Rp/ton)</label>
-                            <input value="" name="base_rate" type="text"
-                                class="form-control" id="base_rate">
+                            <label for="activity" class="form-label">Activity</label>
+                            <input value="" name="activity" type="text"
+                                class="form-control" id="activity">
                         </div>
 
                         <div class="col-12">
-                            <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
-                            <input value="" name="currency_adjustment"
-                                type="text" class="form-control" id="currency_adjustment">
+                            <label for="item" class="form-label">Item</label>
+                            <input value="" name="item"
+                                type="text" class="form-control" id="item">
                         </div>
 
                         <div class="col-12">
-                            <label for="premium_rate" class="form-label">Premium Rate</label>
-                            <input value="" name="premium_rate" type="text"
-                                class="form-control" id="premium_rate">
+                            <label for="fuel_index" class="form-label">Fuel Index</label>
+                            <input value="" name="fuel_index" type="text"
+                                class="form-control" id="fuel_index">
                         </div>
 
                         <div class="col-12">
-                                <label for="general_escalation" class="form-label">General Escalation</label>
-                                <input value="" name="general_escalation"
-                                    type="text" class="form-control" id="general_escalation">
-                            </div>
+                            <label for="item" class="form-label">Item</label>
+                            <input value="" name="item"
+                                type="text" class="form-control" id="item">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="distance" class="form-label">Distance</label>
+                            <input value="" name="distance"
+                                type="text" class="form-control" id="distance">
+                        </div>
 
                                 <div class="col-12">
                                     <label for="contract_reference" class="form-label">Contract Reference</label>

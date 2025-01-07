@@ -6,8 +6,8 @@
     <div class="pagetitle">
         <h1>Rate Contract</h1> <!-- Mengubah judul halaman -->
         <nav>
-        <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Pit Clearing</li>
                 <li class="breadcrumb-item active">Detail</li>
@@ -63,7 +63,6 @@
         max-width: 200px;
         /* Mengatur batas lebar maksimal */
     }
-
 </style>
 
 @endsection

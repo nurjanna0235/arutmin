@@ -8,7 +8,7 @@
         <h1>Rate Contract</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Coal</li>
             </ol>
@@ -31,7 +31,7 @@
             <button type="submit" class="btn btn-primary">Cari</button>
         </form>
     </div><!-- Form untuk pencarian -->
-   
+
 
     <!-- Tabel Data -->
     <div class="table-container" style="width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;">

@@ -7,14 +7,14 @@
 <body>
     <main id="main" class="main">
         <div class="pagetitle">
-        <h1>Rate Contract</h1>
+            <h1>Rate Contract</h1>
             <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
-                <li class="breadcrumb-item active">Asteng</li>
-                <li class="breadcrumb-item active">Daywork</li>
-                <li class="breadcrumb-item active">Detail</li>
-            </ol>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active">Darma Henwa</li>
+                    <li class="breadcrumb-item active">Asteng</li>
+                    <li class="breadcrumb-item active">Daywork</li>
+                    <li class="breadcrumb-item active">Detail</li>
+                </ol>
             </nav>
         </div>
 

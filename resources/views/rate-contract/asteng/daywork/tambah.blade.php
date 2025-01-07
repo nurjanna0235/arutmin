@@ -7,7 +7,7 @@
         <h1>Rate Contract</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Daywork</li>
                 <li class="breadcrumb-item active">Tambah</li>
@@ -34,9 +34,9 @@
                                 <option value="" disabled>
                                     Pilih Item</option>
                                 @foreach($item as $option)
-                                    <option value="{{ $option->id_item }}">
-                                        {{ $option->nama_item }}
-                                    </option>
+                                <option value="{{ $option->id_item }}">
+                                    {{ $option->nama_item }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
@@ -80,9 +80,11 @@
 
                             </div>
 
-                        </div>
-                        <div class="col-12 mt-3">
-                            <button type="sumbit" class="btn btn-primary">Simpan</button>
+                            <div class="col-12 mt-3">
+                            <div class="d-flex justify-content-start">
+                                <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                <a href="/rate-contract/asteng/daywork" class="btn btn-secondary">Batal</a>
+                            </div>
                         </div>
                     </form><!-- Vertical Form -->
 

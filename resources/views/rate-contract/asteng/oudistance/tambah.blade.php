@@ -5,10 +5,10 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Admin</h1>
+        <h1>Rate Contract</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Over Under Distance</li>
                 <li class="breadcrumb-item active">Tambah</li>
@@ -106,7 +106,10 @@
 
                         </div>
                         <div class="col-12 mt-3">
-                            <button type="sumbit" class="btn btn-primary">Simpan</button>
+                            <div class="d-flex justify-content-start">
+                                <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                <a href="/rate-contract/asteng/oudistance" class="btn btn-secondary">Batal</a>
+                            </div>
                         </div>
                     </form><!-- Vertical Form -->
 
@@ -129,12 +132,12 @@
 
 </main><!-- End #main -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const activitySelect = document.getElementById('activity');
         const itemSelect = document.getElementById('item');
         const itemOptions = Array.from(itemSelect.options);
 
-        activitySelect.addEventListener('change', function () {
+        activitySelect.addEventListener('change', function() {
             const selectedActivity = activitySelect.value;
 
             // Reset item dropdown
@@ -148,7 +151,6 @@
             });
         });
     });
-
 </script>
 
 @endsection

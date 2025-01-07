@@ -7,11 +7,11 @@
     <div class="pagetitle">
         <h1>Rate Contract</h1>
         <nav>
-        <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Pit Clearing</li>
-                <li class="breadcrumb-item active"></li>
+                <li class="breadcrumb-item active">Tambah</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -55,7 +55,10 @@
                                     <input name="contract_reference" type="file" class="form-control"
                                         id="contract_reference">
                                     <div class="col-12 mt-3">
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <div class="d-flex justify-content-start">
+                                            <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                            <a href="/rate-contract/asteng/pit-clearing" class="btn btn-secondary">Batal</a>
+                                        </div>
                                     </div>
                     </form><!-- Vertical Form -->
                 </div>

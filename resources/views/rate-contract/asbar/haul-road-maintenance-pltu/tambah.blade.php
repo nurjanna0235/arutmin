@@ -7,27 +7,29 @@
         <h1>Rate Contract</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active">Darma Henwa</li>
-                <li class="breadcrumb-item active">Asteng</li>
-                <li class="breadcrumb-item active">Mud</li>
+                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Asbar</li>
+                <li class="breadcrumb-item active">Haul Road Maintenance PLTU</li>
                 <li class="breadcrumb-item active">Tambah</li>
             </ol>
         </nav>
+    </div>
 
-    </div><!-- End Page Title -->
-
+    <!-- End Page Title -->
     <section class="section dashboard">
         <div class="row">
 
             <!-- Left side columns -->
             <div class="col-lg-12">
                 <div class="row">
+
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/asteng/mud/simpan" method="POST" class="row g-3" enctype="multipart/form-data">
+                    <form action="/rate-contract/asbar/haul-road-maintenance-pltu/simpan" method="POST" class="row g-3"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
-                            <label for="mud_removal_load_and_haul" class="form-label">Mud Removal - Load and Haul (Rp/BCM)</label>
-                            <input name="mud_removal_load_and_haul" type="text" class="form-control" id="mud_removal_load_and_haul">
+                            <label for="base_rate_hrm_pltu" class="form-label">Base Rate HRM PLTU (Rp/ton)</label>
+                            <input name="base_rate_hrm_pltu" type="text" class="form-control" id="base_rate_hrm_pltu">
                         </div>
 
                         <div class="col-12">
@@ -49,26 +51,25 @@
                                     <span class="input-group-text" id="basic-addon2">%</span>
                                 </div>
 
-                                {{-- <div class="col-12">
-                                <label for="rate_actual" class="form-label">Rate Actual (Rp/Ha)</label>
-                                <input name= "rate_actual" type="text" class="form-control" id="rate_actual">
-                            </div> --}}
+
 
                                 <div class="col-12">
                                     <label for="contract_reference" class="form-label">Contract Reference</label>
-                                    <input name="contract_reference" type="file" class="form-control" id="contract_reference">
+                                    <input name="contract_reference" type="file" class="form-control"
+                                        id="contract_reference">
                                 </div>
                                 </select>
                             </div>
                         </div>
+
+
                         <div class="col-12 mt-3">
                             <div class="d-flex justify-content-start">
                                 <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                                <a href="/rate-contract/asteng/mud" class="btn btn-secondary">Batal</a>
+                                <a href="/rate-contract/asbar/haul-road-maintenance-pltu" class="btn btn-secondary">Batal</a>
                             </div>
                         </div>
                     </form><!-- Vertical Form -->
-
                 </div>
             </div>
         </div>
@@ -77,14 +78,13 @@
         </div><!-- End Card with an image on left -->
 
         </div><!-- End sidebar recent posts-->
-
         </div>
+
         </div><!-- End News & Updates -->
 
         </div><!-- End Right side columns -->
 
         </div>
     </section>
-
 </main><!-- End #main -->
 @endsection

@@ -8,7 +8,7 @@
         <h1>Rate Contract</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Over Under Distance</li>
                 <li class="breadcrumb-item active">Edit</li>
@@ -123,37 +123,37 @@
                             </div>
                         </div>
 
+                        <div class="col-12">
+                            <label for="general_escalation" class="form-label">General Escalation</label>
+                            <div class="input-group mb-3">
+                                <input value="{{ $dokumenoudistance->general_escalation }}" type="text"
+                                    class="form-control" name="general_escalation">
+                                <span class="input-group-text" id="basic-addon2">%</span>
+                            </div>
+
+
+                            <!-- Contract Reference -->
                             <div class="col-12">
-                                <label for="general_escalation" class="form-label">General Escalation</label>
-                                <div class="input-group mb-3">
-                                    <input value="{{ $dokumenoudistance->general_escalation }}" type="text"
-                                        class="form-control" name="general_escalation">
-                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                <label for="contract_reference" class="form-label">Contract Reference</label>
+                                @if($dokumenoudistance->contract_reference)
+                                <div class="mb-2">
+                                    <a href="{{ asset('storage/' . $dokumenoudistance->contract_reference) }}"
+                                        target="_blank">
+                                        <img src="{{ asset('storage/' . $dokumenoudistance->contract_reference) }}"
+                                            alt="Image" style="max-width: 200px;">
+                                    </a>
                                 </div>
-                            
+                                @endif
+                                <input type="file" name="contract_reference" class="form-control"
+                                    id="contract_reference">
+                                <small class="text-muted">Upload file baru jika ingin mengganti gambar yang
+                                    ada</small>
+                            </div>
 
-                                <!-- Contract Reference -->
-                                <div class="col-12">
-                                    <label for="contract_reference" class="form-label">Contract Reference</label>
-                                    @if($dokumenoudistance->contract_reference)
-                                        <div class="mb-2">
-                                            <a href="{{ asset('storage/' . $dokumenoudistance->contract_reference) }}"
-                                                target="_blank">
-                                                <img src="{{ asset('storage/' . $dokumenoudistance->contract_reference) }}"
-                                                    alt="Image" style="max-width: 200px;">
-                                            </a>
-                                        </div>
-                                    @endif
-                                    <input type="file" name="contract_reference" class="form-control"
-                                        id="contract_reference">
-                                    <small class="text-muted">Upload file baru jika ingin mengganti gambar yang
-                                        ada</small>
-                                </div>
-
-                                <div class="col-12 mt-3">
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                    <a href="{{ url()->previous() }}" class="btn btn-secondary">Batal</a>
-                                </div>
+                            <div class="col-12 mt-3">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                                <a href="{{ url()->previous() }}" class="btn btn-secondary">Batal</a>
+                            </div>
                     </form><!-- Vertical Form -->
 
 
@@ -180,7 +180,7 @@
 
 </main><!-- End #main -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const activitySelect = document.getElementById('activity');
         const itemSelect = document.getElementById('item');
         const itemOptions = Array.from(itemSelect.options);
@@ -205,7 +205,6 @@
         // Jalankan filter saat halaman pertama kali dimuat (jika ada nilai yang disimpan)
         filterItems();
     });
-
 </script>
 
 @endsection

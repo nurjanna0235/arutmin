@@ -7,7 +7,7 @@
         <h1>Rate Contract</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Pit Clearing</li>
                 <li class="breadcrumb-item active">Edit</li>
@@ -59,13 +59,13 @@
                             <div class="col-12">
                                 <label for="contract_reference" class="form-label">Contract Reference</label>
                                 @if($dokumenpit_clearing->contract_reference)
-                                    <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $dokumenpit_clearing->contract_reference) }}"
-                                            target="_blank">
-                                            <img src="{{ asset('storage/' . $dokumenpit_clearing->contract_reference) }}"
-                                                alt="Image" style="max-width: 200px;">
-                                        </a>
-                                    </div>
+                                <div class="mb-2">
+                                    <a href="{{ asset('storage/' . $dokumenpit_clearing->contract_reference) }}"
+                                        target="_blank">
+                                        <img src="{{ asset('storage/' . $dokumenpit_clearing->contract_reference) }}"
+                                            alt="Image" style="max-width: 200px;">
+                                    </a>
+                                </div>
                                 @endif
                                 <input type="file" name="contract_reference" class="form-control"
                                     id="contract_reference">

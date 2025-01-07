@@ -8,7 +8,7 @@
         <h1>Rate Contract</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Daywork</li>
                 <li class="breadcrumb-item active">Edit</li>
@@ -36,10 +36,10 @@
                                     {{ $dokumendaywork->id_item == null ? 'selected' : '' }}>
                                     Pilih Item</option>
                                 @foreach($item as $option)
-                                    <option value="{{ $option->id_item }}"
-                                        {{ $dokumendaywork->id_item == $option->id_item ? 'selected' : '' }}>
-                                        {{ $option->nama_item }}
-                                    </option>
+                                <option value="{{ $option->id_item }}"
+                                    {{ $dokumendaywork->id_item == $option->id_item ? 'selected' : '' }}>
+                                    {{ $option->nama_item }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
@@ -84,13 +84,13 @@
                                 <div class="col-12">
                                     <label for="contract_reference" class="form-label">Contract Reference</label>
                                     @if($dokumendaywork->contract_reference)
-                                        <div class="mb-2">
-                                            <a href="{{ asset('storage/' . $dokumendaywork->contract_reference) }}"
-                                                target="_blank">
-                                                <img src="{{ asset('storage/' . $dokumendaywork->contract_reference) }}"
-                                                    alt="Image" style="max-width: 200px;">
-                                            </a>
-                                        </div>
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $dokumendaywork->contract_reference) }}"
+                                            target="_blank">
+                                            <img src="{{ asset('storage/' . $dokumendaywork->contract_reference) }}"
+                                                alt="Image" style="max-width: 200px;">
+                                        </a>
+                                    </div>
 
                                     @endif
                                     <input type="file" name="contract_reference" class="form-control"

@@ -5,10 +5,10 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-    <h1>Rate Contract</h1>
+        <h1>Rate Contract</h1>
         <nav>
-        <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Other</li>
                 <li class="breadcrumb-item active">Tambah</li>
@@ -51,14 +51,14 @@
                                     <span class="input-group-text" id="basic-addon2">%</span>
                                 </div>
 
-                                {{--  <div class="col-12">
+                                {{-- <div class="col-12">
                                     <label for="rate_actual_hrm_lcm" class="form-label">Rate Actual HRM LCM (Rp/ton/KM)</label>
                                     <input name="rate_actual_hrm_lcm" type="text" class="form-control" id="rate_actual_hrm_lcm">
                                 </div> --}}
 
                                 <div class="col-12">
                                     <label for="contract_reference" class="form-label">Contract Reference</label>
-                                    <input name="contract_reference" type="file" class="form-control id="contract_reference">
+                                    <input name="contract_reference" type="file" class="form-control id=" contract_reference">
                                 </div>
                                 </select>
 
@@ -66,7 +66,10 @@
 
                         </div>
                         <div class="col-12 mt-3">
-                            <button type="sumbit" class="btn btn-primary">Simpan</button>
+                            <div class="d-flex justify-content-start">
+                                <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                <a href="/rate-contract/asteng/other" class="btn btn-secondary">Batal</a>
+                            </div>
                         </div>
                     </form><!-- Vertical Form -->
 

@@ -8,7 +8,7 @@
         <h1>Rate Contract</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active"> Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Pit Clearing</li>
             </ol>
@@ -49,32 +49,32 @@
                 <tbody>
                     <?php $No = 1; ?>
                     @foreach($dokumenpit_clearing as $item)
-                        <tr>
-                            <td>{{ $No++ }}</td>
-                            <td>{{ $item->bulan_tahun }}</td>
-                            <td>{{ $item->base_rate }}</td>
-                            <td>{{ $item->currency_adjustment }}</td>
-                            <td>{{ $item->premium_rate }}</td>
-                            <td>{{ $item->general_escalation }}</td>
-                            <td class="text-danger fw-bold">{{ $item->rate_actual }}</td>
-                            <td>
-                                <div class="d-flex gap-2 justify-content-center">
-                                    <a href="{{ url('rate-contract/asteng/pit-clearing/detail/' . $item->id) }}">
-                                        <i class="ri-information-line" title="Detail"></i>
-                                    </a>
-                                    <a href="{{ url('rate-contract/asteng/pit-clearing/edit/' . $item->id) }}">
-                                        <i class="ri-edit-2-line text-warning" title="Edit"></i>
-                                    </a>
-                                    <form action="{{ url('/rate-contract/asteng/pit-clearing/delete/' . $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" style="border: none; background: none;">
-                                            <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>{{ $No++ }}</td>
+                        <td>{{ $item->bulan_tahun }}</td>
+                        <td>{{ $item->base_rate }}</td>
+                        <td>{{ $item->currency_adjustment }}</td>
+                        <td>{{ $item->premium_rate }}</td>
+                        <td>{{ $item->general_escalation }}</td>
+                        <td class="text-danger fw-bold">{{ $item->rate_actual }}</td>
+                        <td>
+                            <div class="d-flex gap-2 justify-content-center">
+                                <a href="{{ url('rate-contract/asteng/pit-clearing/detail/' . $item->id) }}">
+                                    <i class="ri-information-line" title="Detail"></i>
+                                </a>
+                                <a href="{{ url('rate-contract/asteng/pit-clearing/edit/' . $item->id) }}">
+                                    <i class="ri-edit-2-line text-warning" title="Edit"></i>
+                                </a>
+                                <form action="{{ url('/rate-contract/asteng/pit-clearing/delete/' . $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" style="border: none; background: none;">
+                                        <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>

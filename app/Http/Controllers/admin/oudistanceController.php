@@ -140,14 +140,15 @@ class oudistanceController extends Controller
             // Simpan file baru
             $path = $request->file('contract_reference')->store('img', 'public');
         }
-        // Proses data input
         $base_rate = str_replace([','], ['.'], $request->base_rate);
+        $actual_rate = str_replace([','], ['.'], $request->actual_rate);
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
         $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
 
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;
+        $actual_rate = (float) $actual_rate;
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
@@ -161,9 +162,9 @@ class oudistanceController extends Controller
             'base_rate' => $base_rate,
             'actual_rate' => $actual_rate,
             'contractual_distance_km' => $request->contractual_distance_km,
-            'currency_adjustment' => $currency_adjustment,
-            'premium_rate' => $premium_rate,
-            'general_escalation' => $general_escalation,
+            'currency_adjustment' => $request->currency_adjustment,
+            'premium_rate' => $request->premium_rate,
+            'general_escalation' => $request->general_escalation,
             'contract_reference' => $path,
             'updated_at' => now(),
         ]);

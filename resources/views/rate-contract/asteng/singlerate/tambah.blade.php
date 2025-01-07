@@ -5,10 +5,10 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-    <h1>Rate Contract</h1>
+        <h1>Rate Contract</h1>
         <nav>
-        <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Single Rate</li>
                 <li class="breadcrumb-item active">Tambah</li>
@@ -24,8 +24,8 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/asteng/single-rate/simpan" 
-                          method="POST" class="row g-3" enctype="multipart/form-data">
+                    <form action="/rate-contract/asteng/single-rate/simpan"
+                        method="POST" class="row g-3" enctype="multipart/form-data">
                         @csrf
 
                         <div class="col-12">
@@ -36,7 +36,7 @@
                         <div class="col-12">
                             <label for="total_base_rate_coal" class="form-label">Total Base Rate Coal (Rp/ton)</label>
                             <input name="total_base_rate_coal" type="text"
-                                   class="form-control" id="total_base_rate_coal">
+                                class="form-control" id="total_base_rate_coal">
                         </div>
 
                         <div class="col-12">
@@ -78,7 +78,10 @@
 
                         </div>
                         <div class="col-12 mt-3">
-                            <button type="sumbit" class="btn btn-primary">Simpan</button>
+                            <div class="d-flex justify-content-start">
+                                <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                <a href="/rate-contract/asteng/single-rate" class="btn btn-secondary">Batal</a>
+                            </div>
                         </div>
                     </form><!-- Vertical Form -->
 
@@ -88,7 +91,7 @@
         </div>
         </div>
         </div><!-- End Card with an image on left -->
-        
+
         </div><!-- End sidebar recent posts-->
 
         </div>

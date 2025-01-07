@@ -130,7 +130,7 @@ class MudController extends Controller
         $dokumenmud->rate_actual = $rate_actual;
         $dokumenmud->contract_reference = $path;
         $dokumenmud->save();
-
+    
 
         return redirect()->to('rate-contract/asteng/mud')->with('success', 'Data berhasil diperbarui');
     }

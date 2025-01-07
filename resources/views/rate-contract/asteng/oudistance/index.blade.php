@@ -8,7 +8,7 @@
         <h1>Rate Contract</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+            <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Over Under Distance</li>
             </ol>
@@ -64,11 +64,10 @@
                         <th scope="col" style="width: 15%;">Activity</th>
                         <th scope="col" style="width: 15%;">Item</th>
                         <th scope="col" style="width: 10%;">Base Rate</th>
-                        <th scope="col" style="width: 10%;">Actual Rate</th>
                         <th scope="col" style="width: 10%;">Currency Adjustment</th>
                         <th scope="col" style="width: 10%;">Premium Rate</th>
                         <th scope="col" style="width: 10%;">General Escalation</th>
-
+                        <th scope="col" style="width: 10%;">Actual Rate</th>
                         <th scope="col" style="width: 10%;">Aksi</th>
                     </tr>
                 </thead>
@@ -76,46 +75,46 @@
                 <tbody>
                     <?php $No = 1; ?>
                     @foreach($dokumenoudistance as $item)
-                        <tr>
-                            <td>{{ $No++ }}</td>
-                            <td>{{ $item->bulan_tahun }}</td>
-                            <td>{{ $item->activity }}</td>
-                            <td>{{ $item->item }}</td>
-                            <td>{{ $item->base_rate }}</td>
-                            <!-- Tambahkan kelas Bootstrap untuk Rate Actual -->
-                            <td class="text-danger fw-bold">{{ $item->actual_rate }}</td>
-                            <td>{{ $item->currency_adjustment }}</td>
-                            <td>{{ $item->premium_rate }}</td>
-                            <td>{{ $item->general_escalation }}</td>
-                            <td>
-                                <div class="d-flex gap-2 justify-content-center">
-                                    <!-- Detail Button -->
-                                    <a
-                                        href="{{ url('rate-contract/asteng/oudistance/detail/' . $item->id) }}">
-                                        <i class="ri-information-line" title="Detail"></i>
-                                    </a>
+                    <tr>
+                        <td>{{ $No++ }}</td>
+                        <td>{{ $item->bulan_tahun }}</td>
+                        <td>{{ $item->activity }}</td>
+                        <td>{{ $item->item }}</td>
+                        <td>{{ $item->base_rate }}</td>
+                        <td>{{ $item->currency_adjustment }}</td>
+                        <td>{{ $item->premium_rate }}</td>
+                        <td>{{ $item->general_escalation }}</td>
+                         <!-- Tambahkan kelas Bootstrap untuk Rate Actual -->
+                         <td class="text-danger fw-bold">{{ $item->actual_rate }}</td>
+                        <td>
+                            <div class="d-flex gap-2 justify-content-center">
+                                <!-- Detail Button -->
+                                <a
+                                    href="{{ url('rate-contract/asteng/oudistance/detail/' . $item->id) }}">
+                                    <i class="ri-information-line" title="Detail"></i>
+                                </a>
 
-                                    <!-- Edit Button -->
-                                    <a
-                                        href="{{ url('rate-contract/asteng/oudistance/edit/' . $item->id) }}">
-                                        <i class="ri-edit-2-line text-warning" title="Edit"></i>
-                                    </a>
+                                <!-- Edit Button -->
+                                <a
+                                    href="{{ url('rate-contract/asteng/oudistance/edit/' . $item->id) }}">
+                                    <i class="ri-edit-2-line text-warning" title="Edit"></i>
+                                </a>
 
-                                    <!-- Delete Button -->
-                                    <form
-                                        action="{{ url('/rate-contract/asteng/oudistance/delete/'.$item->id) }}"
-                                        method="POST"
-                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" style="border: none; background: none;">
-                                            <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
+                                <!-- Delete Button -->
+                                <form
+                                    action="{{ url('/rate-contract/asteng/oudistance/delete/'.$item->id) }}"
+                                    method="POST"
+                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
+                                    class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" style="border: none; background: none;">
+                                        <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -168,5 +167,4 @@
     .table-container .table {
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-
 </style>

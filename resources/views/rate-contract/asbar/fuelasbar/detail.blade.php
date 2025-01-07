@@ -6,16 +6,16 @@
 
 <body>
     <main id="main" class="main">
-        <div class="pagetitle">
-        <h1>Rate Contract</h1>
-            <nav>
+    <h1>Rate Contract</h1>
+    <nav>
             <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Darma Henwa</li>
-                <li class="breadcrumb-item active">Asteng</li>
-                <li class="breadcrumb-item active">Single Rate</li>
+                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                <li class="breadcrumb-item active">Asbar</li>
+                <li class="breadcrumb-item active">Fuel Allowance</li>
                 <li class="breadcrumb-item active">Detail</li>
             </ol>
-            </nav>
+        </nav>
+    </div>
         </div>
 
         <section class="section">
@@ -24,9 +24,10 @@
                     <div class="card">
                         <div class="card-body text-center">
                             <h5 class="card-title">Contract Reference</h5>
-                            <a href="{{ asset('storage/' . $dokumensingle_rate->contract_reference) }}" target="_blank">
-                                <img src="{{ asset('storage/' . $dokumensingle_rate->contract_reference) }}" 
-                                     alt="Contract Reference" class="img-fluid large-image">
+                            <a href=""
+                                target="_blank">
+                                <img src=""
+                                    alt="Contract Reference" class="img-fluid large-image">
                             </a>
                         </div>
                         <div class="text-center mb-3">

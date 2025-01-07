@@ -57,13 +57,13 @@
                             <td class="text-danger fw-bold"></td>
                             <td>
                                 <div class="d-flex gap-2 justify-content-center">
-                                    <a href="{{ url('rate-contract/asbar/coal-hauling/detail/') }}">
+                                    <a href="{{ url('rate-contract/asbar/coal-hauling/detail/1') }}">
                                         <i class="ri-information-line" title="Detail"></i>
                                     </a>
-                                    <a href="{{ url('rate-contract/asbar/coal-hauling/edit/') }}">
+                                    <a href="{{ url('rate-contract/asbar/coal-hauling/edit/1') }}">
                                         <i class="ri-edit-2-line text-warning" title="Edit"></i>
                                     </a>
-                                    <form action="{{ url('/rate-contract/asbar/coal-hauling/delete/') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
+                                    <form action="{{ url('/rate-contract/asbar/coal-hauling/delete/1') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" style="border: none; background: none;">

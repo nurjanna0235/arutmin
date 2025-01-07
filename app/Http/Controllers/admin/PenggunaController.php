@@ -16,8 +16,6 @@ class PenggunaController extends Controller
     }
     public function tambah()
     {
-        // $pengguna = pengguna::all();
-
         return view('admin/pengguna/tambah');
     }
 

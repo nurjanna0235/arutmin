@@ -8,7 +8,7 @@
         <nav>
         <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
-                <li class="breadcrumb-item active">Asteng</li>
+                <li class="breadcrumb-item active">Asbar</li>
                 <li class="breadcrumb-item active">Coal Hauling to PLTU</li>
                 <li class="breadcrumb-item active">Tambah</li>
             </ol>
@@ -24,38 +24,13 @@
                 <div class="row">
 
                     <!-- Vertical Form -->
-                    <form action="//rate-contract/asbar/coal-hauling/simpan" method="POST" class="row g-3"
+                    <form action="/rate-contract/asbar/coal-hauling/simpan" method="POST" class="row g-3"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
-                            <label for="clean_coal" class="form-label">Clean Coal (Rp/ton)</label>
-                            <input name="clean_coal" type="text" class="form-control" id="clean_coal">
+                            <label for="base_rate_hauling_pltu" class="form-label">Base Rate Hauling PLTU @12 KM (Rp/ton)</label>
+                            <input name="base_rate_hauling_pltu" type="text" class="form-control" id="base_rate_hauling_pltu">
                         </div>
-
-                        <div class="col-12">
-                            <label for="loading_and_ripping" class="form-label">Loading and Ripping (Rp/ton)</label>
-                            <input name="loading_and_ripping" type="text" class="form-control" id="loading_and_ripping">
-                        </div>
-
-                        <div class="col-12">
-                            <label for="coal_hauling" class="form-label">Coal Hauling @8,463 Km (Rp/ton)</label>
-                            <input name="coal_hauling" type="text" class="form-control" id="coal_hauling">
-                        </div>
-
-                        <div class="col-12">
-                            <label for="hrm" class="form-label">HRM</label>
-                            <input name="hrm" type="text" class="form-control" id="hrm">
-                        </div>
-
-                        <div class="col-12">
-                            <label for="pit_support" class="form-label">Pit Support (Rp/ton)</label>
-                            <input name="pit_support" type="text" class="form-control" id="pit_support">
-                        </div>
-
-                        {{-- <div class="col-12">
-                            <label for="sub_total_base_rate_coal" class="form-label">Sub Total Base Rate Coal (Rp/ton)</label>
-                            <input name="sub_total_base_rate_coal" type="text" class="form-control" id="sub_total_base_rate_coal">
-                        </div> --}}
 
                         <div class="col-12">
                             <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
@@ -77,7 +52,7 @@
                                 </div>
 
                                 {{-- <div class="col-12">
-                                    <label for="total_rate_coal_actual" class="form-label"> Total Rate Coal Actual (Rp/ton)</label>
+                                    <label for="total_rate_coal_actual" class="form-label"> Actual Rate Hauling PLTU @12 KM (Rp/ton)</label>
                                     <input name="total_rate_coal_actual" type="text" class="form-control" id="total_rate_coal_actual">
                                 </div> --}}
 
@@ -91,7 +66,10 @@
                         </div>
 
                         <div class="col-12 mt-3">
-                            <button type="sumbit" class="btn btn-primary">Simpan</button>
+                            <div class="d-flex justify-content-start">
+                                <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                                <a href="/rate-contract/asbar/coal-hauling" class="btn btn-secondary">Batal</a>
+                            </div>
                         </div>
                     </form><!-- Vertical Form -->
                 </div>

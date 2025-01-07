@@ -37,7 +37,7 @@
                     <tr>
                         <th scope="col" style="width: 5%;">No</th>
                         <th scope="col" style="width: 15%;">Bulan/Tahun</th>
-                        <th scope="col" style="width: 15%;">Base Rate Hauling PLTU @12 KM (Rp/ton)</th>
+                        <th scope="col" style="width: 15%;">Base Rate HRM PLTU (Rp/ton)</th>
                         <th scope="col" style="width: 10%;">Currency Adjustment</th>
                         <th scope="col" style="width: 10%;">Premium Rate</th>
                         <th scope="col" style="width: 10%;">General Escalation</th>
@@ -57,13 +57,13 @@
                             <td class="text-danger fw-bold"></td>
                             <td>
                                 <div class="d-flex gap-2 justify-content-center">
-                                    <a href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/detail/') }}">
+                                    <a href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/detail/1') }}">
                                         <i class="ri-information-line" title="Detail"></i>
                                     </a>
-                                    <a href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/edit/') }}">
+                                    <a href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/edit/1') }}">
                                         <i class="ri-edit-2-line text-warning" title="Edit"></i>
                                     </a>
-                                    <form action="{{ url('/rate-contract/asbar/haul-road-maintenance-pltu/delete/') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
+                                    <form action="{{ url('/rate-contract/asbar/haul-road-maintenance-pltu/delete/1') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" style="border: none; background: none;">

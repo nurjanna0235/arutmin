@@ -134,14 +134,16 @@ class DayworkController extends Controller
 
         // Simpan data ke tabel daywork
         daywork::create([
+            'id_item' => $request->item,
             'currency_adjustment' => $currency_adjustment,
             'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
             'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
             'contract_reference' => $path,
         ]);
         value_daywork::create([
-            'base_rate_exc_fuel' => $base_rate_exc_fuel,
-            'actual_rate_exc_fuel' => $actual_rate_exc_fuel,
+            'id_daywork' => DB::getPdo()->lastInsertId(),
+            'base_rate_exc' => $base_rate_exc_fuel,
+            'actual_rate_exc' => $actual_rate_exc_fuel,
             'fbr' => $actual_rate_exc_fuel,
             'created_at' => now(),
             'updated_at' => now(),

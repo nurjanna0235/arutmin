@@ -10,7 +10,7 @@
         <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
                 <li class="breadcrumb-item active">Asbar</li>
-                <li class="breadcrumb-item active">Coal Hauling to PLTU </li>
+                <li class="breadcrumb-item active">Daywork </li>
                 <li class="breadcrumb-item active">Edit</li>
             </ol>
         </nav>
@@ -22,20 +22,44 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/asteng/coal-hauling/update/" method="POST"
+                    <form action="/rate-contract/asbar/dayworkasbar/update/" method="POST"
                         class="row g-3" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="col-12">
-                            <label for="base_rate" class="form-label">Base Rate Hauling PLTU @12 KM (Rp/ton)</label>
-                            <input value="" name="base_rate" type="text"
-                                class="form-control" id="base_rate">
+                            <label for="item" class="form-label">Item</label>
+                            <input value="" name="item" type="text"
+                                class="form-control" id="item">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="base_rate_exc_fuel" class="form-label">Base Rate Exc. Fuel (Rp/Hrs)</label>
+                            <input value="" name="base_rate_exc_fuel" type="text"
+                                class="form-control" id="base_rate_exc_fuel">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="labour" class="form-label">Labour</label>
+                            <input value="" name="labour" type="text"
+                                class="form-control" id="labour">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="rp_hrs" class="form-label">(Rp/Hrs)</label>
+                            <input value="" name="rp_hrs" type="text"
+                                class="form-control" id="rp_hrs">
                         </div>
 
                         <div class="col-12">
                             <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
                             <input value="" name="currency_adjustment"
                                 type="text" class="form-control" id="currency_adjustment">
+                        </div>
+
+                        <div class="col-12">
+                            <label for="index" class="form-label">Index</label>
+                            <input value="" name="index"
+                                type="text" class="form-control" id="index">
                         </div>
 
                         <div class="col-12">

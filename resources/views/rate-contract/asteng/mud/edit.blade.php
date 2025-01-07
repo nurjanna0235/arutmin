@@ -7,8 +7,8 @@
     <div class="pagetitle">
         <h1>Rate Contract</h1>
         <nav>
-        <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Darma Henwa</li>
                 <li class="breadcrumb-item active">Asteng</li>
                 <li class="breadcrumb-item active">Mud</li>
                 <li class="breadcrumb-item active">Edit</li>
@@ -46,7 +46,7 @@
                             <label for="premium_rate" class="form-label">Premium Rate</label>
                             <div class="input-group mb-3">
                                 <input value="{{ $dokumenmud->premium_rate }}" type="text" class="form-control"
-                                        name="premium_rate">
+                                    name="premium_rate">
                                 <span class="input-group-text" id="basic-addon2">%</span>
                             </div>
 
@@ -54,7 +54,7 @@
                                 <label for="general_escalation" class="form-label">General Escalation</label>
                                 <div class="input-group mb-3">
                                     <input value="{{ $dokumenmud->general_escalation }}" type="text"
-                                            class="form-control" name="general_escalation">
+                                        class="form-control" name="general_escalation">
                                     <span class="input-group-text" id="basic-addon2">%</span>
                                 </div>
 
@@ -67,13 +67,13 @@
                             <div class="col-12">
                                 <label for="contract_reference" class="form-label">Contract Reference</label>
                                 @if($dokumenmud->contract_reference)
-                                    <div class="mb-2">
-                                        <a href="{{ asset('storage/' . $dokumenmud->contract_reference) }}"
-                                            target="_blank">
-                                            <img src="{{ asset('storage/' . $dokumenmud->contract_reference) }}"
-                                                alt="Image" style="max-width: 200px;">
-                                        </a>
-                                    </div>
+                                <div class="mb-2">
+                                    <a href="{{ asset('storage/' . $dokumenmud->contract_reference) }}"
+                                        target="_blank">
+                                        <img src="{{ asset('storage/' . $dokumenmud->contract_reference) }}"
+                                            alt="Image" style="max-width: 200px;">
+                                    </a>
+                                </div>
 
                                 @endif
                                 <input type="file" name="contract_reference" class="form-control" id="contract_reference">

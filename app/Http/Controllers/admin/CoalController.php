@@ -90,10 +90,10 @@ class CoalController extends Controller
         $coal->pit_support = $pit_support;
         $coal->sub_total_base_rate_coal = $sub_total_base_rate_coal;
         $coal->currency_adjustment = $currency_adjustment;
-        $coal->premium_rate = $premium_rate;
-        $coal->general_escalation = $general_escalation;
+        $coal->premium_rate = $request->premium_rate;
+        $coal->general_escalation = $request->general_escalation;
         $coal->total_rate_coal_actual = $total_rate_coal_actual;
-        $coal->contract_reference = $path; // Data tambahan
+        $coal->contract_reference = $path; 
         $coal->save();
 
         // Redirect atau tampilkan view dengan pesan sukses

@@ -10,7 +10,7 @@
         <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
                 <li class="breadcrumb-item active">Asbar</li>
-                <li class="breadcrumb-item active">Coal Hauling to PLTU </li>
+                <li class="breadcrumb-item active">Haul Road Maintenance PLTU</li>
                 <li class="breadcrumb-item active">Edit</li>
             </ol>
         </nav>
@@ -22,14 +22,14 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/asteng/coal-hauling/update/" method="POST"
+                    <form action="/rate-contract/asbar/haul-road-maintenance-pltu/update/" method="POST"
                         class="row g-3" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="col-12">
-                            <label for="base_rate" class="form-label">Base Rate Hauling PLTU @12 KM (Rp/ton)</label>
-                            <input value="" name="base_rate" type="text"
-                                class="form-control" id="base_rate">
+                            <label for="base_rate_hrm_pltu" class="form-label">Base Rate HRM PLTU (Rp/ton)</label>
+                            <input value="" name="base_rate_hrm_pltu" type="text"
+                                class="form-control" id="base_rate_hrm_pltu">
                         </div>
 
                         <div class="col-12">
@@ -52,13 +52,15 @@
 
                                 <div class="col-12">
                                     <label for="contract_reference" class="form-label">Contract Reference</label>
-                                   
+                                    
                                         <div class="mb-2">
                                             <a href="" target="_blank">
                                                 <img src=""
                                                      alt="Image" style="max-width: 200px;">
                                             </a>
                                         </div>
+
+                                    
                                     <input type="file" name="contract_reference" class="form-control" id="contract_reference">
                                     <small class="text-muted">Upload file baru jika ingin mengganti gambar yang ada</small>
                                 </div>

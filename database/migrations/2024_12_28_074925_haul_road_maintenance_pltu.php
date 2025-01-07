@@ -6,27 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+
+public function up(): void
     {
         Schema::create('haul_road_maintenance_pltu', function (Blueprint $table) {
-            $table->id(); // Primary key
-            $table->string('contract_reference')->unique(); // Contract Reference
-            $table->string('base_rate_hrm'); // Base Rate HRM PLTU (Rp/ton)
-            $table->string('currency_adjustment')->default(1.00); // Currency Adjustment
-            $table->string('premium_rate')->nullable(); // Premium Rate (nullable for '-')
-            $table->string('general_escalation')->default(0.00); // General Escalation (percentage)
-            $table->string('actual_rate_hauling'); // Actual Rate Hauling PLTU (Rp/ton)
-            $table->timestamps(); // Created at & Updated at
+            $table->id();
+            $table->string('base_rate')->nullable();
+            $table->string('currency_adjustment')->nullable();
+            $table->string('premium_rate')->nullable();
+            $table->string('general_escalation')->nullable();
+            $table->string('rate_actual')->nullable();
+            $table->string('contract_reference');
+            $table->date('created_at')->nullable(); // Menggunakan tipe DATE
+            $table->date('updated_at')->nullable(); // Menggunakan tipe DATE
         });
-
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('haul_road_maintenance_pltu');
