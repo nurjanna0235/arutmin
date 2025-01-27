@@ -28,8 +28,8 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
-                            <label for="base_rate_hauling_pltu" class="form-label">Base Rate Hauling PLTU @12 KM (Rp/ton)</label>
-                            <input name="base_rate_hauling_pltu" type="text" class="form-control" id="base_rate_hauling_pltu">
+                            <label for="base_rate" class="form-label">Base Rate Hauling PLTU @12 KM (Rp/ton)</label>
+                            <input name="base_rate" type="text" class="form-control" id="base_rate">
                         </div>
 
                         <div class="col-12">
@@ -52,8 +52,8 @@
                                 </div>
 
                                 {{-- <div class="col-12">
-                                    <label for="total_rate_coal_actual" class="form-label"> Actual Rate Hauling PLTU @12 KM (Rp/ton)</label>
-                                    <input name="total_rate_coal_actual" type="text" class="form-control" id="total_rate_coal_actual">
+                                    <label for="actual_rate" class="form-label"> Actual Rate Hauling PLTU @12 KM (Rp/ton)</label>
+                                    <input name="actual_rate" type="text" class="form-control" id="actual_rate">
                                 </div> --}}
 
                                 <div class="col-12">

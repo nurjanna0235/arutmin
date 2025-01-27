@@ -22,41 +22,42 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/asbar/haul-road-maintenance-pltu/update/" method="POST"
+                    <form action="/rate-contract/asbar/haul-road-maintenance-pltu/update/{{ $dokumenhaulroadmaintenancepltu->id }}" method="POST"
                         class="row g-3" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="col-12">
-                            <label for="base_rate_hrm_pltu" class="form-label">Base Rate HRM PLTU (Rp/ton)</label>
-                            <input value="" name="base_rate_hrm_pltu" type="text"
-                                class="form-control" id="base_rate_hrm_pltu">
+                            <label for="base_rate" class="form-label">Base Rate HRM PLTU (Rp/ton)</label>
+                            <input value="{{ $dokumenhaulroadmaintenancepltu->base_rate }}" name="base_rate" type="text"
+                                class="form-control" id="base_rate">
                         </div>
 
                         <div class="col-12">
                             <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
-                            <input value="" name="currency_adjustment"
+                            <input value="{{ $dokumenhaulroadmaintenancepltu->currency_adjustment }}" name="currency_adjustment"
                                 type="text" class="form-control" id="currency_adjustment">
                         </div>
 
                         <div class="col-12">
                             <label for="premium_rate" class="form-label">Premium Rate</label>
-                            <input value="" name="premium_rate" type="text"
+                            <input value="{{ $dokumenhaulroadmaintenancepltu->premium_rate }}" name="premium_rate" type="text"
                                 class="form-control" id="premium_rate">
                         </div>
 
                         <div class="col-12">
                                 <label for="general_escalation" class="form-label">General Escalation</label>
-                                <input value="" name="general_escalation"
+                                <input value="{{ $dokumenhaulroadmaintenancepltu->general_escalation }}" name="general_escalation"
                                     type="text" class="form-control" id="general_escalation">
                             </div>
 
-                                <div class="col-12">
+                            <div class="col-12">
                                     <label for="contract_reference" class="form-label">Contract Reference</label>
-                                    
-                                        <div class="mb-2">
-                                            <a href="" target="_blank">
-                                                <img src=""
-                                                     alt="Image" style="max-width: 200px;">
+                                   
+                                    <div class="mb-2">
+                                            <a href="{{ asset('storage/' . $dokumenhaulroadmaintenancepltu->contract_reference) }}"
+                                                target="_blank">
+                                                <img src="{{ asset('storage/' . $dokumenhaulroadmaintenancepltu->contract_reference) }}"
+                                                    alt="Image" style="max-width: 200px;">
                                             </a>
                                         </div>
 

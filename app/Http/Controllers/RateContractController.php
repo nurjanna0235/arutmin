@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Services\SomeConcreteClass;
 use App\Models\RateContract;
 use Illuminate\Http\Request;
@@ -13,16 +14,21 @@ class RateContractController extends Controller
      */
     public function index()
     {
-       
         return view('rate-contract.index');
     }
 
-   public function asteng(){
+    public function asteng()
+    {
+        return view('rate-contract.asteng');
+    }
 
-    return view('rate-contract.asteng');
-   }
-   public function asbar(){
+    public function asbar()
+    {
+        return view('rate-contract.asbar');
+    }
 
-    return view('rate-contract.asbar');
-   }
+    public function astim()
+    {
+        return view('rate-contract.astim');
+    }
 }

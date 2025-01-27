@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class item_daywork extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run()
     {
         $items = [

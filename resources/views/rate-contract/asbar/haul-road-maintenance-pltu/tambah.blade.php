@@ -28,8 +28,8 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
-                            <label for="base_rate_hrm_pltu" class="form-label">Base Rate HRM PLTU (Rp/ton)</label>
-                            <input name="base_rate_hrm_pltu" type="text" class="form-control" id="base_rate_hrm_pltu">
+                            <label for="base_rate" class="form-label">Base Rate HRM PLTU (Rp/ton)</label>
+                            <input name="base_rate" type="text" class="form-control" id="base_rate">
                         </div>
 
                         <div class="col-12">

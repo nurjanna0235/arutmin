@@ -47,32 +47,40 @@
                 </thead>
 
                 <tbody>
+                <?php $No = 1; ?>
+                @foreach($dokumenhaulroadmaintenancepltu as $item)
+                    
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="text-danger fw-bold"></td>
+                            <td>{{$No++}}</td>
+                            <td>{{$item->bulan_tahun}}</td>
+                            <td>{{$item->base_rate}}</td>
+                            <td>{{$item->currency_adjustment}}</td>
+                            <td>{{$item->premium_rate}}</td>
+                            <td>{{$item->general_escalation}}</td>
+                            <td class="text-danger fw-bold">{{ $item->actual_rate_hauling_pltu }}</td>
                             <td>
-                                <div class="d-flex gap-2 justify-content-center">
-                                    <a href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/detail/1') }}">
+                            <div class="d-flex gap-2 justify-content-center">
+                                    <!-- Tombol Detail -->
+                                    <a href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/detail/' . $item->id) }}" >
                                         <i class="ri-information-line" title="Detail"></i>
                                     </a>
-                                    <a href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/edit/1') }}">
+                                    <!-- Tombol Edit -->
+                                    <a href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/edit/' . $item->id) }}" >
                                         <i class="ri-edit-2-line text-warning" title="Edit"></i>
                                     </a>
-                                    <form action="{{ url('/rate-contract/asbar/haul-road-maintenance-pltu/delete/1') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
+
+                                    <!-- Tombol Hapus -->
+                                    <form action="{{ url('/rate-contract/asbar/haul-road-maintenance-pltu/delete/' . $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" style="border: none; background: none;">
+                                        <button type="submit" style="border: none; background: none;" >
                                             <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
                                         </button>
                                     </form>
                                 </div>
                             </td>
                         </tr>
+                        @endforeach
                 </tbody>
             </table>
         </div>

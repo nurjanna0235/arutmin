@@ -64,16 +64,9 @@
                             </select>
                         </div>
 
-
                         <div class="col-12">
                             <label for="base_rate" class="form-label">Base Rate</label>
                             <input name="base_rate" type="text" class="form-control" id="base_rate">
-                        </div>
-
-                        <div class="col-12">
-                            <label for="contractual_distance_km" class="form-label">Contractual Distance (KM)</label>
-                            <input name="contractual_distance_km" type="text" class="form-control"
-                                id="contractual_distance_km">
                         </div>
 
                         <div class="col-12">
@@ -93,6 +86,12 @@
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" name="general_escalation">
                                     <span class="input-group-text" id="basic-addon2">%</span>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="contractual_distance_km" class="form-label">Contractual Distance (KM)</label>
+                                    <input name="contractual_distance_km" type="text" class="form-control"
+                                        id="contractual_distance_km">
                                 </div>
 
                                 <div class="col-12">

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\admin\asbar_admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\coal;
 use App\Models\coal_hauling_to_pltu;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -45,7 +44,6 @@ class CoalHaulingtoPLTUController extends Controller
        return view('rate-contract/asbar/coalhauling/index', compact('dokumencoalhauling', 'tahunList'));
    }
 
-    }
 
     public function tambah()
     {
@@ -60,7 +58,9 @@ class CoalHaulingtoPLTUController extends Controller
     }
     public function edit($id) 
     {  
-        return view('rate-contract/asbar/coalhauling/edit');
+        $dokumencoalhauling = coal_hauling_to_pltu::where('id', $id)->get()->first();
+   
+        return view('rate-contract/asbar/coalhauling/edit',compact('dokumencoalhauling'));
     }
     public function simpan(Request $request)
     {
@@ -86,14 +86,14 @@ class CoalHaulingtoPLTUController extends Controller
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
-            'rate_actual' => $rate_actual,
+            'actual_rate' => $rate_actual,
             'contract_reference' => $path,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
          // Redirect dengan pesan sukses
-    return redirect()->to('rate-contract/asbar/coalhauling')->with('success', 'Data berhasil ditambahkan');
+    return redirect()->to('rate-contract/asbar/coal-hauling')->with('success', 'Data berhasil ditambahkan');
         
     }
     public function update(Request $request, $id)
@@ -110,14 +110,13 @@ class CoalHaulingtoPLTUController extends Controller
         // Ambil data berdasarkan ID
         $dokumen = DB::table('coal_hauling_to_pltu')->where('id', $id)->first();
 
-        // Proses upload file jika ada file baru
-        $path = $dokumen->contract_reference; // Gunakan file lama jika tidak ada file baru
-        if ($request->hasFile('contract_reference')) {
-            // Hapus file lama jika ada
-            if ($path) {
-                Storage::disk('public')->delete($path);
-            }
-
+      // Proses upload file jika ada file baru
+      $path = $dokumen->contract_reference; // Gunakan file lama jika tidak ada file baru
+      if ($request->hasFile('contract_reference')) {
+          // Hapus file lama jika ada
+          if ($path) {
+              Storage::disk('public')->delete($path);
+          }
             
             // Simpan file baru
             $path = $request->file('contract_reference')->store('img', 'public');
@@ -144,18 +143,18 @@ class CoalHaulingtoPLTUController extends Controller
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
-            'rate_actual' => $rate_actual,
+            'actual_rate' => $rate_actual,
             'contract_reference' => $path,
             'updated_at' => now(),
         ]);
  // Redirect dengan pesan sukses
- return redirect()->to('rate-contract/asbar/coalhauling')->with('success', 'Data berhasil diperbarui');
+ return redirect()->to('rate-contract/asbar/coal-hauling')->with('success', 'Data berhasil diperbarui');
     }
     public function hapus($id)
-        {
+    {
         $dokumencoalhauling = coal_hauling_to_pltu::findOrFail($id);
         $dokumencoalhauling->delete();
-        // Redirect dengan pesan sukses
-        return redirect()->to('rate-contract/asbar/coalhauling')->with('success', 'Data berhasil dihapus');
-        }
 
+        return redirect()->to('rate-contract/asbar/coal-hauling');
+    }
+    }

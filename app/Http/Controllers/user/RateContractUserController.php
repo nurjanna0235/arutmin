@@ -17,5 +17,15 @@ class RateContractUserController extends Controller
 
         return view('user.rate-contract.asteng');
     }
+
+    public function asbar(){
+
+        return view('user.rate-contract.asbar');
+    }
+
+    public function astim(){
+
+        return view('user.rate-contract.astim');
+    }
 }
 

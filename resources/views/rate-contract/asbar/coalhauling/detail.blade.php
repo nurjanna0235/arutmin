@@ -24,9 +24,9 @@
                     <div class="card">
                         <div class="card-body text-center">
                             <h5 class="card-title">Contract Reference</h5>
-                            <a href=""
+                            <a href="{{ asset('storage/' . $dokumencoalhauling->contract_reference) }}"
                                 target="_blank">
-                                <img src=""
+                                <img src="{{ asset('storage/' . $dokumencoalhauling->contract_reference) }}"
                                     alt="Contract Reference" class="img-fluid large-image">
                             </a>
                         </div>

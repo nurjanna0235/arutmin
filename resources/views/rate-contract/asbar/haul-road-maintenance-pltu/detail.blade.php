@@ -22,11 +22,11 @@
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
                     <div class="card">
-                        <div class="card-body text-center">
+                    <div class="card-body text-center">
                             <h5 class="card-title">Contract Reference</h5>
-                            <a href=""
+                            <a href="{{ asset('storage/' . $dokumenhaulroadmaintenancepltu->contract_reference) }}"
                                 target="_blank">
-                                <img src=""
+                                <img src="{{ asset('storage/' . $dokumenhaulroadmaintenancepltu->contract_reference) }}"
                                     alt="Contract Reference" class="img-fluid large-image">
                             </a>
                         </div>

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\item_fuel;
-use App\Models\value_fuel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\fuel;

@@ -41,6 +41,8 @@
                 </select>
             </div>
 
+            
+
             <!-- Tombol Submit untuk Search -->
             <button type="submit" class="btn btn-primary">Cari</button>
         </form>
@@ -61,32 +63,39 @@
                 </tr>
             </thead>
 
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-danger fw-bold"></td>
-                    <td>
-                        <div class="d-flex gap-2 justify-content-center">
-                            <a href="{{ url('rate-contract/asbar/fuel-asbar/detail/1') }}">
-                                <i class="ri-information-line" title="Detail"></i>
-                            </a>
-                            <a href="{{ url('rate-contract/asbar/fuel-asbar/edit/1') }}">
-                                <i class="ri-edit-2-line text-warning" title="Edit"></i>
-                            </a>
-                            <form action="{{ url('/rate-contract/asbar/fuel-asbar/delete/1') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" style="border: none; background: none;">
-                                    <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
+            <?php $No = 1; ?>
+            @foreach($dokumenfuelasbar as $item)
+            <tr>
+                <td>{{ $No++ }}</td>
+                <td>{{ $item->bulan_tahun }}</td>
+                <td>{{ $item->activity }}</td>
+                <td>{{ $item->item }}</td>
+                <td>{{ $item->fuel_index }}</td>
+                <td>{{ $item->distance }}</td>
+                <td>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <!-- Tombol Detail -->
+                        <a
+                            href="{{ url('rate-contract/asbar/fuel-asbar/detail/' . $item->id) }}">
+                            <i class="ri-information-line text-primary" title="Detail"></i>
+                        </a>
+                        <!-- Tombol Edit -->
+                        <a href="{{ url('rate-contract/asbar/fuel-asbar/edit/' . $item->id) }}">
+                            <i class="ri-edit-2-line text-warning" title="Edit"></i>
+                        </a>
+
+                        <!-- Tombol Hapus -->
+                        <form action="{{ url('/rate-contract/asbar/fuel-asbar/delete/' . $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" style="border: none; background: none;">
+                                <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

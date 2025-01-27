@@ -8,8 +8,6 @@ use App\Models\item_daywork;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-use PhpParser\Node\Expr\Cast\Double;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
@@ -50,9 +48,10 @@ class DayworkController extends Controller
         $itemList = item_daywork::select('id_item', 'nama_item')->distinct()->get();
     
         return view('rate-contract/asteng/daywork/index', compact('dokumendaywork', 'tahunList', 'itemList'));
-    }    public function detail($id)
+    }  
+      public function detail($id)
     {
-        $dokumendaywork = daywork::where('id', $id)->get()->first();
+        $dokumendaywork = daywork::where('id_daywork', $id)->get()->first();
         return view('rate-contract/asteng/daywork/detail', compact('dokumendaywork'));
     }
     

@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('daywork_asbar', function (Blueprint $table) {
             $table->id('id_daywork_asbar'); // Primary key
-            $table->bigInteger('id_kontraktor')->unsigned();
+            $table->bigInteger('id_kontraktor')->unsigned(); //fk
+            $table->string('national_suptent')->nullable();
+            $table->string('national_spv')->nullable();
+            $table->string('operator')->nullable();
+            $table->string('labour')->nullable();
+            $table->string('mechanic')->nullable();
             $table->string('currency_adjustment')->nullable();
-            
             $table->string('index')->nullable();
             $table->string('premium_rate')->nullable();
             $table->string('general_escalation')->nullable();

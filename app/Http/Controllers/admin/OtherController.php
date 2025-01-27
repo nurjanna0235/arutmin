@@ -4,10 +4,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\other;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Generator;
-use PhpParser\Node\Expr\Cast\Double;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 class OtherController extends Controller

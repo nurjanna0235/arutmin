@@ -22,43 +22,45 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/asteng/coal-hauling/update/" method="POST"
+                    <form action="/rate-contract/asbar/coal-hauling/update/{{ $dokumencoalhauling->id }}" method="POST"
                         class="row g-3" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="col-12">
                             <label for="base_rate" class="form-label">Base Rate Hauling PLTU @12 KM (Rp/ton)</label>
-                            <input value="" name="base_rate" type="text"
+                            <input value="{{ $dokumencoalhauling->base_rate }}" name="base_rate" type="text"
                                 class="form-control" id="base_rate">
                         </div>
 
                         <div class="col-12">
                             <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
-                            <input value="" name="currency_adjustment"
+                            <input value="{{ $dokumencoalhauling->currency_adjustment }}" name="currency_adjustment"
                                 type="text" class="form-control" id="currency_adjustment">
                         </div>
 
                         <div class="col-12">
                             <label for="premium_rate" class="form-label">Premium Rate</label>
-                            <input value="" name="premium_rate" type="text"
+                            <input value="{{ $dokumencoalhauling->premium_rate }}" name="premium_rate" type="text"
                                 class="form-control" id="premium_rate">
                         </div>
 
                         <div class="col-12">
                                 <label for="general_escalation" class="form-label">General Escalation</label>
-                                <input value="" name="general_escalation"
+                                <input value="{{ $dokumencoalhauling->general_escalation }}" name="general_escalation"
                                     type="text" class="form-control" id="general_escalation">
                             </div>
 
                                 <div class="col-12">
                                     <label for="contract_reference" class="form-label">Contract Reference</label>
                                    
-                                        <div class="mb-2">
-                                            <a href="" target="_blank">
-                                                <img src=""
-                                                     alt="Image" style="max-width: 200px;">
+                                    <div class="mb-2">
+                                            <a href="{{ asset('storage/' . $dokumencoalhauling->contract_reference) }}"
+                                                target="_blank">
+                                                <img src="{{ asset('storage/' . $dokumencoalhauling->contract_reference) }}"
+                                                    alt="Image" style="max-width: 200px;">
                                             </a>
                                         </div>
+
                                     <input type="file" name="contract_reference" class="form-control" id="contract_reference">
                                     <small class="text-muted">Upload file baru jika ingin mengganti gambar yang ada</small>
                                 </div>

@@ -22,69 +22,70 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/asbar/dayworkasbar/update/" method="POST"
+                    <form action="/rate-contract/asbar/daywork-asbar/update/{{ $dokumendaywork_asbar->id_daywork_asbar }}" method="POST"
                         class="row g-3" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="col-12">
                             <label for="item" class="form-label">Item</label>
-                            <input value="" name="item" type="text"
-                                class="form-control" id="item">
+                            <select name="item" class="form-select" id="floatingSelect"
+                                aria-label="Floating label select example">
+                                <option value="{{ $dokumendaywork_asbar->id_item_daywork_asbar }}" selected>
+                                    {{$dokumendaywork_asbar->nama_item}}</option>
+                                @foreach($item as $option)
+                                <option value="{{ $option->id_item_daywork_asbar }}">
+                                    {{ $option->nama_item }}
+                                </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="col-12">
                             <label for="base_rate_exc_fuel" class="form-label">Base Rate Exc. Fuel (Rp/Hrs)</label>
-                            <input value="" name="base_rate_exc_fuel" type="text"
+                            <input value="{{ $dokumendaywork_asbar->base_rate_exc_fuel }}" name="base_rate_exc_fuel" type="text"
                                 class="form-control" id="base_rate_exc_fuel">
                         </div>
 
                         <div class="col-12">
-                            <label for="labour" class="form-label">Labour</label>
-                            <input value="" name="labour" type="text"
-                                class="form-control" id="labour">
-                        </div>
-
-                        <div class="col-12">
-                            <label for="rp_hrs" class="form-label">(Rp/Hrs)</label>
-                            <input value="" name="rp_hrs" type="text"
-                                class="form-control" id="rp_hrs">
-                        </div>
-
-                        <div class="col-12">
                             <label for="currency_adjustment" class="form-label">Currency Adjustment</label>
-                            <input value="" name="currency_adjustment"
+                            <input value="{{ $dokumendaywork_asbar->currency_adjustment }}" name="currency_adjustment"
                                 type="text" class="form-control" id="currency_adjustment">
                         </div>
 
                         <div class="col-12">
                             <label for="index" class="form-label">Index</label>
-                            <input value="" name="index"
+                            <input value="{{ $dokumendaywork_asbar->index }}" name="index"
                                 type="text" class="form-control" id="index">
                         </div>
 
                         <div class="col-12">
                             <label for="premium_rate" class="form-label">Premium Rate</label>
-                            <input value="" name="premium_rate" type="text"
+                            <input value="{{ $dokumendaywork_asbar->premium_rate }}" name="premium_rate" type="text"
                                 class="form-control" id="premium_rate">
                         </div>
 
                         <div class="col-12">
                                 <label for="general_escalation" class="form-label">General Escalation</label>
-                                <input value="" name="general_escalation"
+                                <input value="{{ $dokumendaywork_asbar->general_escalation }}" name="general_escalation"
                                     type="text" class="form-control" id="general_escalation">
                             </div>
 
-                                <div class="col-12">
+                            <div class="col-12">
                                     <label for="contract_reference" class="form-label">Contract Reference</label>
-                                   
-                                        <div class="mb-2">
-                                            <a href="" target="_blank">
-                                                <img src=""
-                                                     alt="Image" style="max-width: 200px;">
-                                            </a>
-                                        </div>
-                                    <input type="file" name="contract_reference" class="form-control" id="contract_reference">
-                                    <small class="text-muted">Upload file baru jika ingin mengganti gambar yang ada</small>
+                                    @if($dokumendaywork_asbar->contract_reference)
+                                    <div class="mb-2">
+                                        <a href="{{ asset('storage/' . $dokumendaywork_asbar->contract_reference) }}"
+                                            target="_blank">
+                                            <img src="{{ asset('storage/' . $dokumendaywork_asbar->contract_reference) }}"
+                                                alt="Image" style="max-width: 200px;"> 
+                                        </a>
+                                    </div>
+
+                                    @endif
+                                    <input type="file" name="contract_reference" class="form-control"
+                                        id="contract_reference">
+                                    <small class="text-muted">Upload file baru jika ingin mengganti gambar yang
+                                        ada</small>
                                 </div>
 
                                 <div class="col-12 mt-3">

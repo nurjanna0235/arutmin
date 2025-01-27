@@ -88,7 +88,7 @@
                                         <a href="{{ asset('storage/' . $dokumendaywork->contract_reference) }}"
                                             target="_blank">
                                             <img src="{{ asset('storage/' . $dokumendaywork->contract_reference) }}"
-                                                alt="Image" style="max-width: 200px;">
+                                                alt="Image" style="max-width: 200px;"> 
                                         </a>
                                     </div>
 

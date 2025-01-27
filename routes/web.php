@@ -37,6 +37,17 @@ use App\Http\Controllers\admin\asbar_admin\CoalHaulingtoPLTUController;
 use App\Http\Controllers\admin\asbar_admin\HaulRoadMaintenancePLTUController;
 use App\Http\Controllers\admin\asbar_admin\DayworkAsbarController;
 use App\Http\Controllers\admin\asbar_admin\FuelAsbarController;
+
+//controller user bagian asbar
+use App\Http\Controllers\user\asbar_user\CoalHaulingPLTUUserController;
+use App\Http\Controllers\user\asbar_user\HaulRoadMaintenancePLTUUserController;
+use App\Http\Controllers\user\asbar_user\DayworkAsbarUserController;
+use App\Http\Controllers\user\asbar_user\FuelAsbarUserController;
+
+//controller admin bagian astim
+use App\Http\Controllers\admin\astim_admin\PitClearingLCMController;
+use App\Http\Controllers\admin\astim_admin\TopSoilLCMController;
+
 //Halaman beranda
 // Route::get('beranda', [BerandaController::class, 'index']);
 
@@ -48,7 +59,7 @@ Route::get('admin/pengguna/tambah', [PenggunaController::class, 'tambah']);
 Route::post('admin/pengguna/simpan', [PenggunaController::class, 'simpan']);
 Route::delete('admin/pengguna/delete/{num}', [PenggunaController::class, 'delete']);
 
-
+// Halaman user
 Route::delete('user/pengguna/delete/{num}', [PenggunaController::class, 'delete']);
 
 //Route::get('kontraktor', [KontraktorController::class, 'index']);
@@ -75,7 +86,6 @@ Route::post('rate-contract/asteng/top-soil/simpan', [TopSoilController::class, '
 Route::delete('rate-contract/asteng/top-soil/delete/{num}', [TopSoilController::class, 'hapus']);
 Route::get('rate-contract/asteng/top-soil/edit/{num}', [topSoilController::class, 'edit']);
 Route::put('rate-contract/asteng/top-soil/update/{num}', [topSoilController::class, 'update']);
-
 
 //rate_contract Darma Henwa Asteng/ob
 Route::get('rate-contract/asteng/ob', [OBController::class, 'index']);
@@ -149,23 +159,10 @@ Route::delete('rate-contract/asteng/fuel/delete/{num}', [fuelController::class, 
 Route::get('rate-contract/asteng/fuel/edit/{num}', [fuelController::class, 'edit']);
 Route::put('rate-contract/asteng/fuel/update/{num}', [fuelController::class, 'update']);
 
-//route asbar
-//rate_contract Darma Henwa Asbar/Coal Hauling to PLTU
-//Route::get('rate-contract/asbar/coal-hauling', [CoalHaulingController::class, 'index']);
-//Route::get('rate-contract/asbar/coal-hauling/detail/{num}', [CoalHaulingController::class, 'detail']);
-//Route::get('rate-contract/asbar/coal-hauling/tambah', [CoalHaulingController::class, 'tambah']);
-//Route::post('rate-contract/asbar/coal-hauling/simpan', [CoalHaulingController::class, 'simpan']);
-//Route::delete('rate-contract/asbar/coal-hauling/delete/{num}', [CoalHaulingController::class, 'hapus']);
-//Route::get('rate-contract/asbar/coal-hauling/edit/{num}', [CoalHaulingController::class, 'edit']);
-//Route::put('rate-contract/asbar/coal-hauling/update/{num}', [CoalHaulingController::class, 'update']);
 
+// Ini adalah route halaman user
 
-// Route::get('akun', [datacontroller::class, 'tampil'])->name('akun.tampil');
-
-
-// Ini adalah route sagan halaman user
-
-//Halaman User
+//Halaman User Asteng//
 Route::get('user/beranda', [BerandaUserController::class, 'index']);
 //Dokumen rate-contract
 Route::get('user/rate-contract', [RateContractUserController::class, 'index']);
@@ -214,11 +211,7 @@ Route::get('user/rate-contract/asteng/fuel', [FuelUserController::class, 'index'
 Route::get('user/rate-contract/asteng/fuel/detail/{num}', [FuelUserController::class, 'detail']);
 
 
-
-
-
-
-//route bagian asbar
+//route admin bagian asbar//
 Route::get('rate-contract/asbar', [RateContractController::class, 'asbar']);
 
 //route asbar rate_contract Darma Henwa Asbar/Coal Hauling to PLTU
@@ -256,3 +249,48 @@ Route::post('rate-contract/asbar/fuel-asbar/simpan', [FuelAsbarController::class
 Route::delete('rate-contract/asbar/fuel-asbar/delete/{num}', [FuelAsbarController::class, 'hapus']);
 Route::get('rate-contract/asbar/fuel-asbar/edit/{num}', [FuelAsbarController::class, 'edit']);
 Route::put('rate-contract/asbar/fuel-asbar/update/{num}', [FuelAsbarController::class, 'update']);
+
+//Halaman User Asbar
+Route::get('user/beranda', [BerandaUserController::class, 'index']);
+//Dokumen rate-contract
+Route::get('user/rate-contract/asbar', [RateContractUserController::class, 'asbar']);
+
+//rate_contract Darma Henwa Asbar/coal-hauling user
+Route::get('user/rate-contract/asbar/coal-hauling', [CoalHaulingPLTUUserController::class, 'index']);
+Route::get('user/rate-contract/asbar/coal-hauling/detail/{num}', [CoalHaulingPLTUUserController::class, 'detail']);
+
+//route asbar rate_contract Darma Henwa Asbar/haul-road-maintenance-pltu Asbar user
+Route::get('user/rate-contract/asbar/haul-road-maintenance-pltu', [HaulRoadMaintenancePLTUUserController::class, 'index']);
+Route::get('user/rate-contract/asbar/haul-road-maintenance-pltu/detail/{num}', [HaulRoadMaintenancePLTUUserController::class, 'detail']);
+
+//route asbar rate_contract Darma Henwa Asbar/Daywork Asbar user
+Route::get('user/rate-contract/asbar/daywork-asbar', [DayworkAsbarUserController::class, 'index']);
+Route::get('user/rate-contract/asbar/daywork-asbar/detail/{num}', [DayworkAsbarUserController::class, 'detail']);
+
+//route asbar rate_contract Darma Henwa Asbar/Fuel Asbar user
+Route::get('user/rate-contract/asbar/fuel-asbar', [FuelAsbarUserController::class, 'index']);
+Route::get('user/rate-contract/asbar/fuel-asbar/detail/{num}', [FuelAsbarUserController::class, 'detail']);
+
+
+//Halaman Bagian Astim//
+Route::get('user/beranda', [BerandaUserController::class, 'index']);
+//Dokumen rate-contract
+Route::get('rate-contract/astim', [RateContractController::class, 'astim']);
+
+//route astim rate_contract Laz Coal Mandiri Astim/pit-clearing
+Route::get('rate-contract/astim/pit-clearing-lcm', [PitClearingLCMController::class, 'index']);
+Route::get('rate-contract/astim/pit-clearing-lcm/detail/{num}', [PitClearingLCMController::class, 'detail']);
+Route::get('rate-contract/astim/pit-clearing-lcm/tambah', [PitClearingLCMController::class, 'tambah']);
+Route::post('rate-contract/astim/pit-clearing-lcm/simpan', [PitClearingLCMController::class, 'simpan']);
+Route::delete('rate-contract/astim/pit-clearing-lcm/delete/{num}', [PitClearingLCMController::class, 'hapus']);
+Route::get('rate-contract/astim/pit-clearing/edit-lcm/{num}', [PitClearingLCMController::class, 'edit']);
+Route::put('rate-contract/astim/pit-clearing/update-lcm/{num}', [PitClearingLCMController::class, 'update']);
+
+//route astim rate_contract Laz Coal Mandiri Astim/top-soil
+Route::get('rate-contract/astim/top-soil-lcm', [TopSoilLCMController::class, 'index']);
+Route::get('rate-contract/astim/top-soil-lcm/detail/{num}', [TopSoilLCMController::class, 'detail']);
+Route::get('rate-contract/astim/top-soil-lcm/tambah', [TopSoilLCMController::class, 'tambah']);
+Route::post('rate-contract/astim/top-soil-lcm/simpan', [TopSoilLCMController::class, 'simpan']);
+Route::delete('rate-contract/astim/top-soil-lcm/delete/{num}', [TopSoilLCMController::class, 'hapus']);
+Route::get('rate-contract/astim/top-soil/edit-lcm/{num}', [TopSoilLCMController::class, 'edit']);
+Route::put('rate-contract/astim/top-soil/update-lcm/{num}', [TopSoilLCMController::class, 'update']);
