@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\fuel;
 use carbon\carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class FuelController extends Controller
 {
@@ -56,12 +58,11 @@ class FuelController extends Controller
     {
         return view('rate-contract/asteng/fuel/tambah');
     }
-    public function simpan(Request $requet)
+    public function simpan(Request $request)
     {
         $path = $request->file('contract_reference')->store('img', 'public');
 
-        // Update data ke database
-        fuel::table('fuel')->insert([
+       
 
         // simpan data ke database
         fuel::insert([
@@ -84,6 +85,7 @@ class FuelController extends Controller
 
         // Kirim data ke view
         return view('rate-contract/asteng/fuel/edit', compact('dokumenfuel'));
+
     }
 
     public function update(Request $request, $id)
@@ -91,12 +93,25 @@ class FuelController extends Controller
         // Ambil data berdasarkan ID
         $dokumenfuel = fuel::findOrFail($id);
 
+        $path = $dokumenfuel->contract_reference;
+        if ($request->hasFile('contract_reference')) {
+
+            // Hapus file lama jika ada
+            if ($path) {
+                Storage::disk('public')->delete($path);
+            }
+            // Simpan file baru
+            $path = $request->file('contract_reference')->store('img', 'public');
+        }
+
         // Update data
         $dokumenfuel->update([
             'activity' => $request->activity,
             'item' => $request->item,
             'fuel_index' => $request->fuel_index,
             'contractual_distance_km' => $request->contractual_distance_km,
+            'contract_reference' => $path,
+            'created_at' => now(),
             'updated_at' => now(),
         ]);
 

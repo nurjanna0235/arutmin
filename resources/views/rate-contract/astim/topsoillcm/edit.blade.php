@@ -10,7 +10,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active">Laz Coal Mandiri</li>
                 <li class="breadcrumb-item active">Astim</li>
-                <li class="breadcrumb-item active">Pit Clearing</li>
+                <li class="breadcrumb-item active">Top Soil</li>
                 <li class="breadcrumb-item active">Edit</li>
             </ol>
         </nav>
@@ -22,29 +22,29 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/astim/pit-clearing-lcm/update/{{ $dokumenpit_clearing_lcm->id }}" method="POST"
+                    <form action="/rate-contract/astim/top-soil-lcm/update/{{ $dokumentop_soil_lcm->id }}" method="POST"
                         class="row g-3" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="col-12">
                             <label for="rate_actual_base_rate_lebih_dari" class="form-label">Base Rate (ICI 4 >= $60)</label>
-                            <input value="{{ $dokumenpit_clearing_lcm->rate_actual_base_rate_lebih_dari }}" name="rate_actual_base_rate_lebih_dari" type="text"
+                            <input value="{{ $dokumentop_soil_lcm->rate_actual_base_rate_lebih_dari }}" name="rate_actual_base_rate_lebih_dari" type="number"
                                 class="form-control" id="rate_actual_base_rate_lebih_dari">
                         </div>
 
                         <div class="col-12">
                             <label for="rate_actual_base_rate_kurang_dari" class="form-label">Base Rate (ICI 4 < $60)</label>
-                            <input value="{{ $dokumenpit_clearing_lcm->rate_actual_base_rate_kurang_dari }}" name="rate_actual_base_rate_kurang_dari"
-                                type="text" class="form-control" id="rate_actual_base_rate_kurang_dari">
+                            <input value="{{ $dokumentop_soil_lcm->rate_actual_base_rate_kurang_dari }}" name="rate_actual_base_rate_kurang_dari"
+                                type="number" class="form-control" id="rate_actual_base_rate_kurang_dari">
                         </div>
 
                                 <div class="col-12">
                                     <label for="contract_reference" class="form-label">Contract Reference</label>
-                                    @if($dokumenpit_clearing_lcm->contract_reference)
+                                    @if($dokumentop_soil_lcm->contract_reference)
                                         <div class="mb-2">
-                                            <a href="{{ asset('storage/' . $dokumenpit_clearing_lcm->contract_reference) }}"
+                                            <a href="{{ asset('storage/' . $dokumentop_soil_lcm->contract_reference) }}"
                                                 target="_blank">
-                                                <img src="{{ asset('storage/' . $dokumenpit_clearing_lcm->contract_reference) }}"
+                                                <img src="{{ asset('storage/' . $dokumentop_soil_lcm->contract_reference) }}"
                                                     alt="Image" style="max-width: 200px;">
                                             </a>
                                         </div>

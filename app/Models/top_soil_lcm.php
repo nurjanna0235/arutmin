@@ -4,18 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-class labour_asbar extends Model
+class top_soil_lcm extends Model
 {
     use HasFactory;
 
     // Tentukan nama tabel jika berbeda dari asumsi Laravel
-    protected $table = 'labour_asbar';
+    protected $table = 'top_soil_lcm';
 
     // Tentukan kolom kunci utama jika tidak menggunakan 'id'
-    protected $primaryKey = 'id_labour_asbar';
+    protected $primaryKey = 'id';
 
-    public $timestamps = false;
-
-    // Daftar kolom yang dapat diisi secara massal
-    protected $fillable = ['id_daywork_asbar','nama_labour_asbar'];
+    protected $fillable = ['rate_actual_base_rate_lebih_dari','rate_actual_base_rate_kurang_dari','created_at','updated_at'];
 }

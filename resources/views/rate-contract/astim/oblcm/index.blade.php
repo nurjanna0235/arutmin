@@ -10,18 +10,18 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active"> Laz Coal Mandiri</li>
                 <li class="breadcrumb-item active">Astim</li>
-                <li class="breadcrumb-item active">Pit Clearing</li>
+                <li class="breadcrumb-item active">OB</li>
             </ol>
         </nav>
 
         <div class="icon mb-3">
-            <a href="/rate-contract/astim/pit-clearing-lcm/tambah" type="button"
+            <a href="/rate-contract/astim/ob-lcm/tambah" type="button"
                 class="btn btn-success"><i></i>Tambah</a>
         </div>
 
         <!-- Form untuk pencarian -->
         <div class="mb-4">
-            <form method="GET" action="{{ url('/rate-contract/astim/pit-clearing-lcm') }}"
+            <form method="GET" action="{{ url('/rate-contract/astim/ob-lcm') }}"
                 class="d-flex align-items-center gap-3">
                 <!-- Input Pencarian Tahun -->
                 <div class="form-group">
@@ -46,7 +46,7 @@
 
                 <tbody>
                     <?php $No = 1; ?>
-                    @foreach($dokumenpit_clearing_lcm as $item)
+                    @foreach($dokumenob_lcm as $item)
                         <tr>
                             <td>{{ $No++ }}</td>
                             <td>
@@ -75,9 +75,51 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <th>Rate Actual (Rp/Ha)</th>
-                                                                <td>{{ $item->rate_actual_base_rate_lebih_dari }}</td>
-                                                                <td>{{ $item->rate_actual_base_rate_kurang_dari }}
+                                                                <th>Load and Haul (Rp/BCM)</th>
+                                                                <td>{{ $item->load_and_haul_lcm_base_rate_lebih_dari }}</td>
+                                                                <td>{{ $item->load_and_haul_lcm_base_rate_kurang_dari }}
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Pit Support (Rp/BCM)</th>
+                                                                <td>{{ $item->pit_support_lebih_dari }}</td>
+                                                                <td>{{ $item->pit_support_kurang_dari }}
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Pit Lighting (Rp/BCM)</th>
+                                                                <td>{{ $item->pit_lighting_lebih_dari }}</td>
+                                                                <td>{{ $item->pit_lighting_kurang_dari }}
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Haul Road Maintenance (Rp/BCM)</th>
+                                                                <td>{{ $item->haul_road_maintenance_lebih_dari }}</td>
+                                                                <td>{{ $item->haul_road_maintenance_kurang_dari }}
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Dewatering/Sediment Pit Active (Rp/BCM)</th>
+                                                                <td>{{ $item->dewatering_sediment_pit_active_lebih_dari }}</td>
+                                                                <td>{{ $item->dewatering_sediment_pit_active_kurang_dari }}
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Water Treatment (liming) (Rp/BCM)</th>
+                                                                <td>{{ $item->water_treatment_lebih_dari }}</td>
+                                                                <td>{{ $item->water_treatment_kurang_dari }}
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Total Rate OB Actual (Rp/BCM)</th>
+                                                                <td>{{ $item->total_rate_ob_actual_lebih_dari }}</td>
+                                                                <td>{{ $item->total_rate_ob_actual_kurang_dari }}
                                                                 </td>
                                                             </tr>
 
@@ -97,15 +139,15 @@
                             <td>
                                 <div class="d-flex gap-2 justify-content-center">
                                     <a
-                                        href="{{ url('rate-contract/astim/pit-clearing-lcm/detail/' . $item->id) }}">
+                                        href="{{ url('rate-contract/astim/ob-lcm/detail/' . $item->id) }}">
                                         <i class="ri-information-line" title="Detail"></i>
                                     </a>
                                     <a
-                                        href="{{ url('rate-contract/astim/pit-clearing-lcm/edit/' . $item->id) }}">
+                                        href="{{ url('rate-contract/astim/ob-lcm/edit/' . $item->id) }}">
                                         <i class="ri-edit-2-line text-warning" title="Edit"></i>
                                     </a>
                                     <form
-                                        action="{{ url('/rate-contract/astim/pit-clearing-lcm/delete/' . $item->id) }}"
+                                        action="{{ url('/rate-contract/astim/ob-lcm/delete/' . $item->id) }}"
                                         method="POST"
                                         onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
                                         class="d-inline">

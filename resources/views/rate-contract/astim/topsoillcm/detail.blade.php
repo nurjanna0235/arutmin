@@ -12,7 +12,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">Laz Coal Mandiri</li>
                     <li class="breadcrumb-item active">Astim</li>
-                    <li class="breadcrumb-item active">Pit Clearing</li>
+                    <li class="breadcrumb-item active">Top Soil</li>
                     <li class="breadcrumb-item active">Detail</li>
                 </ol>
             </nav>
@@ -24,9 +24,9 @@
                     <div class="card">
                         <div class="card-body text-center">
                             <h5 class="card-title">Contract Reference</h5>
-                            <a href="{{ asset('storage/' . $dokumenpit_clearing_lcm->contract_reference) }}"
+                            <a href="{{ asset('storage/' . $dokumentop_soil_lcm->contract_reference) }}"
                                 target="_blank">
-                                <img src="{{ asset('storage/' . $dokumenpit_clearing_lcm->contract_reference) }}"
+                                <img src="{{ asset('storage/' . $dokumentop_soil_lcm->contract_reference) }}"
                                     alt="Contract Reference" class="img-fluid large-image">
                             </a>
                         </div>

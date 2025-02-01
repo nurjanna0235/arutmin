@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/template-admin/assets/img/favicon.png" rel="icon">
+    <link href="/template-admin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -30,6 +30,7 @@
 
         <!-- Template Main CSS File -->
         <link href="/template-admin/assets/css/style.css" rel="stylesheet">
+
 
         <!-- =======================================================
   * Template Name: NiceAdmin
@@ -108,6 +109,8 @@
 
     <!-- Template Main JS File -->
     <script src="template-admin/assets/js/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
 

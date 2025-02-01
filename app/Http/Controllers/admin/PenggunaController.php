@@ -44,15 +44,6 @@ class PenggunaController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $request->validate([
-        //     'username' => 'required|string|max:255',
-        //     'nik' => 'required|string|max:20',
-        //     'email' => 'required|email|max:255',
-        //     'password' => 'nullable|string|min:8', // null berarti password tidak perlu diubah jika kosong
-        //     'no_hp' => 'required|string',
-        //     'level' => 'required|integer',
-        // ]);
-
         $dataPengguna = pengguna::findOrFail($id);
 
         $dataPengguna->update([

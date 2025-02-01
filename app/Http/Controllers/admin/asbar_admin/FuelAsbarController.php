@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\fuel_asbar;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 
 class FuelAsbarController extends Controller
@@ -74,12 +75,13 @@ class FuelAsbarController extends Controller
         // Kirim data ke view
         return view('rate-contract/asbar/fuelasbar/edit', compact('dokumenfuelasbar'));
     }
+
     public function update(Request $request, $id)
     {
         // Ambil data berdasarkan ID
         $dokumenfuelasbar = fuel_asbar::findOrFail($id);
         // Proses upload file jika ada file baru
-        $path = $dokumenfuelasbar->contract_reference; // Gunakan file lama jika tidak ada file baru
+        $path = $dokumenfuelasbar->contract_reference;
         if ($request->hasFile('contract_reference')) {
             // Hapus file lama jika ada
             if ($path) {
@@ -87,10 +89,10 @@ class FuelAsbarController extends Controller
             }
             // Simpan file baru
             $path = $request->file('contract_reference')->store('img', 'public');
+            
         }
 
-        // Update data
-        $dokumenfuelasbar->update([
+        DB::table('fuel_asbar')->where('id', $id)->update([
             'activity' => $request->activity,
             'item' => $request->item,
             'fuel_index' => $request->fuel_index,
@@ -111,6 +113,12 @@ class FuelAsbarController extends Controller
     public function hapus($id)
     {
         $dokumenfuelasbar = fuel_asbar::findOrFail($id);
+
+        $path = $dokumenfuelasbar->contract_reference;
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
+
         $dokumenfuelasbar->delete();
 
         return redirect()->to('rate-contract/asbar/fuel-asbar');

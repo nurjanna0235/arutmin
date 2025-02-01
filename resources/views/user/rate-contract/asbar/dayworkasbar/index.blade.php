@@ -16,7 +16,7 @@
     </div>
     <!-- Form untuk pencarian -->
     <div class="mb-4">
-        <form method="GET" action="{{ url('/user/rate-contract/asbar/dayworkasbar') }}"
+        <form method="GET" action="{{ url('/user/rate-contract/asbar/daywork-asbar/') }}"
             class="d-flex align-items-center gap-3">
             <!-- Input Pencarian Tahun -->
             <div class="form-group">
@@ -32,7 +32,6 @@
                     @endforeach
                 </select>
             </div>
-
             
             <!-- Tombol Submit untuk Search -->
             <button type="submit" class="btn btn-primary">Cari</button>

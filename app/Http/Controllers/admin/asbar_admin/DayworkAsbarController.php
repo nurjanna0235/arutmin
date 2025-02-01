@@ -59,11 +59,6 @@ class DayworkAsbarController extends Controller
 
         // Konversi input ke tipe data numerik
         $base_rate_exc_fuel = (float) $request->base_rate_exc_fuel;
-        $national_suptent = (float) $request->national_suptent;
-        $national_spv = (float) $request->national_spv;
-        $operator = (float) $request->operator;
-        $labour = (float) $request->labour;
-        $mechanic = (float) $request->mechanic;
         $currency_adjustment = (float) $request->currency_adjustment;
         $index = (float) $request->index; // Konversi persen ke desimal
         $premium_rate = (float) $request->premium_rate / 100; // Konversi persen ke desimal
@@ -77,8 +72,8 @@ class DayworkAsbarController extends Controller
             'id_item_daywork_asbar' => $request->item,
             'currency_adjustment' => $currency_adjustment,
             'index' => $index, // Nilai asli dalam persen
-            'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
-            'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
+            'premium_rate' => $premium_rate, // Nilai asli dalam persen
+            'general_escalation' => $general_escalation, // Nilai asli dalam persen
             'contract_reference' => $path,
             'actual_rate_exc_fuel' => $actual_rate_exc_fuel,
             'base_rate_exc_fuel' => $base_rate_exc_fuel,

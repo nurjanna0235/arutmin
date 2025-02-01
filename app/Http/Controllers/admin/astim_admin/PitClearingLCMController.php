@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\admin\astim_admin;
+
 use App\Models\pit_clearing_lcm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PitClearingLCMController extends Controller
 {
@@ -56,45 +58,41 @@ class PitClearingLCMController extends Controller
     public function simpan(Request $request)
     {
         $path = $request->file('contract_reference')->store('img', 'public');
-        
+
         // Simpan ke database
-        DB::table('pit_clearing')->insert([
+        DB::table('pit_clearing_lcm')->insert([
+            'rate_actual_base_rate_lebih_dari' => $request->rate_actual_base_rate_lebih_dari,
+            'rate_actual_base_rate_kurang_dari' => $request->rate_actual_base_rate_kurang_dari,
             'contract_reference' => $path,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-
-
         // Redirect dengan pesan sukses
-        return redirect()->to('rate-contract/asteng/pit-clearing')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->to('rate-contract/astim/pit-clearing-lcm')->with('success', 'Data berhasil ditambahkan');
     }
-
-
 
     public function hapus($id)
     {
-        $dokumenpit_clearing = pit_clearing_lcm::findOrFail($id);
-        $dokumenpit_clearing->delete();
+        $dokumenpit_clearing_lcm = pit_clearing_lcm::findOrFail($id);
+        $dokumenpit_clearing_lcm->delete();
 
-        return redirect()->to('rate-contract/asteng/pit-clearing');
+        return redirect()->to('rate-contract/astim/pit-clearing-lcm');
     }
 
     public function edit($id)
     {
-        $dokumenpit_clearing = pit_clearing_lcm::where('id', $id)->get()->first();
+        $dokumenpit_clearing_lcm = pit_clearing_lcm::where('id', $id)->get()->first();
 
-        return view('rate-contract/asteng/pitclearing/edit', compact('dokumenpit_clearing'));
+        return view('rate-contract/astim/pitclearinglcm/edit', compact('dokumenpit_clearing_lcm'));
     }
 
     public function update(Request $request, $id)
     {
         // Validasi input
-        $request->validate([
-         
-        ]);
+        $request->validate([]);
 
         // Ambil data berdasarkan ID
-        $dokumen = DB::table('pit_clearing')->where('id', $id)->first();
+        $dokumen = DB::table('pit_clearing_lcm')->where('id', $id)->first();
 
         // Proses upload file jika ada file baru
         $path = $dokumen->contract_reference; // Gunakan file lama jika tidak ada file baru
@@ -104,30 +102,22 @@ class PitClearingLCMController extends Controller
                 Storage::disk('public')->delete($path);
             }
             // Simpan file baru
+
             $path = $request->file('contract_reference')->store('img', 'public');
         }
 
-        // Proses data input
-        $base_rate = str_replace([','], ['.'], $request->base_rate);
-        $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
-        $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
-        $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
-
-        // Konversi menjadi float untuk perhitungan
-        $base_rate = (float) $base_rate;
-        $currency_adjustment = (float) $currency_adjustment;
-        $premium_rate = (float) $premium_rate;
-        $general_escalation = (float) $general_escalation;
-
-        // Hitung Rate Actual sesuai rumus
-        $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
+        // Proses data input sebagai teks
+        $rate_actual_base_rate_lebih_dari = $request->rate_actual_base_rate_lebih_dari;
+        $rate_actual_base_rate_kurang_dari = $request->rate_actual_base_rate_kurang_dari;
 
         // Update data ke database
-        DB::table('pit_clearing')->where('id', $id)->update([
+        DB::table('pit_clearing_lcm')->where('id', $id)->update([
+            'rate_actual_base_rate_lebih_dari' => $rate_actual_base_rate_lebih_dari,
+            'rate_actual_base_rate_kurang_dari' => $rate_actual_base_rate_kurang_dari,
             'contract_reference' => $path,
         ]);
 
         // Redirect dengan pesan sukses
-        return redirect()->to('rate-contract/asteng/pit-clearing')->with('success', 'Data berhasil diperbarui');
+        return redirect()->to('rate-contract/astim/pit-clearing-lcm')->with('success', 'Data berhasil diperbarui');
     }
 }

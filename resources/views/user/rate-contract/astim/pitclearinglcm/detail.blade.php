@@ -1,4 +1,4 @@
-@extends('componen.template-admin')
+@extends('componen.template-user')
 
 @section('conten')
 <!DOCTYPE html>

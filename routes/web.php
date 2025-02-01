@@ -47,9 +47,16 @@ use App\Http\Controllers\user\asbar_user\FuelAsbarUserController;
 //controller admin bagian astim
 use App\Http\Controllers\admin\astim_admin\PitClearingLCMController;
 use App\Http\Controllers\admin\astim_admin\TopSoilLCMController;
+use App\Http\Controllers\aDMIN\astim_admin\OBLCMController;
+
+//controller user bagian astim
+use App\Http\Controllers\usr\astim_user\PitClearingLCMUserController;
+use App\Http\Controllers\user\astim_user\TopSoilLCMUserController;
+
+
 
 //Halaman beranda
-// Route::get('beranda', [BerandaController::class, 'index']);
+ Route::get('beranda', [BerandaController::class, 'index']);
 
 //Halaman pengguna
 Route::get('admin/pengguna', [PenggunaController::class, 'index']);
@@ -283,14 +290,49 @@ Route::get('rate-contract/astim/pit-clearing-lcm/detail/{num}', [PitClearingLCMC
 Route::get('rate-contract/astim/pit-clearing-lcm/tambah', [PitClearingLCMController::class, 'tambah']);
 Route::post('rate-contract/astim/pit-clearing-lcm/simpan', [PitClearingLCMController::class, 'simpan']);
 Route::delete('rate-contract/astim/pit-clearing-lcm/delete/{num}', [PitClearingLCMController::class, 'hapus']);
-Route::get('rate-contract/astim/pit-clearing/edit-lcm/{num}', [PitClearingLCMController::class, 'edit']);
-Route::put('rate-contract/astim/pit-clearing/update-lcm/{num}', [PitClearingLCMController::class, 'update']);
+Route::get('rate-contract/astim/pit-clearing-lcm/edit/{num}', [PitClearingLCMController::class, 'edit']);
+Route::put('rate-contract/astim/pit-clearing-lcm/update/{num}', [PitClearingLCMController::class, 'update']);
 
 //route astim rate_contract Laz Coal Mandiri Astim/top-soil
 Route::get('rate-contract/astim/top-soil-lcm', [TopSoilLCMController::class, 'index']);
-Route::get('rate-contract/astim/top-soil-lcm/detail/{num}', [TopSoilLCMController::class, 'detail']);
+Route::get('rate-contract/astim/top-soil-lcm/detail/{num}', [TopSoilLCMUserController::class, 'detail']);
 Route::get('rate-contract/astim/top-soil-lcm/tambah', [TopSoilLCMController::class, 'tambah']);
 Route::post('rate-contract/astim/top-soil-lcm/simpan', [TopSoilLCMController::class, 'simpan']);
 Route::delete('rate-contract/astim/top-soil-lcm/delete/{num}', [TopSoilLCMController::class, 'hapus']);
-Route::get('rate-contract/astim/top-soil/edit-lcm/{num}', [TopSoilLCMController::class, 'edit']);
-Route::put('rate-contract/astim/top-soil/update-lcm/{num}', [TopSoilLCMController::class, 'update']);
+Route::get('rate-contract/astim/top-soil-lcm/edit/{num}', [TopSoilLCMController::class, 'edit']);
+Route::put('rate-contract/astim/top-soil-lcm/update/{num}', [TopSoilLCMController::class, 'update']);
+
+//route astim rate_contract Laz Coal Mandiri Astim/ob
+Route::get('rate-contract/astim/ob-lcm', [OBLCMController::class, 'index']);
+Route::get('rate-contract/astim/ob-lcm/detail/{num}', [OBLCMController::class, 'detail']);
+Route::get('rate-contract/astim/ob-lcm/tambah', [OBLCMController::class, 'tambah']);
+Route::post('rate-contract/astim/ob-lcm/simpan', [OBLCMController::class, 'simpan']);
+Route::delete('rate-contract/astim/ob-lcm/delete/{num}', [OBLCMController::class, 'hapus']);
+Route::get('rate-contract/astim/ob-lcm/edit/{num}', [OBLCMController::class, 'edit']);
+Route::put('rate-contract/astim/ob-lcm/update/{num}', [OBLCMController::class, 'update']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Halaman User Astim
+Route::get('user/beranda', [BerandaUserController::class, 'index']);
+//Dokumen rate-contract
+Route::get('user/rate-contract/astim', [RateContractUserController::class, 'astim']);
+
+//rate_contract Laz Coal Mandiri Astim/pit-clearing-lcm user
+//Route::get('user/rate-contract/astim/pit-clearin-lcm', [PitClearingLCMUserController::class, 'index']);
+//Route::get('user/rate-contract/astim/pit-clearing-lcm/detail/{num}', [PitClearingLCMUserController::class, 'detail']);
+
+//rate_contract Laz Coal Mandiri Astim/top-soil-lcm user
+Route::get('user/rate-contract/astim/top-soil-lcm', [TopSoilLCMUserController::class, 'index']);
+Route::get('user/rate-contract/astim/top-soil-lcm/detail/{num}', [TopSoilLCMUserController::class, 'detail']);

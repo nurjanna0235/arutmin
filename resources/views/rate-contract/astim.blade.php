@@ -34,7 +34,28 @@
                                                     <li class="list-group-item active">Pit Clearing</li>
                                                 </a>
                                                 <a href="/rate-contract/astim/top-soil-lcm">
-                                                    <li class="list-group-item active">Top Soil</li>
+                                                    <li class="list-group-item">Top Soil</li>
+                                                </a>
+                                                <a href="/rate-contract/astim/ob-lcm">
+                                                    <li class="list-group-item active">OB</li>
+                                                </a>
+                                                <a href="/rate-contract/astim/coal-lcm">
+                                                    <li class="list-group-item">Coal</li>
+                                                </a>
+                                                <a href="/rate-contract/astim/mud-lcm">
+                                                    <li class="list-group-item active">Mud</li>
+                                                </a>
+                                                <a href="/rate-contract/astim/daywork-lcm">
+                                                    <li class="list-group-item">Daywork</li>
+                                                </a>
+                                                <a href="/rate-contract/astim/oudistance-lcm">
+                                                    <li class="list-group-item active">Over/Under Distance</li>
+                                                </a>
+                                                <a href="/rate-contract/astim/other_items_lcm">
+                                                    <li class="list-group-item">Other Items</li>
+                                                </a>
+                                                <a href="/rate-contract/astim/fuel_lcm">
+                                                    <li class="list-group-item active">Fuel Allowance</li>
                                                 </a>
                                                
                                             </ul><!-- End Default List group -->

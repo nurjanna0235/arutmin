@@ -67,8 +67,9 @@ class PitClearingController extends Controller
         // Mengganti koma dengan titik pada inputan untuk keperluan perhitungan
         $base_rate = str_replace([','], ['.'], $request->base_rate);
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
-        $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
-        $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+        $premium_rate = (float) str_replace(',', '.', $request->premium_rate) / 100;
+        $general_escalation = (float) str_replace(',', '.', $request->general_escalation) / 100;
+
 
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;

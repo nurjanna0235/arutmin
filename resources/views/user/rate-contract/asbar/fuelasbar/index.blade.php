@@ -17,7 +17,7 @@
 
     <!-- Form untuk pencarian -->
     <div class="mb-4">
-        <form method="GET" action="{{ url('/user/rate-contract/asbar/fuelasbar') }}" class="d-flex align-items-center gap-3">
+        <form method="GET" action="{{ url('/user/rate-contract/asbar/fuel-asbar') }}" class="d-flex align-items-center gap-3">
             <!-- Input Pencarian Tahun -->
             <div class="form-group">
                 <input type="number" name="tahun" class="form-control" placeholder="Cari Tahun" value="{{ request('tahun') }}">
@@ -71,7 +71,7 @@
                     <div class="d-flex gap-2 justify-content-center">
                         <!-- Tombol Detail -->
                         <a
-                            href="{{ url('user/rate-contract/asbar/fuelasbar/detail/' . $item->id) }}">
+                            href="{{ url('user/rate-contract/asbar/fuel-asbar/detail/' . $item->id) }}">
                             <i class="ri-information-line text-primary" title="Detail"></i>
                         </a>
                        
