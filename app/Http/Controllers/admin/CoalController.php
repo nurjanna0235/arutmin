@@ -161,6 +161,12 @@ class CoalController extends Controller
     public function hapus($id)
     {
         $dokumencoal = coal::findOrFail($id);
+
+        $path = $dokumencoal->contract_reference;
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
+
         $dokumencoal->delete();
 
         return redirect()->to('rate-contract/asteng/coal');

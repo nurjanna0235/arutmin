@@ -96,12 +96,15 @@ class PitClearingController extends Controller
         return redirect()->to('rate-contract/asteng/pit-clearing')->with('success', 'Data berhasil ditambahkan');
     }
 
-
-
     public function hapus($id)
     {
         $dokumenpit_clearing = pit_clearing::findOrFail($id);
         $dokumenpit_clearing->delete();
+
+        $path = $dokumenpit_clearing->contract_reference;
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
 
         return redirect()->to('rate-contract/asteng/pit-clearing');
     }

@@ -21,8 +21,8 @@
             <!-- Left side columns -->
             <div class="col-lg-12">
                 <div class="row">
-                    <!-- Vertical Form -->
-                    <form action="/rate-contract/astim/ob-lcm/update/{{ $dokumenob_lcm->id }}" method="POST"
+                   <!-- Vertical Form -->
+                   <form action="/rate-contract/astim/ob-lcm/update/{{ $dokumenob_lcm->id }}" method="POST"
                         class="row g-3" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
@@ -39,12 +39,14 @@
                                     <th>Load and Haul (Rp/BCM)</th>
                                     <td>
                                         <div class="col-12">
-                                            <input name="load_and_haul_lcm_base_rate_lebih_dari" type="number" class="form-control">
+                                            <input name="load_and_haul_lcm_base_rate_lebih_dari" type="number" class="form-control" 
+                                                   value="{{ old('load_and_haul_lcm_base_rate_lebih_dari', $dokumenob_lcm->load_and_haul_lcm_base_rate_lebih_dari) }}">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="col-12">
-                                            <input name="load_and_haul_lcm_base_rate_kurang_dari" type="number" class="form-control">
+                                            <input name="load_and_haul_lcm_base_rate_kurang_dari" type="number" class="form-control"
+                                            value="{{ old('load_and_haul_lcm_base_rate_kurang_dari', $dokumenob_lcm->load_and_haul_lcm_base_rate_kurang_dari) }}">
                                         </div>
                                     </td>
                                 </tr>
@@ -53,12 +55,14 @@
                                     <th>Pit Support (Rp/BCM)</th>
                                     <td>
                                         <div class="col-12">
-                                            <input name="pit_support_lebih_dari" type="text" class="form-control" >
+                                            <input name="pit_support_lebih_dari" type="text" class="form-control"
+                                            value="{{ old('pit_support_lebih_dari', $dokumenob_lcm->pit_support_lebih_dari) }}" >
                                         </div>
                                     </td>
                                     <td>
                                         <div class="col-12">
-                                            <input name="pit_support_kurang_dari" type="text" class="form-control">
+                                            <input name="pit_support_kurang_dari" type="text" class="form-control"
+                                            value="{{ old('pit_support_kurang_dari', $dokumenob_lcm->pit_support_kurang_dari) }}">
                                         </div>
                                     </td>
                                 </tr>
@@ -67,12 +71,14 @@
                                     <th>Pit Lighting (Rp/BCM)</th>
                                     <td>
                                         <div class="col-12">
-                                            <input name="pit_lighting_lebih_dari" type="text" class="form-control">
+                                            <input name="pit_lighting_lebih_dari" type="text" class="form-control"
+                                            value="{{ old('pit_lighting_lebih_dari', $dokumenob_lcm->pit_lighting_lebih_dari) }}">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="col-12">
-                                            <input name="pit_lighting_kurang_dari" type="text" class="form-control">
+                                            <input name="pit_lighting_kurang_dari" type="text" class="form-control"
+                                            value="{{ old('pit_lighting_kurang_dari', $dokumenob_lcm->pit_lighting_kurang_dari) }}">
                                         </div>
                                     </td>
                                 </tr>
@@ -81,12 +87,14 @@
                                     <th>Haul Road Maintenance (Rp/BCM)</th>
                                     <td>
                                         <div class="col-12">
-                                            <input name="haul_road_maintenance_lebih_dari" type="text" class="form-control">
+                                            <input name="haul_road_maintenance_lebih_dari" type="text" class="form-control"
+                                            value="{{ old('haul_road_maintenance_lebih_dari', $dokumenob_lcm->haul_road_maintenance_lebih_dari) }}">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="col-12">
-                                            <input name="haul_road_maintenance_kurang_dari" type="text" class="form-control">
+                                            <input name="haul_road_maintenance_kurang_dari" type="text" class="form-control"
+                                            value="{{ old('haul_road_maintenance_kurang_dari', $dokumenob_lcm->haul_road_maintenance_kurang_dari) }}">
                                         </div>
                                     </td>
                                 </tr>
@@ -95,12 +103,14 @@
                                     <th>Dewatering/Sediment Pit Active (Rp/BCM)</th>
                                     <td>
                                         <div class="col-12">
-                                            <input name="dewatering_sediment_pit_active_lebih_dari" type="text" class="form-control">
+                                            <input name="dewatering_sediment_pit_active_lebih_dari" type="text" class="form-control"
+                                            value="{{ old('dewatering_sediment_pit_active_lebih_dari', $dokumenob_lcm->dewatering_sediment_pit_active_lebih_dari) }}">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="col-12">
-                                            <input name="dewatering_sediment_pit_active_kurang_dari" type="text" class="form-control">
+                                            <input name="dewatering_sediment_pit_active_kurang_dari" type="text" class="form-control"
+                                            value="{{ old('dewatering_sediment_pit_active_kurang_dari', $dokumenob_lcm->dewatering_sediment_pit_active_kurang_dari) }}">
                                         </div>
                                     </td>
                                 </tr>
@@ -109,12 +119,14 @@
                                     <th>Water Treatment (liming) (Rp/BCM)</th>
                                     <td>
                                         <div class="col-12">
-                                            <input name="water_treatment_lebih_dari" type="text" class="form-control">
+                                            <input name="water_treatment_lebih_dari" type="text" class="form-control"
+                                            value="{{ old('water_treatment_lebih_dari', $dokumenob_lcm->water_treatment_lebih_dari) }}">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="col-12">
-                                            <input name="water_treatment_kurang_dari" type="text" class="form-control">
+                                            <input name="water_treatment_kurang_dari" type="text" class="form-control"
+                                            value="{{ old('water_treatment_kurang_dari', $dokumenob_lcm->water_treatment_kurang_dari) }}">
                                         </div>
                                     </td>
                                 </tr>
@@ -123,12 +135,14 @@
                                     <th>Total Rate OB Actual (Rp/BCM)</th>
                                     <td>
                                         <div class="col-12">
-                                            <input name="total_rate_ob_actual_lebih_dari" type="number" class="form-control">
+                                            <input name="total_rate_ob_actual_lebih_dari" type="number" class="form-control"
+                                            value="{{ old('total_rate_ob_actual_lebih_dari', $dokumenob_lcm->total_rate_ob_actual_lebih_dari) }}">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="col-12">
-                                            <input name="total_rate_ob_actual_kurang_dari" type="number" class="form-control">
+                                            <input name="total_rate_ob_actual_kurang_dari" type="number" class="form-control"
+                                            value="{{ old('total_rate_ob_actual_kurang_dari', $dokumenob_lcm->total_rate_ob_actual_kurang_dari) }}">
                                         </div>
                                     </td>
                                 </tr>

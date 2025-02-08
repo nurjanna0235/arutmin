@@ -47,5 +47,4 @@ class PitClearingLCMUserController extends Controller
 
         return view('user/rate-contract/astim/pitclearinglcm/detail', compact('dokumenpit_clearing_lcm'));
     }
-
 }

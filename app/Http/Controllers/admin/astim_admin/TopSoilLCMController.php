@@ -69,7 +69,6 @@ class TopSoilLCMController extends Controller
             'updated_at' => now(),
         ]);
 
-
         // Redirect dengan pesan sukses
         return redirect()->to('rate-contract/astim/top-soil-lcm')->with('success', 'Data berhasil ditambahkan');
     }
@@ -80,6 +79,11 @@ class TopSoilLCMController extends Controller
     {
         $dokumentop_soil_lcm = top_soil_lcm::findOrFail($id);
         $dokumentop_soil_lcm->delete();
+
+        $path = $dokumentop_soil_lcm->contract_reference;
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
 
         return redirect()->to('rate-contract/astim/top-soil-lcm');
     }
@@ -98,8 +102,6 @@ class TopSoilLCMController extends Controller
 
         // Ambil data berdasarkan ID
         $dokumen = DB::table('top_soil_lcm')->where('id', $id)->first();
-
-
 
         // Proses upload file jika ada file baru
         $path = $dokumen->contract_reference; // Gunakan file lama jika tidak ada file baru

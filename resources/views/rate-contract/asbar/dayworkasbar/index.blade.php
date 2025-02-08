@@ -74,7 +74,8 @@
                     <td>{{ $item->index }}</td>
                     <td>{{ $item->premium_rate }}</td>
                     <td>{{ $item->general_escalation }}</td>
-                    <td>{{ $item->actual_rate_exc_fuel }}</td>
+                    <td class="text-danger fw-bold">{{ $item->actual_rate_exc_fuel }}</td>
+                 
 
                     <td>
                         <div class="d-flex gap-2 justify-content-center">

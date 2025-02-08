@@ -143,6 +143,12 @@ class DayworkAsbarController extends Controller
     public function hapus($id)
     {
         $dokumendaywork_asbar = daywork_asbar::findOrFail($id);
+
+        $path = $dokumendaywork_asbar->contract_reference;
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
+
         $dokumendaywork_asbar->delete();
 
 

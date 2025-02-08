@@ -1,7 +1,10 @@
 <?php
+
 use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\admin\BerandaController;
+use App\Http\Controllers\admin\ProfilController;
 use App\Http\Controllers\user\BerandaUserController;
 use App\Http\Controllers\RateContractController;
 use App\Http\Controllers\user\RateContractUserController;
@@ -48,15 +51,28 @@ use App\Http\Controllers\user\asbar_user\FuelAsbarUserController;
 use App\Http\Controllers\admin\astim_admin\PitClearingLCMController;
 use App\Http\Controllers\admin\astim_admin\TopSoilLCMController;
 use App\Http\Controllers\aDMIN\astim_admin\OBLCMController;
+use App\Http\Controllers\admin\astim_admin\CoalLCMController;
+use App\Http\Controllers\admin\astim_admin\MudLCMController;
+use App\Http\Controllers\admin\astim_admin\DayworkLCMController;
+use App\Http\Controllers\admin\astim_admin\OtherItemsLCMController;
+
 
 //controller user bagian astim
-use App\Http\Controllers\usr\astim_user\PitClearingLCMUserController;
+use App\Http\Controllers\user\astim_user\PitClearingLCMUserController;
 use App\Http\Controllers\user\astim_user\TopSoilLCMUserController;
+use App\Http\Controllers\user\astim_user\OBLCMUserController;
 
+//halaman login
+Route::get('login', [LoginController::class, 'index']);
 
 
 //Halaman beranda
- Route::get('beranda', [BerandaController::class, 'index']);
+Route::get('beranda', [BerandaController::class, 'index']);
+
+//halaman profil beranda
+Route::get('admin/profile', [ProfilController::class, 'index']);
+Route::get('admin/profile/edit', [ProfilController::class, 'edit']);
+Route::post('admin/profile/update', [ProfilController::class, 'update']);
 
 //Halaman pengguna
 Route::get('admin/pengguna', [PenggunaController::class, 'index']);
@@ -311,8 +327,41 @@ Route::delete('rate-contract/astim/ob-lcm/delete/{num}', [OBLCMController::class
 Route::get('rate-contract/astim/ob-lcm/edit/{num}', [OBLCMController::class, 'edit']);
 Route::put('rate-contract/astim/ob-lcm/update/{num}', [OBLCMController::class, 'update']);
 
+//route astim rate_contract Laz Coal Mandiri Astim/coal
+Route::get('rate-contract/astim/coal-lcm', [CoalLCMController::class, 'index']);
+Route::get('rate-contract/astim/coal-lcm/detail/{num}', [CoalLCMController::class, 'detail']);
+Route::get('rate-contract/astim/coal-lcm/tambah', [CoalLCMController::class, 'tambah']);
+Route::post('rate-contract/astim/coal-lcm/simpan', [CoalLCMController::class, 'simpan']);
+Route::delete('rate-contract/astim/coal-lcm/delete/{num}', [CoalLCMController::class, 'hapus']);
+Route::get('rate-contract/astim/coal-lcm/edit/{num}', [CoalLCMController::class, 'edit']);
+Route::put('rate-contract/astim/coal-lcm/update/{num}', [CoalLCMController::class, 'update']);
 
+//route astim rate_contract Laz Coal Mandiri Astim/mud
+Route::get('rate-contract/astim/mud-lcm', [MudLCMController::class, 'index']);
+Route::get('rate-contract/astim/mud-lcm/detail/{num}', [MudLCMController::class, 'detail']);
+Route::get('rate-contract/astim/mud-lcm/tambah', [MudLCMController::class, 'tambah']);
+Route::post('rate-contract/astim/mud-lcm/simpan', [MudLCMController::class, 'simpan']);
+Route::delete('rate-contract/astim/mud-lcm/delete/{num}', [MudLCMController::class, 'hapus']);
+Route::get('rate-contract/astim/mud-lcm/edit/{num}', [MudLCMController::class, 'edit']);
+Route::put('rate-contract/astim/mud-lcm/update/{num}', [MudLCMController::class, 'update']);
 
+//route astim rate_contract Laz Coal Mandiri Astim/daywork
+Route::get('rate-contract/astim/daywork-lcm', [DayworkLCMController::class, 'index']);
+Route::get('rate-contract/astim/daywork-lcm/detail/{num}', [DayworkLCMController::class, 'detail']);
+Route::get('rate-contract/astim/daywork-lcm/tambah', [DayworkLCMController::class, 'tambah']);
+Route::post('rate-contract/astim/daywork-lcm/simpan', [DayworkLCMController::class, 'simpan']);
+Route::delete('rate-contract/astim/daywork-lcm/delete/{num}', [DayworkLCMController::class, 'hapus']);
+Route::get('rate-contract/astim/daywork-lcm/edit/{num}', [DayworkLCMController::class, 'edit']);
+Route::put('rate-contract/astim/daywork-lcm/update/{num}', [DayworkLCMController::class, 'update']);
+
+//route astim rate_contract Laz Coal Mandiri Astim/other_items
+Route::get('rate-contract/astim/other-items-lcm', [OtherItemsLCMController::class, 'index']);
+Route::get('rate-contract/astim/other-items-lcm/detail/{num}', [OtherItemsLCMController::class, 'detail']);
+Route::get('rate-contract/astim/other-items-lcm/tambah', [OtherItemsLCMController::class, 'tambah']);
+Route::post('rate-contract/astim/other-items-lcm/simpan', [OtherItemsLCMController::class, 'simpan']);
+Route::delete('rate-contract/astim/other-items-lcm/delete/{num}', [OtherItemsLCMController::class, 'hapus']);
+Route::get('rate-contract/astim/other-items-lcm/edit/{num}', [OtherItemsLCMController::class, 'edit']);
+Route::put('rate-contract/astim/other-items-lcm/update/{num}', [OtherItemsLCMController::class, 'update']);
 
 
 
@@ -330,9 +379,13 @@ Route::get('user/beranda', [BerandaUserController::class, 'index']);
 Route::get('user/rate-contract/astim', [RateContractUserController::class, 'astim']);
 
 //rate_contract Laz Coal Mandiri Astim/pit-clearing-lcm user
-//Route::get('user/rate-contract/astim/pit-clearin-lcm', [PitClearingLCMUserController::class, 'index']);
-//Route::get('user/rate-contract/astim/pit-clearing-lcm/detail/{num}', [PitClearingLCMUserController::class, 'detail']);
+Route::get('user/rate-contract/astim/pit-clearing-lcm', [PitClearingLCMUserController::class, 'index']);
+Route::get('user/rate-contract/astim/pit-clearing-lcm/detail/{num}', [PitClearingLCMUserController::class, 'detail']);
 
 //rate_contract Laz Coal Mandiri Astim/top-soil-lcm user
 Route::get('user/rate-contract/astim/top-soil-lcm', [TopSoilLCMUserController::class, 'index']);
 Route::get('user/rate-contract/astim/top-soil-lcm/detail/{num}', [TopSoilLCMUserController::class, 'detail']);
+
+//rate_contract Laz Coal Mandiri Astim/ob-lcm user
+Route::get('user/rate-contract/astim/ob-lcm', [OBLCMUserController::class, 'index']);
+Route::get('user/rate-contract/astim/ob-lcm/detail/{num}', [OBLCMUserController::class, 'detail']);

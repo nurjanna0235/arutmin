@@ -56,13 +56,13 @@ class item_daywork_asbar extends Seeder
 'Operator',
 'Labour',
 'Mechanic',
- ];
+        ];
 
- foreach ($items as $index => $name) {
-    DB::table('item_daywork_asbar')->insert([
-        'id_item_daywork_asbar' => $index + 1,
-        'nama_item' => $name,
-    ]);
-}
-}
+        foreach ($items as $index => $name) {
+            DB::table('item_daywork_asbar')->insert([
+                'id_item_daywork_asbar' => $index + 1,
+                'nama_item' => $name,
+            ]);
+        }
+    }
 }

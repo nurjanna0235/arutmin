@@ -76,6 +76,11 @@ class PitClearingLCMController extends Controller
         $dokumenpit_clearing_lcm = pit_clearing_lcm::findOrFail($id);
         $dokumenpit_clearing_lcm->delete();
 
+        $path = $dokumenpit_clearing_lcm->contract_reference;
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
+
         return redirect()->to('rate-contract/astim/pit-clearing-lcm');
     }
 

@@ -173,6 +173,12 @@ class oudistanceController extends Controller
     public function hapus($id)
     {
         $dokumenoudistance = oudistance::findOrFail($id);
+
+        $path = $dokumenoudistance->contract_reference;
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
+
         $dokumenoudistance->delete();
 
         return redirect()->to('rate-contract/asteng/oudistance');

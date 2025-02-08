@@ -14,8 +14,6 @@
             </ol>
         </nav>
 
-       
-
         <!-- Form untuk pencarian -->
         <div class="mb-4">
             <form method="GET" action="{{ url('/user/rate-contract/astim/pit-clearing-lcm') }}"
@@ -97,10 +95,7 @@
                                         href="{{ url('user/rate-contract/astim/pit-clearing-lcm/detail/' . $item->id) }}">
                                         <i class="ri-information-line" title="Detail"></i>
                                     </a>
-                                   
-
-
-
+                                  
                                 </div>
                             </td>
                         </tr>

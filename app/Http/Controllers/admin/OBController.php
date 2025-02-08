@@ -180,6 +180,12 @@ class OBController extends Controller
     public function hapus($id)
     {
         $dokumenob = ob::findOrFail($id);
+
+        $path = $dokumenob->contract_reference;
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
+
         $dokumenob->delete();
 
         return redirect()->to('rate-contract/asteng/ob');

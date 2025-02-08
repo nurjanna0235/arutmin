@@ -30,7 +30,7 @@
                                         <div class="container text-center">
                                             <!-- Default List group -->
                                             <ul class="list-group">
-                                                <a href="/user/rate-contract/astim/pit-clearin-lcm">
+                                                <a href="/user/rate-contract/astim/pit-clearing-lcm">
                                                     <li class="list-group-item active">Pit Clearing</li>
                                                 </a>
                                                 <a href="/user/rate-contract/astim/top-soil-lcm">

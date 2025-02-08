@@ -14,5 +14,5 @@ class pit_clearing_lcm extends Model
     // Tentukan kolom kunci utama jika tidak menggunakan 'id'
     protected $primaryKey = 'id';
 
-    protected $fillable = ['rate_actual_base_rate_lebih_dari','rate_actual_base_rate_kurang_dari','created_at','updated_at'];
+    protected $fillable = ['rate_actual_base_rate_lebih_dari','rate_actual_base_rate_kurang_dari','contract_reference','created_at','updated_at'];
 }

@@ -159,6 +159,12 @@ class SingleRateController extends Controller
     public function hapus($id)
     {
         $dokumensingle_rate = single_rate::findOrFail($id);
+
+        $path = $dokumensingle_rate->contract_reference;
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
+
         $dokumensingle_rate->delete();
 
         return redirect()->to('rate-contract/asteng/single-rate');

@@ -51,10 +51,10 @@
                                                 <a href="/rate-contract/astim/oudistance-lcm">
                                                     <li class="list-group-item active">Over/Under Distance</li>
                                                 </a>
-                                                <a href="/rate-contract/astim/other_items_lcm">
+                                                <a href="/rate-contract/astim/other-items-lcm">
                                                     <li class="list-group-item">Other Items</li>
                                                 </a>
-                                                <a href="/rate-contract/astim/fuel_lcm">
+                                                <a href="/rate-contract/astim/fuel-lcm">
                                                     <li class="list-group-item active">Fuel Allowance</li>
                                                 </a>
                                                

@@ -36,10 +36,6 @@
                             <label for="email" class="form-label">Email</label>
                             <input value="{{old('email',$dataPengguna->email)}}" name="email" type="email" class="form-control" id="email">
                         </div>
-                        <div class="col-12">
-                            <label for="password" class="form-label">Password</label>
-                            <input value="{{old('password',$dataPengguna->password)}}" name="password" type="text" class="form-control" id="password">
-                        </div>
 
                         <div class="col-12">
                             <label for="level" class="form-label">Level</label>

@@ -137,6 +137,12 @@ class MudController extends Controller
     public function hapus($id)
     {
         $dokumenmud = mud::findOrFail($id);
+
+        $path = $dokumenmud->contract_reference;
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
+
         $dokumenmud->delete();
 
         return redirect()->to('rate-contract/asteng/mud');

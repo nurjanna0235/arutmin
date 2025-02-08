@@ -26,45 +26,57 @@
                         class="row g-3" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
-                        <div class="col-12">
-                            <label for="rate_actual_base_rate_lebih_dari" class="form-label">Base Rate (ICI 4 >= $60)</label>
-                            <input value="{{ $dokumenpit_clearing_lcm->rate_actual_base_rate_lebih_dari }}" name="rate_actual_base_rate_lebih_dari" type="text"
-                                class="form-control" id="rate_actual_base_rate_lebih_dari">
-                        </div>
-
-                        <div class="col-12">
-                            <label for="rate_actual_base_rate_kurang_dari" class="form-label">Base Rate (ICI 4 < $60)</label>
-                            <input value="{{ $dokumenpit_clearing_lcm->rate_actual_base_rate_kurang_dari }}" name="rate_actual_base_rate_kurang_dari"
-                                type="text" class="form-control" id="rate_actual_base_rate_kurang_dari">
-                        </div>
-
-                                <div class="col-12">
-                                    <label for="contract_reference" class="form-label">Contract Reference</label>
-                                    @if($dokumenpit_clearing_lcm->contract_reference)
-                                        <div class="mb-2">
-                                            <a href="{{ asset('storage/' . $dokumenpit_clearing_lcm->contract_reference) }}"
-                                                target="_blank">
-                                                <img src="{{ asset('storage/' . $dokumenpit_clearing_lcm->contract_reference) }}"
-                                                    alt="Image" style="max-width: 200px;">
-                                            </a>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th> <!-- Kosong untuk header kiri -->
+                                    <th>Base Rate (ICI 4 >= $60)</th>
+                                    <th>Base Rate (ICI 4 < $60)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Rate Actual (Rp/Ha)</th>
+                                    <td>
+                                        <div class="col-12">
+                                            <input name="rate_actual_base_rate_lebih_dari" type="text" class="form-control" 
+                                                   value="{{ old('rate_actual_base_rate_lebih_dari', $dokumenpit_clearing_lcm->rate_actual_base_rate_lebih_dari) }}">
                                         </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-12">
+                                            <input name="rate_actual_base_rate_kurang_dari" type="text" class="form-control" 
+                                                   value="{{ old('rate_actual_base_rate_kurang_dari', $dokumenpit_clearing_lcm->rate_actual_base_rate_kurang_dari) }}">
+                                        </div>
+                                    </td>
+                                </tr>
 
-                                    @endif
-                                    <input type="file" name="contract_reference" class="form-control"
-                                        id="contract_reference">
-                                    <small class="text-muted">Upload file baru jika ingin mengganti gambar yang
-                                        ada</small>
-                                </div>
+                            </tbody>
+                        </table>
 
-                                <div class="col-12 mt-3">
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                    <a href="{{ url()->previous() }}" class="btn btn-secondary">Batal</a>
-                                </div>
+                        <div class="col-12">
+                            <label for="contract_reference" class="form-label">Contract Reference</label>
+                            @if($dokumenpit_clearing_lcm->contract_reference)
+                            <div class="mb-2">
+                                <a href="{{ asset('storage/' . $dokumenpit_clearing_lcm->contract_reference) }}"
+                                    target="_blank">
+                                    <img src="{{ asset('storage/' . $dokumenpit_clearing_lcm->contract_reference) }}"
+                                        alt="Image" style="max-width: 200px;">
+                                </a>
+                            </div>
+
+                            @endif
+                            <input type="file" name="contract_reference" class="form-control"
+                                id="contract_reference">
+                            <small class="text-muted">Upload file baru jika ingin mengganti gambar yang
+                                ada</small>
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-secondary">Batal</a>
+                        </div>
                     </form><!-- Vertical Form -->
-
-
-
-
                 </div>
             </div>
         </div>

@@ -24,19 +24,34 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- Vertical Form -->
-                    <form action="/rate-contract/astim/pit-clearing-lcm/simpan" method="POST" class="row g-3" enctype="multipart/form-data">
+                    <form action="/rate-contract/astim/pit-clearing-lcm/simpan" method="POST" class="row g-3"
+                        enctype="multipart/form-data">
                         @csrf
-                        <div class="col-12">
-                            <label for="rate_actual_base_rate_lebih_dari" class="form-label">Base Rate (ICI 4 >= $60)</label>
-                            <input name="rate_actual_base_rate_lebih_dari" type="text" class="form-control" id="rate_actual_base_rate_lebih_dari"
-                                pattern="[A-Za-z\s]+" title="Hanya huruf yang diperbolehkan" oninput="validateInput(this)">
-                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th> <!-- Kosong untuk header kiri -->
+                                    <th>Base Rate (ICI 4 >= $60)</th>
+                                    <th>Base Rate (ICI 4 < $60)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Rate Actual (Rp/Ha)</th>
+                                    <td>
+                                        <div class="col-12">
+                                            <input name="rate_actual_base_rate_lebih_dari" type="text" class="form-control">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-12">
+                                            <input name="rate_actual_base_rate_kurang_dari" type="text" class="form-control">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                        <div class="col-12">
-                            <label for="rate_actual_base_rate_kurang_dari" class="form-label">Base Rate (ICI 4 < $60)</label>
-                                    <input name="rate_actual_base_rate_kurang_dari" type="text" class="form-control" id="rate_actual_base_rate_kurang_dari"
-                                        pattern="[A-Za-z\s]+" title="Hanya huruf yang diperbolehkan" oninput="validateInput(this)">
-                        </div>
 
                         <div class="col-12">
                             <label for="contract_reference" class="form-label">Contract Reference</label>
@@ -49,16 +64,7 @@
                                 <a href="/rate-contract/astim/pit-clearing-lcm" class="btn btn-secondary">Batal</a>
                             </div>
                         </div>
-                    </form>
-
-                    <script>
-                        function validateInput(input) {
-                            // Menghapus angka dari input secara otomatis
-                            input.value = input.value.replace(/[^A-Za-z\s]/g, '');
-                        }
-                    </script>
-                    <!-- Vertical Form -->
-
+                    </form><!-- Vertical Form -->
                 </div>
             </div>
         </div>

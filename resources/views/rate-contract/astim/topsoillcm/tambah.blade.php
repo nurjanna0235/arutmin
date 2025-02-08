@@ -27,19 +27,31 @@
                     <form action="/rate-contract/astim/top-soil-lcm/simpan" method="POST" class="row g-3"
                         enctype="multipart/form-data">
                         @csrf
-                        <div class="col-12">
-                            <label for="rate_actual_base_rate_lebih_dari" class="form-label">Base Rate (ICI 4 >=
-                                $60)</label>
-                            <input name="rate_actual_base_rate_lebih_dari" type="number" class="form-control"
-                                id="rate_actual_base_rate_lebih_dari">
-                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th> <!-- Kosong untuk header kiri -->
+                                    <th>Base Rate (ICI 4 >= $60)</th>
+                                    <th>Base Rate (ICI 4 < $60)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Rate Actual (Rp/Ha)</th>
+                                    <td>
+                                        <div class="col-12">
+                                            <input name="rate_actual_base_rate_lebih_dari" type="number" class="form-control">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-12">
+                                            <input name="rate_actual_base_rate_kurang_dari" type="number" class="form-control">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                        <div class="col-12">
-                            <label for="rate_actual_base_rate_kurang_dari" class="form-label">Base Rate (ICI 4 <
-                                    $60)</label>
-                                    <input name="rate_actual_base_rate_kurang_dari" type="number" class="form-control"
-                                        id="rate_actual_base_rate_kurang_dari">
-                        </div>
 
                         <div class="col-12">
                             <label for="contract_reference" class="form-label">Contract Reference</label>

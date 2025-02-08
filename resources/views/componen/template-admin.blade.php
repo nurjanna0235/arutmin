@@ -19,6 +19,8 @@
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
 
+    
+
     <!-- Vendor CSS Files -->
     <link href="/template-admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <lintemplate-admin href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -54,9 +56,49 @@
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
 
-        
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                
+                <li class="nav-item dropdown pe-3">
 
-      
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="/img/profile.jpg" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">Nurjanna</span>
+                    </a><!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>Nurjanna</h6>
+                            <span>Admin</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="/admin/profile">
+                                <i class="bi bi-person"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="/logout">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
+
+            </ul>
+        </nav>
+
 
     </header><!-- End Header -->
 
@@ -66,21 +108,24 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admin/beranda') ? '' : 'collapsed' }}" href="/beranda">
+                <a class="nav-link {{ Request::is('admin/beranda') ? '' : 'collapsed' }}"
+                    href="/beranda">
                     <i class="ri-home-fill"></i>
                     <span>Beranda</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('admin/pengguna') ? '' : 'collapsed' }}" href="/admin/pengguna">
+                <a class="nav-link {{ Request::is('admin/pengguna') ? '' : 'collapsed' }}"
+                    href="/admin/pengguna">
                     <i class="ri-user-fill"></i>
                     <span>Pengguna</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('rate-contract') ? '' : 'collapsed' }}" href="/rate-contract">
+                <a class="nav-link {{ Request::is('rate-contract') ? '' : 'collapsed' }}"
+                    href="/rate-contract">
                     <i class="ri-article-fill"></i>
                     <span>Kontraktor</span>
                 </a>
@@ -110,7 +155,9 @@
     <!-- Template Main JS File -->
     <script src="template-admin/assets/js/main.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 
 </body>
 

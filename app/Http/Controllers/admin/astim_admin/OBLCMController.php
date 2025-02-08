@@ -91,6 +91,11 @@ class OBLCMController extends Controller
         $dokumenob_lcm = ob_lcm::findOrFail($id);
         $dokumenob_lcm->delete();
 
+        $path = $dokumenob_lcm->contract_reference;
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
+
         return redirect()->to('rate-contract/astim/ob-lcm');
     }
 
@@ -108,8 +113,6 @@ class OBLCMController extends Controller
 
         // Ambil data berdasarkan ID
         $dokumen = DB::table('ob_lcm')->where('id', $id)->first();
-
-
 
         // Proses upload file jika ada file baru
         $path = $dokumen->contract_reference; // Gunakan file lama jika tidak ada file baru

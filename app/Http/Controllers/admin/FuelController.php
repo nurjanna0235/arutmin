@@ -121,6 +121,12 @@ class FuelController extends Controller
     public function hapus($id)
     {
         $dokumenfuel = fuel::findOrFail($id);
+
+        $path = $dokumenfuel->contract_reference;
+        if ($path) {
+            Storage::disk('public')->delete($path);
+        }
+
         $dokumenfuel->delete();
 
         return redirect()->to('rate-contract/asteng/fuel');
