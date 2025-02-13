@@ -39,26 +39,23 @@
                                             <a href="/user/rate-contract/astim/ob-lcm">
                                                 <li class="list-group-item active">OB</li>
                                             </a>
-                                                <a href="/user/rate-contract/astim/coal">
+                                                <a href="/user/rate-contract/astim/coal-lcm">
                                                 <li class="list-group-item ">Coal</li>
                                             </a>
-                                            <a href="/user/rate-contract/astim/other">
-                                                <li class="list-group-item active">Other</li>
-                                            </a>
-                                                <a href="/user/rate-contract/astim/single-rate">
-                                                <li class="list-group-item ">Single Rate</li>
-                                            </a>
-                                            <a href="/user/rate-contract/astim/mud">
+                                            <a href="/user/rate-contract/astim/mud-lcm">
                                                 <li class="list-group-item active">Mud</li>
                                             </a>
-                                                <a href="/user/rate-contract/astim/daywork">
+                                            <a href="/user/rate-contract/astim/daywork-lcm">
                                                 <li class="list-group-item ">Daywork</li>
                                             </a>
-                                            <a href="/user/rate-contract/astim/oudistance">
+                                            <a href="/user/rate-contract/astim/oudistance-lcm">
                                                 <li class="list-group-item active">Over/Under Distance</li>
                                             </a>
-                                            <a href="/user/rate-contract/astim/fuel">
-                                                <li class="list-group-item ">Fuel Allowance</li>
+                                            <a href="/user/rate-contract/astim/other-items-lcm">
+                                                <li class="list-group-item ">Other Items</li>
+                                            </a>
+                                            <a href="/user/rate-contract/astim/fuel-lcm">
+                                                <li class="list-group-item active ">Fuel Allowance</li>
                                             </a>
                                             </ul><!-- End Default List group -->
 

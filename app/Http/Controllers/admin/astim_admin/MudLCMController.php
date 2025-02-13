@@ -58,6 +58,7 @@ class MudLCMController extends Controller
     public function simpan(Request $request)
     {
         $path = $request->file('contract_reference')->store('img', 'public');
+        
 
         // Simpan ke database
         DB::table('mud_lcm')->insert([

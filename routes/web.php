@@ -61,6 +61,10 @@ use App\Http\Controllers\admin\astim_admin\OtherItemsLCMController;
 use App\Http\Controllers\user\astim_user\PitClearingLCMUserController;
 use App\Http\Controllers\user\astim_user\TopSoilLCMUserController;
 use App\Http\Controllers\user\astim_user\OBLCMUserController;
+use App\Http\Controllers\user\astim_user\CoalLCMUserController;
+use App\Http\Controllers\user\astim_user\MudLCMUserController;
+use App\Http\Controllers\user\astim_user\DayworkLCMUserController;
+use App\Http\Controllers\user\astim_user\OtherItemsLCMUserController;
 
 //halaman login
 Route::get('login', [LoginController::class, 'index']);
@@ -389,3 +393,15 @@ Route::get('user/rate-contract/astim/top-soil-lcm/detail/{num}', [TopSoilLCMUser
 //rate_contract Laz Coal Mandiri Astim/ob-lcm user
 Route::get('user/rate-contract/astim/ob-lcm', [OBLCMUserController::class, 'index']);
 Route::get('user/rate-contract/astim/ob-lcm/detail/{num}', [OBLCMUserController::class, 'detail']);
+
+//rate_contract Laz Coal Mandiri Astim/coal-lcm user
+Route::get('user/rate-contract/astim/coal-lcm', [CoalLCMUserController::class, 'index']);
+Route::get('user/rate-contract/astim/coal-lcm/detail/{num}', [CoalLCMUserController::class, 'detail']);
+
+//rate_contract Laz Coal Mandiri Astim/mud-lcm user
+Route::get('user/rate-contract/astim/mud-lcm', [MudLCMUserController::class, 'index']);
+Route::get('user/rate-contract/astim/mud-lcm/detail/{num}', [MudLCMUserController::class, 'detail']);
+
+//rate_contract Laz Coal Mandiri Astim/other-items-lcm user
+Route::get('user/rate-contract/astim/other-items-lcm', [OtherItemsLCMUserController::class, 'index']);
+Route::get('user/rate-contract/astim/other-items-lcm/detail/{num}', [OtherItemsLCMUserController::class, 'detail']);

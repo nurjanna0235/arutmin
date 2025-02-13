@@ -1,4 +1,4 @@
-@extends('componen.template-admin')
+@extends('componen.template-user')
 
 @section('conten')
 
@@ -10,18 +10,14 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active"> Laz Coal Mandiri</li>
                 <li class="breadcrumb-item active">Astim</li>
-                <li class="breadcrumb-item active">Pit Clearing</li>
+                <li class="breadcrumb-item active">Coal</li>
             </ol>
         </nav>
 
-        <div class="icon mb-3">
-            <a href="/rate-contract/astim/pit-clearing-lcm/tambah" type="button"
-                class="btn btn-success"><i></i>Tambah</a>
-        </div>
-
+        
         <!-- Form untuk pencarian -->
         <div class="mb-4">
-            <form method="GET" action="{{ url('/rate-contract/astim/pit-clearing-lcm') }}"
+            <form method="GET" action="{{ url('/user/rate-contract/astim/coal-lcm') }}"
                 class="d-flex align-items-center gap-3">
                 <!-- Input Pencarian Tahun -->
                 <div class="form-group">
@@ -46,7 +42,7 @@
 
                 <tbody>
                     <?php $No = 1; ?>
-                    @foreach($dokumenpit_clearing_lcm as $item)
+                    @foreach($dokumencoal_lcm as $item)
                         <tr>
                             <td>{{ $No++ }}</td>
                             <td>
@@ -75,11 +71,32 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <th>Rate Actual (Rp/Ha)</th>
-                                                                <td>{{ $item->rate_actual_base_rate_lebih_dari }}</td>
-                                                                <td>{{ $item->rate_actual_base_rate_kurang_dari }}
+                                                                <th>Coal Getting (Rp/ton)</th>
+                                                                <td>{{ $item->coal_getting_lebih_dari }}</td>
+                                                                <td>{{ $item->coal_getting_kurang_dari }}
                                                                 </td>
                                                             </tr>
+
+                                                            <tr>
+                                                                <th>Coal Hauling (Rp/ton/KM)</th>
+                                                                <td>{{ $item->coal_hauling_lebih_dari }}</td>
+                                                                <td>{{ $item->coal_hauling_kurang_dari }}
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Coal Cleaning (Rp/ton)</th>
+                                                                <td>{{ $item->coal_cleaning_lebih_dari }}</td>
+                                                                <td>{{ $item->coal_cleaning_kurang_dari }}
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Pit Support</th>
+                                                                <td>{{ $item->pit_support_lebih_dari }}</td>
+                                                                <td>{{ $item->pit_support_kurang_dari }}
+                                                                </td>
+                                                            </tr>   
 
                                                         </tbody>
                                                     </table>
@@ -97,27 +114,10 @@
                             <td>
                                 <div class="d-flex gap-2 justify-content-center">
                                     <a
-                                        href="{{ url('rate-contract/astim/pit-clearing-lcm/detail/' . $item->id) }}">
+                                        href="{{ url('user/rate-contract/astim/coal-lcm/detail/' . $item->id) }}">
                                         <i class="ri-information-line" title="Detail"></i>
                                     </a>
-                                    <a
-                                        href="{{ url('rate-contract/astim/pit-clearing-lcm/edit/' . $item->id) }}">
-                                        <i class="ri-edit-2-line text-warning" title="Edit"></i>
-                                    </a>
-                                    <form
-                                        action="{{ url('/rate-contract/astim/pit-clearing-lcm/delete/' . $item->id) }}"
-                                        method="POST"
-                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" style="border: none; background: none;">
-                                            <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
-                                        </button>
-                                    </form>
-
-
-
+                                   
                                 </div>
                             </td>
                         </tr>
@@ -131,7 +131,7 @@
     <section class="section dashboard">
         <div class="row"></div>
         <div class="icon mb-5">
-            <a type="submit" href="/rate-contract/astim" class="btn btn-secondary">Kembali</a>
+            <a type="submit" href="/user/rate-contract/astim" class="btn btn-secondary">Kembali</a>
         </div>
     </section>
 

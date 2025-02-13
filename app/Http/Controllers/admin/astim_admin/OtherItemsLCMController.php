@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\admin\astim_admin;
 use App\Models\other_items_lcm;
-use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,35 +12,36 @@ class OtherItemsLCMController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil input tahun dari request
-        $tahun = $request->input('tahun');
-        $filterTahun = $request->input('filter_tahun');
-
-        // Query dasar untuk mengambil data
-        $query = other_items_lcm::query();
-
-        // Filter berdasarkan pencarian tahun
-        if ($tahun) {
-            $query->whereYear('created_at', $tahun);
-        }
-
-        // Filter berdasarkan dropdown filter_tahun
-        if ($filterTahun) {
-            $query->whereYear('created_at', $filterTahun);
-        }
-
-        // Ambil data hasil query dan format bulan/tahun
-        $dokumenother_items_lcm = $query->get()->map(function ($item) {
-            $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
-            return $item;
-        });
-
-        // Ambil daftar tahun unik untuk dropdown filter
-        $tahunList = other_items_lcm::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
-
-        // Kirim data ke view
-        return view('rate-contract/astim/otheritemslcm/index', compact('dokumenother_items_lcm', 'tahunList'));
-    }
+         // Ambil input tahun dari request
+         $tahun = $request->input('tahun');
+         $filterTahun = $request->input('filter_tahun');
+ 
+         // Query dasar untuk mengambil data
+         $query = other_items_lcm::query();
+ 
+         // Filter berdasarkan pencarian tahun
+         if ($tahun) {
+             $query->whereYear('created_at', $tahun);
+         }
+ 
+         // Filter berdasarkan dropdown filter_tahun
+         if ($filterTahun) {
+             $query->whereYear('created_at', $filterTahun);
+         }
+ 
+         // Ambil data hasil query dan format bulan/tahun
+         $dokumenother_items_lcm = $query->get()->map(function ($item) {
+             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
+             return $item;
+         });
+ 
+         // Ambil daftar tahun unik untuk dropdown filter
+         $tahunList = other_items_lcm::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
+ 
+         // Kirim data ke view
+         return view('rate-contract/astim/otheritemslcm/index', compact('dokumenother_items_lcm', 'tahunList'));
+     }
+ 
 
     public function detail($id)
     {
@@ -56,6 +57,7 @@ class OtherItemsLCMController extends Controller
     public function simpan(Request $request)
     {
         $path = $request->file('contract_reference')->store('img', 'public');
+        
 
         // Simpan ke database
         DB::table('other_items_lcm')->insert([
@@ -65,12 +67,9 @@ class OtherItemsLCMController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-
         // Redirect dengan pesan sukses
         return redirect()->to('rate-contract/astim/other-items-lcm')->with('success', 'Data berhasil ditambahkan');
     }
-
-
 
     public function hapus($id)
     {
@@ -91,7 +90,6 @@ class OtherItemsLCMController extends Controller
 
         return view('rate-contract/astim/otheritemslcm/edit', compact('dokumenother_items_lcm'));
     }
-
     public function update(Request $request, $id)
     {
         // Validasi input
@@ -115,11 +113,14 @@ class OtherItemsLCMController extends Controller
         // Proses data input sebagai teks
         $rate_actual_hrm_lcm_base_rate_lebih_dari = $request->rate_actual_hrm_lcm_base_rate_lebih_dari;
         $rate_actual_hrm_lcm_base_rate_kurang_dari = $request->rate_actual_hrm_lcm_base_rate_kurang_dari;
+       
+      
 
         // Update data ke database
         DB::table('other_items_lcm')->where('id', $id)->update([
             'rate_actual_hrm_lcm_base_rate_lebih_dari' => $rate_actual_hrm_lcm_base_rate_lebih_dari,
             'rate_actual_hrm_lcm_base_rate_kurang_dari' => $rate_actual_hrm_lcm_base_rate_kurang_dari,
+            
             'contract_reference' => $path,
         ]);
 
