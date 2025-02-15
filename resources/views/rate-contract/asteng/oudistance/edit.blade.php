@@ -61,8 +61,8 @@
                                     {{ $dokumenoudistance->item == 'OB Overhaul Distance (Rp/BCM/KM)' ? 'selected' : '' }}>
                                     OB Overhaul Distance (Rp/BCM/KM)
                                 </option>
-                                <option data-activity="OB" value="TOB Underhaul Distance (Rp/BCM/KM)"
-                                    {{ $dokumenoudistance->item == 'TOB Underhaul Distance (Rp/BCM/KM)' ? 'selected' : '' }}>
+                                <option data-activity="OB" value="TOP Underhaul Distance (Rp/BCM/KM)"
+                                    {{ $dokumenoudistance->item == 'TOP Underhaul Distance (Rp/BCM/KM)' ? 'selected' : '' }}>
                                     OB Underhaul Distance (Rp/BCM/KM)
                                 </option>
                                 <option data-activity="Top Soil" value="Top Soil Overhaul Distance (Rp/BCM/KM)"

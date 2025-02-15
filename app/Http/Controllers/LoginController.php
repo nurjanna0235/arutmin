@@ -14,18 +14,27 @@ class LoginController extends Controller
     }
 
     // Proses login
-    public function login(Request $request)
+    public function authentication(Request $request)
     {
         // Validasi input
         $request->validate([
-            'username' => 'required|username',
-            'password' => 'required|min:6',
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
         // Coba autentikasi pengguna
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             // Jika berhasil, redirect ke dashboard
-            return redirect()->intended('/dashboard')->with('success', 'Login berhasil!');
+            $user = Auth::user();
+
+            // Simpan session untuk username dan level
+            session([
+                'id' => $user->id,
+                'username' => $user->username,
+                'level' => $user->level, // pastikan kolom 'level' ada pada tabel users
+            ]);
+
+            return redirect()->intended('/beranda')->with('success', 'Login berhasil!');
         }
 
         // Jika gagal, kembali ke halaman login dengan error

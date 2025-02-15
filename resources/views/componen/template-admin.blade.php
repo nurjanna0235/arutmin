@@ -63,13 +63,13 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="/img/profile.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Nurjanna</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ session('username') }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Nurjanna</h6>
-                            <span>Admin</span>
+                            <h6>{{ session('username') }}</h6>
+                            <span>{{ session('level') }}</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -130,6 +130,15 @@
                     <span>Kontraktor</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('logout') ? '' : 'collapsed' }}"
+                    href="/logout">
+                    <i class="ri-article-fill"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+
 
         </ul>
     </aside><!-- End Sidebar-->

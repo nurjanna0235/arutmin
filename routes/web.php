@@ -3,6 +3,7 @@
 use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+
 use App\Http\Controllers\admin\BerandaController;
 use App\Http\Controllers\admin\ProfilController;
 use App\Http\Controllers\user\BerandaUserController;
@@ -68,7 +69,8 @@ use App\Http\Controllers\user\astim_user\OtherItemsLCMUserController;
 
 //halaman login
 Route::get('login', [LoginController::class, 'index']);
-
+Route::post('login/auth', [LoginController::class, 'authentication']);
+Route::get('logout', [LoginController::class, 'logout']);
 
 //Halaman beranda
 Route::get('beranda', [BerandaController::class, 'index']);

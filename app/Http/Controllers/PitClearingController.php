@@ -61,7 +61,6 @@ class PitClearingController extends Controller
 
     public function simpan(Request $request)
     {
-
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // Mengganti koma dengan titik pada inputan untuk keperluan perhitungan
@@ -69,7 +68,6 @@ class PitClearingController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = (float) str_replace(',', '.', $request->premium_rate) / 100;
         $general_escalation = (float) str_replace(',', '.', $request->general_escalation) / 100;
-
 
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;
@@ -80,6 +78,7 @@ class PitClearingController extends Controller
         // Hitung Rate Actual sesuai rumus
         $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
         // Simpan ke database
+
         DB::table('pit_clearing')->insert([
             'base_rate' => $request->base_rate,
             'currency_adjustment' => $request->currency_adjustment,
@@ -90,7 +89,6 @@ class PitClearingController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-
 
         // Redirect dengan pesan sukses
         return redirect()->to('rate-contract/asteng/pit-clearing')->with('success', 'Data berhasil ditambahkan');

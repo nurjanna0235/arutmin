@@ -15,5 +15,5 @@ class mud extends Model
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable =['mud_removal_load_and_haul','currency_adjustment','premium_rate','general_escalation','rate_actual','contract_reference'];
+    protected $fillable =['mud_removal_load_and_haul','currency_adjustment','premium_rate','general_escalation','rate_actual','contract_reference','created_at','updated_at'];
 }

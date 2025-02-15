@@ -3,10 +3,12 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class pengguna extends Model
+class pengguna extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     // Tentukan nama tabel jika berbeda dari asumsi Laravel
     protected $table = 'pengguna';
@@ -15,6 +17,6 @@ class pengguna extends Model
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable = ['username','password','email','nik','level'];
+    protected $fillable = ['username','password','email','nik','level','foto_profil'];
 };
 

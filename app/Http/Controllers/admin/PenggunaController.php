@@ -27,7 +27,8 @@ class PenggunaController extends Controller
             'email' => $request->email,
             'no_hp' => $request->no_hp,
             'level' => $request->level,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
+            'foto_profil' => 'default.jpg'
         ]);
         return redirect()->to('admin/pengguna');
         // $pengguna = pengguna::all();

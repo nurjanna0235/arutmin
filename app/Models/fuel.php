@@ -15,5 +15,5 @@ class fuel extends Model
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable = ['activity','item','fuel_index','contractual_distance_km','created_at','updated_at'];
+    protected $fillable = ['activity','item','fuel_index','contractual_distance_km','contract_reference','created_at','updated_at'];
 }

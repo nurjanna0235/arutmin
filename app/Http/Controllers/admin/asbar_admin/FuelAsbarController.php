@@ -46,10 +46,12 @@ class FuelAsbarController extends Controller
 
         return view('rate-contract/asbar/fuelasbar/index', compact('dokumenfuelasbar', 'tahunList'));
     }
+
     public function tambah()
     {
         return view('rate-contract/asbar/fuelasbar/tambah');
     }
+    
     public function simpan(Request $request)
     {
         $path = $request->file('contract_reference')->store('img', 'public');

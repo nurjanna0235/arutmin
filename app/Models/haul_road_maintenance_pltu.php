@@ -15,5 +15,5 @@ class haul_road_maintenance_pltu extends Model
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable = ['id_kontraktor','base_rate_hrm_pltu','index','premium_rate','general_escalation','actual_rate_hauling_pltu','contract_reference','created_at','updated_at'];
+    protected $fillable = ['id_kontraktor','base_rate','currency_adjustment','premium_rate','general_escalation','actual_rate_hauling_pltu','contract_reference','created_at','updated_at'];
 }
