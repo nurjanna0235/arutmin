@@ -10,8 +10,6 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use App\Models\item_daywork_lcm;
-use App\Models\value_daywork_lcm;
 
 
 class DayworkLCMController extends Controller

@@ -68,6 +68,7 @@ use App\Http\Controllers\user\astim_user\DayworkLCMUserController;
 use App\Http\Controllers\user\astim_user\OtherItemsLCMUserController;
 
 //halaman login
+Route::get('', [LoginController::class, 'index']);
 Route::get('login', [LoginController::class, 'index']);
 Route::post('login/auth', [LoginController::class, 'authentication']);
 Route::get('logout', [LoginController::class, 'logout']);
@@ -79,6 +80,7 @@ Route::get('beranda', [BerandaController::class, 'index']);
 Route::get('admin/profile', [ProfilController::class, 'index']);
 Route::get('admin/profile/edit', [ProfilController::class, 'edit']);
 Route::post('admin/profile/update', [ProfilController::class, 'update']);
+
 
 //Halaman pengguna
 Route::get('admin/pengguna', [PenggunaController::class, 'index']);
