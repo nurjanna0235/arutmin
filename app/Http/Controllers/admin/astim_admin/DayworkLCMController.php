@@ -192,4 +192,11 @@ class DayworkLCMController extends Controller
         // Redirect dengan pesan sukses
         return redirect()->to('rate-contract/astim/daywork-lcm')->with('success', 'Data berhasil diupdate');
     }
+
+
+    public function hapus($id){
+        daywork_lcm::where('id_contract', $id)->delete();
+        contract::where('id_contract', $id)->delete();
+        return redirect()->to('rate-contract/astim/daywork-lcm')->with('success', 'Data berhasil dihapus');
+    }
 }
