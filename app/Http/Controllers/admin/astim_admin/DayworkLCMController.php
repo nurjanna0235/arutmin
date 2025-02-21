@@ -105,9 +105,11 @@ class DayworkLCMController extends Controller
         return view('rate-contract/astim/dayworklcm/tambah', compact('item_daywork_lcm'));
     }
 
-    public function detail($id){
+    public function detail($id)
+    {
         $dokumen = daywork_lcm::where('id_contract', $id)->get(); // Ambil semua data dengan id_contract yang sama
-        return view('rate-contract/astim/dayworklcm/detail', compact('dokumen'));
+        $rate_contract = contract::where('id_contract', $id)->first();
+        return view('rate-contract/astim/dayworklcm/detail', compact('dokumen', 'rate_contract'));
     }
 
     public function simpan(Request $request)
@@ -137,5 +139,57 @@ class DayworkLCMController extends Controller
 
         // Redirect dengan pesan sukses
         return redirect()->to('rate-contract/astim/daywork-lcm')->with('success', 'Data berhasil ditambahkan');
+    }
+
+    public function edit($id)
+    {
+        $dokumen = daywork_lcm::where('id_contract', $id)->get(); // Ambil semua data dengan id_contract yang sama
+        $rate_contract = contract::where('id_contract', $id)->first();
+
+
+        return view('rate-contract/astim/dayworklcm/edit', compact('dokumen', 'rate_contract'));
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        // Ambil data berdasarkan ID
+        $rate_contract = DB::table('contract')->where('id_contract', $id)->first();
+        $id_contract = $id;
+        // Proses upload file jika ada file baru
+        $path = $rate_contract->contract_refren; // Gunakan file lama jika tidak ada file baru
+        if ($request->hasFile('contract_reference')) {
+            // Hapus file lama jika ada
+            if ($path) {
+                Storage::disk('public')->delete($path);
+            }
+            // Simpan file baru
+
+            $path = $request->file('contract_reference')->store('img', 'public');
+            // Simpan contract dan ambil ID-nya
+            $id = contract::where('id_contract', $id)->update([
+                'contract_refren' => $path, // Pastikan nama kolom sesuai dengan di database
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+        }
+
+
+        // Loop untuk menyimpan data daywork_lcm
+        foreach ($request->input('actual_rate', []) as $key => $itemActual) {
+            $itemFbr = $request->input('fbr')[$key] ?? null; // Ambil nilai `fbr` sesuai indeks atau null jika tidak ada
+
+            daywork_lcm::where('id_daywork_lcm', $request->input('id_dokumen')[$key])->update([
+                'item' => $request->input('item')[$key],
+                'model' => $request->input('model')[$key],
+                'rate_per_hour' => $itemActual,
+                'fuel_burn_rate' => $itemFbr,
+                'id_contract' => $id_contract, // Pastikan nama kolom di database benar
+            ]);
+        }
+
+        // Redirect dengan pesan sukses
+        return redirect()->to('rate-contract/astim/daywork-lcm')->with('success', 'Data berhasil diupdate');
     }
 }

@@ -51,7 +51,15 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="text-start mb-3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Contract Reference</h5>
+                            <a href="{{ asset('storage/' . $rate_contract->contract_refren) }}"
+                                target="_blank">
+                                <img src="{{ asset('storage/' . $rate_contract->contract_refren) }}"
+                                    alt="Contract Reference" class="img-fluid large-image">
+                            </a>
+                        </div>
+                        <div class="text-center mb-3">
                             <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
                         </div>
                     </div>
