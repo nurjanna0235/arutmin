@@ -106,7 +106,7 @@
                             <div class="col-12 mt-3">
                                 <div class="d-flex justify-content-start">
                                     <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                                    <a href="/rate-contract/astim/daywork-lcm" class="btn btn-secondary">Batal</a>
+                                    <a href="/rate-contract/astim/oudistance-lcm" class="btn btn-secondary">Batal</a>
                                 </div>
                             </div>
                         </form><!-- Vertical Form -->

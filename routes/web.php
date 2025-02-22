@@ -55,6 +55,7 @@ use App\Http\Controllers\aDMIN\astim_admin\OBLCMController;
 use App\Http\Controllers\admin\astim_admin\CoalLCMController;
 use App\Http\Controllers\admin\astim_admin\MudLCMController;
 use App\Http\Controllers\admin\astim_admin\DayworkLCMController;
+use App\Http\Controllers\admin\astim_admin\FuelLCMController;
 use App\Http\Controllers\admin\astim_admin\OtherItemsLCMController;
 use App\Http\Controllers\admin\astim_admin\OudistanceLCMController;
 //controller user bagian astim
@@ -388,14 +389,14 @@ Route::delete('rate-contract/astim/oudistance-lcm/delete/{num}', [OudistanceLCMC
 Route::get('rate-contract/astim/oudistance-lcm/edit/{num}', [OudistanceLCMController::class, 'edit']);
 Route::put('rate-contract/astim/oudistance-lcm/update/{num}', [OudistanceLCMController::class, 'update']);
 
-
-
-
-
-
-
-
-
+//route astim rate_contract Laz Coal Mandiri Astim/oudistance
+Route::get('rate-contract/astim/fuel-lcm', [FuelLCMController::class, 'index']);
+Route::get('rate-contract/astim/fuel-lcm/detail/{num}', [FuelLCMController::class, 'detail']);
+Route::get('rate-contract/astim/fuel-lcm/tambah', [FuelLCMController::class, 'tambah']);
+Route::post('rate-contract/astim/fuel-lcm/simpan', [FuelLCMController::class, 'simpan']);
+Route::delete('rate-contract/astim/fuel-lcm/delete/{num}', [FuelLCMController::class, 'hapus']);
+Route::get('rate-contract/astim/fuel-lcm/edit/{num}', [FuelLCMController::class, 'edit']);
+Route::put('rate-contract/astim/fuel-lcm/update/{num}', [FuelLCMController::class, 'update']);
 
 
 //Halaman User Astim

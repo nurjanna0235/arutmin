@@ -23,7 +23,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Vertical Form -->
-                        <form action="/rate-contract/astim/oudistance-lcm/simpan" method="POST" class="row g-3"
+                        <form action="/rate-contract/astim/fuel-lcm/simpan" method="POST" class="row g-3"
                             enctype="multipart/form-data">
                             @csrf
                             <table class="table table-bordered">
@@ -32,13 +32,12 @@
 
                                         <th>Activity</th>
                                         <th>Item</th>
-                                        <th>Base Rate (ICI 4 >= $60)</th>
-                                        <th>Base Rate (ICI 4 < $60)</th>
-                                        <th>Contractual Distance (KM)</th>
+                                        <th>Fuel Index</th>
+                                        <th>Contractual Distance</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($item_oudistance_lcm as $item)
+                                    @foreach ($item_fuel_lcm as $item)
                                         <tr>
                                             <th>
                                                 <input type="hidden" name="activity[]" value="{{ $item['activity'] }}">
@@ -50,18 +49,9 @@
                                             </th>
                                             <td>
                                                 <div class="col-12">
-                                                    <input name="base_rate_high[]" type="number" class="form-control"
-                                                        value="{{ old('base_rate_high[]') }}">
-                                                    @error('base_rate_high.*')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="col-12">
-                                                    <input name="base_rate_low[]" type="number" class="form-control"
-                                                        value="{{ old('base_rate_low[]') }}">
-                                                    @error('base_rate_low.*')
+                                                    <input name="fuel_index[]" type="number" class="form-control"
+                                                        value="{{ old('fuel_index[]') }}">
+                                                    @error('fuel_index.*')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
@@ -92,7 +82,7 @@
                             <div class="col-12 mt-3">
                                 <div class="d-flex justify-content-start">
                                     <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                                    <a href="/rate-contract/astim/oudistance-lcm" class="btn btn-secondary">Batal</a>
+                                    <a href="/rate-contract/astim/fuel-lcm" class="btn btn-secondary">Batal</a>
                                 </div>
                             </div>
                         </form><!-- Vertical Form -->
