@@ -1,0 +1,126 @@
+<?php
+
+namespace App\Http\Controllers\admin\astim_admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\oudistance_lcm;
+use App\Models\contract;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
+class OudistanceLCMController extends Controller
+{
+    public function index()
+    {
+        $dokument = oudistance_lcm::join('contract', 'oudistance_lcm.id_contract', '=', 'contract.id_contract')
+            ->get()
+            ->groupBy('id_contract')
+            ->map(fn($group) => $group->first()); // Ambil item pertama dari setiap grup
+
+        return view('rate-contract.astim.oudistancelcm.index',compact('dokument'));
+    }
+
+    public function tambah(){
+        $item_oudistance_lcm = [
+            ['activity' => 'OB', 'item' => 'OB Overhaul Distance (Rp/BCM/100 m)'],
+            ['activity' => 'OB', 'item' => 'OB Underhaul Distance (Rp/BCM/100 m)'],
+            ['activity' => 'Top Soil', 'item' => 'Top Soil Overhaul Distance (Rp/BCM/100 m)'],
+            ['activity' => 'Top Soil', 'item' => 'Top Soil Underhaul Distance (Rp/BCM/100 m)'],
+            ['activity' => 'Mud Removal', 'item' => 'Overhaul Mud Removal (Rp/BCM/100 m)'],
+            ['activity' => 'Mud Removal', 'item' => 'Underhaul Mud Removal (Rp/BCM/100 m)'],
+        ];
+        return view('rate-contract/astim/oudistancelcm/tambah', compact('item_oudistance_lcm'));
+    }
+
+    public function simpan(Request $request){
+        $path = $request->file('contract_reference')->store('img', 'public');
+
+        // Simpan contract dan ambil ID-nya
+        $id_contract = contract::insertGetId([
+            'contract_refren' => $path, // Pastikan nama kolom sesuai dengan di database
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // Loop untuk menyimpan data oudistance_lcm
+        foreach ($request->input('base_rate_high', []) as $key => $BaseRateHigh) {
+
+            $BaseRateLow = $request->input('base_rate_low')[$key] ?? null;
+            $contractual_distance = $request->input('contractual_distance')[$key] ?? null;
+
+            oudistance_lcm::create([
+                'activity' => $request->input('activity')[$key],
+                'item' => $request->input('item')[$key],
+                'base_rate_high' => $BaseRateHigh,
+                'base_rate_low' => $BaseRateLow,
+                'contractual_distance' => $contractual_distance,
+                'id_contract' => $id_contract, // Pastikan nama kolom di database benar
+            ]);
+        }
+
+        return redirect()->to('rate-contract/astim/oudistance-lcm')->with('success', 'Data berhasil ditambahkan');
+    }
+
+    public function detail($id){
+        $dokument = oudistance_lcm::where('id_contract', $id)->get(); // Ambil semua data dengan id_contract yang sama
+        $rate_contract = contract::where('id_contract', $id)->first();
+        return view('rate-contract.astim.oudistancelcm.detail', compact('dokument', 'rate_contract'));
+    }
+
+    public function edit($id){
+        $dokument = oudistance_lcm::where('id_contract', $id)->get(); // Ambil semua data dengan id_contract yang sama
+        $rate_contract = contract::where('id_contract', $id)->first();
+        return view('rate-contract.astim.oudistancelcm.edit', compact('dokument', 'rate_contract'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Ambil data berdasarkan ID
+        $rate_contract = DB::table('contract')->where('id_contract', $id)->first();
+        $id_contract = $id;
+        // Proses upload file jika ada file baru
+        $path = $rate_contract->contract_refren; // Gunakan file lama jika tidak ada file baru
+        if ($request->hasFile('contract_reference')) {
+            // Hapus file lama jika ada
+            if ($path) {
+                Storage::disk('public')->delete($path);
+            }
+            // Simpan file baru
+
+            $path = $request->file('contract_reference')->store('img', 'public');
+            // Simpan contract dan ambil ID-nya
+            contract::where('id_contract', $id)->update([
+                'contract_refren' => $path, // Pastikan nama kolom sesuai dengan di database
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+        }
+
+        // Loop untuk menyimpan data daywork_lcm
+        foreach ($request->input('base_rate_high', []) as $key => $BaseRateHigh) {
+            $BaseRateLow = $request->input('base_rate_low')[$key] ?? null;
+            $contractual_distance = $request->input('contractual_distance')[$key] ?? null;
+
+            oudistance_lcm::where('id', $request->input('id_dokumen')[$key])->update([
+              'activity' => $request->input('activity')[$key],
+                'item' => $request->input('item')[$key],
+                'base_rate_high' => $BaseRateHigh,
+                'base_rate_low' => $BaseRateLow,
+                'contractual_distance' => $contractual_distance,
+                'id_contract' => $id_contract,  // Pastikan nama kolom di database benar
+            ]);
+        }
+
+        // Redirect dengan pesan sukses
+        return redirect()->to('rate-contract/astim/oudistance-lcm')->with('success', 'Data berhasil diupdate');
+    }
+
+    public function hapus($id){
+        oudistance_lcm::where('id_contract', $id)->delete();
+        contract::where('id_contract', $id)->delete();
+        return redirect()->to('rate-contract/astim/oudistance-lcm')->with('success', 'Data berhasil dihapus');
+    }
+}

@@ -152,7 +152,6 @@ class DayworkLCMController extends Controller
 
     public function update(Request $request, $id)
     {
-
         // Ambil data berdasarkan ID
         $rate_contract = DB::table('contract')->where('id_contract', $id)->first();
         $id_contract = $id;
@@ -175,7 +174,6 @@ class DayworkLCMController extends Controller
 
         }
 
-
         // Loop untuk menyimpan data daywork_lcm
         foreach ($request->input('actual_rate', []) as $key => $itemActual) {
             $itemFbr = $request->input('fbr')[$key] ?? null; // Ambil nilai `fbr` sesuai indeks atau null jika tidak ada
@@ -192,7 +190,6 @@ class DayworkLCMController extends Controller
         // Redirect dengan pesan sukses
         return redirect()->to('rate-contract/astim/daywork-lcm')->with('success', 'Data berhasil diupdate');
     }
-
 
     public function hapus($id){
         daywork_lcm::where('id_contract', $id)->delete();
