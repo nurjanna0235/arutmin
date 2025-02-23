@@ -60,6 +60,14 @@ class CoalController extends Controller
     }
     public function simpan(Request $request)
     {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = coal::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/asteng/coal')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // Konversi input ke tipe numerik
@@ -93,7 +101,7 @@ class CoalController extends Controller
         $coal->premium_rate = $request->premium_rate;
         $coal->general_escalation = $request->general_escalation;
         $coal->total_rate_coal_actual = $total_rate_coal_actual;
-        $coal->contract_reference = $path; 
+        $coal->contract_reference = $path;
         $coal->save();
 
         // Redirect atau tampilkan view dengan pesan sukses
@@ -108,7 +116,7 @@ class CoalController extends Controller
 
     public function update(Request $request, $id)
     {
-        
+
         $dokumen_coal = coal::where('id', $id)->get()->first(); // Ambil data sebelumnya
 
         // Konversi input ke tipe numerik
@@ -128,8 +136,8 @@ class CoalController extends Controller
         $total_rate_coal_actual = $sub_total_base_rate_coal
             * $currency_adjustment
             * (1 + $premium_rate)
-            * (1 + $general_escalation);   
-            
+            * (1 + $general_escalation);
+
             $path = $dokumen_coal->contract_reference;
             if ($request->hasFile('contract_reference')) {
                 // Hapus file lama jika ada
@@ -153,7 +161,7 @@ class CoalController extends Controller
         $dokumen_coal->total_rate_coal_actual = $total_rate_coal_actual;
         $dokumen_coal->contract_reference = $path;
         // Data tambahan
-        $dokumen_coal->save();        
+        $dokumen_coal->save();
 
         return redirect()->to('rate-contract/asteng/coal')->with('success', 'Data berhasil diubah');
     }

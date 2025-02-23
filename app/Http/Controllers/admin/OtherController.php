@@ -53,6 +53,14 @@ class OtherController extends Controller
     }
     public function simpan(Request $request)
     {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = other::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/asteng/other')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
             // Ganti koma dengan titik pada inputan untuk keperluan perhitungan
@@ -60,16 +68,16 @@ class OtherController extends Controller
             $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
             $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
             $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
-        
+
             // Konversi menjadi float untuk perhitungan
             $base_rate = (float) $base_rate;
             $currency_adjustment = (float) $currency_adjustment;
             $premium_rate = (float) $premium_rate;
             $general_escalation = (float) $general_escalation;
-        
+
             // Hitung Rate Actual sesuai rumus
             $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
-    
+
             // Simpan data ke dalam database
             DB::table('other')->insert([
                 'base_rate_hrm_lcm' => $request->base_rate_hrm_lcm,
@@ -81,14 +89,14 @@ class OtherController extends Controller
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-        
+
             // Redirect dengan pesan sukses
             return redirect()->to('rate-contract/asteng/other')->with('success', 'Data berhasil ditambahkan');
         }
         public function edit($id)
         {
             $dokumenother = other::findOrFail($id);
-            return view('rate-contract/asteng/other/edit', compact('dokumenother'));   
+            return view('rate-contract/asteng/other/edit', compact('dokumenother'));
         }
         public function update(Request $request, $id)
     {
@@ -138,13 +146,13 @@ class OtherController extends Controller
             'rate_actual' => $rate_actual,
             'contract_reference' => $path,
             'updated_at' => now(),
-        ]); 
+        ]);
 
         // Redirect dengan pesan sukses
         return redirect()->to('rate-contract/asteng/other')->with('success', 'Data berhasil diperbarui');
     }
 
-    
+
 
     public function hapus($id)
     {

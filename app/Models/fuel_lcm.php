@@ -18,5 +18,7 @@ class fuel_lcm extends Model
         'contractual_distance',
         'fuel_index',
         'id_contract',
+        'created_at',
+        'updated_at',
     ];
 }

@@ -17,7 +17,12 @@ class FuelLCMController extends Controller
         $dokument = fuel_lcm::join('contract', 'fuel_lcm.id_contract', '=', 'contract.id_contract')
             ->get()
             ->groupBy('id_contract')
-            ->map(fn($group) => $group->first()); // Ambil item pertama dari setiap grup
+            ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
+            ->map(function ($item) {
+                // Pastikan created_at adalah objek Carbon dan format ke "Month Year"
+                $item->created_at = Carbon::parse($item->created_at)->format('F Y');
+                return $item;
+            });
 
         return view('rate-contract.astim.fuellcm.index', compact('dokument'));
     }
@@ -50,7 +55,16 @@ class FuelLCMController extends Controller
         return view('rate-contract.astim.fuellcm.tambah', compact('item_fuel_lcm'));
     }
 
-    public function simpan(Request $request){
+    public function simpan(Request $request)
+    {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = fuel_lcm::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/astim/fuel-lcm')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // Simpan contract dan ambil ID-nya
@@ -70,6 +84,8 @@ class FuelLCMController extends Controller
                 'fuel_index' => $fuelIndex,
                 'contractual_distance' => $contractual_distance,
                 'id_contract' => $id_contract, // Pastikan nama kolom di database benar
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
         return redirect()->to('rate-contract/astim/fuel-lcm')->with('success', 'Data berhasil ditambahkan');
@@ -104,7 +120,6 @@ class FuelLCMController extends Controller
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-
         }
 
         // Loop untuk menyimpan data daywork_lcm
@@ -123,10 +138,10 @@ class FuelLCMController extends Controller
         return redirect()->to('rate-contract/astim/fuel-lcm')->with('success', 'Data berhasil diupdate');
     }
 
-    public function hapus($id){
+    public function hapus($id)
+    {
         fuel_lcm::where('id_contract', $id)->delete();
         contract::where('id_contract', $id)->delete();
         return redirect()->to('rate-contract/astim/fuel-lcm')->with('success', 'Data berhasil dihapus');
     }
-
 }

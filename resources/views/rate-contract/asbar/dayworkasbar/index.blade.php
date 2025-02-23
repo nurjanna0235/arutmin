@@ -14,6 +14,7 @@
             </ol>
         </nav>
     </div>
+    @include('componen.alert')
     <div class="icon mb-3">
         <a href="/rate-contract/asbar/daywork-asbar/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
     </div>
@@ -75,7 +76,7 @@
                     <td>{{ $item->premium_rate }}</td>
                     <td>{{ $item->general_escalation }}</td>
                     <td class="text-danger fw-bold">{{ $item->actual_rate_exc_fuel }}</td>
-                 
+
 
                     <td>
                         <div class="d-flex gap-2 justify-content-center">

@@ -56,6 +56,14 @@ class CoalLCMController extends Controller
 
     public function simpan(Request $request)
     {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = coal_lcm::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/astim/coal-lcm')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // Simpan ke database
@@ -127,7 +135,7 @@ class CoalLCMController extends Controller
         $coal_cleaning_kurang_dari = $request->coal_cleaning_kurang_dari;
         $pit_support_lebih_dari = $request->pit_support_lebih_dari;
         $pit_support_kurang_dari = $request->pit_support_kurang_dari;
-    
+
         // Update data ke database
         DB::table('coal_lcm')->where('id', $id)->update([
             'coal_getting_lebih_dari' => $coal_getting_lebih_dari,

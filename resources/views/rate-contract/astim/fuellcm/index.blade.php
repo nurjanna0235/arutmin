@@ -13,6 +13,8 @@
                 </ol>
             </nav>
 
+            @include('componen.alert')
+
             <div class="icon mb-3">
                 <a href="/rate-contract/astim/fuel-lcm/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
             </div>
@@ -48,7 +50,7 @@
                             <tr>
                                 <td>{{ $No++ }}</td>
                                 <td>
-                                {{ $item->bulan_tahun }}
+                                    {{ $item->created_at }}
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2 justify-content-center">

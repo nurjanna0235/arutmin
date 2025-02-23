@@ -60,9 +60,17 @@ class FuelController extends Controller
     }
     public function simpan(Request $request)
     {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = fuel::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/asteng/fuel')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
-       
+
 
         // simpan data ke database
         fuel::insert([

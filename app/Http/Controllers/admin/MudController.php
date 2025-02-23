@@ -10,43 +10,43 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
 class MudController extends Controller
-{       
+{
         public function index(Request $request)
         {
             // Ambil input tahun dari request
             $tahun = $request->input('tahun');
             $filterTahun = $request->input('filter_tahun');
-    
+
             // Query dasar untuk mengambil data
             $query = mud::query();
-    
+
             // Filter berdasarkan pencarian tahun
             if ($tahun) {
                 $query->whereYear('created_at', $tahun);
             }
-    
+
             // Filter berdasarkan dropdown filter_tahun
             if ($filterTahun) {
                 $query->whereYear('created_at', $filterTahun);
             }
-    
+
             // Ambil data hasil query dan format bulan/tahun
             $dokumenmud = $query->get()->map(function ($item) {
                 $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
                 return $item;
             });
-    
+
             // Ambil daftar tahun unik untuk dropdown filter
             $tahunList = mud::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
-    
+
             // Kirim data ke view
             return view('rate-contract/asteng/mud/index', compact('dokumenmud', 'tahunList'));
         }
-    
+
         public function detail($id)
         {
             $dokumenmud = mud::where('id', $id)->get()->first();
-    
+
             return view('rate-contract/asteng/mud/detail', compact('dokumenmud'));
         }
     public function tambah()
@@ -55,6 +55,14 @@ class MudController extends Controller
     }
     public function simpan(Request $request)
     {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = mud::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/asteng/mud')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // Konversi input ke tipe data numerik
@@ -121,8 +129,8 @@ class MudController extends Controller
         $rate_actual = $mud_removal_load_and_haul
             * $currency_adjustment
             * (1 + $premium_rate)
-            * (1 + $general_escalation);        
-        
+            * (1 + $general_escalation);
+
         $dokumenmud->mud_removal_load_and_haul = $mud_removal_load_and_haul;
         $dokumenmud->currency_adjustment = $currency_adjustment;
         $dokumenmud->premium_rate = $request->premium_rate; // Nilai asli dalam persen
@@ -130,7 +138,7 @@ class MudController extends Controller
         $dokumenmud->rate_actual = $rate_actual;
         $dokumenmud->contract_reference = $path;
         $dokumenmud->save();
-    
+
 
         return redirect()->to('rate-contract/asteng/mud')->with('success', 'Data berhasil diperbarui');
     }

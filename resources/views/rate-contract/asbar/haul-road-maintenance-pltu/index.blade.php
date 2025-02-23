@@ -1,29 +1,32 @@
 @extends('componen.template-admin')
 
 @section('conten')
+    <main id="main" class="main">
 
-<main id="main" class="main">
-
-<div class="pagetitle">
-        <h1>Rate Contract</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
-                <li class="breadcrumb-item active">Asbar</li>
-                <li class="breadcrumb-item active">Haul Road Maintenance PLTU</li>
-            </ol>
-        </nav>
-    </div>
+        <div class="pagetitle">
+            <h1>Rate Contract</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Darma Henwa</a></li>
+                    <li class="breadcrumb-item active">Asbar</li>
+                    <li class="breadcrumb-item active">Haul Road Maintenance PLTU</li>
+                </ol>
+            </nav>
+        </div>
+        @include('componen.alert')
         <div class="icon mb-3">
-            <a href="/rate-contract/asbar/haul-road-maintenance-pltu/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
+            <a href="/rate-contract/asbar/haul-road-maintenance-pltu/tambah" type="button"
+                class="btn btn-success"><i></i>Tambah</a>
         </div>
 
         <!-- Form untuk pencarian -->
         <div class="mb-4">
-            <form method="GET" action="{{ url('/rate-contract/asbar/haul-road-maintenance-pltu') }}" class="d-flex align-items-center gap-3">
+            <form method="GET" action="{{ url('/rate-contract/asbar/haul-road-maintenance-pltu') }}"
+                class="d-flex align-items-center gap-3">
                 <!-- Input Pencarian Tahun -->
                 <div class="form-group">
-                    <input type="number" name="tahun" class="form-control" placeholder="Cari Tahun" value="{{ request('tahun') }}">
+                    <input type="number" name="tahun" class="form-control" placeholder="Cari Tahun"
+                        value="{{ request('tahun') }}">
                 </div>
                 <!-- Tombol Submit untuk Search -->
                 <button type="submit" class="btn btn-primary">Cari</button>
@@ -47,52 +50,56 @@
                 </thead>
 
                 <tbody>
-                <?php $No = 1; ?>
-                @foreach($dokumenhaulroadmaintenancepltu as $item)
-                    
+                    <?php $No = 1; ?>
+                    @foreach ($dokumenhaulroadmaintenancepltu as $item)
                         <tr>
-                            <td>{{$No++}}</td>
-                            <td>{{$item->bulan_tahun}}</td>
-                            <td>{{$item->base_rate}}</td>
-                            <td>{{$item->currency_adjustment}}</td>
-                            <td>{{$item->premium_rate}}</td>
-                            <td>{{$item->general_escalation}}</td>
+                            <td>{{ $No++ }}</td>
+                            <td>{{ $item->bulan_tahun }}</td>
+                            <td>{{ $item->base_rate }}</td>
+                            <td>{{ $item->currency_adjustment }}</td>
+                            <td>{{ $item->premium_rate }}</td>
+                            <td>{{ $item->general_escalation }}</td>
                             <td class="text-danger fw-bold">{{ $item->actual_rate_hauling_pltu }}</td>
                             <td>
-                            <div class="d-flex gap-2 justify-content-center">
+                                <div class="d-flex gap-2 justify-content-center">
                                     <!-- Tombol Detail -->
-                                    <a href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/detail/' . $item->id) }}" >
+                                    <a
+                                        href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/detail/' . $item->id) }}">
                                         <i class="ri-information-line" title="Detail"></i>
                                     </a>
                                     <!-- Tombol Edit -->
-                                    <a href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/edit/' . $item->id) }}" >
+                                    <a
+                                        href="{{ url('rate-contract/asbar/haul-road-maintenance-pltu/edit/' . $item->id) }}">
                                         <i class="ri-edit-2-line text-warning" title="Edit"></i>
                                     </a>
 
                                     <!-- Tombol Hapus -->
-                                    <form action="{{ url('/rate-contract/asbar/haul-road-maintenance-pltu/delete/' . $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
+                                    <form
+                                        action="{{ url('/rate-contract/asbar/haul-road-maintenance-pltu/delete/' . $item->id) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
+                                        class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" style="border: none; background: none;" >
+                                        <button type="submit" style="border: none; background: none;">
                                             <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
                                         </button>
                                     </form>
                                 </div>
                             </td>
                         </tr>
-                        @endforeach
+                    @endforeach
                 </tbody>
             </table>
         </div>
-    </div><!-- End Page Title -->
+        </div><!-- End Page Title -->
 
-    <section class="section dashboard">
-        <div class="row"></div>
-        <div class="icon mb-5">
-            <a type="submit" href="/rate-contract/asbar" class="btn btn-secondary">Kembali</a>
-        </div>
-    </section>
+        <section class="section dashboard">
+            <div class="row"></div>
+            <div class="icon mb-5">
+                <a type="submit" href="/rate-contract/asbar" class="btn btn-secondary">Kembali</a>
+            </div>
+        </section>
 
-</main>
-
+    </main>
 @endsection

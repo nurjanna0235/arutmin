@@ -18,5 +18,7 @@ class daywork_lcm extends Model
         'rate_per_hour',
         'fuel_burn_rate',
         'id_contract',
+        'created_at',
+        'updated_at',
     ];
 }

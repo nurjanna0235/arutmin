@@ -13,7 +13,7 @@
                 <li class="breadcrumb-item active">Top Soil</li>
             </ol>
         </nav>
-
+        @include('componen.alert')
         <div class="icon mb-3">
             <a href="/rate-contract/asteng/top-soil/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
         </div>

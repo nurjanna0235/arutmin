@@ -58,6 +58,14 @@ class oudistanceController extends Controller
     }
     public function simpan(Request $request)
     {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = oudistance::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/asteng/oudistance')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // Validasi input
@@ -89,7 +97,7 @@ class oudistanceController extends Controller
 
         $actual_rate = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
 
-        // simpan data ke database 
+        // simpan data ke database
         oudistance::insert([
             'activity' => $request->activity,
             'item' => $request->item,

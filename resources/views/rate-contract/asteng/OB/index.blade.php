@@ -13,7 +13,7 @@
                 <li class="breadcrumb-item active">OB</li>
             </ol>
         </nav>
-
+        @include('componen.alert')
         <div class="icon mb-3">
             <a href="/rate-contract/asteng/ob/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
         </div>
@@ -114,7 +114,7 @@
         </div>
           <!-- Tombol Kembali -->
  <div class="icon mb-5">
- <a type="submit" href="/rate-contract/asteng" class="btn btn-secondary">Kembali</a>   
+ <a type="submit" href="/rate-contract/asteng" class="btn btn-secondary">Kembali</a>
     </section>
 
 </main>

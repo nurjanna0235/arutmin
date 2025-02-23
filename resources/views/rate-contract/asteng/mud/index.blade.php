@@ -13,7 +13,7 @@
                 <li class="breadcrumb-item active">Mud</li>
             </ol>
         </nav>
-
+        @include('componen.alert')
         <div class="icon mb-3">
             <a href="/rate-contract/asteng/mud/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
         </div>
@@ -30,7 +30,7 @@
             </form>
         </div>
 
-    
+
         <!-- Table with stripped rows -->
         <div class="table-container" style="width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;">
             <table class="table table-bordered text-center align-middle">
@@ -68,7 +68,7 @@
                                     <a href="{{ url('rate-contract/asteng/mud/edit/' . $item->id) }}" >
                                         <i class="ri-edit-2-line text-warning" title="Edit"></i>
                                     </a>
-                                   
+
                                    <!-- Tombol Hapus -->
                                    <form action="{{ url('/rate-contract/asteng/mud/delete/' . $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
                                         @csrf
@@ -91,7 +91,7 @@
     </section>
 
     <div class="icon mb-3">
- <a type="submit" href="/rate-contract/asteng" class="btn btn-secondary">Kembali</a>   
+ <a type="submit" href="/rate-contract/asteng" class="btn btn-secondary">Kembali</a>
     </div>
 </main>
 <!-- End #main -->

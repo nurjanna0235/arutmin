@@ -51,9 +51,17 @@ class FuelAsbarController extends Controller
     {
         return view('rate-contract/asbar/fuelasbar/tambah');
     }
-    
+
     public function simpan(Request $request)
     {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = fuel_asbar::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/asbar/fuel-asbar')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // simpan data ke database
@@ -91,7 +99,7 @@ class FuelAsbarController extends Controller
             }
             // Simpan file baru
             $path = $request->file('contract_reference')->store('img', 'public');
-            
+
         }
 
         DB::table('fuel_asbar')->where('id', $id)->update([

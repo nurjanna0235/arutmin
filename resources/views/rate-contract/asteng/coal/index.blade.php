@@ -15,6 +15,8 @@
         </nav>
     </div>
 
+    @include('componen.alert')
+
     <!-- Tombol Tambah -->
     <div class="icon mb-3">
         <a href="/rate-contract/asteng/coal/tambah" class="btn btn-success"><i></i>Tambah</a>

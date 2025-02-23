@@ -13,7 +13,7 @@
                 <li class="breadcrumb-item active">Single Rate</li>
             </ol>
         </nav>
-
+        @include('componen.alert')
         <div class="icon mb-3">
             <a href="/rate-contract/asteng/single-rate/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
         </div>

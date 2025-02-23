@@ -34,18 +34,25 @@ class HaulRoadMaintenancePLTUController extends Controller
            $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
            return $item;
        });
-    
+
        // Ambil daftar tahun unik untuk dropdown filter
        $tahunList = haul_road_maintenance_pltu::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
-        return view('rate-contract/asbar/haul-road-maintenance-pltu/index', compact('dokumenhaulroadmaintenancepltu', 'tahunList'));    
+        return view('rate-contract/asbar/haul-road-maintenance-pltu/index', compact('dokumenhaulroadmaintenancepltu', 'tahunList'));
     }
     public function tambah()
     {
         return view('rate-contract/asbar/haul-road-maintenance-pltu/tambah');
-    }   
+    }
     public function simpan(Request $request)
     {
-        
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = haul_road_maintenance_pltu::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/asbar/haul-road-maintenance-pltu')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // Mengganti koma dengan titik pada inputan untuk keperluan perhitungan
@@ -143,7 +150,7 @@ class HaulRoadMaintenancePLTUController extends Controller
          // Redirect dengan pesan sukses
  return redirect()->to('rate-contract/asbar/haul-road-maintenance-pltu')->with('success', 'Data berhasil diperbarui');
     }
-    
+
     public function hapus($id)
     {
         $dokumenhaulroadmaintenancepltu = haul_road_maintenance_pltu::findOrFail($id);

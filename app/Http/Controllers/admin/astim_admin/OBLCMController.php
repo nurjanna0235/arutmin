@@ -58,6 +58,14 @@ class OBLCMController extends Controller
 
     public function simpan(Request $request)
     {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = ob_lcm::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/astim/ob-lcm')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // Simpan ke database
@@ -141,7 +149,7 @@ class OBLCMController extends Controller
         $water_treatment_kurang_dari = $request->water_treatment_kurang_dari;
         $total_rate_ob_actual_kurang_dari = $request->total_rate_ob_actual_kurang_dari;
         $total_rate_ob_actual_lebih_dari = $request->total_rate_ob_actual_lebih_dari;
-      
+
 
         // Update data ke database
         DB::table('ob_lcm')->where('id', $id)->update([

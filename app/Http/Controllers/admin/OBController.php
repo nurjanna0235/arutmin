@@ -57,6 +57,14 @@ class OBController extends Controller
 
     public function simpan(Request $request)
     {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = ob::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/asteng/ob')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // Pastikan inputan dikonversi ke float
@@ -122,7 +130,7 @@ class OBController extends Controller
             'premium_rate' => 'nullable',
             'total_rate_ob_actual' => 'nullable',
             'contract_reference' => 'nullable',
-            
+
             // 'contract_reference' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048',
         ]);
 
@@ -140,7 +148,7 @@ class OBController extends Controller
         $sub_total_base_rate_ob = $load_and_haul + $drill_and_blast + $pit_support + $pit_lighting + $hrm + $dump_maintenance + $dewatering_sediment;
         $sr = $request->sr ?? $dokumen->sr;
         $currency_adjustment = $request->currency_adjustment ?? $dokumen->currency_adjustment;
- 
+
         $premium_rate = $request->premium_rate ?? $dokumen->premium_rate;
         $general_escalation = $request->general_escalation ?? $dokumen->general_escalation;
         $total_rate_ob_actual = $sub_total_base_rate_ob * $sr * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);

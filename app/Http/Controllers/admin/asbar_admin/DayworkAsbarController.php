@@ -54,6 +54,14 @@ class DayworkAsbarController extends Controller
 
     public function simpan(Request $request)
     {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = daywork_asbar::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/asbar/daywork-asbar')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         // Simpan file kontrak ke folder img
         $path = $request->file('contract_reference')->store('img', 'public');
 
@@ -87,7 +95,7 @@ class DayworkAsbarController extends Controller
     public function detail($id)
     {
         $dokumendaywork_asbar = daywork_asbar::where('id_daywork_asbar', $id)->get()->first();
-        
+
         return view('rate-contract/asbar/dayworkasbar/detail', compact('dokumendaywork_asbar'));
     }
     public function update(Request $request, $id)

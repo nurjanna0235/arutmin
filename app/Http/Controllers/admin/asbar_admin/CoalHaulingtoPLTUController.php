@@ -35,7 +35,7 @@ class CoalHaulingtoPLTUController extends Controller
            $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
            return $item;
        });
-    
+
 
        // Ambil daftar tahun unik untuk dropdown filter
        $tahunList = coal_hauling_to_pltu::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
@@ -56,14 +56,22 @@ class CoalHaulingtoPLTUController extends Controller
 
         return view('rate-contract/asbar/coalhauling/detail', compact('dokumencoalhauling'));
     }
-    public function edit($id) 
-    {  
+    public function edit($id)
+    {
         $dokumencoalhauling = coal_hauling_to_pltu::where('id', $id)->get()->first();
-   
+
         return view('rate-contract/asbar/coalhauling/edit',compact('dokumencoalhauling'));
     }
     public function simpan(Request $request)
     {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = coal_hauling_to_pltu::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/asbar/coal-hauling')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // Mengganti koma dengan titik pada inputan untuk keperluan perhitungan
@@ -94,7 +102,7 @@ class CoalHaulingtoPLTUController extends Controller
 
          // Redirect dengan pesan sukses
     return redirect()->to('rate-contract/asbar/coal-hauling')->with('success', 'Data berhasil ditambahkan');
-        
+
     }
     public function update(Request $request, $id)
     {
@@ -117,7 +125,7 @@ class CoalHaulingtoPLTUController extends Controller
           if ($path) {
               Storage::disk('public')->delete($path);
           }
-            
+
             // Simpan file baru
             $path = $request->file('contract_reference')->store('img', 'public');
         }

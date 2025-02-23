@@ -7,7 +7,7 @@ use App\Models\top_soil;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;  
+use Carbon\Carbon;
 
 
 class TopSoilController extends Controller
@@ -56,39 +56,47 @@ class TopSoilController extends Controller
         return view('rate-contract/asteng/topsoil/tambah');
     }
     public function simpan(Request $request)
-        {
-            $path = $request->file('contract_reference')->store('img', 'public');
+    {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = top_soil::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
 
-            // Mengganti koma dengan titik pada inputan untuk keperluan perhitungan
-            $base_rate = str_replace([','], ['.'], $request->base_rate);
-            $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
-            $premium_rate = str_replace(['%'], [''], $request->premium_rate ??0) / 100;
-            $general_escalation = str_replace(['%'], [''], $request->general_escalation ??0) / 100;
-    
-            // Konversi menjadi float untuk perhitungan
-            $base_rate = (float) $base_rate;
-            $currency_adjustment = (float) $currency_adjustment;
-            $premium_rate = (float) $premium_rate;
-            $general_escalation = (float) $general_escalation;
-    
-            // Hitung Rate Actual sesuai rumus
-            $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
-            // Simpan ke database
-            DB::table('top_soil')->insert([
-                'base_rate' => $request->base_rate,
-                'currency_adjustment' => $request->currency_adjustment,
-                'premium_rate' => $request->premium_rate,
-                'general_escalation' => $request->general_escalation,
-                'rate_actual' => $rate_actual,
-                'contract_reference' => $path,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        if ($dokument) {
+            return redirect()->to('rate-contract/asteng/topsoil')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
+        $path = $request->file('contract_reference')->store('img', 'public');
 
-             // Redirect dengan pesan sukses
+        // Mengganti koma dengan titik pada inputan untuk keperluan perhitungan
+        $base_rate = str_replace([','], ['.'], $request->base_rate);
+        $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
+        $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
+        $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+
+        // Konversi menjadi float untuk perhitungan
+        $base_rate = (float) $base_rate;
+        $currency_adjustment = (float) $currency_adjustment;
+        $premium_rate = (float) $premium_rate;
+        $general_escalation = (float) $general_escalation;
+
+        // Hitung Rate Actual sesuai rumus
+        $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
+        // Simpan ke database
+        DB::table('top_soil')->insert([
+            'base_rate' => $request->base_rate,
+            'currency_adjustment' => $request->currency_adjustment,
+            'premium_rate' => $request->premium_rate,
+            'general_escalation' => $request->general_escalation,
+            'rate_actual' => $rate_actual,
+            'contract_reference' => $path,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // Redirect dengan pesan sukses
         return redirect()->to('rate-contract/asteng/top-soil')->with('success', 'Data berhasil ditambahkan');
     }
-     
+
     public function hapus($id)
     {
         $dokumentop_soil = top_soil::findOrFail($id);
@@ -125,8 +133,8 @@ class TopSoilController extends Controller
             if ($path) {
                 Storage::disk('public')->delete($path);
             }
-           
-            
+
+
             // Simpan file baru
             $path = $request->file('contract_reference')->store('img', 'public');
         }
@@ -156,7 +164,7 @@ class TopSoilController extends Controller
             'contract_reference' => $path,
             'updated_at' => now(),
         ]);
- // Redirect dengan pesan sukses
- return redirect()->to('rate-contract/asteng/top-soil')->with('success', 'Data berhasil diperbarui');
-}
+        // Redirect dengan pesan sukses
+        return redirect()->to('rate-contract/asteng/top-soil')->with('success', 'Data berhasil diperbarui');
+    }
 }

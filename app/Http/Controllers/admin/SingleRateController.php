@@ -42,7 +42,7 @@ class SingleRateController extends Controller
         // Ambil daftar tahun unik untuk dropdown filter
         $tahunList = single_rate::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
 
-        
+
 
         // Kirim data ke view
         return view('rate-contract/asteng/singlerate/index', compact('dokumensingle_rate', 'tahunList'));
@@ -60,6 +60,14 @@ class SingleRateController extends Controller
     }
     public function simpan(Request $request)
     {
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = single_rate::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/asteng/single-rate')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // Mengganti koma dengan titik pada inputan untuk keperluan perhitungan
@@ -101,7 +109,7 @@ class SingleRateController extends Controller
     public function edit($id)
     {
         $dokumensingle_rate = single_rate::where('id', $id)->get()->first();
-    
+
         return view('rate-contract/asteng/singlerate/edit', compact('dokumensingle_rate'));
     }
 
@@ -126,7 +134,7 @@ class SingleRateController extends Controller
         $sr = str_replace([','], ['.'], $request->sr); // SR (Stripping Ratio)
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment); // Currency Adjustment
         $premium_rate = str_replace(['%'], [''], $request->premium_rate) / 100; // Premium Rate (%)
-        $general_escalation = str_replace(['%'], [''], $request->general_escalation) / 100; // General Escalation (%)   
+        $general_escalation = str_replace(['%'], [''], $request->general_escalation) / 100; // General Escalation (%)
 
         // Konversi menjadi float untuk perhitungan
         $base_rate_ob = (float) $base_rate_ob;

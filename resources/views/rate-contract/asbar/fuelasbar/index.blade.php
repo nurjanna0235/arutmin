@@ -14,6 +14,7 @@
             </ol>
         </nav>
     </div>
+    @include('componen.alert')
     <div class="icon mb-3">
         <a href="/rate-contract/asbar/fuel-asbar/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
     </div>
@@ -41,7 +42,7 @@
                 </select>
             </div>
 
-            
+
 
             <!-- Tombol Submit untuk Search -->
             <button type="submit" class="btn btn-primary">Cari</button>

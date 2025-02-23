@@ -17,9 +17,14 @@ class OudistanceLCMController extends Controller
         $dokument = oudistance_lcm::join('contract', 'oudistance_lcm.id_contract', '=', 'contract.id_contract')
             ->get()
             ->groupBy('id_contract')
-            ->map(fn($group) => $group->first()); // Ambil item pertama dari setiap grup
+            ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
+            ->map(function ($item) {
+                // Pastikan created_at adalah objek Carbon dan format ke "Month Year"
+                $item->created_at = Carbon::parse($item->created_at)->format('F Y');
+                return $item;
+            });
 
-        return view('rate-contract.astim.oudistancelcm.index',compact('dokument'));
+        return view('rate-contract.astim.oudistancelcm.index', compact('dokument'));
     }
 
     public function tambah(){
@@ -35,6 +40,14 @@ class OudistanceLCMController extends Controller
     }
 
     public function simpan(Request $request){
+        $tanggalInput = now(); // Ambil waktu saat ini
+        $dokument = oudistance_lcm::whereYear('created_at', $tanggalInput->year)
+            ->whereMonth('created_at', $tanggalInput->month)
+            ->first();
+
+        if ($dokument) {
+            return redirect()->to('rate-contract/astim/oudistance-lcm')->with('error', 'Data untuk bulan ini sudah ada.');
+        }
         $path = $request->file('contract_reference')->store('img', 'public');
 
         // Simpan contract dan ambil ID-nya
@@ -57,6 +70,8 @@ class OudistanceLCMController extends Controller
                 'base_rate_low' => $BaseRateLow,
                 'contractual_distance' => $contractual_distance,
                 'id_contract' => $id_contract, // Pastikan nama kolom di database benar
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
 

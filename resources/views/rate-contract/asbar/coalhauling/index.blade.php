@@ -14,6 +14,7 @@
             </ol>
         </nav>
     </div>
+    @include('componen.alert')
     <div class="icon mb-3">
         <a href="/rate-contract/asbar/coal-hauling/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
     </div>

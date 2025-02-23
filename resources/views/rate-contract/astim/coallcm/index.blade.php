@@ -14,6 +14,8 @@
             </ol>
         </nav>
 
+        @include('componen.alert')
+
         <div class="icon mb-3">
             <a href="/rate-contract/astim/coal-lcm/tambah" type="button"
                 class="btn btn-success"><i></i>Tambah</a>
@@ -100,7 +102,7 @@
                                                                 <td>{{ $item->pit_support_lebih_dari }}</td>
                                                                 <td>{{ $item->pit_support_kurang_dari }}
                                                                 </td>
-                                                            </tr>   
+                                                            </tr>
 
                                                         </tbody>
                                                     </table>

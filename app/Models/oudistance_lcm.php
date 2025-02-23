@@ -19,5 +19,7 @@ class oudistance_lcm extends Model
         'base_rate_low',
         'contractual_distance',
         'id_contract',
+        'created_at',
+        'updated_at',
     ];
 }
