@@ -8,8 +8,6 @@
         <h1>Kontraktor</h1>
         <nav>
             <ol class="breadcrumb">
-              
-                
             </ol>
         </nav>
     </div><!-- End Page Title -->

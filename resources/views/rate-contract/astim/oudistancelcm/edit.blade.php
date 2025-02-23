@@ -9,8 +9,8 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">Laz Coal Mandiri</li>
                     <li class="breadcrumb-item active">Astim</li>
-                    <li class="breadcrumb-item active">Daywork</li>
-                    <li class="breadcrumb-item active">Tambah</li>
+                    <li class="breadcrumb-item active">Over/Under Distance</li>
+                    <li class="breadcrumb-item active">Edit</li>
                 </ol>
             </nav>
 
@@ -34,7 +34,7 @@
                                         <th>Activity</th>
                                         <th>Item</th>
                                         <th>Base Rate (ICI 4 >= $60)</th>
-                                        <th>Base Rate (ICI 4 < $60)</th>
+                                        <th>Base Rate (ICI 4 <= $60)</th>
                                         <th>Contractual Distance (KM)</th>
                                     </tr>
                                 </thead>

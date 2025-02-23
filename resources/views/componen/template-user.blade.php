@@ -10,14 +10,16 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/template-admin/assets/img/favicon.png" rel="icon">
+    <link href="/template-admin/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
+
+    
 
     <!-- Vendor CSS Files -->
     <link href="/template-admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +32,7 @@
 
         <!-- Template Main CSS File -->
         <link href="/template-admin/assets/css/style.css" rel="stylesheet">
+
 
         <!-- =======================================================
   * Template Name: NiceAdmin
@@ -47,13 +50,57 @@
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
-                <img src="template-admin/assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">PT.ARUTMIN</span>
+                <img src="/template-admin/assets/img/logo.png" alt="">
+                <span class="d-none d-lg-block">ARUTMIN</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
-        </div>
+        </div><!-- End Logo -->
 
-    </header>
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/user/profile" data-bs-toggle="dropdown">
+                        <img src="/img/profile.jpg" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ session('username') }}</span>
+                    </a><!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>{{ session('username') }}</h6>
+                            <span>{{ session('level') }}</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="/user/profile">
+                                <i class="bi bi-person"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="/logout">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
+
+            </ul>
+        </nav>
+
+
+    </header><!-- End Header -->
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
@@ -61,18 +108,29 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('user/beranda') ? '' : 'collapsed' }}" href="/user/beranda">
+                <a class="nav-link {{ Request::is('user/beranda') ? '' : 'collapsed' }}"
+                    href="/user/beranda">
                     <i class="ri-home-fill"></i>
                     <span>Beranda</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('user/rate-contract') ? '' : 'collapsed' }}" href="/user/rate-contract">
+                <a class="nav-link {{ Request::is('user/rate-contract') ? '' : 'collapsed' }}"
+                    href="/user/rate-contract">
                     <i class="ri-article-fill"></i>
                     <span>Kontraktor</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('logout') ? '' : 'collapsed' }}"
+                    href="/logout">
+                    <i class="ri-article-fill"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+
 
         </ul>
     </aside><!-- End Sidebar-->

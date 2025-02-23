@@ -14,7 +14,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">Laz Coal Mandiri</li>
                     <li class="breadcrumb-item active">Astim</li>
-                    <li class="breadcrumb-item active">OB</li>
+                    <li class="breadcrumb-item active">Fuel</li>
                     <li class="breadcrumb-item active">Detail</li>
                 </ol>
             </nav>

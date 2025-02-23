@@ -34,7 +34,12 @@ class LoginController extends Controller
                 'level' => $user->level, // pastikan kolom 'level' ada pada tabel users
             ]);
 
-            return redirect()->intended('/beranda')->with('success', 'Login berhasil!');
+            if($user->level == 'admin'){
+                return redirect()->intended('/beranda')->with('success', 'Login berhasil!');
+            }else{
+                return redirect()->intended('user/beranda')->with('success', 'Login berhasil!');
+            }
+            
         }
 
         // Jika gagal, kembali ke halaman login dengan error

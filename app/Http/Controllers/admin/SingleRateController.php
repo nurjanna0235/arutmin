@@ -104,6 +104,7 @@ class SingleRateController extends Controller
     
         return view('rate-contract/asteng/singlerate/edit', compact('dokumensingle_rate'));
     }
+
     public function update(Request $request, $id)
     {
         $dokumensingle_rate = single_rate::findOrFail($id);

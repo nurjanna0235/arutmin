@@ -1,6 +1,6 @@
 
 
-@extends('componen.template-admin')
+@extends('componen.template-user')
 
 @section('conten')
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">Laz Coal Mandiri</li>
                     <li class="breadcrumb-item active">Astim</li>
-                    <li class="breadcrumb-item active">Over/Under Distance</li>
+                    <li class="breadcrumb-item active">Fuel</li>
                     <li class="breadcrumb-item active">Detail</li>
                 </ol>
             </nav>
@@ -30,11 +30,10 @@
                                     <thead>
                                         <tr>
 
-                                            <th>Activity</th>
                                             <th>Item</th>
-                                            <th>Base Rate High</th>
-                                            <th>Base Rate Low</th>
-                                            <th>Contractual Distance</th>
+                                            <th>Model</th>
+                                            <th>Actual Rate Exc. Fuel (Rp/Hrs)</th>
+                                            <th>FBR (liter/hrs)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -42,8 +41,7 @@
                                         <tr>
                                             <th>{{$item->activity}}</th>
                                             <th>{{$item->item}}</th>
-                                            <th>{{$item->base_rate_high}}</th>
-                                            <th>{{$item->base_rate_low}}</th>
+                                            <th>{{$item->fuel_index}}</th>
                                             <th>{{$item->contractual_distance}}</th>
                                         </tr>
                                         @endforeach

@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\admin\BerandaController;
 use App\Http\Controllers\admin\ProfilController;
 use App\Http\Controllers\user\BerandaUserController;
+use App\Http\Controllers\user\ProfilUserController;
 use App\Http\Controllers\RateContractController;
 use App\Http\Controllers\user\RateContractUserController;
 
@@ -66,6 +67,8 @@ use App\Http\Controllers\user\astim_user\CoalLCMUserController;
 use App\Http\Controllers\user\astim_user\MudLCMUserController;
 use App\Http\Controllers\user\astim_user\DayworkLCMUserController;
 use App\Http\Controllers\user\astim_user\OtherItemsLCMUserController;
+use App\Http\Controllers\user\astim_user\OudistanceLCMUserController;
+use App\Http\Controllers\user\astim_user\FuelLCMUserController;
 
 //halaman login
 Route::get('', [LoginController::class, 'index']);
@@ -80,6 +83,11 @@ Route::get('beranda', [BerandaController::class, 'index']);
 Route::get('admin/profile', [ProfilController::class, 'index']);
 Route::get('admin/profile/edit', [ProfilController::class, 'edit']);
 Route::post('admin/profile/update', [ProfilController::class, 'update']);
+
+//halaman profil beranda
+Route::get('user/profile', [ProfilUserController::class, 'index']);
+Route::get('user/profile/edit', [ProfilUserController::class, 'edit']);
+Route::post('user/profile/update', [ProfilUserController::class, 'update']);
 
 
 //Halaman pengguna
@@ -427,3 +435,15 @@ Route::get('user/rate-contract/astim/mud-lcm/detail/{num}', [MudLCMUserControlle
 //rate_contract Laz Coal Mandiri Astim/other-items-lcm user
 Route::get('user/rate-contract/astim/other-items-lcm', [OtherItemsLCMUserController::class, 'index']);
 Route::get('user/rate-contract/astim/other-items-lcm/detail/{num}', [OtherItemsLCMUserController::class, 'detail']);
+
+//rate_contract Laz Coal Mandiri Astim/daywork-lcm user
+Route::get('user/rate-contract/astim/daywork-lcm', [DayworkLCMUserController::class, 'index']);
+Route::get('user/rate-contract/astim/daywork-lcm/detail/{num}', [DayworkLCMUserController::class, 'detail']);
+
+//rate_contract Laz Coal Mandiri Astim/oudistance-lcm user
+Route::get('user/rate-contract/astim/oudistance-lcm', [OudistanceLCMUserController::class, 'index']);
+Route::get('user/rate-contract/astim/oudistance-lcm/detail/{num}', [OudistanceLCMUserController::class, 'detail']);
+
+//rate_contract Laz Coal Mandiri Astim/fuel-lcm user
+Route::get('user/rate-contract/astim/fuel-lcm', [FuelLCMUserController::class, 'index']);
+Route::get('user/rate-contract/astim/fuel-lcm/detail/{num}', [FuelLCMUserController::class, 'detail']);

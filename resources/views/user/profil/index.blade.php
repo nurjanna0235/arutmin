@@ -1,4 +1,4 @@
-@extends('componen.template-admin')
+@extends('componen.template-user')
 
 @section('conten')
 
@@ -9,7 +9,7 @@
         <nav>
             <ol class="breadcrumb">
 
-                <li class="breadcrumb-item">Admin</li>
+                <li class="breadcrumb-item">User</li>
                 <li class="breadcrumb-item active">Profil</li>
             </ol>
         </nav>
@@ -17,7 +17,7 @@
 
     <section class="section profile">
         <div class="row">
-           
+
             <div class="col-xl-8">
 
                 <div class="card">
@@ -36,7 +36,7 @@
                         </ul>
 
                         <!-- Profile Edit Form -->
-                        <form id="profileForm" action="/admin/profile/update" method="POST" enctype="multipart/form-data">
+                        <form id="profileForm" action="/user/profile/update" method="POST" enctype="multipart/form-data">
                             @csrf
                            
                             <div class="row mb-3">

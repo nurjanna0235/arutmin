@@ -1,4 +1,4 @@
-@extends('componen.template-admin')
+@extends('componen.template-user')
 
 @section('conten')
     <main id="main" class="main">
@@ -12,11 +12,6 @@
                     <li class="breadcrumb-item active">Fuel</li>
                 </ol>
             </nav>
-
-            <div class="icon mb-3">
-                <a href="/rate-contract/astim/fuel-lcm/tambah" type="button" class="btn btn-success"><i></i>Tambah</a>
-            </div>
-
             <!-- Form untuk pencarian -->
             <div class="mb-4">
                 <form method="GET" action="{{ url('/rate-contract/astim/fuel-lcm') }}"
@@ -48,32 +43,17 @@
                             <tr>
                                 <td>{{ $No++ }}</td>
                                 <td>
-                                {{ $item->bulan_tahun }}
+                                    {{ $item->created_at }}
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2 justify-content-center">
-                                        <a href="{{ url('rate-contract/astim/fuel-lcm/detail/' . $item->id_contract) }}">
+                                        <a href="{{ url('user/rate-contract/astim/fuel-lcm/detail/' . $item->id_contract) }}">
                                             <i class="ri-information-line" title="Detail"></i>
                                         </a>
-                                        <a href="{{ url('rate-contract/astim/fuel-lcm/edit/' . $item->id_contract) }}">
-                                            <i class="ri-edit-2-line text-warning" title="Edit"></i>
-                                        </a>
-                                        <form action="{{ url('/rate-contract/astim/fuel-lcm/delete/' . $item->id_contract) }}"
-                                            method="POST"
-                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
-                                            class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" style="border: none; background: none;">
-                                                <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
-                                            </button>
-                                        </form>
                                     </div>
                                 </td>
                             </tr>
                         @endforeach
-
-
 
                     </tbody>
                 </table>
@@ -83,7 +63,7 @@
         <section class="section dashboard">
             <div class="row"></div>
             <div class="icon mb-5">
-                <a type="submit" href="/rate-contract/astim" class="btn btn-secondary">Kembali</a>
+                <a type="submit" href="/user/rate-contract/astim" class="btn btn-secondary">Kembali</a>
             </div>
         </section>
 

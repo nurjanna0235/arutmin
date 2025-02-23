@@ -10,10 +10,9 @@ class MudLCMUserController extends Controller
 {
     public function index(Request $request)
     {
-         // Ambil input tahun dari request
+        // Ambil input tahun dari request
          $tahun = $request->input('tahun');
          $filterTahun = $request->input('filter_tahun');
- 
          // Query dasar untuk mengambil data
          $query = mud_lcm::query();
  
