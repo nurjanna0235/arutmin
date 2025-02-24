@@ -12,17 +12,33 @@ use Illuminate\Support\Facades\Storage;
 
 class OudistanceLCMController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $dokument = oudistance_lcm::join('contract', 'oudistance_lcm.id_contract', '=', 'contract.id_contract')
-            ->get()
-            ->groupBy('id_contract')
-            ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
-            ->map(function ($item) {
-                // Pastikan created_at adalah objek Carbon dan format ke "Month Year"
-                $item->created_at = Carbon::parse($item->created_at)->format('F Y');
-                return $item;
-            });
+         // Ambil input tahun dari request
+    $tahun = $request->input('tahun');
+    $filterTahun = $request->input('filter_tahun');
+
+     // Query dasar dengan join ke tabel contract
+     $query = oudistance_lcm::join('contract', 'oudistance_lcm.id_contract', '=', 'contract.id_contract');
+
+    // Filter berdasarkan pencarian tahun
+    if ($tahun) {
+        $query->whereYear('oudistance_lcm.created_at', $tahun);
+    }
+
+    // Filter berdasarkan dropdown filter_tahun
+    if ($filterTahun) {
+        $query->whereYear('oudistance_lcm.created_at', $filterTahun);
+    }
+
+      // Ambil data hasil query, group by id_contract, dan format created_at
+      $dokument = $query->get()
+      ->groupBy('id_contract')
+      ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
+      ->map(function ($item) {
+          $item->created_at = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
+          return $item;
+      });
 
         return view('rate-contract.astim.oudistancelcm.index', compact('dokument'));
     }
@@ -114,7 +130,7 @@ class OudistanceLCMController extends Controller
 
         }
 
-        // Loop untuk menyimpan data daywork_lcm
+        // Loop untuk menyimpan data oudistance_lcm
         foreach ($request->input('base_rate_high', []) as $key => $BaseRateHigh) {
             $BaseRateLow = $request->input('base_rate_low')[$key] ?? null;
             $contractual_distance = $request->input('contractual_distance')[$key] ?? null;

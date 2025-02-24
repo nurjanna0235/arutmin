@@ -12,17 +12,33 @@ use Illuminate\Support\Facades\Storage;
 
 class FuelLCMController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $dokument = fuel_lcm::join('contract', 'fuel_lcm.id_contract', '=', 'contract.id_contract')
-            ->get()
-            ->groupBy('id_contract')
-            ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
-            ->map(function ($item) {
-                // Pastikan created_at adalah objek Carbon dan format ke "Month Year"
-                $item->created_at = Carbon::parse($item->created_at)->format('F Y');
-                return $item;
-            });
+         // Ambil input tahun dari request
+    $tahun = $request->input('tahun');
+    $filterTahun = $request->input('filter_tahun');
+
+    // Query dasar dengan join ke tabel contract
+    $query = fuel_lcm::join('contract', 'fuel_lcm.id_contract', '=', 'contract.id_contract');
+
+    // Filter berdasarkan pencarian tahun
+    if ($tahun) {
+        $query->whereYear('fuel_lcm.created_at', $tahun);
+    }
+
+    // Filter berdasarkan dropdown filter_tahun
+    if ($filterTahun) {
+        $query->whereYear('fuel_lcm.created_at', $filterTahun);
+    }
+
+    // Ambil data hasil query, group by id_contract, dan format created_at
+    $dokument = $query->get()
+        ->groupBy('id_contract')
+        ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
+        ->map(function ($item) {
+            $item->created_at = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
+            return $item;
+        });
 
         return view('rate-contract.astim.fuellcm.index', compact('dokument'));
     }
@@ -73,7 +89,7 @@ class FuelLCMController extends Controller
             'updated_at' => now(),
         ]);
 
-        // Loop untuk menyimpan data daywork_lcm
+        // Loop untuk menyimpan data fuel_lcm
         foreach ($request->input('fuel_index', []) as $key => $fuelIndex) {
 
             $contractual_distance = $request->input('contractual_distance')[$key] ?? null;
@@ -121,7 +137,7 @@ class FuelLCMController extends Controller
             ]);
         }
 
-        // Loop untuk menyimpan data daywork_lcm
+        // Loop untuk menyimpan data fuel_lcm
         foreach ($request->input('fuel_index', []) as $key => $fuelIndex) {
             $contractual_distance = $request->input('contractual_distance')[$key] ?? null;
             fuel_lcm::where('id', $request->input('id_dokumen')[$key])->update([

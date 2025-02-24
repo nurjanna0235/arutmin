@@ -1,3 +1,5 @@
+
+
 @extends('componen.template-user')
 
 @section('conten')
@@ -21,7 +23,7 @@
         <section class="section">
             <div class="row">
                 <div>
-                    <div>
+                    <div >
                         <div class="text-center">
                             <div class="container">
                                 <table class="table table-bordered">
@@ -36,14 +38,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($dokument as $index => $item)
-                                            <tr>
-                                                <th>{{ $item->activity }}</th>
-                                                <th>{{ $item->item }}</th>
-                                                <th>{{ $item->base_rate_high }}</th>
-                                                <th>{{ $item->base_rate_low }}</th>
-                                                <th>{{ $item->contractual_distance }}</th>
-                                            </tr>
+                                        @foreach ($dokument as $index => $item)
+                                        <tr>
+                                            <th>{{$item->activity}}</th>
+                                            <th>{{$item->item}}</th>
+                                            <th>{{$item->base_rate_high}}</th>
+                                            <th>{{$item->base_rate_low}}</th>
+                                            <th>{{$item->contractual_distance}}</th>
+                                        </tr>
                                         @endforeach
 
 
