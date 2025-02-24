@@ -139,7 +139,7 @@ class DayworkLCMController extends Controller
     public function simpan(Request $request)
     {
         $tanggalInput = now(); // Ambil waktu saat ini
-        $dokument = daywork::whereYear('created_at', $tanggalInput->year)
+        $dokument = daywork_lcm::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
 

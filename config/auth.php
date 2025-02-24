@@ -62,7 +62,7 @@ return [
     'providers' => [
         'pengguna' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Pengguna::class), // Pastikan nama model menggunakan PascalCase
+            'model' => env('AUTH_MODEL', App\Models\pengguna::class), // Pastikan nama model menggunakan PascalCase
         ],
         // Atau jika menggunakan database:
         // 'pengguna' => [
