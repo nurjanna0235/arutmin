@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'pengguna',
+            'provider' => 'pengguna', // Pastikan ini sesuai dengan provider yang Anda buat
         ],
     ],
 
@@ -60,14 +60,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'pengguna' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\pengguna::class),
+            'model' => env('AUTH_MODEL', App\Models\Pengguna::class), // Pastikan nama model menggunakan PascalCase
         ],
-
-        // 'users' => [
+        // Atau jika menggunakan database:
+        // 'pengguna' => [
         //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'table' => 'penggunas',  // Ganti dengan nama tabel Anda jika menggunakan database
         // ],
     ],
 
@@ -91,9 +91,9 @@ return [
     */
 
     'passwords' => [
-        'penggunas' => [  // Ganti 'users' menjadi 'penggunas' sesuai dengan model Anda
-            'provider' => 'users',  // Sesuaikan dengan provider yang ada
-            'table' => 'password_reset_tokens',  // Tabel yang digunakan untuk reset password
+        'pengguna' => [  // Gunakan 'pengguna' sesuai dengan nama provider yang ada
+            'provider' => 'pengguna', // Sesuaikan dengan provider yang ada
+            'table' => 'password_reset_tokens', // Tabel untuk reset password
             'expire' => 60,
         ],
     ],
