@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'pengguna',
         ],
     ],
 
@@ -91,11 +91,10 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+        'penggunas' => [  // Ganti 'users' menjadi 'penggunas' sesuai dengan model Anda
+            'provider' => 'users',  // Sesuaikan dengan provider yang ada
+            'table' => 'password_reset_tokens',  // Tabel yang digunakan untuk reset password
             'expire' => 60,
-            'throttle' => 60,
         ],
     ],
 

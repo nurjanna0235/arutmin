@@ -63,8 +63,8 @@
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Login</h5>
-                                        <p class="text-center small">Masukan Username & Password</p>
+                                        <h5 class="card-title text-center pb-0 fs-4">Lupa Password</h5>
+                                        <p class="text-center small">Kami akan mengirim instruksi untuk mengganti password anda, Silahkan masukan email anda</p>
                                         @if($errors->any())
                                             <div class="alert alert-danger">
                                                 <ul>
@@ -87,32 +87,21 @@
                                         novalidate>
                                         @csrf
                                         <div class="col-12">
-                                            <label for="yourUsername" class="form-label">Username</label>
+                                            <label for="email" class="form-label">Email</label>
                                             <div class="input-group has-validation">
-                                                <input type="text" name="username" class="form-control"
-                                                    id="yourUsername" required>
-                                                <div class="invalid-feedback">Masukan Username Anda</div>
+                                                <input type="email" name="email" class="form-control"
+                                                    id="email" required>
+                                                <div class="invalid-feedback">Masukan Emai Anda</div>
                                             </div>
                                         </div>
 
-                                        <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
-                                            <div class="input-group">
-                                                <input type="password" name="password" class="form-control"
-                                                    id="yourPassword" required>
-                                                <span class="input-group-text" id="togglePassword"
-                                                    style="cursor: pointer;">
-                                                    <i class="bi bi-eye"></i>
-                                                </span>
-                                                <div class="invalid-feedback">Please enter your password!</div>
-                                            </div>
-                                        </div>
+
 
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
                                         <div class="col-12">
-                                            <p class="small mb-0"><a href="password/forgot">Lupa Password?</a></p>
+                                            <p class="small mb-0"><a href="lupa-password">Lupa Password?</a></p>
                                         </div>
                                     </form>
 

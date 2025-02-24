@@ -59,6 +59,7 @@ use App\Http\Controllers\admin\astim_admin\DayworkLCMController;
 use App\Http\Controllers\admin\astim_admin\FuelLCMController;
 use App\Http\Controllers\admin\astim_admin\OtherItemsLCMController;
 use App\Http\Controllers\admin\astim_admin\OudistanceLCMController;
+use App\Http\Controllers\LupaPassword;
 //controller user bagian astim
 use App\Http\Controllers\user\astim_user\PitClearingLCMUserController;
 use App\Http\Controllers\user\astim_user\TopSoilLCMUserController;
@@ -69,10 +70,31 @@ use App\Http\Controllers\user\astim_user\DayworkLCMUserController;
 use App\Http\Controllers\user\astim_user\OtherItemsLCMUserController;
 use App\Http\Controllers\user\astim_user\OudistanceLCMUserController;
 use App\Http\Controllers\user\astim_user\FuelLCMUserController;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
+
+
+Route::get('/test-email', function () {
+    Mail::raw('Ini adalah email uji coba dengan SendGrid.', function ($message) {
+        $message->to('nurefendi210203@gmail.com') // Ganti dengan email penerima
+                ->subject('Tes Email SendGrid')
+                ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+    });
+
+    return 'Email telah dikirim!';
+});
+
+
+Route::get('password/forgot', [LupaPassword::class, 'showForgotForm'])->name('password.request');
+Route::post('password/email', [LupaPassword::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [LupaPassword::class, 'index'])->name('password.reset');
+Route::post('password/reset', [LupaPassword::class, 'reset'])->name('password.update');
+
 
 //halaman login
 Route::get('', [LoginController::class, 'index']);
 Route::get('login', [LoginController::class, 'index']);
+Route::get('lupa-password', [LupaPassword::class, 'index']);
 Route::post('login/auth', [LoginController::class, 'authentication']);
 Route::get('logout', [LoginController::class, 'logout']);
 
