@@ -10,40 +10,21 @@ class OudistanceLCMUserController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil input tahun dari request
-        $tahun = $request->input('tahun');
-        $filterTahun = $request->input('filter_tahun');
-        $item = $request->input('item'); // Input filter item
+        public function index()
+    {
+        $dokument = oudistance_lcm::join('contract', 'oudistance_lcm.id_contract', '=', 'contract.id_contract')
+            ->get()
+            ->groupBy('id_contract')
+            ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
+            ->map(function ($item) {
+                // Pastikan created_at adalah objek Carbon dan format ke "Month Year"
+                $item->created_at = Carbon::parse($item->created_at)->format('F Y');
+                return $item;
+            });
 
-        // Query dasar untuk mengambil data
-        $query = oudistance::query();
-
-        // Filter berdasarkan pencarian tahun
-        if ($tahun) {
-            $query->whereYear('created_at', $tahun);
-        }
-
-        // Filter berdasarkan item
-        if ($item) {
-            $query->where('item', $item);
-        }
-
-        // Filter berdasarkan dropdown filter_tahun
-        if ($filterTahun) {
-            $query->whereYear('created_at', $filterTahun);
-        }
-
-        // Ambil data hasil query dan format bulan/tahun
-        $dokumenoudistance = $query->get()->map(function ($item) {
-            $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
-            return $item;
-        });
-
-        // Ambil daftar tahun unik untuk dropdown filter
-        $tahunList = oudistance::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
-
-        return view('user/rate-contract/asteng/oudistance/index', compact('dokumenoudistance', 'tahunList'));
+        return view('user/rate-contract.astim.oudistancelcm.index', compact('dokument'));
     }
+
 
     public function detail($id)
     {
