@@ -9,45 +9,17 @@ use Carbon\Carbon;
 
 class FuelLCMUserController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        // Ambil input tahun dari request
-        $tahun = $request->input('tahun');
-        $filterTahun = $request->input('filter_tahun');
-
-        
         $dokument = fuel_lcm::join('contract', 'fuel_lcm.id_contract', '=', 'contract.id_contract')
             ->get()
             ->groupBy('id_contract')
-            ->map(fn($group) => $group->first()); 
-
-        // Filter berdasarkan pencarian tahun
-        if ($tahun) {
-            $dokument = fuel_lcm::join('contract', 'fuel_lcm.id_contract', '=', 'contract.id_contract')
-            ->whereYear('created_at', $tahun)
-            ->get()
-            ->groupBy('id_contract')
-            ->map(fn($group) => $group->first()); 
-        }
-
-        // Filter berdasarkan dropdown filter_tahun
-        if ($filterTahun) {
-            $dokument = fuel_lcm::join('contract', 'fuel_lcm.id_contract', '=', 'contract.id_contract')
-            ->whereYear('created_at', $filterTahun)
-            ->get()
-            ->groupBy('id_contract')
-            ->map(fn($group) => $group->first()); 
-        }
-
-        // Ambil data hasil query dan format bulan/tahun
-        $dokumenmud_lcm = fuel_lcm::join('contract', 'fuel_lcm.id_contract', '=', 'contract.id_contract')->get()->map(function ($item) {
-            $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
-            return $item;
-        });
-
-        // Ambil daftar tahun unik untuk dropdown filter
-        $tahunList = fuel_lcm::join('contract', 'fuel_lcm.id_contract', '=', 'contract.id_contract')->selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
-
+            ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
+            ->map(function ($item) {
+                // Pastikan created_at adalah objek Carbon dan format ke "Month Year"
+                $item->created_at = Carbon::parse($item->created_at)->format('F Y');
+                return $item;
+            });
 
         return view('user/rate-contract.astim.fuellcm.index', compact('dokument'));
     }
@@ -58,5 +30,6 @@ class FuelLCMUserController extends Controller
         $rate_contract = contract::where('id_contract', $id)->first();
         return view('user/rate-contract.astim.fuellcm.detail', compact('dokument', 'rate_contract'));
     }
+
 
 }

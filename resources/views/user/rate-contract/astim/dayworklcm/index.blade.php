@@ -56,14 +56,10 @@
                                 </td>
                             </tr>
                         @endforeach
-
-
-
                 </tbody>
             </table>
         </div>
     </div><!-- End Page Title -->
-
     <section class="section dashboard">
         <div class="row"></div>
         <div class="icon mb-5">

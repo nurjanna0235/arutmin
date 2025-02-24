@@ -36,7 +36,6 @@ class FuelLCMController extends Controller
 
     public function tambah()
     {
-
         $item_fuel_lcm = [
             ['activity' => 'OB', 'item' => 'Overburden @1.5 KM (liter/BCM)'],
             ['activity' => 'OB', 'item' => 'Overhaul distance OB (liter/BCM/KM)'],
