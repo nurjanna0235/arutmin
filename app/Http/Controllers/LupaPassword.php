@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Auth;
-use App\Models\pengguna;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class LupaPassword extends Controller
@@ -55,7 +55,7 @@ class LupaPassword extends Controller
         }
 
         // Ambil user berdasarkan email
-        $user = pengguna::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
         if (!$user) {
             return back()->withErrors(['error' => 'Email tidak ditemukan dalam sistem.']);

@@ -36,11 +36,11 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'pengguna', // Pastikan ini sesuai dengan provider yang Anda buat
-        ],
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'pengguna', // Pastikan ini sesuai dengan provider yang Anda buat
     ],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -58,18 +58,17 @@ return [
     | Supported: "database", "eloquent"
     |
     */
-
-    'providers' => [
-        'pengguna' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\pengguna::class), // Pastikan nama model menggunakan PascalCase
-        ],
-        // Atau jika menggunakan database:
-        // 'pengguna' => [
-        //     'driver' => 'database',
-        //     'table' => 'penggunas',  // Ganti dengan nama tabel Anda jika menggunakan database
-        // ],
+'providers' => [
+    'pengguna' => [
+        'driver' => 'eloquent',
+        'model' => env('AUTH_MODEL', App\Models\pengguna::class), // Pastikan nama model menggunakan PascalCase
     ],
+    // Atau jika menggunakan database:
+    // 'pengguna' => [
+    //     'driver' => 'database',
+    //     'table' => 'penggunas',  // Ganti dengan nama tabel Anda jika menggunakan database
+    // ],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -91,12 +90,12 @@ return [
     */
 
     'passwords' => [
-        'pengguna' => [  // Gunakan 'pengguna' sesuai dengan nama provider yang ada
-            'provider' => 'pengguna', // Sesuaikan dengan provider yang ada
-            'table' => 'password_reset_tokens', // Tabel untuk reset password
-            'expire' => 60,
-        ],
+    'pengguna' => [  // Gunakan 'pengguna' sesuai dengan nama provider yang ada
+        'provider' => 'pengguna', // Sesuaikan dengan provider yang ada
+        'table' => 'password_reset_tokens', // Tabel untuk reset password
+        'expire' => 60,
     ],
+],
 
     /*
     |--------------------------------------------------------------------------
