@@ -51,7 +51,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="/template-admin/assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">ARUTMIN</span>
+                <span class="d-none d-lg-block">PT ARUTMIN</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -107,13 +107,6 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('user/beranda') ? '' : 'collapsed' }}"
-                    href="/user/beranda">
-                    <i class="ri-home-fill"></i>
-                    <span>Beranda</span>
-                </a>
-            </li>
 
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('user/rate-contract') ? '' : 'collapsed' }}"

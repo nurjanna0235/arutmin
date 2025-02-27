@@ -4,9 +4,9 @@ use App\Http\Controllers\DataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 
-use App\Http\Controllers\admin\BerandaController;
+
 use App\Http\Controllers\admin\ProfilController;
-use App\Http\Controllers\user\BerandaUserController;
+
 use App\Http\Controllers\user\ProfilUserController;
 use App\Http\Controllers\RateContractController;
 use App\Http\Controllers\user\RateContractUserController;
@@ -98,8 +98,7 @@ Route::get('lupa-password', [LupaPassword::class, 'index']);
 Route::post('login/auth', [LoginController::class, 'authentication']);
 Route::get('logout', [LoginController::class, 'logout']);
 
-//Halaman beranda
-Route::get('beranda', [BerandaController::class, 'index']);
+
 
 //halaman profil beranda
 Route::get('admin/profile', [ProfilController::class, 'index']);
@@ -220,11 +219,8 @@ Route::delete('rate-contract/asteng/fuel/delete/{num}', [fuelController::class, 
 Route::get('rate-contract/asteng/fuel/edit/{num}', [fuelController::class, 'edit']);
 Route::put('rate-contract/asteng/fuel/update/{num}', [fuelController::class, 'update']);
 
-
 // Ini adalah route halaman user
 
-//Halaman User Asteng//
-Route::get('user/beranda', [BerandaUserController::class, 'index']);
 //Dokumen rate-contract
 Route::get('user/rate-contract', [RateContractUserController::class, 'index']);
 
@@ -311,8 +307,7 @@ Route::delete('rate-contract/asbar/fuel-asbar/delete/{num}', [FuelAsbarControlle
 Route::get('rate-contract/asbar/fuel-asbar/edit/{num}', [FuelAsbarController::class, 'edit']);
 Route::put('rate-contract/asbar/fuel-asbar/update/{num}', [FuelAsbarController::class, 'update']);
 
-//Halaman User Asbar
-Route::get('user/beranda', [BerandaUserController::class, 'index']);
+
 //Dokumen rate-contract
 Route::get('user/rate-contract/asbar', [RateContractUserController::class, 'asbar']);
 
@@ -333,8 +328,7 @@ Route::get('user/rate-contract/asbar/fuel-asbar', [FuelAsbarUserController::clas
 Route::get('user/rate-contract/asbar/fuel-asbar/detail/{num}', [FuelAsbarUserController::class, 'detail']);
 
 
-//Halaman Bagian Astim//
-Route::get('user/beranda', [BerandaUserController::class, 'index']);
+
 //Dokumen rate-contract
 Route::get('rate-contract/astim', [RateContractController::class, 'astim']);
 
@@ -429,8 +423,7 @@ Route::get('rate-contract/astim/fuel-lcm/edit/{num}', [FuelLCMController::class,
 Route::put('rate-contract/astim/fuel-lcm/update/{num}', [FuelLCMController::class, 'update']);
 
 
-//Halaman User Astim
-Route::get('user/beranda', [BerandaUserController::class, 'index']);
+
 //Dokumen rate-contract
 Route::get('user/rate-contract/astim', [RateContractUserController::class, 'astim']);
 

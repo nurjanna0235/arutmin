@@ -35,9 +35,9 @@ class LoginController extends Controller
             ]);
 
             if($user->level == 'admin'){
-                return redirect()->intended('/beranda')->with('success', 'Login berhasil!');
+                return redirect()->intended('/admin/pengguna')->with('success', 'Login berhasil!');
             }else{
-                return redirect()->intended('user/beranda')->with('success', 'Login berhasil!');
+                return redirect()->intended('user/rate-contract')->with('success', 'Login berhasil!');
             }
             
         }
