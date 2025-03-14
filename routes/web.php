@@ -77,8 +77,8 @@ use Illuminate\Http\Request;
 Route::get('/test-email', function () {
     Mail::raw('Ini adalah email uji coba dengan SendGrid.', function ($message) {
         $message->to('nurefendi210203@gmail.com') // Ganti dengan email penerima
-                ->subject('Tes Email SendGrid')
-                ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            ->subject('Tes Email SendGrid')
+            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
     });
 
     return 'Email telah dikirim!';
@@ -265,7 +265,7 @@ Route::get('user/rate-contract/asteng/oudistance/detail/{num}', [oudistanceUserC
 
 //rate_contract Darma Henwa Asteng/fuel user
 Route::get('user/rate-contract/asteng/fuel', [FuelUserController::class, 'index'])->middleware('isUser');
-Route::get('user/rate-contract/asteng/fuel/detail/{num}', [FuelUserController::class, 'detail'])->middleware('isAdmin');
+Route::get('user/rate-contract/asteng/fuel/detail/{num}', [FuelUserController::class, 'detail'])->middleware('isUser');
 
 
 //route admin bagian asbar//
@@ -328,7 +328,6 @@ Route::get('user/rate-contract/asbar/fuel-asbar', [FuelAsbarUserController::clas
 Route::get('user/rate-contract/asbar/fuel-asbar/detail/{num}', [FuelAsbarUserController::class, 'detail'])->middleware('isUser');
 
 
-
 //Dokumen rate-contract
 Route::get('rate-contract/astim', [RateContractController::class, 'astim'])->middleware('isAdmin');
 
@@ -340,6 +339,7 @@ Route::post('rate-contract/astim/pit-clearing-lcm/simpan', [PitClearingLCMContro
 Route::delete('rate-contract/astim/pit-clearing-lcm/delete/{num}', [PitClearingLCMController::class, 'hapus'])->middleware('isAdmin');
 Route::get('rate-contract/astim/pit-clearing-lcm/edit/{num}', [PitClearingLCMController::class, 'edit'])->middleware('isAdmin');
 Route::put('rate-contract/astim/pit-clearing-lcm/update/{num}', [PitClearingLCMController::class, 'update'])->middleware('isAdmin');
+Route::get('rate-contract/astim/pit-clearing-lcm/view/{num}', [PitClearingLCMController::class, 'view'])->middleware('isAdmin');
 
 //route astim rate_contract Laz Coal Mandiri Astim/top-soil
 Route::get('rate-contract/astim/top-soil-lcm', [TopSoilLCMController::class, 'index'])->middleware('isAdmin');
@@ -349,6 +349,7 @@ Route::post('rate-contract/astim/top-soil-lcm/simpan', [TopSoilLCMController::cl
 Route::delete('rate-contract/astim/top-soil-lcm/delete/{num}', [TopSoilLCMController::class, 'hapus'])->middleware('isAdmin');
 Route::get('rate-contract/astim/top-soil-lcm/edit/{num}', [TopSoilLCMController::class, 'edit'])->middleware('isAdmin');
 Route::put('rate-contract/astim/top-soil-lcm/update/{num}', [TopSoilLCMController::class, 'update'])->middleware('isAdmin');
+Route::get('rate-contract/astim/top-soil-lcm/view/{num}', [TopSoilLCMController::class, 'view'])->middleware('isAdmin');
 
 //route astim rate_contract Laz Coal Mandiri Astim/ob
 Route::get('rate-contract/astim/ob-lcm', [OBLCMController::class, 'index'])->middleware('isAdmin');
@@ -358,6 +359,7 @@ Route::post('rate-contract/astim/ob-lcm/simpan', [OBLCMController::class, 'simpa
 Route::delete('rate-contract/astim/ob-lcm/delete/{num}', [OBLCMController::class, 'hapus'])->middleware('isAdmin');
 Route::get('rate-contract/astim/ob-lcm/edit/{num}', [OBLCMController::class, 'edit'])->middleware('isAdmin');
 Route::put('rate-contract/astim/ob-lcm/update/{num}', [OBLCMController::class, 'update'])->middleware('isAdmin');
+Route::get('rate-contract/astim/ob-lcm/view/{num}', [OBLCMController::class, 'view'])->middleware('isAdmin');
 
 //route astim rate_contract Laz Coal Mandiri Astim/coal
 Route::get('rate-contract/astim/coal-lcm', [CoalLCMController::class, 'index'])->middleware('isAdmin');
@@ -367,6 +369,7 @@ Route::post('rate-contract/astim/coal-lcm/simpan', [CoalLCMController::class, 's
 Route::delete('rate-contract/astim/coal-lcm/delete/{num}', [CoalLCMController::class, 'hapus'])->middleware('isAdmin');
 Route::get('rate-contract/astim/coal-lcm/edit/{num}', [CoalLCMController::class, 'edit'])->middleware('isAdmin');
 Route::put('rate-contract/astim/coal-lcm/update/{num}', [CoalLCMController::class, 'update'])->middleware('isAdmin');
+Route::get('rate-contract/astim/coal-lcm/view/{num}', [CoalLCMController::class, 'view'])->middleware('isAdmin');
 
 //route astim rate_contract Laz Coal Mandiri Astim/mud
 Route::get('rate-contract/astim/mud-lcm', [MudLCMController::class, 'index'])->middleware('isAdmin');
@@ -376,15 +379,7 @@ Route::post('rate-contract/astim/mud-lcm/simpan', [MudLCMController::class, 'sim
 Route::delete('rate-contract/astim/mud-lcm/delete/{num}', [MudLCMController::class, 'hapus'])->middleware('isAdmin');
 Route::get('rate-contract/astim/mud-lcm/edit/{num}', [MudLCMController::class, 'edit'])->middleware('isAdmin');
 Route::put('rate-contract/astim/mud-lcm/update/{num}', [MudLCMController::class, 'update'])->middleware('isAdmin');
-
-//route astim rate_contract Laz Coal Mandiri Astim/mud
-Route::get('rate-contract/astim/mud-lcm', [MudLCMController::class, 'index'])->middleware('isAdmin');
-Route::get('rate-contract/astim/mud-lcm/detail/{num}', [MudLCMController::class, 'detail'])->middleware('isAdmin');
-Route::get('rate-contract/astim/mud-lcm/tambah', [MudLCMController::class, 'tambah'])->middleware('isAdmin');
-Route::post('rate-contract/astim/mud-lcm/simpan', [MudLCMController::class, 'simpan'])->middleware('isAdmin');
-Route::delete('rate-contract/astim/mud-lcm/delete/{num}', [MudLCMController::class, 'hapus'])->middleware('isAdmin');
-Route::get('rate-contract/astim/mud-lcm/edit/{num}', [MudLCMController::class, 'edit'])->middleware('isAdmin');
-Route::put('rate-contract/astim/mud-lcm/update/{num}', [MudLCMController::class, 'update'])->middleware('isAdmin');
+Route::get('rate-contract/astim/mud-lcm/view/{num}', [MudLCMController::class, 'view'])->middleware('isAdmin');
 
 //route astim rate_contract Laz Coal Mandiri Astim/daywork
 Route::get('rate-contract/astim/daywork-lcm', [DayworkLCMController::class, 'index'])->middleware('isAdmin');
@@ -394,6 +389,7 @@ Route::post('rate-contract/astim/daywork-lcm/simpan', [DayworkLCMController::cla
 Route::delete('rate-contract/astim/daywork-lcm/delete/{num}', [DayworkLCMController::class, 'hapus'])->middleware('isAdmin');
 Route::get('rate-contract/astim/daywork-lcm/edit/{num}', [DayworkLCMController::class, 'edit'])->middleware('isAdmin');
 Route::put('rate-contract/astim/daywork-lcm/update/{num}', [DayworkLCMController::class, 'update'])->middleware('isAdmin');
+Route::get('rate-contract/astim/daywork-lcm/view/{num}', [DayworkLCMController::class, 'view'])->middleware('isAdmin');
 
 //route astim rate_contract Laz Coal Mandiri Astim/other_items
 Route::get('rate-contract/astim/other-items-lcm', [OtherItemsLCMController::class, 'index'])->middleware('isAdmin');
@@ -403,6 +399,7 @@ Route::post('rate-contract/astim/other-items-lcm/simpan', [OtherItemsLCMControll
 Route::delete('rate-contract/astim/other-items-lcm/delete/{num}', [OtherItemsLCMController::class, 'hapus'])->middleware('isAdmin');
 Route::get('rate-contract/astim/other-items-lcm/edit/{num}', [OtherItemsLCMController::class, 'edit'])->middleware('isAdmin');
 Route::put('rate-contract/astim/other-items-lcm/update/{num}', [OtherItemsLCMController::class, 'update'])->middleware('isAdmin');
+Route::get('rate-contract/astim/other-items-lcm/view/{num}', [OtherItemsLCMController::class, 'view'])->middleware('isAdmin');
 
 //route astim rate_contract Laz Coal Mandiri Astim/oudistance
 Route::get('rate-contract/astim/oudistance-lcm', [OudistanceLCMController::class, 'index'])->middleware('isAdmin');
@@ -412,8 +409,9 @@ Route::post('rate-contract/astim/oudistance-lcm/simpan', [OudistanceLCMControlle
 Route::delete('rate-contract/astim/oudistance-lcm/delete/{num}', [OudistanceLCMController::class, 'hapus'])->middleware('isAdmin');
 Route::get('rate-contract/astim/oudistance-lcm/edit/{num}', [OudistanceLCMController::class, 'edit'])->middleware('isAdmin');
 Route::put('rate-contract/astim/oudistance-lcm/update/{num}', [OudistanceLCMController::class, 'update'])->middleware('isAdmin');
+Route::get('rate-contract/astim/oudistance-lcm/view/{num}', [OudistanceLCMController::class, 'view'])->middleware('isAdmin');
 
-//route astim rate_contract Laz Coal Mandiri Astim/oudistance
+//route astim rate_contract Laz Coal Mandiri Astim/fuel
 Route::get('rate-contract/astim/fuel-lcm', [FuelLCMController::class, 'index'])->middleware('isAdmin');
 Route::get('rate-contract/astim/fuel-lcm/detail/{num}', [FuelLCMController::class, 'detail'])->middleware('isAdmin');
 Route::get('rate-contract/astim/fuel-lcm/tambah', [FuelLCMController::class, 'tambah'])->middleware('isAdmin');
@@ -421,7 +419,7 @@ Route::post('rate-contract/astim/fuel-lcm/simpan', [FuelLCMController::class, 's
 Route::delete('rate-contract/astim/fuel-lcm/delete/{num}', [FuelLCMController::class, 'hapus'])->middleware('isAdmin');
 Route::get('rate-contract/astim/fuel-lcm/edit/{num}', [FuelLCMController::class, 'edit'])->middleware('isAdmin');
 Route::put('rate-contract/astim/fuel-lcm/update/{num}', [FuelLCMController::class, 'update'])->middleware('isAdmin');
-
+Route::get('rate-contract/astim/fuel-lcm/view/{num}', [FuelLCMController::class, 'view'])->middleware('isAdmin');
 
 
 //Dokumen rate-contract
@@ -430,35 +428,44 @@ Route::get('user/rate-contract/astim', [RateContractUserController::class, 'asti
 //rate_contract Laz Coal Mandiri Astim/pit-clearing-lcm user
 Route::get('user/rate-contract/astim/pit-clearing-lcm', [PitClearingLCMUserController::class, 'index'])->middleware('isUser');
 Route::get('user/rate-contract/astim/pit-clearing-lcm/detail/{num}', [PitClearingLCMUserController::class, 'detail'])->middleware('isUser');
+Route::get('user/rate-contract/astim/pit-clearing-lcm/view/{num}', [PitClearingLCMUserController::class, 'view'])->middleware('isUser');
 
 //rate_contract Laz Coal Mandiri Astim/top-soil-lcm user
 Route::get('user/rate-contract/astim/top-soil-lcm', [TopSoilLCMUserController::class, 'index'])->middleware('isUser');
 Route::get('user/rate-contract/astim/top-soil-lcm/detail/{num}', [TopSoilLCMUserController::class, 'detail'])->middleware('isUser');
+Route::get('user/rate-contract/astim/top-soil-lcm/view/{num}', [TopSoilLCMUserController::class, 'view'])->middleware('isUser');
 
 //rate_contract Laz Coal Mandiri Astim/ob-lcm user
 Route::get('user/rate-contract/astim/ob-lcm', [OBLCMUserController::class, 'index'])->middleware('isUser');
 Route::get('user/rate-contract/astim/ob-lcm/detail/{num}', [OBLCMUserController::class, 'detail'])->middleware('isUser');
+Route::get('user/rate-contract/astim/ob-lcm/view/{num}', [OBLCMUserController::class, 'view'])->middleware('isUser');
 
 //rate_contract Laz Coal Mandiri Astim/coal-lcm user
 Route::get('user/rate-contract/astim/coal-lcm', [CoalLCMUserController::class, 'index'])->middleware('isUser');
 Route::get('user/rate-contract/astim/coal-lcm/detail/{num}', [CoalLCMUserController::class, 'detail'])->middleware('isUser');
+Route::get('user/rate-contract/astim/coal-lcm/view/{num}', [CoalLCMUserController::class, 'view'])->middleware('isUser');
 
 //rate_contract Laz Coal Mandiri Astim/mud-lcm user
 Route::get('user/rate-contract/astim/mud-lcm', [MudLCMUserController::class, 'index'])->middleware('isUser');
 Route::get('user/rate-contract/astim/mud-lcm/detail/{num}', [MudLCMUserController::class, 'detail'])->middleware('isUser');
+Route::get('user/rate-contract/astim/mud-lcm/view/{num}', [MudLCMUserController::class, 'view'])->middleware('isUser');
 
 //rate_contract Laz Coal Mandiri Astim/other-items-lcm user
 Route::get('user/rate-contract/astim/other-items-lcm', [OtherItemsLCMUserController::class, 'index'])->middleware('isUser');
 Route::get('user/rate-contract/astim/other-items-lcm/detail/{num}', [OtherItemsLCMUserController::class, 'detail'])->middleware('isUser');
+Route::get('user/rate-contract/astim/other-items-lcm/view/{num}', [OtherItemsLCMUserController::class, 'view'])->middleware('isUser');
 
 //rate_contract Laz Coal Mandiri Astim/daywork-lcm user
 Route::get('user/rate-contract/astim/daywork-lcm', [DayworkLCMUserController::class, 'index'])->middleware('isUser');
 Route::get('user/rate-contract/astim/daywork-lcm/detail/{num}', [DayworkLCMUserController::class, 'detail'])->middleware('isUser');
+Route::get('user/rate-contract/astim/daywork-lcm/view/{num}', [DayworkLCMUserController::class, 'view'])->middleware('isUser');
 
 //rate_contract Laz Coal Mandiri Astim/oudistance-lcm user
 Route::get('user/rate-contract/astim/oudistance-lcm', [OudistanceLCMUserController::class, 'index'])->middleware('isUser');
 Route::get('user/rate-contract/astim/oudistance-lcm/detail/{num}', [OudistanceLCMUserController::class, 'detail'])->middleware('isUser');
+Route::get('user/rate-contract/astim/oudistance-lcm/view/{num}', [OudistanceLCMUserController::class, 'view'])->middleware('isUser');
 
 //rate_contract Laz Coal Mandiri Astim/fuel-lcm user
 Route::get('user/rate-contract/astim/fuel-lcm', [FuelLCMUserController::class, 'index'])->middleware('isUser');
 Route::get('user/rate-contract/astim/fuel-lcm/detail/{num}', [FuelLCMUserController::class, 'detail'])->middleware('isUser');
+Route::get('user/rate-contract/astim/fuel-lcm/view/{num}', [FuelLCMUserController::class, 'view'])->middleware('isUser');

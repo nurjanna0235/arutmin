@@ -64,6 +64,7 @@
                             <label for="premium_rate" class="form-label">Premium Rate</label>
                             <input value="" name="premium_rate" type="text"
                                 class="form-control" id="premium_rate">
+                                
                         </div>
 
                         <div class="col-12">
@@ -71,7 +72,7 @@
                             <input value="" name="general_escalation"
                                 type="text" class="form-control" id="general_escalation">
                         </div>
-
+                        
                         {{-- <div class="col-12">
                                     <label for="total_rate_coal_actual" class="form-label"> Actual Rate Hauling PLTU @12 KM (Rp/ton)</label>
                                     <input name="total_rate_coal_actual" type="text" class="form-control" id="total_rate_coal_actual">

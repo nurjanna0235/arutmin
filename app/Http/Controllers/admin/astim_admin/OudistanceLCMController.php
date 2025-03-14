@@ -14,36 +14,44 @@ class OudistanceLCMController extends Controller
 {
     public function index(Request $request)
     {
-         // Ambil input tahun dari request
-    $tahun = $request->input('tahun');
-    $filterTahun = $request->input('filter_tahun');
+        $tahunAwal = $request->input('start_year'); // Input untuk tahun awal
+        $tahunAkhir = $request->input('end_year'); // Input untuk tahun akhir
+        $filterTahun = $request->input('filter_tahun'); // Input untuk filter tahun dropdown
 
-     // Query dasar dengan join ke tabel contract
-     $query = oudistance_lcm::join('contract', 'oudistance_lcm.id_contract', '=', 'contract.id_contract');
+        // Query dasar dengan join ke tabel contract
+        $query = oudistance_lcm::join('contract', 'oudistance_lcm.id_contract', '=', 'contract.id_contract');
 
-    // Filter berdasarkan pencarian tahun
-    if ($tahun) {
-        $query->whereYear('oudistance_lcm.created_at', $tahun);
-    }
+        
+        // Filter berdasarkan rentang tahun jika tahun awal dan tahun akhir diberikan
+        if ($tahunAwal && $tahunAkhir) {
+            $query->whereYear('oudistance_lcm.created_at', '>=', $tahunAwal)
+                ->whereYear('oudistance_lcm.created_at', '<=', $tahunAkhir);
+        } elseif ($tahunAwal) {
+            // Filter berdasarkan tahun awal jika hanya tahun awal yang diberikan
+            $query->whereYear('oudistance_lcm.created_at', '>=', $tahunAwal);
+        } elseif ($tahunAkhir) {
+            // Filter berdasarkan tahun akhir jika hanya tahun akhir yang diberikan
+            $query->whereYear('oudistance_lcm.created_at', '<=', $tahunAkhir);
+        }
 
-    // Filter berdasarkan dropdown filter_tahun
-    if ($filterTahun) {
-        $query->whereYear('oudistance_lcm.created_at', $filterTahun);
-    }
+        // Ambil data hasil query, group by id_contract, dan format created_at
+        $dokument = $query->get()
+            ->groupBy('oudistance_lcm.id_contract') // Grouping berdasarkan id_contract
+            ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
+            ->map(function ($item) {
+                // Format created_at menjadi bulan dan tahun
+                $item->created_at = Carbon::parse($item->oudistance_lcm_created_at)->format('F Y'); // Pastikan kolom yang dipilih benar
+                return $item;
+            });
 
-      // Ambil data hasil query, group by id_contract, dan format created_at
-      $dokument = $query->get()
-      ->groupBy('id_contract')
-      ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
-      ->map(function ($item) {
-          $item->created_at = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
-          return $item;
-      });
-
+        // Kirim data ke view
         return view('rate-contract.astim.oudistancelcm.index', compact('dokument'));
     }
 
-    public function tambah(){
+
+
+    public function tambah()
+    {
         $item_oudistance_lcm = [
             ['activity' => 'OB', 'item' => 'OB Overhaul Distance (Rp/BCM/100 m)'],
             ['activity' => 'OB', 'item' => 'OB Underhaul Distance (Rp/BCM/100 m)'],
@@ -55,7 +63,8 @@ class OudistanceLCMController extends Controller
         return view('rate-contract/astim/oudistancelcm/tambah', compact('item_oudistance_lcm'));
     }
 
-    public function simpan(Request $request){
+    public function simpan(Request $request)
+    {
         $tanggalInput = now(); // Ambil waktu saat ini
         $dokument = oudistance_lcm::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
@@ -94,13 +103,15 @@ class OudistanceLCMController extends Controller
         return redirect()->to('rate-contract/astim/oudistance-lcm')->with('success', 'Data berhasil ditambahkan');
     }
 
-    public function detail($id){
+    public function detail($id)
+    {
         $dokument = oudistance_lcm::where('id_contract', $id)->get(); // Ambil semua data dengan id_contract yang sama
         $rate_contract = contract::where('id_contract', $id)->first();
         return view('rate-contract.astim.oudistancelcm.detail', compact('dokument', 'rate_contract'));
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $dokument = oudistance_lcm::where('id_contract', $id)->get(); // Ambil semua data dengan id_contract yang sama
         $rate_contract = contract::where('id_contract', $id)->first();
         return view('rate-contract.astim.oudistancelcm.edit', compact('dokument', 'rate_contract'));
@@ -127,7 +138,6 @@ class OudistanceLCMController extends Controller
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-
         }
 
         // Loop untuk menyimpan data oudistance_lcm
@@ -136,7 +146,7 @@ class OudistanceLCMController extends Controller
             $contractual_distance = $request->input('contractual_distance')[$key] ?? null;
 
             oudistance_lcm::where('id', $request->input('id_dokumen')[$key])->update([
-              'activity' => $request->input('activity')[$key],
+                'activity' => $request->input('activity')[$key],
                 'item' => $request->input('item')[$key],
                 'base_rate_high' => $BaseRateHigh,
                 'base_rate_low' => $BaseRateLow,
@@ -149,9 +159,17 @@ class OudistanceLCMController extends Controller
         return redirect()->to('rate-contract/astim/oudistance-lcm')->with('success', 'Data berhasil diupdate');
     }
 
-    public function hapus($id){
+    public function hapus($id)
+    {
         oudistance_lcm::where('id_contract', $id)->delete();
         contract::where('id_contract', $id)->delete();
         return redirect()->to('rate-contract/astim/oudistance-lcm')->with('success', 'Data berhasil dihapus');
+    }
+    public function view($id)
+    {
+        $dokumen = oudistance_lcm::where('id_contract', $id)->get(); // Ambil semua data dengan id_contract yang sama
+        $rate_contract = contract::where('id_contract', $id)->first();
+
+        return view('rate-contract/astim/oudistancelcm/view', compact('dokumen', 'rate_contract'));
     }
 }

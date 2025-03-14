@@ -20,11 +20,22 @@
 
         <!-- Form untuk pencarian -->
         <div class="mb-4">
-            <form method="GET" action="{{ url('/rate-contract/asteng/pit-clearing') }}" class="d-flex align-items-center gap-3">
+            <form method="GET" action="{{ url('/rate-contract/asteng/pit-clearing') }}"
+                class="d-flex align-items-center gap-3">
                 <!-- Input Pencarian Tahun -->
-                <div class="form-group">
-                    <input type="number" name="tahun" class="form-control" placeholder="Cari Tahun" value="{{ request('tahun') }}">
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="start_year" style="font-size: 15px;">Tahun Awal:</label>
+                        <input type="number" name="start_year" class="form-control" id="start_year"
+                            value="{{ request('start_year') }}" min="2000" max="2900">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="end_year" style="font-size: 15px;">Tahun Akhir:</label>
+                        <input type="number" name="end_year" class="form-control" id="end_year"
+                            value="{{ request('end_year') }}" min="2000" max="2900">
+                    </div>
                 </div>
+
                 <!-- Tombol Submit untuk Search -->
                 <button type="submit" class="btn btn-primary">Cari</button>
             </form>
@@ -49,32 +60,38 @@
                 <tbody>
                     <?php $No = 1; ?>
                     @foreach($dokumenpit_clearing as $item)
-                    <tr>
-                        <td>{{ $No++ }}</td>
-                        <td>{{ $item->bulan_tahun }}</td>
-                        <td>{{ $item->base_rate }}</td>
-                        <td>{{ $item->currency_adjustment }}</td>
-                        <td>{{ $item->premium_rate }}</td>
-                        <td>{{ $item->general_escalation }}</td>
-                        <td class="text-danger fw-bold">{{ $item->rate_actual }}</td>
-                        <td>
-                            <div class="d-flex gap-2 justify-content-center">
-                                <a href="{{ url('rate-contract/asteng/pit-clearing/detail/' . $item->id) }}">
-                                    <i class="ri-information-line" title="Detail"></i>
-                                </a>
-                                <a href="{{ url('rate-contract/asteng/pit-clearing/edit/' . $item->id) }}">
-                                    <i class="ri-edit-2-line text-warning" title="Edit"></i>
-                                </a>
-                                <form action="{{ url('/rate-contract/asteng/pit-clearing/delete/' . $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" style="border: none; background: none;">
-                                        <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ $No++ }}</td>
+                            <td>{{ $item->bulan_tahun }}</td>
+                            <td>{{ $item->base_rate }}</td>
+                            <td>{{ $item->currency_adjustment }}</td>
+                            <td>{{ $item->premium_rate }}</td>
+                            <td>{{ $item->general_escalation }}</td>
+                            <td class="text-danger fw-bold">{{ $item->rate_actual }}</td>
+                            <td>
+                                <div class="d-flex gap-2 justify-content-center">
+                                    <a
+                                        href="{{ url('rate-contract/asteng/pit-clearing/detail/' . $item->id) }}">
+                                        <i class="ri-information-line" title="Detail"></i>
+                                    </a>
+                                    <a
+                                        href="{{ url('rate-contract/asteng/pit-clearing/edit/' . $item->id) }}">
+                                        <i class="ri-edit-2-line text-warning" title="Edit"></i>
+                                    </a>
+                                    <form
+                                        action="{{ url('/rate-contract/asteng/pit-clearing/delete/' . $item->id) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" style="border: none; background: none;">
+                                            <i class="ri-delete-bin-line text-danger" title="Hapus"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

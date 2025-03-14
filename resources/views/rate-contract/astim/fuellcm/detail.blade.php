@@ -1,5 +1,3 @@
-
-
 @extends('componen.template-admin')
 
 @section('conten')
@@ -14,7 +12,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active">Laz Coal Mandiri</li>
                     <li class="breadcrumb-item active">Astim</li>
-                    <li class="breadcrumb-item active">Fuel</li>
+                    <li class="breadcrumb-item active">Fuel Allowance</li>
                     <li class="breadcrumb-item active">Detail</li>
                 </ol>
             </nav>
@@ -23,34 +21,7 @@
         <section class="section">
             <div class="row">
                 <div>
-                    <div >
-                        <div class="text-center">
-                            <div class="container">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-
-                                            <th>Item</th>
-                                            <th>Model</th>
-                                            <th>Actual Rate Exc. Fuel (Rp/Hrs)</th>
-                                            <th>FBR (liter/hrs)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($dokument as $index => $item)
-                                        <tr>
-                                            <th>{{$item->activity}}</th>
-                                            <th>{{$item->item}}</th>
-                                            <th>{{$item->fuel_index}}</th>
-                                            <th>{{$item->contractual_distance}}</th>
-                                        </tr>
-                                        @endforeach
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <div class="col-lg-6 offset-lg-3">
                         <div class="card-body text-center">
                             <h5 class="card-title">Contract Reference</h5>
                             <a href="{{ asset('storage/' . $rate_contract->contract_refren) }}"

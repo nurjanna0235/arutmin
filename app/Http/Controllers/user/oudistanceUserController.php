@@ -11,27 +11,31 @@ class oudistanceUserController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil input tahun dari request
+        // Ambil input dari request
         $tahun = $request->input('tahun');
         $filterTahun = $request->input('filter_tahun');
         $item = $request->input('item'); // Input filter item
 
+        $startYear = $request->input('start_year');
+    $endYear = $request->input('end_year');
+
         // Query dasar untuk mengambil data
         $query = oudistance::query();
 
-        // Filter berdasarkan pencarian tahun
-        if ($tahun) {
-            $query->whereYear('created_at', $tahun);
+        // Filter berdasarkan rentang tahun (start_year dan end_year)
+        if ($startYear && $endYear) {
+            $query->whereBetween('oudistance.created_at', ["$startYear-01-01", "$endYear-12-31"]);
+        } elseif ($startYear) {
+            $query->whereYear('oudistance.created_at', '>=', $startYear);
+        } elseif ($endYear) {
+            $query->whereYear('oudistance.created_at', '<=', $endYear);
+        } elseif ($tahun) {
+            $query->whereYear('oudistance.created_at', $tahun);
         }
 
         // Filter berdasarkan item
         if ($item) {
             $query->where('item', $item);
-        }
-
-        // Filter berdasarkan dropdown filter_tahun
-        if ($filterTahun) {
-            $query->whereYear('created_at', $filterTahun);
         }
 
         // Ambil data hasil query dan format bulan/tahun
@@ -43,8 +47,10 @@ class oudistanceUserController extends Controller
         // Ambil daftar tahun unik untuk dropdown filter
         $tahunList = oudistance::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
 
+        // Kirim data ke view
         return view('/user/rate-contract/asteng/oudistance/index', compact('dokumenoudistance', 'tahunList'));
     }
+
 
     public function detail($id)
     {

@@ -19,7 +19,7 @@
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
 
-    
+
 
     <!-- Vendor CSS Files -->
     <link href="/template-admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -58,7 +58,7 @@
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-                
+
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/user/profile" data-bs-toggle="dropdown">
@@ -81,7 +81,7 @@
                                 <span>Profile</span>
                             </a>
                         </li>
-                        
+
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -117,12 +117,12 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('logout') ? '' : 'collapsed' }}"
-                    href="/logout">
-                    <i class="ri-article-fill"></i>
+                <a class="nav-link {{ Request::is('logout') ? '' : 'collapsed' }}" href="/logout">
+                    <i class="ri-logout-box-r-line"></i> <!-- Ikon Logout -->
                     <span>Logout</span>
                 </a>
             </li>
+
 
 
         </ul>

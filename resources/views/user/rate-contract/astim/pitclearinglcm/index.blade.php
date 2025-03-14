@@ -14,14 +14,26 @@
             </ol>
         </nav>
 
+        @include('componen.alert')
+
+       
+
         <!-- Form untuk pencarian -->
         <div class="mb-4">
             <form method="GET" action="{{ url('/user/rate-contract/astim/pit-clearing-lcm') }}"
                 class="d-flex align-items-center gap-3">
-                <!-- Input Pencarian Tahun -->
-                <div class="form-group">
-                    <input type="number" name="tahun" class="form-control" placeholder="Cari Tahun"
-                        value="{{ request('tahun') }}">
+                 <!-- Input Pencarian Tahun -->
+             <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="start_year" style="font-size: 15px;">Tahun Awal:</label>
+                        <input type="number" name="start_year" class="form-control" id="start_year"
+                            value="{{ request('start_year') }}" min="2000" max="2900">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="end_year" style="font-size: 15px;">Tahun Akhir:</label>
+                        <input type="number" name="end_year" class="form-control" id="end_year"
+                            value="{{ request('end_year') }}" min="2000" max="2900">
+                    </div>
                 </div>
                 <!-- Tombol Submit untuk Search -->
                 <button type="submit" class="btn btn-primary">Cari</button>
@@ -46,11 +58,10 @@
                             <td>{{ $No++ }}</td>
                             <td>
                                 <!-- Basic Modal -->
-                                <button type="button" class="btn" data-bs-toggle="modal"
-                                    data-bs-target="#basicModal{{ $item->id }}">
+                                <a type="button" class="btn" href="{{ url('user/rate-contract/astim/pit-clearing-lcm/view/' . $item->id) }}" >
                                     {{ $item->bulan_tahun }}
-                                </button>
-                                <div class="modal fade" id="basicModal{{ $item->id }}" tabindex="-1">
+                                </a>
+                                <div class="modal fade"  id="basicModal{{ $item->id }}" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -95,7 +106,10 @@
                                         href="{{ url('user/rate-contract/astim/pit-clearing-lcm/detail/' . $item->id) }}">
                                         <i class="ri-information-line" title="Detail"></i>
                                     </a>
-                                  
+                                   
+
+
+
                                 </div>
                             </td>
                         </tr>

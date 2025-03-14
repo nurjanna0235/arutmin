@@ -73,6 +73,6 @@ class LupaPassword extends Controller
         Auth::login($user);
 
         // Redirect ke dashboard atau halaman login
-        return redirect()->route('dashboard')->with('success', 'Password berhasil diperbarui.');
+        return redirect()->to('/login')->with('success', 'Password berhasil diperbarui.');
     }
 }

@@ -19,7 +19,7 @@
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
 
-    
+
 
     <!-- Vendor CSS Files -->
     <link href="/template-admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -58,12 +58,14 @@
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-                
+
                 <li class="nav-item dropdown pe-3">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/admin/profile" data-bs-toggle="dropdown">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="/admin/profile"
+                        data-bs-toggle="dropdown">
                         <img src="/img/profile.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ session('username') }}</span>
+                        <span
+                            class="d-none d-md-block dropdown-toggle ps-2">{{ session('username') }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -81,17 +83,18 @@
                                 <span>Profile</span>
                             </a>
                         </li>
-                        
+
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="/logout">
-                                <i class="bi bi-box-arrow-right"></i>
+                                <i class="bi bi-power"></i>
                                 <span>Logout</span>
                             </a>
                         </li>
+
 
                     </ul><!-- End Profile Dropdown Items -->
                 </li><!-- End Profile Nav -->
@@ -107,7 +110,7 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
-           
+
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('admin/pengguna') ? '' : 'collapsed' }}"
                     href="/admin/pengguna">
@@ -127,10 +130,11 @@
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('logout') ? '' : 'collapsed' }}"
                     href="/logout">
-                    <i class="ri-article-fill"></i>
+                    <i class="ri-logout-box-r-line"></i> <!-- Ikon Logout -->
                     <span>Logout</span>
                 </a>
             </li>
+
 
 
         </ul>

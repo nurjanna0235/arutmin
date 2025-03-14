@@ -1,5 +1,3 @@
-
-
 @extends('componen.template-admin')
 
 @section('conten')
@@ -23,36 +21,7 @@
         <section class="section">
             <div class="row">
                 <div>
-                    <div >
-                        <div class="text-center">
-                            <div class="container">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-
-                                            <th>Activity</th>
-                                            <th>Item</th>
-                                            <th>Base Rate High</th>
-                                            <th>Base Rate Low</th>
-                                            <th>Contractual Distance</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($dokument as $index => $item)
-                                        <tr>
-                                            <th>{{$item->activity}}</th>
-                                            <th>{{$item->item}}</th>
-                                            <th>{{$item->base_rate_high}}</th>
-                                            <th>{{$item->base_rate_low}}</th>
-                                            <th>{{$item->contractual_distance}}</th>
-                                        </tr>
-                                        @endforeach
-
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <div class="col-lg-6 offset-lg-3">
                         <div class="card-body text-center">
                             <h5 class="card-title">Contract Reference</h5>
                             <a href="{{ asset('storage/' . $rate_contract->contract_refren) }}"

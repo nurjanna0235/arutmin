@@ -9,7 +9,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active"> Laz Coal Mandiri</li>
                     <li class="breadcrumb-item active">Astim</li>
-                    <li class="breadcrumb-item active">Fuel</li>
+                    <li class="breadcrumb-item active">Fuel Allowance</li>
                 </ol>
             </nav>
 
@@ -24,10 +24,18 @@
                 <form method="GET" action="{{ url('/rate-contract/astim/fuel-lcm') }}"
                     class="d-flex align-items-center gap-3">
                     <!-- Input Pencarian Tahun -->
-                    <div class="form-group">
-                        <input type="number" name="tahun" class="form-control" placeholder="Cari Tahun"
-                            value="{{ request('tahun') }}">
+              <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="start_year" style="font-size: 15px;">Tahun Awal:</label>
+                        <input type="number" name="start_year" class="form-control" id="start_year"
+                            value="{{ request('start_year') }}" min="2000" max="2900">
                     </div>
+                    <div class="col-md-6">
+                        <label for="end_year" style="font-size: 15px;">Tahun Akhir:</label>
+                        <input type="number" name="end_year" class="form-control" id="end_year"
+                            value="{{ request('end_year') }}" min="2000" max="2900">
+                    </div>
+                </div>
                     <!-- Tombol Submit untuk Search -->
                     <button type="submit" class="btn btn-primary">Cari</button>
                 </form>
@@ -50,7 +58,7 @@
                             <tr>
                                 <td>{{ $No++ }}</td>
                                 <td>
-                                    {{ $item->created_at }}
+                                <a class="btn" href="{{ url('rate-contract/astim/fuel-lcm/view/' . $item->id_contract) }}"> {{ $item->created_at }}</a>
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2 justify-content-center">

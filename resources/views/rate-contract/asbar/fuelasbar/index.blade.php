@@ -22,11 +22,19 @@
     <!-- Form untuk pencarian -->
     <div class="mb-4">
         <form method="GET" action="{{ url('/rate-contract/asbar/fuel-asbar') }}" class="d-flex align-items-center gap-3">
-            <!-- Input Pencarian Tahun -->
-            <div class="form-group">
-                <input type="number" name="tahun" class="form-control" placeholder="Cari Tahun" value="{{ request('tahun') }}">
-            </div>
-
+             <!-- Input Pencarian Tahun -->
+             <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="start_year" style="font-size: 15px;">Tahun Awal:</label>
+                        <input type="number" name="start_year" class="form-control" id="start_year"
+                            value="{{ request('start_year') }}" min="2000" max="2900">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="end_year" style="font-size: 15px;">Tahun Akhir:</label>
+                        <input type="number" name="end_year" class="form-control" id="end_year"
+                            value="{{ request('end_year') }}" min="2000" max="2900">
+                    </div>
+                </div>
             <!-- Input Filter Item -->
             <div class="form-group">
                 <select name="item" class="form-select" id="item" aria-label="Floating label select example">
