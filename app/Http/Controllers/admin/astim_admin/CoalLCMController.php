@@ -40,7 +40,7 @@ class CoalLCMController extends Controller
     }
 
     // Ambil data hasil query dan format bulan/tahun
-    $dokumencoal_lcm = $query->get()->map(function ($item) {
+    $dokumencoal_lcm = $query->orderByDesc('id')->get()->map(function ($item) {
         $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
         return $item;
     });
@@ -66,7 +66,7 @@ class CoalLCMController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = coal_lcm::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -86,9 +86,10 @@ class CoalLCMController extends Controller
             'coal_cleaning_kurang_dari' => $request->coal_cleaning_kurang_dari,
             'pit_support_lebih_dari' => $request->pit_support_lebih_dari,
             'pit_support_kurang_dari' => $request->pit_support_kurang_dari,
+            'name_contract' => $request->name_contract,
             'contract_reference' => $path,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
 
@@ -145,6 +146,7 @@ class CoalLCMController extends Controller
         $coal_cleaning_kurang_dari = $request->coal_cleaning_kurang_dari;
         $pit_support_lebih_dari = $request->pit_support_lebih_dari;
         $pit_support_kurang_dari = $request->pit_support_kurang_dari;
+        $name_contract = $request->name_contract;
 
         // Update data ke database
         DB::table('coal_lcm')->where('id', $id)->update([
@@ -156,6 +158,7 @@ class CoalLCMController extends Controller
             'coal_cleaning_kurang_dari' => $coal_cleaning_kurang_dari,
             'pit_support_lebih_dari' => $pit_support_lebih_dari,
             'pit_support_kurang_dari' => $pit_support_kurang_dari,
+            'name_contract' => $name_contract,
             'contract_reference' => $path,
         ]);
 

@@ -60,6 +60,7 @@
                     <th scope="col" style="width: 15%;"> Premium Rate </th>
                     <th scope="col" style="width: 15%;"> General Escalation </th>
                     <th scope="col" style="width: 15%;"> Actual Rate Exc. Fuel (Rp/Hrs) </th>
+                    <th scope="col" style="width: 10%;">Name Contract</th>
                     <th scope="col" style="width: 10%;">Aksi</th>
                 </tr>
             </thead>
@@ -77,6 +78,7 @@
                     <td>{{ $item->premium_rate }}</td>
                     <td>{{ $item->general_escalation }}</td>
                     <td>{{ $item->actual_rate_exc_fuel }}</td>
+                    <td>{{ $item->name_contract }}</td>
 
                     <td>
                         <div class="d-flex gap-2 justify-content-center">

@@ -33,7 +33,7 @@ class CoalController extends Controller
     }
 
     // Ambil data hasil query dan format bulan/tahun
-    $dokumencoal = $query->get()->map(function ($item) {
+    $dokumencoal = $query->orderByDesc('id')->get()->map(function ($item) {
         $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
         return $item;
     });
@@ -62,7 +62,7 @@ class CoalController extends Controller
     }
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = coal::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -81,6 +81,7 @@ class CoalController extends Controller
         $currency_adjustment = floatval(str_replace(',', '.', $request->currency_adjustment));
         $premium_rate = floatval(str_replace('%', '', $request->premium_rate)) / 100;
         $general_escalation = floatval(str_replace('%', '', $request->general_escalation)) / 100;
+        $name_contract = $request->name_contract;
 
         // Hitung Sub Total Base Rate Coal
         $sub_total_base_rate_coal = $clean_coal + $loading_and_ripping + $coal_hauling + $hrm + $pit_support;
@@ -102,7 +103,9 @@ class CoalController extends Controller
         $coal->currency_adjustment = $currency_adjustment;
         $coal->premium_rate = $request->premium_rate;
         $coal->general_escalation = $request->general_escalation;
+        $coal->name_contract = $name_contract;
         $coal->total_rate_coal_actual = $total_rate_coal_actual;
+        $coal->created_at = $request->bulan;
         $coal->contract_reference = $path;
         $coal->save();
 
@@ -130,6 +133,7 @@ class CoalController extends Controller
         $currency_adjustment = floatval(str_replace(',', '.', $request->currency_adjustment));
         $premium_rate = floatval(str_replace('%', '', $request->premium_rate)) / 100;
         $general_escalation = floatval(str_replace('%', '', $request->general_escalation)) / 100;
+        $name_contract = $request->name_contract;
 
         // Hitung Sub Total Base Rate Coal
         $sub_total_base_rate_coal = $clean_coal + $loading_and_ripping + $coal_hauling + $hrm + $pit_support;
@@ -160,6 +164,7 @@ class CoalController extends Controller
         $dokumen_coal->currency_adjustment = $currency_adjustment;
         $dokumen_coal->premium_rate = $premium_rate;
         $dokumen_coal->general_escalation = $general_escalation;
+        $dokumen_coal->name_contract = $name_contract;
         $dokumen_coal->total_rate_coal_actual = $total_rate_coal_actual;
         $dokumen_coal->contract_reference = $path;
         // Data tambahan

@@ -41,8 +41,7 @@ class DayworkController extends Controller
             $query->where('item_daywork.id_item', $item);
         }
     
-        // Eksekusi query dan format data
-        $dokumendaywork = $query->get()->map(function ($item) {
+        $dokumendaywork = $query->orderByDesc('daywork.id_daywork')->get()->map(function ($item) {
             // Memformat atribut tanggal jika ada
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Atur nama kolom sesuai kebutuhan
             return $item;
@@ -89,6 +88,7 @@ class DayworkController extends Controller
         $currency_adjustment = (float) $request->currency_adjustment;
         $premium_rate = (float) $request->premium_rate / 100; // Konversi persen ke desimal
         $general_escalation = (float) $request->general_escalation / 100; // Konversi persen ke desimal
+        $name_contract =  $request->name_contract;
 
         // Perhitungan rate_actual
         $actual_rate_exc_fuel = $base_rate_exc_fuel * $currency_adjustment;
@@ -110,6 +110,7 @@ class DayworkController extends Controller
             'currency_adjustment' => $currency_adjustment,
             'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
             'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
+            'name_contract' => $request->name_contract,
             'contract_reference' => $path,
         ]);
 
@@ -126,11 +127,10 @@ class DayworkController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = daywork::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
-
         if ($dokument) {
             return redirect()->to('rate-contract/asteng/daywork')->with('error', 'Data untuk bulan ini sudah ada.');
         }
@@ -142,6 +142,7 @@ class DayworkController extends Controller
         $currency_adjustment = (float) $request->currency_adjustment;
         $premium_rate = (float) $request->premium_rate / 100; // Konversi persen ke desimal
         $general_escalation = (float) $request->general_escalation / 100; // Konversi persen ke desimal
+        $name_contract =  $request->name_contract;
 
         // Perhitungan rate_actual
         $actual_rate_exc_fuel = $base_rate_exc_fuel * $currency_adjustment;
@@ -152,6 +153,7 @@ class DayworkController extends Controller
             'currency_adjustment' => $currency_adjustment,
             'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
             'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
+            'name_contract' => $request->name_contract,
             'contract_reference' => $path,
         ]);
         value_daywork::create([
@@ -159,8 +161,8 @@ class DayworkController extends Controller
             'base_rate_exc' => $base_rate_exc_fuel,
             'actual_rate_exc' => $actual_rate_exc_fuel,
             'fbr' => $actual_rate_exc_fuel,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
         return redirect()->to('rate-contract/asteng/daywork')->with('success', 'Data berhasil ditambahkan');

@@ -39,7 +39,7 @@ class FuelLCMController extends Controller
     }
 
     // Ambil data hasil query, group by id_contract, dan format created_at
-    $dokument = $query->get()
+    $dokument = $query->orderByDesc('id')->get()
         ->groupBy('fuel_lcm.id_contract') // Grouping berdasarkan id_contract
         ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
         ->map(function ($item) {
@@ -82,7 +82,7 @@ class FuelLCMController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = fuel_lcm::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -109,8 +109,8 @@ class FuelLCMController extends Controller
                 'fuel_index' => $fuelIndex,
                 'contractual_distance' => $contractual_distance,
                 'id_contract' => $id_contract, // Pastikan nama kolom di database benar
-                'created_at' => now(),
-                'updated_at' => now(),
+                'created_at' => $request->bulan,
+                'updated_at' => $request->bulan,
             ]);
         }
         return redirect()->to('rate-contract/astim/fuel-lcm')->with('success', 'Data berhasil ditambahkan');

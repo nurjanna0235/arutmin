@@ -62,6 +62,7 @@
                     <th scope="col" style="width: 15%;"> Item </th>
                     <th scope="col" style="width: 15%;"> Fuel Index </th>
                     <th scope="col" style="width: 15%;"> Distance </th>
+                    <th scope="col" style="width: 10%;">Naem Contract</th>
                     <th scope="col" style="width: 10%;">Aksi</th>
                 </tr>
             </thead>
@@ -75,6 +76,7 @@
                 <td>{{ $item->item }}</td>
                 <td>{{ $item->fuel_index }}</td>
                 <td>{{ $item->distance }}</td>
+                <td>{{ $item->name_contract }}</td>
                 <td>
                     <div class="d-flex gap-2 justify-content-center">
                         <!-- Tombol Detail -->

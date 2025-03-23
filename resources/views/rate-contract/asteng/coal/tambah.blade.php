@@ -76,6 +76,16 @@
                                     <span class="input-group-text" id="basic-addon2">%</span>
                                 </div>
 
+                                <div class="col-12">
+                                    <label for="name_contract" class="form-label">Name Contract</label>
+                                    <input name="name_contract" type="text" class="form-control" id="name_contract">
+                                </div>
+
+                                <label for="bulan" class="form-label">Bulan</label>
+                                <div class="input-group mb-3">
+                                    <input type="date" class="form-control" name="bulan">
+                                </div>
+
                                 {{-- <div class="col-12">
                                     <label for="total_rate_coal_actual" class="form-label"> Total Rate Coal Actual (Rp/ton)</label>
                                     <input name="total_rate_coal_actual" type="text" class="form-control" id="total_rate_coal_actual">
@@ -89,7 +99,7 @@
                                 </select>
                             </div>
                         </div>
-                       
+
                         <div class="col-12 mt-3">
                             <div class="d-flex justify-content-start">
                                 <button type="submit" class="btn btn-primary me-2">Simpan</button>
@@ -100,8 +110,8 @@
                 </div>
             </div>
         </div>
-        
-                           
+
+
         </div>
         </div>
         </div><!-- End Card with an image on left -->

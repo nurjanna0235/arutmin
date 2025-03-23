@@ -72,12 +72,23 @@
                             <input value="" name="general_escalation"
                                 type="text" class="form-control" id="general_escalation">
                         </div>
+
+                        <div class="col-12">
+                            <label for="name_contract" class="form-label">Name Contract</label>
+                            <input value="" name="name_contract"
+                                type="text" class="form-control" id="name_contract">
+                        </div>
                         
                         {{-- <div class="col-12">
                                     <label for="total_rate_coal_actual" class="form-label"> Actual Rate Hauling PLTU @12 KM (Rp/ton)</label>
                                     <input name="total_rate_coal_actual" type="text" class="form-control" id="total_rate_coal_actual">
                                 </div> --}}
 
+                                <label for="bulan" class="form-label">Bulan</label>
+                                <div class="input-group mb-3">
+                                    <input type="date" class="form-control" name="bulan">
+                                </div>
+                                
                         <div class="col-12">
                             <label for="contract_reference" class="form-label">Contract Reference</label>
                             <input name="contract_reference" type="file" class="form-control"

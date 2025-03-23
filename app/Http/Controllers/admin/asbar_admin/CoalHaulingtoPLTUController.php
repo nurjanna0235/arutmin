@@ -39,7 +39,7 @@ class CoalHaulingtoPLTUController extends Controller
         }
     
         // Ambil data hasil query dan format bulan/tahun
-        $dokumencoalhauling = $query->get()->map(function ($item) {
+        $dokumencoalhauling = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
@@ -71,7 +71,7 @@ class CoalHaulingtoPLTUController extends Controller
     }
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = coal_hauling_to_pltu::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -86,13 +86,14 @@ class CoalHaulingtoPLTUController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = str_replace(['%'], [''], $request->premium_rate ??0) / 100;
         $general_escalation = str_replace(['%'], [''], $request->general_escalation ??0) / 100;
-
+        $name_contract = str_replace([','], ['.'], $request->name_contract);
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
-
+        $name_contract =  $name_contract;
+        
         // Hitung Rate Actual sesuai rumus
         $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
         // Simpan ke database
@@ -101,10 +102,11 @@ class CoalHaulingtoPLTUController extends Controller
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
+            'name_contract' => $request->name_contract,
             'actual_rate' => $rate_actual,
             'contract_reference' => $path,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
          // Redirect dengan pesan sukses
@@ -119,6 +121,7 @@ class CoalHaulingtoPLTUController extends Controller
             'currency_adjustment' => 'required',
             'premium_rate' => 'nullable',
             'general_escalation' => 'nullable',
+            'name_contract' => 'required',
             // 'contract_reference' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048',
         ]);
 
@@ -142,12 +145,14 @@ class CoalHaulingtoPLTUController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
         $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+        $name_contract = $request->name_contract;
 
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
+        $name_contract = (float) $name_contract;
 
         // Hitung Rate Actual sesuai rumus
         $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
@@ -158,6 +163,7 @@ class CoalHaulingtoPLTUController extends Controller
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
+            'name_contract' => $request->name_contract,
             'actual_rate' => $rate_actual,
             'contract_reference' => $path,
             'updated_at' => now(),

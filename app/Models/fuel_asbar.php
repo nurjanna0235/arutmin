@@ -17,5 +17,5 @@ class fuel_asbar extends Model
     public $timestamps = false;
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable = ['id_kontraktor','item','fuel_index','distance','contract_reference','created_at','updated_at'];
+    protected $fillable = ['id_kontraktor','item','fuel_index','distance','contract_reference','created_at','updated_at','name_contract'];
 }

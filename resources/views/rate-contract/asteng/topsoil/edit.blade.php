@@ -61,6 +61,12 @@
                                     </a>
                                 </div>
 
+                                <div class="col-12">
+                                <label for="name_contract" class="form-label">Name Contract</label>
+                                <input value="{{ $dokumentop_soil->name_contract }}" name="name_contract" type="text"
+                                    class="form-control" id="name_contract">
+                            </div>
+                            
                                 @endif
                                 <input type="file" name="contract_reference" class="form-control"
                                     id="contract_reference">

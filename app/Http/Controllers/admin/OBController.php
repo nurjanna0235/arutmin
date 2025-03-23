@@ -31,7 +31,7 @@ class OBController extends Controller
         }
 
         // Ambil data hasil query dan format bulan/tahun
-        $dokumenob = $query->get()->map(function ($item) {
+        $dokumenob = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
@@ -60,7 +60,7 @@ class OBController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = ob::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -82,6 +82,7 @@ class OBController extends Controller
         $currency_adjustment = (float) str_replace(',', '.', $request->currency_adjustment);
         $premium_rate = (float) str_replace(',', '.', $request->premium_rate) / 100;
         $general_escalation = (float) str_replace(',', '.', $request->general_escalation) / 100;
+        $name_contract =  $request->name_contract;
 
         // Perhitungan subtotal dan total
         $sub_total_base_rate_ob = $load_and_haul + $drill_and_blast + $pit_support + $pit_lighting + $hrm + $dump_maintenance + $dewatering_sediment;
@@ -101,7 +102,9 @@ class OBController extends Controller
         $ob->currency_adjustment = $currency_adjustment;
         $ob->premium_rate = $premium_rate;
         $ob->general_escalation = $general_escalation;
+         $ob->name_contract = $name_contract;
         $ob->total_rate_ob_actual = $total_rate_ob_actual;
+        $ob->created_at = $request->bulan;
         $ob->contract_reference = $path; // Data tambahan
         $ob->save();
 
@@ -131,6 +134,8 @@ class OBController extends Controller
             'sr' => 'nullable',
             'currency_adjustment' => 'nullable',
             'premium_rate' => 'nullable',
+            'general_escalation' => 'nullable',
+            'name_contract' => 'nullable',
             'total_rate_ob_actual' => 'nullable',
             'contract_reference' => 'nullable',
 
@@ -154,6 +159,7 @@ class OBController extends Controller
 
         $premium_rate = $request->premium_rate ?? $dokumen->premium_rate;
         $general_escalation = $request->general_escalation ?? $dokumen->general_escalation;
+        $name_contract = $request->name_contract ?? $dokumen->name_contract;
         $total_rate_ob_actual = $sub_total_base_rate_ob * $sr * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
 
         // Proses upload file jika ada file baru
@@ -181,6 +187,7 @@ class OBController extends Controller
         $dokumenob->currency_adjustment = $currency_adjustment;
         $dokumenob->premium_rate = $premium_rate;
         $dokumenob->general_escalation = $general_escalation;
+        $dokumenob->name_contract = $name_contract;
         $dokumenob->total_rate_ob_actual = $total_rate_ob_actual;
         $dokumenob->contract_reference = $path; // Data tambahan
         $dokumenob->save();

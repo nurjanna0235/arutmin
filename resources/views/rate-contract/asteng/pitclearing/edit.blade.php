@@ -57,6 +57,12 @@
                             </div>
 
                             <div class="col-12">
+                                <label for="name_contract" class="form-label">Name Contract</label>
+                                <input value="{{ $dokumenpit_clearing->name_contract }}" name="name_contract" type="text"
+                                    class="form-control" id="name_contract">
+                            </div>
+
+                            <div class="col-12">
                                 <label for="contract_reference" class="form-label">Contract Reference</label>
                                 @if($dokumenpit_clearing->contract_reference)
                                 <div class="mb-2">

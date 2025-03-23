@@ -38,8 +38,7 @@ class DayworkUserController extends Controller
             $query->where('item_daywork.id_item', $item);
         }
     
-        // Eksekusi query dan format data
-        $dokumendaywork = $query->get()->map(function ($item) {
+        $dokumendaywork = $query->orderByDesc('daywork.id_daywork')->get()->map(function ($item) {
             // Memformat atribut tanggal jika ada
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Atur nama kolom sesuai kebutuhan
             return $item;
@@ -53,7 +52,6 @@ class DayworkUserController extends Controller
     
         return view('/user/rate-contract/asteng/daywork/index', compact('dokumendaywork', 'tahunList', 'itemList'));
     }
-
     public function detail($id)
     {
         $dokumendaywork = daywork::where('id_daywork', $id)->get()->first();

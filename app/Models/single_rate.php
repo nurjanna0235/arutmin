@@ -15,7 +15,7 @@ class single_rate extends Model
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable = ['total_base_rate_ob','total_base_rate_coal','sr','currency_adjustment','premium_rate','general_escalation','total_single_rate_actual','contract_reference','created_at','updated_at'];
+    protected $fillable = ['total_base_rate_ob','total_base_rate_coal','sr','currency_adjustment','premium_rate','general_escalation','total_single_rate_actual','contract_reference','created_at','updated_at','name_contract'];
 
 }
 

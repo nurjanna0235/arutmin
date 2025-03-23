@@ -49,6 +49,7 @@
                     <th scope="col" style="width: 10%;">Premium Rate</th>
                     <th scope="col" style="width: 10%;">General Escalation</th>
                     <th scope="col" style="width: 15%;">Actual Rate Hauling PLTU @12 KM (Rp/ton)</th>
+                    <th scope="col" style="width: 10%;">Name Contract</th>
                     <th scope="col" style="width: 10%;">Aksi</th>
                 </tr>
             </thead>
@@ -64,6 +65,7 @@
                     <td>{{$item->premium_rate}}</td>
                     <td>{{$item->general_escalation}}</td>
                     <td class="text-danger fw-bold">{{ $item->actual_rate }}</td>
+                    <td>{{$item->name_contract}}</td>
                     <td>
                         <div class="d-flex gap-2 justify-content-center">
                             <!-- Tombol Detail -->

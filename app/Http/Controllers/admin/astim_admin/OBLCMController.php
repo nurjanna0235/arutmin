@@ -41,7 +41,7 @@ class OBLCMController extends Controller
         }
     
         // Ambil data hasil query dan format bulan/tahun
-        $dokumenob_lcm = $query->get()->map(function ($item) {
+        $dokumenob_lcm = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
@@ -66,7 +66,7 @@ class OBLCMController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = ob_lcm::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -92,9 +92,10 @@ class OBLCMController extends Controller
             'water_treatment_kurang_dari' => $request->water_treatment_kurang_dari,
             'total_rate_ob_actual_kurang_dari' => $request->total_rate_ob_actual_kurang_dari,
             'total_rate_ob_actual_lebih_dari' => $request->total_rate_ob_actual_lebih_dari,
+            'name_contract' => $request->name_contract,
             'contract_reference' => $path,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
 
@@ -157,6 +158,7 @@ class OBLCMController extends Controller
         $water_treatment_kurang_dari = $request->water_treatment_kurang_dari;
         $total_rate_ob_actual_kurang_dari = $request->total_rate_ob_actual_kurang_dari;
         $total_rate_ob_actual_lebih_dari = $request->total_rate_ob_actual_lebih_dari;
+        $name_contract = $request->name_contract;
 
 
         // Update data ke database
@@ -175,6 +177,7 @@ class OBLCMController extends Controller
             'water_treatment_kurang_dari' => $water_treatment_kurang_dari,
             'total_rate_ob_actual_kurang_dari' => $total_rate_ob_actual_kurang_dari,
             'total_rate_ob_actual_lebih_dari' => $total_rate_ob_actual_lebih_dari,
+            'name_contract' => $name_contract,
             'contract_reference' => $path,
         ]);
 

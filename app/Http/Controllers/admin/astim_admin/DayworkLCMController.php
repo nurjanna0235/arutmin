@@ -147,7 +147,7 @@ class DayworkLCMController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = daywork_lcm::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -161,8 +161,8 @@ class DayworkLCMController extends Controller
         // Simpan contract dan ambil ID-nya
         $id_contract = contract::insertGetId([
             'contract_refren' => $path, // Pastikan nama kolom sesuai dengan di database
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
         // Loop untuk menyimpan data daywork_lcm
@@ -226,6 +226,7 @@ class DayworkLCMController extends Controller
                 'rate_per_hour' => $itemActual,
                 'fuel_burn_rate' => $itemFbr,
                 'id_contract' => $id_contract, // Pastikan nama kolom di database benar
+               
             ]);
         }
 

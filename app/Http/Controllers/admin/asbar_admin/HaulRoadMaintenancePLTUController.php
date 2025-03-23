@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\admin\asbar_admin;
 
 use App\Http\Controllers\Controller;
@@ -16,14 +17,14 @@ class HaulRoadMaintenancePLTUController extends Controller
         $tahunAwal = $request->input('start_year'); // Input untuk tahun awal
         $tahunAkhir = $request->input('end_year'); // Input untuk tahun akhir
         $filterTahun = $request->input('filter_tahun'); // Input untuk filter tahun dropdown
-    
+
         // Query dasar untuk mengambil data
         $query = haul_road_maintenance_pltu::query();
-    
+
         // Filter berdasarkan rentang tahun jika tahun awal dan tahun akhir diberikan
         if ($tahunAwal && $tahunAkhir) {
             $query->whereYear('created_at', '>=', $tahunAwal)
-                  ->whereYear('created_at', '<=', $tahunAkhir);
+                ->whereYear('created_at', '<=', $tahunAkhir);
         } elseif ($tahunAwal) {
             // Filter berdasarkan tahun awal jika hanya tahun awal yang diberikan
             $query->whereYear('created_at', '>=', $tahunAwal);
@@ -31,35 +32,34 @@ class HaulRoadMaintenancePLTUController extends Controller
             // Filter berdasarkan tahun akhir jika hanya tahun akhir yang diberikan
             $query->whereYear('created_at', '<=', $tahunAkhir);
         }
-    
+
         // Filter berdasarkan dropdown filter_tahun
         if ($filterTahun) {
             $query->whereYear('created_at', $filterTahun);
         }
-    
+
         // Ambil data hasil query dan format bulan/tahun
-        $dokumenhaulroadmaintenancepltu = $query->get()->map(function ($item) {
+        $dokumenhaulroadmaintenancepltu = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
-    
+
         // Ambil daftar tahun unik untuk dropdown filter
         $tahunList = haul_road_maintenance_pltu::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
-    
+
         // Kirim data ke view
         return view('rate-contract/asbar/haul-road-maintenance-pltu/index', compact('dokumenhaulroadmaintenancepltu', 'tahunList'));
     }
-        public function tambah()
+    public function tambah()
     {
         return view('rate-contract/asbar/haul-road-maintenance-pltu/tambah');
     }
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = haul_road_maintenance_pltu::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
-
         if ($dokument) {
             return redirect()->to('rate-contract/asbar/haul-road-maintenance-pltu')->with('error', 'Data untuk bulan ini sudah ada.');
         }
@@ -68,14 +68,16 @@ class HaulRoadMaintenancePLTUController extends Controller
         // Mengganti koma dengan titik pada inputan untuk keperluan perhitungan
         $base_rate = str_replace([','], ['.'], $request->base_rate);
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
-        $premium_rate = str_replace(['%'], [''], $request->premium_rate ??0) / 100;
-        $general_escalation = str_replace(['%'], [''], $request->general_escalation ??0) / 100;
+        $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
+        $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+        $name_contract = $request->name_contract;
 
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
+        $name_contract =  $name_contract;
 
         // Hitung Actual Rate sesuai rumus
         $actual_rate_hauling_pltu = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
@@ -86,13 +88,14 @@ class HaulRoadMaintenancePLTUController extends Controller
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
             'actual_rate_hauling_pltu' => $actual_rate_hauling_pltu,
+            'name_contract' => $name_contract,
             'contract_reference' => $path,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
-         // Redirect dengan pesan sukses
-    return redirect()->to('rate-contract/asbar/haul-road-maintenance-pltu')->with('success', 'Data berhasil ditambahkan');
+        // Redirect dengan pesan sukses
+        return redirect()->to('rate-contract/asbar/haul-road-maintenance-pltu')->with('success', 'Data berhasil ditambahkan');
     }
     public function detail($id)
     {
@@ -104,7 +107,7 @@ class HaulRoadMaintenancePLTUController extends Controller
     public function edit($id)
     {
         $dokumenhaulroadmaintenancepltu = haul_road_maintenance_pltu::where('id', $id)->get()->first();
-        return view('rate-contract/asbar/haul-road-maintenance-pltu/edit',compact('dokumenhaulroadmaintenancepltu'));
+        return view('rate-contract/asbar/haul-road-maintenance-pltu/edit', compact('dokumenhaulroadmaintenancepltu'));
     }
     public function update(Request $request, $id)
     {
@@ -114,6 +117,7 @@ class HaulRoadMaintenancePLTUController extends Controller
             'currency_adjustment' => 'required',
             'premium_rate' => 'nullable',
             'general_escalation' => 'nullable',
+            'name_contract' => 'required',
             // 'contract_reference' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048',
         ]);
 
@@ -137,12 +141,14 @@ class HaulRoadMaintenancePLTUController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
         $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+        $name_contract =  $request->name_contract;
 
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
+        $name_contract =  $name_contract;
 
         // Hitung Rate Actual sesuai rumus
         $actual_rate_hauling_pltu = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
@@ -154,11 +160,12 @@ class HaulRoadMaintenancePLTUController extends Controller
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
             'actual_rate_hauling_pltu' => $actual_rate_hauling_pltu,
+            'name_contract' => $name_contract,
             'contract_reference' => $path,
             'updated_at' => now(),
         ]);
-         // Redirect dengan pesan sukses
- return redirect()->to('rate-contract/asbar/haul-road-maintenance-pltu')->with('success', 'Data berhasil diperbarui');
+        // Redirect dengan pesan sukses
+        return redirect()->to('rate-contract/asbar/haul-road-maintenance-pltu')->with('success', 'Data berhasil diperbarui');
     }
 
     public function hapus($id)
@@ -168,5 +175,4 @@ class HaulRoadMaintenancePLTUController extends Controller
 
         return redirect()->to('rate-contract/asbar/haul-road-maintenance-pltu');
     }
-
 }

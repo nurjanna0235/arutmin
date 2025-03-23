@@ -36,7 +36,7 @@ class FuelLCMUserController extends Controller
     }
 
     // Ambil data hasil query, group by id_contract, dan format created_at
-    $dokument = $query->get()
+    $dokument = $query->orderByDesc('id')->get()
         ->groupBy('fuel_lcm.id_contract') // Grouping berdasarkan id_contract
         ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
         ->map(function ($item) {

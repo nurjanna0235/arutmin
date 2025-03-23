@@ -39,7 +39,7 @@ class FuelController extends Controller
         }
 
         // Ambil data hasil query dan format bulan/tahun
-        $dokumenfuel = $query->get()->map(function ($item) {
+        $dokumenfuel = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
@@ -65,7 +65,7 @@ class FuelController extends Controller
     }
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = fuel::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -83,9 +83,10 @@ class FuelController extends Controller
             'item' => $request->item,
             'fuel_index' => $request->fuel_index,
             'contractual_distance_km' => $request->contractual_distance_km,
+            'name_contract' => $request->name_contract,
             'contract_reference' => $path,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
         return redirect()->to('rate-contract/asteng/fuel')->with('success', 'Data berhasil ditambahkan');
@@ -122,6 +123,7 @@ class FuelController extends Controller
             'item' => $request->item,
             'fuel_index' => $request->fuel_index,
             'contractual_distance_km' => $request->contractual_distance_km,
+            'name_contract' => $request->name_contract,
             'contract_reference' => $path,
             'created_at' => now(),
             'updated_at' => now(),

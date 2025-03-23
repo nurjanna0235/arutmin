@@ -33,7 +33,7 @@ class SingleRateController extends Controller
         }
     
         // Ambil data hasil query dan format bulan/tahun
-        $dokumensingle_rate = $query->get()->map(function ($item) {
+        $dokumensingle_rate = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
@@ -60,7 +60,7 @@ class SingleRateController extends Controller
     }
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = single_rate::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -77,6 +77,7 @@ class SingleRateController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment); // Currency Adjustment
         $premium_rate = str_replace(['%'], [''], $request->premium_rate) / 100; // Premium Rate (%)
         $general_escalation = str_replace(['%'], [''], $request->general_escalation) / 100; // General Escalation (%)
+        $name_contract =  $request->name_contract; 
 
         // Konversi menjadi float untuk perhitungan
         $base_rate_ob = (float) $base_rate_ob;
@@ -85,6 +86,7 @@ class SingleRateController extends Controller
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
+        $name_contract =  $name_contract;
 
         // Hitung Rate Actual sesuai rumus
         $rate_actual = ($base_rate_ob * $sr + $base_rate_coal) * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
@@ -97,10 +99,11 @@ class SingleRateController extends Controller
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
+            'name_contract' => $request->name_contract,
             'total_single_rate_actual' => $rate_actual,
             'contract_reference' => $path,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
         return redirect()->to('rate-contract/asteng/single-rate')->with('success', 'Data berhasil ditambahkan');
@@ -135,7 +138,7 @@ class SingleRateController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment); // Currency Adjustment
         $premium_rate = str_replace(['%'], [''], $request->premium_rate) / 100; // Premium Rate (%)
         $general_escalation = str_replace(['%'], [''], $request->general_escalation) / 100; // General Escalation (%)
-
+        $name_contract =  $request->name_contract;
         // Konversi menjadi float untuk perhitungan
         $base_rate_ob = (float) $base_rate_ob;
         $base_rate_coal = (float) $base_rate_coal;
@@ -143,6 +146,7 @@ class SingleRateController extends Controller
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
+        $name_contract = $name_contract;
 
         // Hitung Rate Actual sesuai rumus
         $rate_actual = ($base_rate_ob * $sr + $base_rate_coal) * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
@@ -155,13 +159,11 @@ class SingleRateController extends Controller
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
+            'name_contract' => $request->name_contract,
             'total_single_rate_actual' => $rate_actual,
             'contract_reference' => $path,
             'updated_at' => now(),
         ]);
-
-
-
 
         return redirect()->to('rate-contract/asteng/single-rate')->with('success', 'Data berhasil ditambahkan');
     }

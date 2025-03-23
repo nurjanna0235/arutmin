@@ -46,7 +46,7 @@ class FuelAsbarController extends Controller
         }
     
         // Ambil data hasil query dan format bulan/tahun
-        $dokumenfuelasbar = $query->get()->map(function ($item) {
+        $dokumenfuelasbar = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
@@ -65,7 +65,7 @@ class FuelAsbarController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = fuel_asbar::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -81,6 +81,7 @@ class FuelAsbarController extends Controller
             'item' => $request->item,
             'fuel_index' => $request->fuel_index,
             'distance' => $request->distance,
+            'name_contract' => $request->name_contract,
             'contract_reference' => $path,
             'created_at' => now(),
             'updated_at' => now(),
@@ -118,8 +119,10 @@ class FuelAsbarController extends Controller
             'item' => $request->item,
             'fuel_index' => $request->fuel_index,
             'distance' => $request->distance,
+            'name_contract' => $request->name_contract,
             'contract_reference' => $path,
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
         return redirect()->to('rate-contract/asbar/fuel-asbar')->with('success', 'Data berhasil diperbarui');

@@ -15,5 +15,5 @@ class ob extends Model
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable = ['load_and_haul','drill_and_blast','pit_support','pit_lighting','hrm','dump_maintenance','dewatering_sediment','sub_total_base_rate_ob','sr','currency_adjustment','premium_rate','general_escalation','total_rate_ob_actual','contract_reference','created_at','updated_at'];
+    protected $fillable = ['load_and_haul','drill_and_blast','pit_support','pit_lighting','hrm','dump_maintenance','dewatering_sediment','sub_total_base_rate_ob','sr','currency_adjustment','premium_rate','general_escalation','total_rate_ob_actual','contract_reference','created_at','updated_at','name_contract'];
 }

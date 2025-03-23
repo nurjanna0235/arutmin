@@ -21,5 +21,6 @@ class oudistance_lcm extends Model
         'id_contract',
         'created_at',
         'updated_at',
+        'name_contract',
     ];
 }

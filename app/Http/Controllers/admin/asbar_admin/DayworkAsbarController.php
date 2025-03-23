@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin\asbar_admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\daywork_asbar;
+use App\Models\daywork_lcm;
 use App\Models\item_daywork_asbar;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -69,7 +70,7 @@ class DayworkAsbarController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = daywork_asbar::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -86,6 +87,7 @@ class DayworkAsbarController extends Controller
         $index = (float) $request->index; // Konversi persen ke desimal
         $premium_rate = (float) $request->premium_rate / 100; // Konversi persen ke desimal
         $general_escalation = (float) $request->general_escalation / 100; // Konversi persen ke desimal
+        $name_contract = $request->name_contract;
 
         // Perhitungan rate_actual
         $actual_rate_exc_fuel = $base_rate_exc_fuel * $currency_adjustment * $index * $general_escalation;
@@ -97,11 +99,12 @@ class DayworkAsbarController extends Controller
             'index' => $index, // Nilai asli dalam persen
             'premium_rate' => $premium_rate, // Nilai asli dalam persen
             'general_escalation' => $general_escalation, // Nilai asli dalam persen
+            'name_contract' => $name_contract,
             'contract_reference' => $path,
             'actual_rate_exc_fuel' => $actual_rate_exc_fuel,
             'base_rate_exc_fuel' => $base_rate_exc_fuel,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
         return redirect()->to('rate-contract/asbar/daywork-asbar')->with('success', 'Data berhasil ditambahkan');
@@ -122,6 +125,7 @@ class DayworkAsbarController extends Controller
         $index = (float) $request->index; // Konversi persen ke desimal
         $premium_rate = (float) $request->premium_rate / 100; // Konversi persen ke desimal
         $general_escalation = (float) $request->general_escalation / 100; // Konversi persen ke desimal
+        $name_contract =  $request->name_contract;
 
         // Perhitungan rate_actual
         $actual_rate_exc_fuel = $base_rate_exc_fuel * $currency_adjustment * $index * $general_escalation;
@@ -144,9 +148,11 @@ class DayworkAsbarController extends Controller
             'currency_adjustment' => $currency_adjustment,
             'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
             'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
+            
             'contract_reference' => $path,
             'actual_rate_exc_fuel' => $actual_rate_exc_fuel,
             'base_rate_exc_fuel' => $base_rate_exc_fuel,
+            'name_contract' => $name_contract,
             'updated_at' => now(),
 
         ]);

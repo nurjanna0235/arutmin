@@ -65,6 +65,7 @@
                         <th scope="col" style="width: 15%;"> Currency Adjustment </th>
                         <th scope="col" style="width: 15%;"> Premium Rate </th>
                         <th scope="col" style="width: 15%;"> General Escalation </th>
+                        <th scope="col" style="width: 15%;"> Name Contract </th>
                         <th scope="col" style="width: 15%;"> Actual Rate Exc. Fuel (Rp/Hrs) </th>
                         <th scope="col" style="width: 10%;">Aksi</th>
                     </tr>
@@ -79,8 +80,9 @@
                         <td>{{ $item->base_rate_exc }}</td>
                         <td>{{ $item->fbr }}</td>
                         <td>{{ $item->currency_adjustment }}</td>
-                        <td>{{ $item->premium_rate }}</td>
-                        <td>{{ $item->general_escalation }}</td>
+                        <td>{{ $item->premium_rate }}%</td>
+                        <td>{{ $item->general_escalation }}%</td>
+                        <td>{{ $item->name_contract }}</td>
                         <td class="text-danger fw-bold">{{ $item->actual_rate_exc }}</td>
                         <td>
                             <!-- Menggunakan d-flex untuk mengatur elemen menjadi horizontal -->

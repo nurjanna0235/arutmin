@@ -40,7 +40,7 @@ class oudistanceController extends Controller
         }
 
         // Ambil data hasil query dan format bulan/tahun
-        $dokumenoudistance = $query->get()->map(function ($item) {
+        $dokumenoudistance = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
@@ -64,7 +64,7 @@ class oudistanceController extends Controller
     }
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = oudistance::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -93,6 +93,7 @@ class oudistanceController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
         $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+        $name_contract =  $request->name_contract;
 
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;
@@ -100,6 +101,7 @@ class oudistanceController extends Controller
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
+        $name_contract = (float) $name_contract;
 
         $actual_rate = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
 
@@ -114,7 +116,9 @@ class oudistanceController extends Controller
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
-            'created_at' => now(),
+            'name_contract' => $request->name_contract,
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
         return redirect()->to('rate-contract/asteng/oudistance')->with('success', 'Rate contract berhasil ditambahkan');
@@ -157,6 +161,7 @@ class oudistanceController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
         $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+        $name_contract = str_replace([','], ['.'], $request->name_contract);
 
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;
@@ -164,19 +169,21 @@ class oudistanceController extends Controller
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
+        $name_contract = (float) $name_contract;
 
         $actual_rate = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
 
         // Simpan ke database
         $dokumenoudistance->update([
             'activity' => $request->activity,
-            'item' => $request->item,
+            'id_item' => $request->item,
             'base_rate' => $base_rate,
             'actual_rate' => $actual_rate,
             'contractual_distance_km' => $request->contractual_distance_km,
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
+            'name_contract' => $request->name_contract,
             'contract_reference' => $path,
             'updated_at' => now(),
         ]);

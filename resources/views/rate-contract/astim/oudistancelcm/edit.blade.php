@@ -83,7 +83,11 @@
 
                                 </tbody>
                             </table>
-
+                            <div class="col-12">
+                            <label for="name_contract" class="form-label">Name Contract</label>
+                            <input value="{{ $oudistance_lcm->name_contract }}" name="name_contract" type="text"
+                                class="form-control" id="name_contract">
+                        </div>
 
                             <!-- Contract Reference -->
                             <div class="col-12">

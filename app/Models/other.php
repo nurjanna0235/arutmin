@@ -16,7 +16,7 @@ class Other extends Model
     protected $primaryKey = 'id';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable = ['base_rate_hrm_lcm','currency_adjustment','premium_rate','general_escalation','rate_actual_hrm_lcm','contract_reference','created_at','updated_at'];
+    protected $fillable = ['base_rate_hrm_lcm','currency_adjustment','premium_rate','general_escalation','rate_actual_hrm_lcm','contract_reference','created_at','updated_at','name_contract'];
 }
 
 

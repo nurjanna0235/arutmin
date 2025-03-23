@@ -36,7 +36,7 @@ class CoalLCMUserController extends Controller
         }
     
         // Ambil data hasil query dan format bulan/tahun
-        $dokumencoal_lcm = $query->get()->map(function ($item) {
+        $dokumencoal_lcm = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });

@@ -52,6 +52,7 @@
                         <th scope="col" style="width: 10%;">Premium Rate</th>
                         <th scope="col" style="width: 10%;">General Escalation</th>
                         <th scope="col" style="width: 15%;">Rate Actual HRM LCM (Rp/ton/KM)</th>
+                        <th scope="col" style="width: 10%;">Name Contract</th>
                         <th scope="col" style="width: 10%;">Aksi</th>
                     </tr>
                 </thead>
@@ -64,10 +65,11 @@
                             <td>{{ $item->bulan_tahun }}</td>
                             <td>{{ $item->base_rate_hrm_lcm }}</td>
                             <td>{{ $item->currency_adjustment }}</td>
-                            <td>{{ $item->premium_rate }}</td>
-                            <td>{{ $item->general_escalation }}</td>
+                            <td>{{ $item->premium_rate }}%</td>
+                            <td>{{ $item->general_escalation }}%</td>
                             <!-- Tambahkan kelas Bootstrap untuk Rate Actual -->
                             <td class="text-danger fw-bold">{{ $item->rate_actual_hrm_lcm }}</td>
+                            <td>{{ $item->name_contract }}</td>
                             <td>
                                 <!-- Menggunakan d-flex untuk mengatur elemen menjadi horizontal -->
                                 <div class="d-flex gap-2 justify-content-center">

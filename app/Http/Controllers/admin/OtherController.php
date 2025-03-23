@@ -1,49 +1,50 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+
 use App\Models\other;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+
 class OtherController extends Controller
 {
     public function index(Request $request)
-{
-    // Ambil input Tahun Awal dan Tahun Akhir dari request
-    $startYear = $request->input('start_year');
-    $endYear = $request->input('end_year');
+    {
+        // Ambil input Tahun Awal dan Tahun Akhir dari request
+        $startYear = $request->input('start_year');
+        $endYear = $request->input('end_year');
 
-    // Query dasar untuk mengambil data
-    $query = other::query();
+        // Query dasar untuk mengambil data
+        $query = other::query();
 
-    // Filter berdasarkan rentang tahun jika tersedia
-    if ($startYear && $endYear) {
-        $query->whereBetween('created_at', ["$startYear-01-01", "$endYear-12-31"]);
-    } elseif ($startYear) {
-        $query->whereYear('created_at', '>=', $startYear);
-    } elseif ($endYear) {
-        $query->whereYear('created_at', '<=', $endYear);
+        // Filter berdasarkan rentang tahun jika tersedia
+        if ($startYear && $endYear) {
+            $query->whereBetween('created_at', ["$startYear-01-01", "$endYear-12-31"]);
+        } elseif ($startYear) {
+            $query->whereYear('created_at', '>=', $startYear);
+        } elseif ($endYear) {
+            $query->whereYear('created_at', '<=', $endYear);
+        }
+
+        // Ambil data hasil query dan format bulan/tahun
+        $dokumenother = $query->orderByDesc('id')->get()->map(function ($item) {
+            $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
+            return $item;
+        });
+
+        // Ambil daftar tahun unik untuk dropdown filter
+        $tahunList = other::selectRaw('YEAR(created_at) as tahun')
+            ->distinct()
+            ->orderBy('tahun', 'desc')
+            ->pluck('tahun');
+
+        // Kirim data ke view
+        return view('rate-contract/asteng/other/index', compact('dokumenother', 'tahunList'));
     }
-
-    // Ambil data hasil query dan format bulan/tahun
-    $dokumenother = $query->get()->map(function ($item) {
-        $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
-        return $item;
-    });
-
-    // Ambil daftar tahun unik untuk dropdown filter
-    $tahunList = other::selectRaw('YEAR(created_at) as tahun')
-        ->distinct()
-        ->orderBy('tahun', 'desc')
-        ->pluck('tahun');
-
-    // Kirim data ke view
-    return view('rate-contract/asteng/other/index', compact('dokumenother', 'tahunList'));
-
-}  
-  public function detail($id)
+    public function detail($id)
     {
         $dokumenother = other::where('id', $id)->get()->first();
 
@@ -55,7 +56,7 @@ class OtherController extends Controller
     }
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = other::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -65,42 +66,46 @@ class OtherController extends Controller
         }
         $path = $request->file('contract_reference')->store('img', 'public');
 
-            // Ganti koma dengan titik pada inputan untuk keperluan perhitungan
-            $base_rate = str_replace([','], ['.'], $request->base_rate_hrm_lcm);
-            $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
-            $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
-            $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+        // Ganti koma dengan titik pada inputan untuk keperluan perhitungan
+        $base_rate = str_replace([','], ['.'], $request->base_rate_hrm_lcm);
+        $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
+        $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
+        $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+        $name_contract = $request->name_contract;
 
-            // Konversi menjadi float untuk perhitungan
-            $base_rate = (float) $base_rate;
-            $currency_adjustment = (float) $currency_adjustment;
-            $premium_rate = (float) $premium_rate;
-            $general_escalation = (float) $general_escalation;
 
-            // Hitung Rate Actual sesuai rumus
-            $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
+        // Konversi menjadi float untuk perhitungan
+        $base_rate = (float) $base_rate;
+        $currency_adjustment = (float) $currency_adjustment;
+        $premium_rate = (float) $premium_rate;
+        $general_escalation = (float) $general_escalation;
+        $name_contract = $name_contract;
 
-            // Simpan data ke dalam database
-            DB::table('other')->insert([
-                'base_rate_hrm_lcm' => $request->base_rate_hrm_lcm,
-                'currency_adjustment' => $request->currency_adjustment,
-                'premium_rate' => $request->premium_rate,
-                'general_escalation' => $request->general_escalation,
-                'rate_actual_hrm_lcm' => $rate_actual,
-                'contract_reference' => $path,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        // Hitung Rate Actual sesuai rumus
+        $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
 
-            // Redirect dengan pesan sukses
-            return redirect()->to('rate-contract/asteng/other')->with('success', 'Data berhasil ditambahkan');
-        }
-        public function edit($id)
-        {
-            $dokumenother = other::findOrFail($id);
-            return view('rate-contract/asteng/other/edit', compact('dokumenother'));
-        }
-        public function update(Request $request, $id)
+        // Simpan data ke dalam database
+        DB::table('other')->insert([
+            'base_rate_hrm_lcm' => $request->base_rate_hrm_lcm,
+            'currency_adjustment' => $request->currency_adjustment,
+            'premium_rate' => $request->premium_rate,
+            'general_escalation' => $request->general_escalation,
+            'name_contract' =>  $request->name_contract,
+            'rate_actual_hrm_lcm' => $rate_actual,
+            'contract_reference' => $path,
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->to('rate-contract/asteng/other')->with('success', 'Data berhasil ditambahkan');
+    }
+    public function edit($id)
+    {
+        $dokumenother = other::findOrFail($id);
+        return view('rate-contract/asteng/other/edit', compact('dokumenother'));
+    }
+    public function update(Request $request, $id)
     {
         // Validasi input
         $request->validate([
@@ -108,6 +113,7 @@ class OtherController extends Controller
             'currency_adjustment' => 'required',
             'premium_rate' => 'nullable',
             'general_escalation' => 'nullable',
+            'name_contract' => 'nullable',
             // 'contract_reference' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048',
         ]);
 
@@ -129,13 +135,14 @@ class OtherController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
         $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+        $name_contract =  $request->name_contract ;
 
         // Konversi menjadi float untuk perhitungan
         $base_rate_hrm_lcm = (float) $base_rate_hrm_lcm;
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
-
+        $name_contract =  $name_contract;
         // Hitung Rate Actual sesuai rumus
         $rate_actual = $base_rate_hrm_lcm * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
 
@@ -145,6 +152,7 @@ class OtherController extends Controller
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
+            'name_contract' => $request->name_contract,
             'rate_actual' => $rate_actual,
             'contract_reference' => $path,
             'updated_at' => now(),

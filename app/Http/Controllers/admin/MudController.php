@@ -30,7 +30,7 @@ class MudController extends Controller
         }
     
         // Ambil data hasil query dan format bulan/tahun
-        $dokumenmud = $query->get()->map(function ($item) {
+        $dokumenmud = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
@@ -57,7 +57,7 @@ class MudController extends Controller
     }
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = mud::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -72,7 +72,7 @@ class MudController extends Controller
         $currency_adjustment = (float) $request->currency_adjustment;
         $premium_rate = (float) $request->premium_rate / 100; // Konversi persen ke desimal
         $general_escalation = (float) $request->general_escalation / 100; // Konversi persen ke desimal
-
+        $name_contract =  $request->name_contract;
         // Perhitungan rate_actual
         $rate_actual = $mud_removal_load_and_haul
             * $currency_adjustment
@@ -86,8 +86,11 @@ class MudController extends Controller
             'currency_adjustment' => $currency_adjustment,
             'premium_rate' => $request->premium_rate, // Nilai asli dalam persen
             'general_escalation' => $request->general_escalation, // Nilai asli dalam persen
+            'name_contract' => $name_contract,
             'rate_actual' => $rate_actual,
             'contract_reference' => $path,
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
         return redirect()->to('rate-contract/asteng/mud')->with('success', 'Data berhasil ditambahkan');
@@ -107,6 +110,7 @@ class MudController extends Controller
             'currency_adjustment' => 'required|numeric',
             'premium_rate' => 'required|numeric',
             'general_escalation' => 'required|numeric',
+            'name_contract' => 'required',
         ]);
 
         // Konversi input ke tipe data numerik
@@ -114,6 +118,7 @@ class MudController extends Controller
         $currency_adjustment = (float) $request->currency_adjustment;
         $premium_rate = (float) $request->premium_rate / 100; // Konversi persen ke desimal
         $general_escalation = (float) $request->general_escalation / 100; // Konversi persen ke desimal
+        $name_contract =  $request->name_contract;
 
         $dokumenmud = mud::findOrFail($id);
         $path = $dokumenmud->contract_reference;
@@ -137,6 +142,7 @@ class MudController extends Controller
         $dokumenmud->currency_adjustment = $currency_adjustment;
         $dokumenmud->premium_rate = $request->premium_rate; // Nilai asli dalam persen
         $dokumenmud->general_escalation = $request->general_escalation; // Nilai asli dalam persen
+        $dokumenmud->name_contract = $name_contract;
         $dokumenmud->rate_actual = $rate_actual;
         $dokumenmud->contract_reference = $path;
         $dokumenmud->save();

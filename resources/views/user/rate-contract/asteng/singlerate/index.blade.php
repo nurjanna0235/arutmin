@@ -50,6 +50,7 @@
                         <th scope="col" style="width: 10%;">Premium Rate</th>
                         <th scope="col" style="width: 10%;">General Escalation</th>
                         <th scope="col" style="width: 15%;">Total Single Rate Actual (Rp/ton)</th>
+                        <th scope="col" style="width: 10%;">Name Contract</th>
                         <th scope="col" style="width: 10%;">Aksi</th>
                     </tr>
                 </thead>
@@ -66,6 +67,7 @@
                             <td>{{ $item->premium_rate }}</td>
                             <td>{{ $item->general_escalation }}</td>
                             <td class="text-danger fw-bold">{{ $item->total_single_rate_actual }}</td>
+                            <td>{{ $item->name_contract }}</td>
                             <td>
                                 <!-- Menggunakan d-flex untuk mengatur elemen menjadi horizontal -->
                                 <div class="d-flex gap-2 justify-content-center">

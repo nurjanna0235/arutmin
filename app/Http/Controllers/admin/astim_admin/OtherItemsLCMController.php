@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin\astim_admin;
+
 use App\Models\other_items_lcm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,15 +13,15 @@ class OtherItemsLCMController extends Controller
 {
     public function index(Request $request)
     {
-         // Ambil input tahun dari request
-         $tahunAwal = $request->input('start_year'); // Input untuk tahun awal
+        // Ambil input tahun dari request
+        $tahunAwal = $request->input('start_year'); // Input untuk tahun awal
         $tahunAkhir = $request->input('end_year'); // Input untuk tahun akhir
         $filterTahun = $request->input('filter_tahun'); // Input untuk filter tahun dropdown
 
-         // Query dasar untuk mengambil data
-         $query = other_items_lcm::query();
+        // Query dasar untuk mengambil data
+        $query = other_items_lcm::query();
 
-          // Filter berdasarkan rentang tahun jika tahun awal dan tahun akhir diberikan
+        // Filter berdasarkan rentang tahun jika tahun awal dan tahun akhir diberikan
         if ($tahunAwal && $tahunAkhir) {
             $query->whereYear('other_items_lcm.created_at', '>=', $tahunAwal)
                 ->whereYear('other_items_lcm.created_at', '<=', $tahunAkhir);
@@ -33,23 +34,23 @@ class OtherItemsLCMController extends Controller
         }
 
 
-         // Filter berdasarkan dropdown filter_tahun
-         if ($filterTahun) {
-             $query->whereYear('created_at', $filterTahun);
-         }
+        // Filter berdasarkan dropdown filter_tahun
+        if ($filterTahun) {
+            $query->whereYear('created_at', $filterTahun);
+        }
 
-         // Ambil data hasil query dan format bulan/tahun
-         $dokumenother_items_lcm = $query->get()->map(function ($item) {
-             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
-             return $item;
-         });
+        // Ambil data hasil query dan format bulan/tahun
+        $dokumenother_items_lcm = $query->orderByDesc('id')->get()->map(function ($item) {
+            $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
+            return $item;
+        });
 
-         // Ambil daftar tahun unik untuk dropdown filter
-         $tahunList = other_items_lcm::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
+        // Ambil daftar tahun unik untuk dropdown filter
+        $tahunList = other_items_lcm::selectRaw('YEAR(created_at) as tahun')->distinct()->pluck('tahun');
 
-         // Kirim data ke view
-         return view('rate-contract/astim/otheritemslcm/index', compact('dokumenother_items_lcm', 'tahunList'));
-     }
+        // Kirim data ke view
+        return view('rate-contract/astim/otheritemslcm/index', compact('dokumenother_items_lcm', 'tahunList'));
+    }
 
 
     public function detail($id)
@@ -65,7 +66,7 @@ class OtherItemsLCMController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = other_items_lcm::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -80,9 +81,10 @@ class OtherItemsLCMController extends Controller
         DB::table('other_items_lcm')->insert([
             'rate_actual_hrm_lcm_base_rate_lebih_dari' => $request->rate_actual_hrm_lcm_base_rate_lebih_dari,
             'rate_actual_hrm_lcm_base_rate_kurang_dari' => $request->rate_actual_hrm_lcm_base_rate_kurang_dari,
+            'name_contract' => $request->name_contract,
             'contract_reference' => $path,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
         // Redirect dengan pesan sukses
         return redirect()->to('rate-contract/astim/other-items-lcm')->with('success', 'Data berhasil ditambahkan');
@@ -130,21 +132,22 @@ class OtherItemsLCMController extends Controller
         // Proses data input sebagai teks
         $rate_actual_hrm_lcm_base_rate_lebih_dari = $request->rate_actual_hrm_lcm_base_rate_lebih_dari;
         $rate_actual_hrm_lcm_base_rate_kurang_dari = $request->rate_actual_hrm_lcm_base_rate_kurang_dari;
-
+        $name_contract = $request->name_contract;
 
 
         // Update data ke database
         DB::table('other_items_lcm')->where('id', $id)->update([
             'rate_actual_hrm_lcm_base_rate_lebih_dari' => $rate_actual_hrm_lcm_base_rate_lebih_dari,
             'rate_actual_hrm_lcm_base_rate_kurang_dari' => $rate_actual_hrm_lcm_base_rate_kurang_dari,
-
+            'name_contract' => $name_contract,
             'contract_reference' => $path,
         ]);
 
         // Redirect dengan pesan sukses
         return redirect()->to('rate-contract/astim/other-items-lcm')->with('success', 'Data berhasil diperbarui');
     }
-    public function view($id){
+    public function view($id)
+    {
         $dokumenother_items_lcm = other_items_lcm::where('id', $id)->get()->first();
 
         return view('rate-contract/astim/otheritemslcm/view', compact('dokumenother_items_lcm'));

@@ -50,6 +50,7 @@
                     <tr>
                         <th scope="col" style="width: 5%;">No</th>
                         <th scope="col" style="width: 15%;">Bulan/Tahun</th>
+                        <th scope="col" style="width: 15%;">Name Contract</th>
                         <th scope="col" style="width: 10%;">Aksi</th>
                     </tr>
                 </thead>
@@ -88,6 +89,7 @@
                                                                 <td>{{ $item->rate_actual_base_rate_lebih_dari }}</td>
                                                                 <td>{{ $item->rate_actual_base_rate_kurang_dari }}
                                                                 </td>
+
                                                             </tr>
 
                                                         </tbody>
@@ -103,6 +105,7 @@
                                     </div>
                                 </div><!-- End Basic Modal-->
                             </td>
+                            <td>{{ $item->name_contract}}</td>
                             <td>
                                 <div class="d-flex gap-2 justify-content-center">
                                     <a

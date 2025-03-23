@@ -60,6 +60,7 @@
                     <th scope="col" style="width: 10%;">Currency Adjustment</th>
                     <th scope="col" style="width: 10%;">Premium Rate</th>
                     <th scope="col" style="width: 10%;">General Escalation</th>
+                    <th scope="col" style="width: 15%;">Name Contract</th>
                     <th scope="col" style="width: 15%;">Total Rate Coal Actual (Rp/ton)</th>
                     <th scope="col" style="width: 10%;">Aksi</th>
                 </tr>
@@ -77,8 +78,9 @@
                     <td>{{ $item->pit_support }}</td>
                     <td class="text-danger fw-bold">{{ $item->sub_total_base_rate_coal }}</td>
                     <td>{{ $item->currency_adjustment }}</td>
-                    <td>{{ $item->premium_rate }}</td>
-                    <td>{{ $item->general_escalation }}</td>
+                    <td>{{ $item->premium_rate }}%</td>
+                    <td>{{ $item->general_escalation }}%</td>
+                    <td>{{ $item->name_contract }}</td>
                     <td class="text-danger fw-bold">{{ $item->total_rate_coal_actual }}</td>
                     <td>
                         <div class="d-flex gap-2 justify-content-center">

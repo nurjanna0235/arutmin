@@ -72,7 +72,7 @@
                         <th scope="col" style="width: 10%;">Currency Adjustment</th>
                         <th scope="col" style="width: 10%;">Premium Rate</th>
                         <th scope="col" style="width: 10%;">General Escalation</th>
-
+                        <th scope="col" style="width: 10%;">Name Contract</th>
                         <th scope="col" style="width: 10%;">Aksi</th>
                     </tr>
                 </thead>
@@ -91,6 +91,7 @@
                             <td>{{ $item->currency_adjustment }}</td>
                             <td>{{ $item->premium_rate }}</td>
                             <td>{{ $item->general_escalation }}</td>
+                            <td>{{ $item->name_contract }}</td>
                             <td>
                                 <div class="d-flex gap-2 justify-content-center">
                                     <!-- Detail Button -->

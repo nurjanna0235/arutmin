@@ -47,6 +47,7 @@
                     <tr>
                         <th scope="col" style="width: 5%;">No</th>
                         <th scope="col" style="width: 15%;">Bulan/Tahun</th>
+                        <th scope="col" style="width: 10%;">Name Contract</th>
                         <th scope="col" style="width: 10%;">Aksi</th>
                     </tr>
                 </thead>
@@ -111,15 +112,9 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-
+                                                <td>{{ $item->name_contract}}</td>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Kembali</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- End Basic Modal-->
+                                   
                             </td>
                             <td>
                                 <div class="d-flex gap-2 justify-content-center">

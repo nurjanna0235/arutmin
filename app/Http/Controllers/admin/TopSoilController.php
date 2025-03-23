@@ -31,7 +31,7 @@ class TopSoilController extends Controller
         }
 
         // Ambil data hasil query dan format bulan/tahun
-        $dokumentop_soil = $query->get()->map(function ($item) {
+        $dokumentop_soil = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
@@ -59,13 +59,13 @@ class TopSoilController extends Controller
     }
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = top_soil::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
 
         if ($dokument) {
-            return redirect()->to('rate-contract/asteng/topsoil')->with('error', 'Data untuk bulan ini sudah ada.');
+            return redirect()->to('rate-contract/asteng/top-soil')->with('error', 'Data untuk bulan ini sudah ada.');
         }
         $path = $request->file('contract_reference')->store('img', 'public');
 
@@ -74,13 +74,14 @@ class TopSoilController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
         $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+        $name_contract = $request->name_contract;
 
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
-
+        $name_contract =  $name_contract;
         // Hitung Rate Actual sesuai rumus
         $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
         // Simpan ke database
@@ -89,10 +90,11 @@ class TopSoilController extends Controller
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
+            'name_contract' => $name_contract,
             'rate_actual' => $rate_actual,
             'contract_reference' => $path,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
         // Redirect dengan pesan sukses
@@ -122,6 +124,7 @@ class TopSoilController extends Controller
             'currency_adjustment' => 'required',
             'premium_rate' => 'nullable',
             'general_escalation' => 'nullable',
+            'name_contract' => 'nullable',
             // 'contract_reference' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048',
         ]);
 
@@ -146,13 +149,14 @@ class TopSoilController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
         $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+        $name_contract =  $request->name_contract;
 
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
-
+        $name_contract = (float) $name_contract;
         // Hitung Rate Actual sesuai rumus
         $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
 
@@ -162,6 +166,7 @@ class TopSoilController extends Controller
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
+            'name_contract' => $request->name_contract,
             'rate_actual' => $rate_actual,
             'contract_reference' => $path,
             'updated_at' => now(),

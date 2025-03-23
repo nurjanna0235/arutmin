@@ -40,7 +40,7 @@ class MudLCMController extends Controller
         }
 
         // Ambil data hasil query dan format bulan/tahun
-        $dokumenmud_lcm = $query->get()->map(function ($item) {
+        $dokumenmud_lcm = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
@@ -66,11 +66,10 @@ class MudLCMController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = mud_lcm::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
-
         if ($dokument) {
             return redirect()->to('rate-contract/astim/mud-lcm')->with('error', 'Data untuk bulan ini sudah ada.');
         }
@@ -82,9 +81,10 @@ class MudLCMController extends Controller
         DB::table('mud_lcm')->insert([
             'mud_removal_lebih_dari' => $request->mud_removal_lebih_dari,
             'mud_removal_kurang_dari' => $request->mud_removal_kurang_dari,
+            'name_contract' => $request->name_contract,
             'contract_reference' => $path,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
         // Redirect dengan pesan sukses
         return redirect()->to('rate-contract/astim/mud-lcm')->with('success', 'Data berhasil ditambahkan');
@@ -133,11 +133,14 @@ class MudLCMController extends Controller
         // Proses data input sebagai teks
         $mud_removal_lebih_dari = $request->mud_removal_lebih_dari;
         $mud_removal_kurang_dari = $request->mud_removal_kurang_dari;
+        $name_contract = $request->name_contract;
+
 
         // Update data ke database
         DB::table('mud_lcm')->where('id', $id)->update([
             'mud_removal_lebih_dari' => $mud_removal_lebih_dari,
             'mud_removal_kurang_dari' => $mud_removal_kurang_dari,
+            'name_contract' => $name_contract,
             'contract_reference' => $path,
         ]);
 

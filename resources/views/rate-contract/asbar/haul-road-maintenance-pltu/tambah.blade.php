@@ -51,7 +51,15 @@
                                     <span class="input-group-text" id="basic-addon2">%</span>
                                 </div>
 
+                                <div class="col-12">
+                            <label for="name_contract" class="form-label">Name Contract</label>
+                            <input name="name_contract" type="text" class="form-control" id="name_contract">
+                        </div>
 
+                                <label for="bulan" class="form-label">Bulan</label>
+                                <div class="input-group mb-3">
+                                    <input type="date" class="form-control" name="bulan">
+                                </div>
 
                                 <div class="col-12">
                                     <label for="contract_reference" class="form-label">Contract Reference</label>

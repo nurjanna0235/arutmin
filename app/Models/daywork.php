@@ -15,5 +15,5 @@ class daywork extends Model
     protected $primaryKey = 'id_daywork';
 
     // Daftar kolom yang dapat diisi secara massal
-    protected $fillable =['id_item','currency_adjustment','premium_rate','general_escalation','contract_reference','updated_at'];
+    protected $fillable =['id_item','currency_adjustment','premium_rate','general_escalation','contract_reference','updated_at','name_contract'];
 }

@@ -32,7 +32,7 @@ class PitClearingController extends Controller
         }
 
         // Ambil data hasil query dan format bulan/tahun
-        $dokumenpit_clearing = $query->get()->map(function ($item) {
+        $dokumenpit_clearing = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
@@ -61,7 +61,7 @@ class PitClearingController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = pit_clearing::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -76,12 +76,14 @@ class PitClearingController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = (float) str_replace(',', '.', $request->premium_rate) / 100;
         $general_escalation = (float) str_replace(',', '.', $request->general_escalation) / 100;
+        $name_contract = $request->name_contract;
 
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
+        $name_contract = $request->name_contract;
 
         // Hitung Rate Actual sesuai rumus
         $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
@@ -92,10 +94,11 @@ class PitClearingController extends Controller
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
+            'name_contract' => $request->name_contract,
             'rate_actual' => $rate_actual,
             'contract_reference' => $path,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
         // Redirect dengan pesan sukses
@@ -130,6 +133,7 @@ class PitClearingController extends Controller
             'currency_adjustment' => 'required',
             'premium_rate' => 'nullable',
             'general_escalation' => 'nullable',
+            'name_contract' => 'required',
             // 'contract_reference' => 'nullable|file|mimes:jpeg,png,jpg,pdf|max:2048',
         ]);
 
@@ -152,12 +156,14 @@ class PitClearingController extends Controller
         $currency_adjustment = str_replace([','], ['.'], $request->currency_adjustment);
         $premium_rate = str_replace(['%'], [''], $request->premium_rate ?? 0) / 100;
         $general_escalation = str_replace(['%'], [''], $request->general_escalation ?? 0) / 100;
+        $base_rate = $request->base_rate;
 
         // Konversi menjadi float untuk perhitungan
         $base_rate = (float) $base_rate;
         $currency_adjustment = (float) $currency_adjustment;
         $premium_rate = (float) $premium_rate;
         $general_escalation = (float) $general_escalation;
+        $base_rate = $request->base_rate;
 
         // Hitung Rate Actual sesuai rumus
         $rate_actual = $base_rate * $currency_adjustment * (1 + $premium_rate) * (1 + $general_escalation);
@@ -168,8 +174,10 @@ class PitClearingController extends Controller
             'currency_adjustment' => $request->currency_adjustment,
             'premium_rate' => $request->premium_rate,
             'general_escalation' => $request->general_escalation,
+            'name_contract' => $request->name_contract,
             'rate_actual' => $rate_actual,
             'contract_reference' => $path,
+        
         ]);
 
         // Redirect dengan pesan sukses

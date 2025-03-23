@@ -58,6 +58,12 @@
                                     <span class="input-group-text" id="basic-addon2">%</span>
                                 </div>
 
+                                <div class="col-12">
+                            <label for="name_contract" class="form-label">Name Contract</label>
+                            <input value="{{ $dokumenmud->name_contract }}" name="name_contract"
+                                type="text" class="form-control" id="name_contract">
+                        </div>
+
                                 {{-- <div class="col-12">
                                 <label for="rate_actual" class="form-label">Rate Actual (Rp/Ha)</label>
                                 <input  value="{{ $dokumenmud->rate_actual }}" name= "rate_actual" type="text"

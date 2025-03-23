@@ -82,13 +82,19 @@
                                 </div>
 
                                 <div class="col-12">
+                                    <label for="name_contract" class="form-label">Name Contract</label>
+                                    <input value="{{ $dokumendaywork-> name_contract }}" name="name_contract"
+                                        type="text" class="form-control" id="name_contract">
+                                </div>
+
+                                <div class="col-12">
                                     <label for="contract_reference" class="form-label">Contract Reference</label>
                                     @if($dokumendaywork->contract_reference)
                                     <div class="mb-2">
                                         <a href="{{ asset('storage/' . $dokumendaywork->contract_reference) }}"
                                             target="_blank">
                                             <img src="{{ asset('storage/' . $dokumendaywork->contract_reference) }}"
-                                                alt="Image" style="max-width: 200px;"> 
+                                                alt="Image" style="max-width: 200px;">
                                         </a>
                                     </div>
 

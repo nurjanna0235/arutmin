@@ -14,5 +14,5 @@ class mud_lcm extends Model
     // Tentukan kolom kunci utama jika tidak menggunakan 'id'
     protected $primaryKey = 'id';
 
-    protected $fillable = ['mud_removal_lebih_dari','mud_removal_kurang_dari','contract_reference','created_at','updated_at'];
+    protected $fillable = ['mud_removal_lebih_dari','mud_removal_kurang_dari','contract_reference','created_at','updated_at','name_contract'];
 }

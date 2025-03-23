@@ -27,7 +27,7 @@ class PitClearingUserController extends Controller
         }
 
         // Ambil data hasil query dan format bulan/tahun
-        $dokumenpit_clearing = $query->get()->map(function ($item) {
+        $dokumenpit_clearing = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });

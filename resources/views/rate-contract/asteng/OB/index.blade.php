@@ -59,6 +59,7 @@
                         <th class="text-center"><small>Premium Rate</small></th>
                         <th class="text-center"><small>General Escalation</small></th>
                         <th class="text-center"><small>Total Rate OB Actual (Rp/BCM)</small></th>
+                        <th class="text-center"><small>Name Contract</small></th>
                         <th class="text-center"><small>Aksi</small></th>
                     </tr>
                 </thead>
@@ -78,9 +79,10 @@
                             <td class="text-danger fw-bold">{{ $item->sub_total_base_rate_ob }}</td>
                             <td class="text-center">{{ $item->sr }}</td>
                             <td class="text-center">{{ $item->currency_adjustment }}</td>
-                            <td class="text-center">{{ $item->premium_rate }}</td>
-                            <td class="text-center">{{ $item->general_escalation }}</td>
+                            <td class="text-center">{{ $item->premium_rate }}%</td>
+                            <td class="text-center">{{ $item->general_escalation }}%</td>
                             <td class="text-danger fw-bold">{{ $item->total_rate_ob_actual }}</td>
+                            <td class="text-center">{{ $item->name_contract }}</td>
                             <td class="text-center">
                                 <div class="d-flex gap-2 justify-content-center">
                                     <!-- Tombol Detail -->

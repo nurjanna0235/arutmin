@@ -35,7 +35,7 @@ class OudistanceLCMController extends Controller
         }
 
         // Ambil data hasil query, group by id_contract, dan format created_at
-        $dokument = $query->get()
+        $dokument = $query->orderByDesc('id')->get()
             ->groupBy('oudistance_lcm.id_contract') // Grouping berdasarkan id_contract
             ->map(fn($group) => $group->first()) // Ambil item pertama dari setiap grup
             ->map(function ($item) {
@@ -65,7 +65,7 @@ class OudistanceLCMController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = oudistance_lcm::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -78,8 +78,8 @@ class OudistanceLCMController extends Controller
         // Simpan contract dan ambil ID-nya
         $id_contract = contract::insertGetId([
             'contract_refren' => $path, // Pastikan nama kolom sesuai dengan di database
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
         // Loop untuk menyimpan data oudistance_lcm

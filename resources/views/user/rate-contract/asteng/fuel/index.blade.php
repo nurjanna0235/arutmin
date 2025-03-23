@@ -85,6 +85,7 @@
                     <th><small>Item</small></th>
                     <th><small>Fuel Index</small></th>
                     <th><small>Contractual Distance (KM)</small></th>
+                    <th><small>Name Contract</small></th>
                     <th><small>Aksi</small></th>
                 </tr>
             </thead>
@@ -98,6 +99,7 @@
                     <td>{{ $item->item }}</td>
                     <td>{{ $item->fuel_index }}</td>
                     <td>{{ $item->contractual_distance_km }}</td>
+                    <td>{{ $item->name_contract }}</td>
                     <td>
                         <!-- Menggunakan d-flex untuk mengatur ikon menjadi horizontal -->
                         <div class="d-flex gap-2 justify-content-center">

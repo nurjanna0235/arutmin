@@ -52,6 +52,7 @@
                         <th scope="col" style="width: 15%;">Premium Rate</th>
                         <th scope="col" style="width: 15%;">General Escalation</th>
                         <th scope="col" style="width: 15%;">Rate Actual (Rp/Ha)</th>
+                        <th scope="col" style="width: 15%;">Name Contract</th>
                         <th scope="col" style="width: 10%;">Aksi</th>
                     </tr>
                 </thead>
@@ -63,9 +64,10 @@
                             <td>{{ $item->bulan_tahun }}</td>
                             <td class="text-center">{{ $item->mud_removal_load_and_haul }}</td>
                             <td class="text-center">{{ $item->currency_adjustment }}</td>
-                            <td class="text-center">{{ $item->premium_rate }}</td>
-                            <td class="text-center">{{ $item->general_escalation }}</td>
+                            <td class="text-center">{{ $item->premium_rate }}%</td>
+                            <td class="text-center">{{ $item->general_escalation }}%</td>
                             <td class="text-danger fw-bold">{{ $item->rate_actual }}</td>
+                            <td class="text-center">{{ $item->name_contract }}</td>
                             <td> <!-- Menggunakan d-flex untuk mengatur elemen menjadi horizontal -->
                                 <div class="d-flex gap-2 justify-content-center">
                                     <!-- Tombol Detail -->

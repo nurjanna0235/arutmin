@@ -66,6 +66,14 @@
                                     <span class="input-group-text" id="basic-addon2">%</span>
                                 </div>
 
+                                <div class="col-12">
+                                <label for="name_contract" class="form-label">Name Contract</label>
+                                <div class="input-group mb-3">
+                                    <input value="{{ $dokumensingle_rate->name_contract }}" type="text"
+                                            class="form-control" name="name_contract">
+                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                </div>
+
                                 {{-- <div class="col-12">
                                 <label for="total_single_rate_actual" class="form-label">Total Single Rate Actual (Rp/ton)</label>
                                 <input  value="{{ $dokumensingle_rate->total_single_rate_actual }}" name=

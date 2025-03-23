@@ -48,6 +48,7 @@
                         <tr>
                             <th scope="col" style="width: 5%;">No</th>
                             <th scope="col" style="width: 15%;">Bulan/Tahun</th>
+                            <th scope="col" style="width: 10%;">Name Contract</th>
                             <th scope="col" style="width: 10%;">Aksi</th>
                         </tr>
                     </thead>
@@ -60,6 +61,7 @@
                                 <td>
                                 <a class="btn" href="{{ url('rate-contract/astim/oudistance-lcm/view/' . $item->id_contract) }}"> {{ $item->created_at }}</a>
                                 </td>
+                                <td>{{ $item->name_contract}}</td>
                                 <td>
                                     <div class="d-flex gap-2 justify-content-center">
                                         <a href="{{ url('rate-contract/astim/oudistance-lcm/detail/' . $item->id_contract) }}">
@@ -87,7 +89,7 @@
 
                     </tbody>
                 </table>
-            </div>
+          
         </div><!-- End Page Title -->
 
         <section class="section dashboard">

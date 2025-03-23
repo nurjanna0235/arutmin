@@ -129,6 +129,12 @@
                                 id="contractual_distance_km">
                         </div>
 
+                        <div class="col-12">
+                            <label for="name_contract" class="form-label">Name Contract</label>
+                            <input value="{{ $dokumenoudistance->name_contract }}" name="name_contract"
+                                type="text" class="form-control" id="name_contract">
+                        </div>
+
                             <!-- Contract Reference -->
                             <div class="col-12">
                                 <label for="contract_reference" class="form-label">Contract Reference</label>

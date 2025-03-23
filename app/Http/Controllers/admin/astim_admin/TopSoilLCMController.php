@@ -41,7 +41,7 @@ class TopSoilLCMController extends Controller
         }
     
         // Ambil data hasil query dan format bulan/tahun
-        $dokumentop_soil_lcm = $query->get()->map(function ($item) {
+        $dokumentop_soil_lcm = $query->orderByDesc('id')->get()->map(function ($item) {
             $item->bulan_tahun = Carbon::parse($item->created_at)->format('F Y'); // Format Bulan dan Tahun
             return $item;
         });
@@ -65,7 +65,7 @@ class TopSoilLCMController extends Controller
 
     public function simpan(Request $request)
     {
-        $tanggalInput = now(); // Ambil waktu saat ini
+        $tanggalInput = Carbon::parse($request->bulan);
         $dokument = top_soil_lcm::whereYear('created_at', $tanggalInput->year)
             ->whereMonth('created_at', $tanggalInput->month)
             ->first();
@@ -79,16 +79,15 @@ class TopSoilLCMController extends Controller
         DB::table('top_soil_lcm')->insert([
             'rate_actual_base_rate_lebih_dari' => $request->rate_actual_base_rate_lebih_dari,
             'rate_actual_base_rate_kurang_dari' => $request->rate_actual_base_rate_kurang_dari,
+            'name_contract' => $request->name_contract,
             'contract_reference' => $path,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'created_at' => $request->bulan,
+            'updated_at' => $request->bulan,
         ]);
 
         // Redirect dengan pesan sukses
         return redirect()->to('rate-contract/astim/top-soil-lcm')->with('success', 'Data berhasil ditambahkan');
     }
-
-
 
     public function hapus($id)
     {
@@ -133,11 +132,13 @@ class TopSoilLCMController extends Controller
         // Proses data input sebagai teks
         $rate_actual_base_rate_lebih_dari = $request->rate_actual_base_rate_lebih_dari;
         $rate_actual_base_rate_kurang_dari = $request->rate_actual_base_rate_kurang_dari;
+        $name_contract = $request->name_contract;
 
         // Update data ke database
         DB::table('top_soil_lcm')->where('id', $id)->update([
             'rate_actual_base_rate_lebih_dari' => $rate_actual_base_rate_lebih_dari,
             'rate_actual_base_rate_kurang_dari' => $rate_actual_base_rate_kurang_dari,
+            'name_contract' => $name_contract,
             'contract_reference' => $path,
         ]);
 

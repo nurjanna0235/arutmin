@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     </div><!-- End Card with an image on left -->
-                    <a type="submit" href="/rate-contract" class="btn btn-secondary">Kembali</a>   
+                    <a type="submit" href="/user/rate-contract" class="btn btn-secondary">Kembali</a>   
 
 
                 </div><!-- End sidebar recent posts-->

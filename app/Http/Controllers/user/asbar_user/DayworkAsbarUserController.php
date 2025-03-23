@@ -60,6 +60,7 @@ class DayworkAsbarUserController extends Controller
     
         return view('/user/rate-contract/asbar/dayworkasbar/index', compact('dokumendaywork', 'tahunList', 'itemList'));
     }
+    
     public function detail($id)
     {
         $dokumendaywork_asbar = daywork_asbar::where('id_daywork_asbar', $id)->get()->first();

@@ -72,6 +72,10 @@
                                 </tbody>
                             </table>
 
+                            <label for="bulan" class="form-label">Bulan</label>
+                                <div class="input-group mb-3">
+                                    <input type="date" class="form-control" name="bulan">
+                                </div>
 
                             <div class="col-12">
                                 <label for="contract_reference" class="form-label">Contract Reference</label>
